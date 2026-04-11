@@ -4,9 +4,14 @@
 # Ignore all hidden files and directories by default
 .*
 
-# Whitelist necessary files
+# Whitelist necessary root files
 !/.gitignore
 !/README.md
+
+# selective tracking for OpenClaw
+!/.openclaw/
+.openclaw/*
+!/.openclaw/workspace/
 
 # Explicitly ignore common high-volume or sensitive directories
 .antigravity-server/
@@ -18,13 +23,28 @@
 .gemini/
 .npm/
 .npm-global/
-.openclaw/
 .bash_history
 .bash_logout
 .profile
 .npmrc
 .sudo_as_admin_successful
 .motd_shown
+
+# Secrets and internal state
+.openclaw/.env
+.openclaw/credentials/
+.openclaw/identity/
+.openclaw/logs/
+.openclaw/update-check.json
+.openclaw/openclaw.json*
+.openclaw/exec-approvals.json
+.openclaw/memory/
+.openclaw/tasks/
+.openclaw/agents/
+.openclaw/canvas/
+.openclaw/devices/
+.openclaw/telegram/
+.openclaw/qqbot/
 
 # Logs
 *.log
