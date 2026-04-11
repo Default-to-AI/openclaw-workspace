@@ -1,0 +1,30 @@
+# General ignores for a home directory workspace
+# ---------------------------------------------
+
+# Ignore all hidden files and directories by default
+.*
+
+# Whitelist necessary files
+!/.gitignore
+!/README.md
+
+# Explicitly ignore common high-volume or sensitive directories
+.antigravity-server/
+.cache/
+.claude/
+.claude.json
+.codex/
+.config/
+.gemini/
+.npm/
+.npm-global/
+.openclaw/
+.bash_history
+.bash_logout
+.profile
+.npmrc
+.sudo_as_admin_successful
+.motd_shown
+
+# Logs
+*.log
