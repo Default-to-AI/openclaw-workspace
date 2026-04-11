@@ -48,3 +48,6 @@
 
 # Logs
 *.log
+
+# Virtual Environments
+python-venv/
