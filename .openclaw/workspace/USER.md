@@ -19,9 +19,9 @@
 - Deep-diver — will go deep on a topic; occasionally into rabbit holes over minor details
 
 ## Interests
-- **Professional**: Finance, U.S. stock market investing, crypto markets, economics, market analysis, technology, AI, agentic AI, automation, product management
-- **Recreational**: DJing / Nightlife
-- **Intellectual**: Psychology, paradoxes, moral dilemmas, social behavior, game theory, behavioral economics, philosophy, outer space, astronomy
+- **Professional**: Finance, U.S. stock market investing, economics, Tech / AI news, business news, market analysis, technology, AI, agentic AI, automation with AI, content creation, talking, financial scams
+- **Recreational**: DJing / Nightlife / Psychedelic drugs influences (DMT, Ayauasca)
+- **Intellectual**: Psychology, paradoxes, moral dilemmas, social behavior, game theory, behavioral economics, philosophy, outer space, astronomy, self improvemnt, debates, past dimensions, simulation theory
 
 ## Financial Snapshot
 
