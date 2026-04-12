@@ -1,0 +1,101 @@
+{
+  "report_date": "2026-04-12",
+  "generated_at": "2026-04-12T01:59:31.609393+03:00",
+  "model_for_summaries": "gpt-4o-mini",
+  "scan_logic": "pure_python",
+  "investor_profile_guardrail": "Filter out opportunities that add to Robert's existing US large cap tech concentration unless conviction is 9+. Currently held symbols include: ['AMZN', 'ASML', 'FICO', 'GOOG', 'IGV', 'JPM', 'META', 'MSFT', 'QQQ', 'RGTI', 'RKLB', 'TSLA', 'UBER']",
+  "opportunity_count_before_filter": 8,
+  "opportunity_count_after_filter": 8,
+  "top_opportunities": [
+    {
+      "ticker": "JNJ",
+      "opportunity_type": "earnings_drift",
+      "thesis": "Johnson & Johnson's forward EPS shows significant growth potential, yet the market has reacted negatively.",
+      "conviction_score": 7,
+      "trigger_source": "yfinance_earnings",
+      "trigger_data_point": "Forward EPS 12.58 vs trailing 11.04, price reaction only -1.88%",
+      "why_retail_is_missing_this": "Retail investors may overlook the strong forward EPS growth in favor of short-term price reactions.",
+      "risk_flags": "Market sentiment may remain negative despite strong fundamentals.",
+      "detected_at": "2026-04-11T22:58:49.863746+00:00",
+      "raw_facts": {
+        "reaction_pct": -1.88,
+        "trailing_eps": 11.04,
+        "forward_eps": 12.57888,
+        "last_earnings_date": "2026-04-14"
+      },
+      "base_score": 6.9
+    },
+    {
+      "ticker": "RTX",
+      "opportunity_type": "earnings_drift",
+      "thesis": "RTX shows a significant forward EPS growth potential that the market has yet to fully price in.",
+      "conviction_score": 7,
+      "trigger_source": "yfinance_earnings",
+      "trigger_data_point": "Forward EPS 7.53 vs trailing 4.96, price reaction only 2.73%",
+      "why_retail_is_missing_this": "Retail investors may overlook the substantial forward EPS increase and the muted price reaction, indicating a potential mispricing.",
+      "risk_flags": "Market sentiment may shift unexpectedly, and any geopolitical tensions affecting defense spending could impact performance.",
+      "detected_at": "2026-04-11T22:58:51.743613+00:00",
+      "raw_facts": {
+        "reaction_pct": 2.73,
+        "trailing_eps": 4.96,
+        "forward_eps": 7.52868,
+        "last_earnings_date": "2026-04-21"
+      },
+      "base_score": 6.9
+    },
+    {
+      "ticker": "MRK",
+      "opportunity_type": "earnings_drift",
+      "thesis": "Merck's forward EPS shows significant growth potential compared to trailing EPS, yet the market reaction has been muted.",
+      "conviction_score": 7,
+      "trigger_source": "yfinance_earnings",
+      "trigger_data_point": "Forward EPS 9.77 vs trailing 7.29, price reaction only 0.46%",
+      "why_retail_is_missing_this": "Retail investors may overlook the substantial forward EPS growth due to the small immediate price reaction, missing the long-term potential.",
+      "risk_flags": "Market may not fully appreciate the earnings growth; potential volatility in pharmaceutical sector.",
+      "detected_at": "2026-04-11T22:58:57.063802+00:00",
+      "raw_facts": {
+        "reaction_pct": 0.46,
+        "trailing_eps": 7.29,
+        "forward_eps": 9.7698,
+        "last_earnings_date": "2026-04-30"
+      },
+      "base_score": 6.9
+    },
+    {
+      "ticker": "CAG",
+      "opportunity_type": "earnings_drift",
+      "thesis": "CAG's forward EPS shows significant improvement compared to trailing EPS, yet the market has reacted negatively.",
+      "conviction_score": 7,
+      "trigger_source": "yfinance_earnings",
+      "trigger_data_point": "Forward EPS 1.71 vs trailing -0.10, price reaction only -3.44%",
+      "why_retail_is_missing_this": "Retail investors may be fixated on the negative price reaction rather than recognizing the strong forward EPS growth potential.",
+      "risk_flags": "Market sentiment may remain negative despite strong earnings potential.",
+      "detected_at": "2026-04-11T22:59:14.599740+00:00",
+      "raw_facts": {
+        "reaction_pct": -3.44,
+        "trailing_eps": -0.1,
+        "forward_eps": 1.70794,
+        "last_earnings_date": "2026-07-09"
+      },
+      "base_score": 6.9
+    },
+    {
+      "ticker": "KHC",
+      "opportunity_type": "earnings_drift",
+      "thesis": "Kraft Heinz shows a significant forward EPS improvement compared to trailing EPS, indicating potential for price appreciation.",
+      "conviction_score": 7,
+      "trigger_source": "yfinance_earnings",
+      "trigger_data_point": "Forward EPS 2.14 vs trailing -4.93, price reaction only 1.18%",
+      "why_retail_is_missing_this": "Retail investors may overlook the substantial forward EPS growth due to recent negative trailing performance, leading to underestimation of recovery potential.",
+      "risk_flags": "Market sentiment may still be cautious due to past performance; potential volatility around earnings announcements.",
+      "detected_at": "2026-04-11T22:59:16.353867+00:00",
+      "raw_facts": {
+        "reaction_pct": 1.18,
+        "trailing_eps": -4.93,
+        "forward_eps": 2.14125,
+        "last_earnings_date": "2026-04-28"
+      },
+      "base_score": 6.9
+    }
+  ]
+}

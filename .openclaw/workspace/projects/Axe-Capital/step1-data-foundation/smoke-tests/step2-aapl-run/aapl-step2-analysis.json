@@ -1,0 +1,227 @@
+{
+  "ticker": "AAPL",
+  "parallel": true,
+  "elapsed_seconds": 6.457,
+  "analyst_count": 4,
+  "results": [
+    {
+      "analyst": "fundamental",
+      "role": "Fundamental Analyst",
+      "model": "gpt-4.1-mini",
+      "elapsed_seconds": 6.399,
+      "memo": {
+        "ticker": "AAPL",
+        "analyst": "Fundamental Analyst",
+        "score_1_to_10": 8,
+        "thesis": "Apple demonstrates strong profitability and cash flow generation with a robust market capitalization and upcoming product catalysts. Valuation appears elevated but justified by growth prospects and brand strength. Financial position is solid with ample cash and manageable debt. Risks include product delays and high valuation multiples.",
+        "key_facts": [
+          "Market cap approximately $3.83 trillion",
+          "Trailing P/E of 33.01 and forward P/E of 27.97 indicating premium valuation",
+          "Price to book ratio very high at 43.43",
+          "Profit margins strong at 27.0% and operating margins at 35.4%",
+          "Return on equity extremely high at 152.0%",
+          "Total cash on hand about $66.9 billion versus total debt of $90.5 billion",
+          "Free cash flow robust at $106.3 billion",
+          "Revenue trailing twelve months approximately $435.6 billion",
+          "Upcoming earnings date on 2026-04-30",
+          "Recent SEC filings include multiple insider Form 4 filings and Form 144 filings",
+          "Recent news highlights new iPhone Fold and Ultra model leaks"
+        ],
+        "valuation_view": "Valuation is elevated with a trailing P/E above 33 and price to book over 43, reflecting strong investor confidence and growth expectations. Forward P/E near 28 suggests some moderation but still premium. The valuation is justified by strong profitability and cash flow but warrants monitoring for market shifts.",
+        "financial_strength": {
+          "strengths": [
+            "Strong free cash flow generation exceeding $100 billion",
+            "High profit and operating margins indicating efficient operations",
+            "Large cash reserves providing liquidity and flexibility",
+            "Robust revenue base exceeding $435 billion",
+            "High return on equity demonstrating effective capital use"
+          ],
+          "weaknesses": [
+            "Total debt of $90.5 billion is significant though manageable",
+            "Extremely high price to book ratio may indicate overvaluation risk"
+          ]
+        },
+        "catalysts": [
+          "Launch of new foldable iPhone and iPhone Ultra models expected in September",
+          "Upcoming earnings release on April 30, 2026",
+          "Continued innovation and product ecosystem expansion",
+          "Positive insider buying activity indicated by recent Form 4 filings"
+        ],
+        "risks": [
+          "Potential delays in new product launches such as foldable iPhone",
+          "High valuation multiples may lead to price volatility",
+          "Competitive pressure in smartphone and technology markets",
+          "Macroeconomic factors impacting consumer spending and supply chains"
+        ],
+        "confidence_1_to_10": 8
+      },
+      "usage": {
+        "prompt_tokens": 3521,
+        "completion_tokens": 581,
+        "total_tokens": 4102,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      }
+    },
+    {
+      "analyst": "technical",
+      "role": "Technical Analyst",
+      "model": "gpt-4.1-mini",
+      "elapsed_seconds": 4.498,
+      "memo": {
+        "ticker": "AAPL",
+        "analyst": "Technical Analyst",
+        "score_1_to_10": 6,
+        "trend": "Neutral to slightly bullish",
+        "setup": "Price near 50-day SMA resistance with RSI approaching overbought",
+        "entry_zone": {
+          "low": 253.29,
+          "high": 260.49
+        },
+        "stop_loss": 246.63,
+        "take_profit_zone": {
+          "low": 260.49,
+          "high": null
+        },
+        "indicators": {
+          "sma_20_vs_price": "Price above SMA 20 (260.48 > 253.29)",
+          "sma_50_vs_price": "Price slightly below SMA 50 (260.48 < 260.88)",
+          "rsi_14": 67.47,
+          "momentum_20d_pct": 1.85
+        },
+        "risks": [
+          "Resistance at 50-day SMA near current price",
+          "RSI near overbought levels could signal pullback",
+          "Recent price volatility with mixed short-term momentum"
+        ],
+        "confidence_1_to_10": 6
+      },
+      "usage": {
+        "prompt_tokens": 7914,
+        "completion_tokens": 262,
+        "total_tokens": 8176,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      }
+    },
+    {
+      "analyst": "sentiment",
+      "role": "Sentiment Analyst",
+      "model": "gpt-4.1-mini",
+      "elapsed_seconds": 4.637,
+      "memo": {
+        "ticker": "AAPL",
+        "analyst": "Sentiment Analyst",
+        "score_1_to_10": 7,
+        "sentiment_bias": "moderately positive",
+        "narrative_summary": "Recent news flow around Apple centers on upcoming product innovations, particularly the foldable iPhone 'Ultra' model expected in September, with some mixed reactions to leaked images and delay rumors. Positive sentiment is supported by bullish analyst commentary highlighting Apple's AI initiatives, strong margins, and loyal user base. Notable investor interest remains, though some trimming of stakes has been reported. Social signals are limited with no significant Reddit activity. Overall, the narrative balances excitement for new product launches and AI growth drivers against cautiousness due to product design critiques and delay concerns.",
+        "top_catalysts": [
+          "Foldable iPhone 'Ultra' launch on track for September",
+          "Strong analyst bullishness citing AI push and margins",
+          "Continued investor interest from prominent figures like Warren Buffett",
+          "Updates to Apple Creator Studio and software ecosystem enhancements"
+        ],
+        "top_risks": [
+          "Negative reactions to foldable iPhone dummy design leaks",
+          "Reports of potential foldable iPhone delays impacting sentiment",
+          "Trimming of stakes by some investors such as Israel Englander",
+          "Broader tech sector weakness impacting short-term momentum"
+        ],
+        "headline_takeaways": [
+          "Foldable iPhone 'Ultra' leaks reveal design and battery details",
+          "Foldable iPhone launch remains on track despite delay rumors",
+          "Analysts remain bullish on Apple’s AI and margin strength",
+          "Notable investors continue to support Apple stock",
+          "Mixed social signals with limited retail investor chatter"
+        ],
+        "confidence_1_to_10": 8
+      },
+      "usage": {
+        "prompt_tokens": 3240,
+        "completion_tokens": 314,
+        "total_tokens": 3554,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      }
+    },
+    {
+      "analyst": "macro",
+      "role": "Macro Analyst",
+      "model": "gpt-4.1-mini",
+      "elapsed_seconds": 5.166,
+      "memo": {
+        "ticker": "AAPL",
+        "analyst": "Macro Analyst",
+        "score_1_to_10": 7,
+        "macro_regime": {
+          "interest_rates": "High and stable short-term rates at 3.64%, 10-year yield around 4.29%",
+          "inflation": "Moderate inflation with CPI index rising steadily to 330.293",
+          "volatility": "Moderate volatility with VIX at 19.49, recently declining from higher levels",
+          "risk_appetite": "Moderate risk appetite indicated by declining VIX and stable rates"
+        },
+        "tide_in_or_out": "in",
+        "macro_thesis": "The macro environment features stable but elevated interest rates and moderate inflation, with volatility decreasing from recent highs, supporting a risk-on stance. This environment favors large-cap technology stocks like AAPL, which benefit from steady cash flows and strong fundamentals despite higher rates.",
+        "tailwinds": [
+          "Stable and predictable interest rate environment",
+          "Moderate inflation supporting pricing power",
+          "Decreasing market volatility improving risk sentiment",
+          "Strong company fundamentals with high free cash flow",
+          "Positive news flow on product innovation and investor interest"
+        ],
+        "headwinds": [
+          "Elevated absolute level of interest rates could pressure valuations",
+          "Forward P/E still relatively high at ~28",
+          "Potential risks from product launch delays",
+          "Limited options flow data to confirm market positioning"
+        ],
+        "watch_items": [
+          "Monitor inflation trends for signs of acceleration",
+          "Watch interest rate movements for unexpected hikes",
+          "Track volatility for sudden spikes indicating risk-off",
+          "Observe product launch execution and market reception",
+          "Await options flow data availability for deeper sentiment analysis"
+        ],
+        "confidence_1_to_10": 8
+      },
+      "usage": {
+        "prompt_tokens": 6135,
+        "completion_tokens": 385,
+        "total_tokens": 6520,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+[console_scripts]
+axe-alpha-scan = axe_alpha.cli:main

@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: axe-alpha-hunter
+Version: 0.1.0
+Summary: Axe Capital Step 4: Alpha Hunter proactive scan
+Requires-Python: >=3.11
+Requires-Dist: httpx>=0.27
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: yfinance>=0.2.50
+Requires-Dist: ddgs>=9.5.0
+Requires-Dist: pandas>=2.2
+Requires-Dist: playwright>=1.52.0

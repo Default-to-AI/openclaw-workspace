@@ -1,0 +1,422 @@
+{
+  "ticker": "AAPL",
+  "elapsed_seconds": 16.649,
+  "framework": {
+    "ticker": "AAPL",
+    "weights": {
+      "fundamental": 0.35,
+      "macro": 0.25,
+      "technical": 0.2,
+      "sentiment": 0.2
+    },
+    "scores": {
+      "fundamental": 8.0,
+      "technical": 6.0,
+      "sentiment": 7.0,
+      "macro": 7.0
+    },
+    "weighted_score": 7.15,
+    "minimum_threshold": 6.5,
+    "high_conviction_threshold": 8.0,
+    "profile_snapshot": {
+      "ibkr_nav_usd": 119922.0,
+      "cash_usd": 11700.0,
+      "cash_floor_usd": 5000.0,
+      "positions_in_loss": 7,
+      "underwater_positions_gt_10pct": [
+        "MSFT",
+        "IGV",
+        "FICO",
+        "TSLA",
+        "RGTI"
+      ],
+      "underwater_count_gt_10pct": 5,
+      "held_symbols": [
+        "QQQ",
+        "GOOG",
+        "META",
+        "AMZN",
+        "ASML",
+        "UBER",
+        "MSFT",
+        "RKLB",
+        "JPM",
+        "IGV",
+        "FICO",
+        "TSLA",
+        "RGTI"
+      ],
+      "ticker_already_held": false,
+      "ticker_is_loser": false,
+      "large_cap_tech_exposure_pct": 60.0,
+      "adds_to_overweight_sector": true,
+      "hishtalmut_annual_ceiling_ils": 21500.0,
+      "hishtalmut_remaining_ils_2026": 19800.0,
+      "hishtalmut_maxed_for_year": false,
+      "max_new_position_pct": 15.0,
+      "min_new_position_usd": 2000.0,
+      "default_stop_loss_pct": 10.0
+    },
+    "market_regime": {
+      "vix": 19.49,
+      "regime": "cautious",
+      "posture": "Cautious. Reduce new entries by 20%.",
+      "size_multiplier": 0.8,
+      "requires_9_plus": false,
+      "notes": [
+        "VIX between 15 and 25, reduce new entries by 20%."
+      ]
+    },
+    "base_position_size_band_pct": {
+      "low": 7.0,
+      "high": 10.0
+    },
+    "suggested_position_size_pct": 4.76,
+    "suggested_position_value_usd": 5708.29,
+    "sizing_adjustments": [
+      {
+        "reason": "Cautious. Reduce new entries by 20%.",
+        "multiplier": 0.8
+      },
+      {
+        "reason": "5 existing positions are more than 10% underwater.",
+        "multiplier": 0.7
+      }
+    ],
+    "health_flags": [
+      "Hishtalmut still has ₪19,800 of 2026 room remaining.",
+      "5 positions are already more than 10% underwater.",
+      "This idea adds to an already overweight US large-cap tech concentration."
+    ],
+    "supporting_data": {
+      "fundamental": {
+        "score": 8.0,
+        "summary": "Apple demonstrates strong profitability and cash flow generation with a robust market capitalization and upcoming product catalysts. Valuation appears elevated but justified by growth prospects and brand strength. Financial position is solid with ample cash and manageable debt. Risks include product delays and high valuation multiples."
+      },
+      "technical": {
+        "score": 6.0,
+        "summary": "Price near 50-day SMA resistance with RSI approaching overbought"
+      },
+      "sentiment": {
+        "score": 7.0,
+        "summary": "Recent news flow around Apple centers on upcoming product innovations, particularly the foldable iPhone 'Ultra' model expected in September, with some mixed reactions to leaked images and delay rumors. Positive sentiment is supported by bullish analyst commentary highlighting Apple's AI initiatives, strong margins, and loyal user base. Notable investor interest remains, though some trimming of stakes has been reported. Social signals are limited with no significant Reddit activity. Overall, the narrative balances excitement for new product launches and AI growth drivers against cautiousness due to product design critiques and delay concerns."
+      },
+      "macro": {
+        "score": 7.0,
+        "summary": "The macro environment features stable but elevated interest rates and moderate inflation, with volatility decreasing from recent highs, supporting a risk-on stance. This environment favors large-cap technology stocks like AAPL, which benefit from steady cash flows and strong fundamentals despite higher rates.",
+        "tide_in_or_out": "in"
+      }
+    }
+  },
+  "bull": {
+    "stage": "bull",
+    "role": "Bull Researcher",
+    "model": "gpt-4.1-mini",
+    "elapsed_seconds": 4.162,
+    "memo": {
+      "ticker": "AAPL",
+      "stance": "bull",
+      "core_thesis": "Apple is a fundamentally strong large-cap technology company with robust profitability, cash flow, and a solid financial position. Despite an elevated valuation, its premium multiples are justified by strong growth prospects, brand strength, and upcoming product catalysts such as the foldable iPhone Ultra. The macro environment with stable interest rates and moderate inflation supports risk-on exposure to large-cap tech. Sentiment remains moderately positive with bullish analyst commentary and investor interest, balancing some concerns about product delays and valuation risks.",
+      "best_arguments": [
+        "Strong profitability with 27% profit margins and 35.4% operating margins",
+        "Robust free cash flow generation exceeding $100 billion annually",
+        "High return on equity at 152%, indicating effective capital use",
+        "Large cash reserves of $66.9 billion versus manageable debt of $90.5 billion",
+        "Upcoming product catalysts including foldable iPhone and iPhone Ultra launch expected in September",
+        "Positive insider buying activity and bullish analyst sentiment on AI initiatives and margins",
+        "Macro environment with stable interest rates and moderate inflation favors large-cap tech",
+        "Apple’s strong brand and ecosystem provide competitive moat and growth runway"
+      ],
+      "catalysts": [
+        "Launch of new foldable iPhone and iPhone Ultra models expected in September 2026",
+        "Upcoming earnings release on April 30, 2026",
+        "Continued innovation and expansion of Apple’s product ecosystem",
+        "Positive insider buying activity as indicated by recent Form 4 filings",
+        "Bullish analyst commentary highlighting AI initiatives and margin strength"
+      ],
+      "rebuttals_to_bear": [
+        "Valuation is elevated but justified by strong fundamentals and growth prospects",
+        "Product delays are a risk but current indications suggest foldable iPhone launch remains on track",
+        "Competitive pressures exist but Apple’s brand loyalty and ecosystem provide durable advantages",
+        "Macro risks from inflation and interest rates are mitigated by stable and predictable environment",
+        "Short-term technical resistance and RSI overbought conditions may cause pullbacks but do not negate long-term fundamentals"
+      ],
+      "confidence_1_to_10": 7
+    },
+    "usage": {
+      "prompt_tokens": 4030,
+      "completion_tokens": 465,
+      "total_tokens": 4495,
+      "prompt_tokens_details": {
+        "cached_tokens": 3072,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    }
+  },
+  "bear": {
+    "stage": "bear",
+    "role": "Bear Researcher",
+    "model": "gpt-4.1-mini",
+    "elapsed_seconds": 4.22,
+    "memo": {
+      "ticker": "AAPL",
+      "stance": "bear",
+      "core_thesis": "Adding AAPL increases exposure to an already overweight US mega-cap tech sector, conflicting with Robert's preference to avoid more US mega-cap tech and favor mid-cap or underrepresented sectors. Valuation is elevated with high P/E and price-to-book ratios, posing risk of price volatility. Technical indicators show resistance near 50-day SMA and RSI near overbought, suggesting limited near-term upside and potential pullback. Sentiment is mixed with concerns about product delays and some investor trimming. Macro environment is cautious with elevated interest rates that could pressure valuations despite stable fundamentals.",
+      "best_arguments": [
+        "Robert's profile explicitly avoids adding more US mega-cap tech, and AAPL would increase large-cap tech exposure beyond 60%.",
+        "Valuation is elevated with trailing P/E above 33 and price-to-book over 43, increasing risk of correction.",
+        "Technical setup shows price near resistance at 50-day SMA and RSI approaching overbought, indicating limited upside and pullback risk.",
+        "Sentiment includes mixed reactions to foldable iPhone leaks and delay rumors, plus some trimming by notable investors.",
+        "Five existing positions are already more than 10% underwater, suggesting caution on new entries.",
+        "Market regime is cautious with VIX near 20, recommending reducing new entries by 20%, further limiting position size.",
+        "Adding AAPL conflicts with Robert's favoring mid-cap, international, and underrepresented sectors like healthcare or energy."
+      ],
+      "failure_modes": [
+        "Strong upcoming product catalysts could drive price higher despite valuation and technical concerns.",
+        "Macro environment could improve further, supporting large-cap tech outperformance.",
+        "Positive insider buying and analyst bullishness may sustain momentum.",
+        "Foldable iPhone launch on track could boost sentiment and shares.",
+        "Robert's aggressive accumulator style might tolerate short-term volatility for long-term gains."
+      ],
+      "rebuttals_to_bull": [
+        "While product catalysts exist, valuation multiples already price in strong growth, limiting upside.",
+        "Macro tailwinds are moderate and offset by elevated interest rates that pressure tech valuations.",
+        "Insider buying is limited and recent Form 144 filings suggest some selling pressure.",
+        "Technical resistance and overbought RSI warn of near-term pullbacks despite bullish sentiment.",
+        "Portfolio already has significant exposure to mega-cap tech, increasing concentration risk contrary to stated preferences."
+      ],
+      "confidence_1_to_10": 8
+    },
+    "usage": {
+      "prompt_tokens": 4034,
+      "completion_tokens": 523,
+      "total_tokens": 4557,
+      "prompt_tokens_details": {
+        "cached_tokens": 3072,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    }
+  },
+  "debate": {
+    "stage": "debate",
+    "role": "Debate Facilitator",
+    "model": "gpt-4.1-mini",
+    "elapsed_seconds": 4.355,
+    "memo": {
+      "ticker": "AAPL",
+      "winner": "bear",
+      "conclusive": true,
+      "summary": "The debate weighs Apple's strong fundamentals, cash flow, and upcoming product catalysts against Robert's explicit preference to avoid increasing exposure to US mega-cap tech, especially given his already high 60% allocation in this sector. Despite solid macro and sentiment support, the elevated valuation, technical resistance, and portfolio concentration risks align with Robert's constraints and style. The bear case better matches Robert's aggressive accumulator profile with a fundamentals-first approach that also respects his sector diversification preferences and current portfolio state.",
+      "pro_bull_points": [
+        "Strong profitability with 27% profit margins and 35.4% operating margins",
+        "Robust free cash flow generation exceeding $100 billion annually",
+        "High return on equity at 152%, indicating effective capital use",
+        "Large cash reserves of $66.9 billion versus manageable debt of $90.5 billion",
+        "Upcoming product catalysts including foldable iPhone and iPhone Ultra launch expected in September",
+        "Positive insider buying activity and bullish analyst sentiment on AI initiatives and margins",
+        "Macro environment with stable interest rates and moderate inflation favors large-cap tech",
+        "Apple’s strong brand and ecosystem provide competitive moat and growth runway"
+      ],
+      "pro_bear_points": [
+        "Robert's profile explicitly avoids adding more US mega-cap tech, and AAPL would increase large-cap tech exposure beyond 60%",
+        "Valuation is elevated with trailing P/E above 33 and price-to-book over 43, increasing risk of correction",
+        "Technical setup shows price near resistance at 50-day SMA and RSI approaching overbought, indicating limited upside and pullback risk",
+        "Sentiment includes mixed reactions to foldable iPhone leaks and delay rumors, plus some trimming by notable investors",
+        "Five existing positions are already more than 10% underwater, suggesting caution on new entries",
+        "Market regime is cautious with VIX near 20, recommending reducing new entries by 20%, further limiting position size",
+        "Adding AAPL conflicts with Robert's favoring mid-cap, international, and underrepresented sectors like healthcare or energy"
+      ],
+      "unresolved_questions": [
+        "Will Apple’s foldable iPhone launch occur on schedule without delays?",
+        "Can valuation multiples sustain current levels amid macroeconomic uncertainties?",
+        "Will Robert prioritize sector diversification over adding a fundamentally strong mega-cap tech stock?",
+        "How will technical resistance and overbought conditions impact near-term price action?"
+      ],
+      "recommended_bias": "bearish"
+    },
+    "usage": {
+      "prompt_tokens": 5042,
+      "completion_tokens": 536,
+      "total_tokens": 5578,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    }
+  },
+  "cio": {
+    "stage": "cio",
+    "role": "CIO / Portfolio Manager",
+    "model": "gpt-4.1-mini",
+    "elapsed_seconds": 4.015,
+    "memo": {
+      "ticker": "AAPL",
+      "action_candidate": "PASS",
+      "conviction_1_to_10": 7,
+      "thesis": "Apple is fundamentally strong with robust profitability, cash flow, and upcoming product catalysts, supported by a stable macro environment favoring large-cap tech. However, adding AAPL conflicts with Robert's explicit preference to avoid increasing exposure to US mega-cap tech, as his portfolio already has 60% large-cap tech concentration and five positions are significantly underwater. Valuation is elevated and technical indicators suggest near-term resistance and overbought conditions. Given the cautious market regime and Robert's favoring of mid-cap, international, and underrepresented sectors, initiating a new position in AAPL is not aligned with his profile and current portfolio constraints.",
+      "why_now": "Despite positive fundamentals and catalysts such as the foldable iPhone launch and upcoming earnings, the current technical resistance, elevated valuation, cautious market regime, and portfolio concentration risks advise against adding AAPL at this time.",
+      "benchmark_case": "If Robert were to add AAPL, it would increase large-cap tech exposure beyond his comfort zone, risking concentration and conflicting with his preference for diversification into mid-cap and underrepresented sectors. The elevated valuation and technical resistance could limit near-term upside and increase volatility.",
+      "entry_zone": {
+        "low": 253.29,
+        "high": 260.49
+      },
+      "stop_loss": 246.63,
+      "take_profit_zone": {
+        "low": 260.49,
+        "high": null
+      },
+      "position_size_pct_ibkr": 0,
+      "portfolio_fit": [
+        "Avoids increasing overweight in US mega-cap tech",
+        "Respects existing large-cap tech exposure at 60%",
+        "Aligns with preference for mid-cap and underrepresented sectors",
+        "Considers current underwater positions and cautious market regime"
+      ],
+      "key_risks": [
+        "Elevated valuation with high P/E and price-to-book ratios",
+        "Technical resistance near 50-day SMA and RSI overbought",
+        "Potential product launch delays impacting sentiment",
+        "Increased concentration risk in large-cap tech sector",
+        "Market volatility and macroeconomic uncertainties"
+      ]
+    },
+    "usage": {
+      "prompt_tokens": 5087,
+      "completion_tokens": 467,
+      "total_tokens": 5554,
+      "prompt_tokens_details": {
+        "cached_tokens": 3968,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    }
+  },
+  "cro": {
+    "stage": "cro",
+    "role": "CRO / Risk Officer",
+    "model": "deterministic-rules",
+    "elapsed_seconds": 0.0,
+    "memo": {
+      "ticker": "AAPL",
+      "gate": "APPROVED",
+      "allowed_action": "PASS",
+      "blockers": [],
+      "conditions": [],
+      "projected_trade_value_usd": 5708.29,
+      "projected_cash_after_usd": 5991.71
+    },
+    "usage": null
+  },
+  "ceo": {
+    "stage": "ceo",
+    "role": "CEO / Decision Synthesizer",
+    "model": "gpt-4.1-mini",
+    "elapsed_seconds": 7.956,
+    "memo": {
+      "date": "2026-04-12",
+      "ticker": "AAPL",
+      "company_name": "Apple Inc.",
+      "action": "PASS",
+      "conviction_1_to_10": 7,
+      "weighted_score": 7.15,
+      "thesis": "Apple is fundamentally strong with robust profitability, cash flow, and upcoming product catalysts, supported by a stable macro environment favoring large-cap tech. However, adding AAPL conflicts with Robert's explicit preference to avoid increasing exposure to US mega-cap tech, as his portfolio already has 60% large-cap tech concentration and five positions are significantly underwater. Valuation is elevated and technical indicators suggest near-term resistance and overbought conditions. Given the cautious market regime and Robert's favoring of mid-cap, international, and underrepresented sectors, initiating a new position in AAPL is not aligned with his profile and current portfolio constraints.",
+      "entry_zone": {
+        "low": 253.29,
+        "high": 260.49
+      },
+      "profit_target": {
+        "low": 260.49,
+        "high": null
+      },
+      "stop_loss": 246.63,
+      "position_size_pct": 0,
+      "supporting_data": {
+        "fundamental": {
+          "score": 8.0,
+          "summary": "Apple demonstrates strong profitability and cash flow generation with a robust market capitalization and upcoming product catalysts. Valuation appears elevated but justified by growth prospects and brand strength. Financial position is solid with ample cash and manageable debt. Risks include product delays and high valuation multiples."
+        },
+        "technical": {
+          "score": 6.0,
+          "summary": "Price near 50-day SMA resistance with RSI approaching overbought"
+        },
+        "sentiment": {
+          "score": 7.0,
+          "summary": "Recent news flow around Apple centers on upcoming product innovations, particularly the foldable iPhone 'Ultra' model expected in September, with some mixed reactions to leaked images and delay rumors. Positive sentiment is supported by bullish analyst commentary highlighting Apple's AI initiatives, strong margins, and loyal user base. Notable investor interest remains, though some trimming of stakes has been reported. Social signals are limited with no significant Reddit activity. Overall, the narrative balances excitement for new product launches and AI growth drivers against cautiousness due to product design critiques and delay concerns."
+        },
+        "macro": {
+          "score": 7.0,
+          "summary": "The macro environment features stable but elevated interest rates and moderate inflation, with volatility decreasing from recent highs, supporting a risk-on stance. This environment favors large-cap technology stocks like AAPL, which benefit from steady cash flows and strong fundamentals despite higher rates."
+        }
+      },
+      "bear_case": [
+        "Robert's profile explicitly avoids adding more US mega-cap tech, and AAPL would increase large-cap tech exposure beyond 60%.",
+        "Valuation is elevated with trailing P/E above 33 and price-to-book over 43, increasing risk of correction.",
+        "Technical setup shows price near resistance at 50-day SMA and RSI approaching overbought, indicating limited upside and pullback risk.",
+        "Sentiment includes mixed reactions to foldable iPhone leaks and delay rumors, plus some trimming by notable investors.",
+        "Five existing positions are already more than 10% underwater, suggesting caution on new entries.",
+        "Market regime is cautious with VIX near 20, recommending reducing new entries by 20%, further limiting position size.",
+        "Adding AAPL conflicts with Robert's favoring mid-cap, international, and underrepresented sectors like healthcare or energy."
+      ],
+      "portfolio_health_flags": [
+        "Hishtalmut still has ₪19,800 of 2026 room remaining.",
+        "5 positions are already more than 10% underwater.",
+        "This idea adds to an already overweight US large-cap tech concentration."
+      ],
+      "decision_rationale": [
+        "Weighted score exceeds minimum threshold but conviction is below high conviction threshold.",
+        "Adding AAPL conflicts with Robert's explicit sector avoidance rules and current portfolio concentration.",
+        "Market regime advises caution and reduced new position sizing.",
+        "Technical indicators suggest near-term resistance and potential pullback.",
+        "Portfolio already has significant exposure to large-cap tech and multiple underwater positions.",
+        "Hishtalmut priority rule flagged but conviction not high enough to override sector and concentration concerns."
+      ],
+      "risk_gate": "APPROVED",
+      "follow_up_actions": [
+        "Monitor AAPL for potential pullbacks to more favorable technical entry points.",
+        "Focus on mid-cap, international, and underrepresented sectors for new investments.",
+        "Continue maximizing Hishtalmut contributions with higher conviction ideas.",
+        "Review underwater positions for potential averaging down opportunities.",
+        "Reassess AAPL if conviction rises above 8 with improved technical and sentiment signals."
+      ]
+    },
+    "usage": {
+      "prompt_tokens": 6327,
+      "completion_tokens": 1092,
+      "total_tokens": 7419,
+      "prompt_tokens_details": {
+        "cached_tokens": 4096,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    }
+  },
+  "final_memo_markdown": "═══════════════════════════════════════════════\nAXE CAPITAL — DECISION MEMO\n═══════════════════════════════════════════════\nDATE: 2026-04-12\nTICKER: AAPL | Apple Inc.\nACTION: PASS\nCONVICTION: 7\n───────────────────────────────────────────────\nTHESIS\nApple is fundamentally strong with robust profitability, cash flow, and upcoming product catalysts, supported by a stable macro environment favoring large-cap tech. However, adding AAPL conflicts with Robert's explicit preference to avoid increasing exposure to US mega-cap tech, as his portfolio already has 60% large-cap tech concentration and five positions are significantly underwater. Valuation is elevated and technical indicators suggest near-term resistance and overbought conditions. Given the cautious market regime and Robert's favoring of mid-cap, international, and underrepresented sectors, initiating a new position in AAPL is not aligned with his profile and current portfolio constraints.\n\nWEIGHTED SCORE: 7.15\nENTRY ZONE:    $253.29 – $260.49\nPROFIT TARGET: $260.49 (None% upside, None)\nSTOP-LOSS:     $246.63\nPOSITION SIZE: 0% of portfolio\n───────────────────────────────────────────────\nSUPPORTING DATA\n• Fundamental: 8.0 — Apple demonstrates strong profitability and cash flow generation with a robust market capitalization and upcoming product catalysts. Valuation appears elevated but justified by growth prospects and brand strength. Financial position is solid with ample cash and manageable debt. Risks include product delays and high valuation multiples.\n• Technical:   6.0 — Price near 50-day SMA resistance with RSI approaching overbought\n• Sentiment:   7.0 — Recent news flow around Apple centers on upcoming product innovations, particularly the foldable iPhone 'Ultra' model expected in September, with some mixed reactions to leaked images and delay rumors. Positive sentiment is supported by bullish analyst commentary highlighting Apple's AI initiatives, strong margins, and loyal user base. Notable investor interest remains, though some trimming of stakes has been reported. Social signals are limited with no significant Reddit activity. Overall, the narrative balances excitement for new product launches and AI growth drivers against cautiousness due to product design critiques and delay concerns.\n• Macro:       7.0 — The macro environment features stable but elevated interest rates and moderate inflation, with volatility decreasing from recent highs, supporting a risk-on stance. This environment favors large-cap technology stocks like AAPL, which benefit from steady cash flows and strong fundamentals despite higher rates.\n───────────────────────────────────────────────\nPORTFOLIO HEALTH FLAGS\n• Hishtalmut still has ₪19,800 of 2026 room remaining.\n• 5 positions are already more than 10% underwater.\n• This idea adds to an already overweight US large-cap tech concentration.\n───────────────────────────────────────────────\nBEAR CASE\n• Robert's profile explicitly avoids adding more US mega-cap tech, and AAPL would increase large-cap tech exposure beyond 60%.\n• Valuation is elevated with trailing P/E above 33 and price-to-book over 43, increasing risk of correction.\n• Technical setup shows price near resistance at 50-day SMA and RSI approaching overbought, indicating limited upside and pullback risk.\n• Sentiment includes mixed reactions to foldable iPhone leaks and delay rumors, plus some trimming by notable investors.\n• Five existing positions are already more than 10% underwater, suggesting caution on new entries.\n• Market regime is cautious with VIX near 20, recommending reducing new entries by 20%, further limiting position size.\n• Adding AAPL conflicts with Robert's favoring mid-cap, international, and underrepresented sectors like healthcare or energy.\n───────────────────────────────────────────────\nDECISION RATIONALE\n• Weighted score exceeds minimum threshold but conviction is below high conviction threshold.\n• Adding AAPL conflicts with Robert's explicit sector avoidance rules and current portfolio concentration.\n• Market regime advises caution and reduced new position sizing.\n• Technical indicators suggest near-term resistance and potential pullback.\n• Portfolio already has significant exposure to large-cap tech and multiple underwater positions.\n• Hishtalmut priority rule flagged but conviction not high enough to override sector and concentration concerns.\n───────────────────────────────────────────────\nRISK GATE: APPROVED\n═══════════════════════════════════════════════\n"
+}

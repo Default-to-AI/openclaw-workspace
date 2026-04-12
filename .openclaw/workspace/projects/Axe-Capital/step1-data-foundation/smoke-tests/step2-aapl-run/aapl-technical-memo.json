@@ -1,0 +1,28 @@
+{
+  "ticker": "AAPL",
+  "analyst": "Technical Analyst",
+  "score_1_to_10": 6,
+  "trend": "Neutral to slightly bullish",
+  "setup": "Price near 50-day SMA resistance with RSI approaching overbought",
+  "entry_zone": {
+    "low": 253.29,
+    "high": 260.49
+  },
+  "stop_loss": 246.63,
+  "take_profit_zone": {
+    "low": 260.49,
+    "high": null
+  },
+  "indicators": {
+    "sma_20_vs_price": "Price above SMA 20 (260.48 > 253.29)",
+    "sma_50_vs_price": "Price slightly below SMA 50 (260.48 < 260.88)",
+    "rsi_14": 67.47,
+    "momentum_20d_pct": 1.85
+  },
+  "risks": [
+    "Resistance at 50-day SMA near current price",
+    "RSI near overbought levels could signal pullback",
+    "Recent price volatility with mixed short-term momentum"
+  ],
+  "confidence_1_to_10": 6
+}

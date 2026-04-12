@@ -1,0 +1,13 @@
+[project]
+name = "axe-portfolio-tracking"
+version = "0.1.0"
+description = "Axe Capital Step 5: portfolio tracking"
+requires-python = ">=3.11"
+dependencies = [
+  "pandas>=2.2",
+  "python-dotenv>=1.0",
+  "yfinance>=0.2.50",
+]
+
+[project.scripts]
+axe-portfolio-review = "axe_portfolio.cli:main"

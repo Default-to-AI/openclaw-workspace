@@ -1,0 +1,31 @@
+{
+  "ticker": "AAPL",
+  "action_candidate": "PASS",
+  "conviction_1_to_10": 7,
+  "thesis": "Apple is fundamentally strong with robust profitability, cash flow, and upcoming product catalysts, supported by a stable macro environment favoring large-cap tech. However, adding AAPL conflicts with Robert's explicit preference to avoid increasing exposure to US mega-cap tech, as his portfolio already has 60% large-cap tech concentration and five positions are significantly underwater. Valuation is elevated and technical indicators suggest near-term resistance and overbought conditions. Given the cautious market regime and Robert's favoring of mid-cap, international, and underrepresented sectors, initiating a new position in AAPL is not aligned with his profile and current portfolio constraints.",
+  "why_now": "Despite positive fundamentals and catalysts such as the foldable iPhone launch and upcoming earnings, the current technical resistance, elevated valuation, cautious market regime, and portfolio concentration risks advise against adding AAPL at this time.",
+  "benchmark_case": "If Robert were to add AAPL, it would increase large-cap tech exposure beyond his comfort zone, risking concentration and conflicting with his preference for diversification into mid-cap and underrepresented sectors. The elevated valuation and technical resistance could limit near-term upside and increase volatility.",
+  "entry_zone": {
+    "low": 253.29,
+    "high": 260.49
+  },
+  "stop_loss": 246.63,
+  "take_profit_zone": {
+    "low": 260.49,
+    "high": null
+  },
+  "position_size_pct_ibkr": 0,
+  "portfolio_fit": [
+    "Avoids increasing overweight in US mega-cap tech",
+    "Respects existing large-cap tech exposure at 60%",
+    "Aligns with preference for mid-cap and underrepresented sectors",
+    "Considers current underwater positions and cautious market regime"
+  ],
+  "key_risks": [
+    "Elevated valuation with high P/E and price-to-book ratios",
+    "Technical resistance near 50-day SMA and RSI overbought",
+    "Potential product launch delays impacting sentiment",
+    "Increased concentration risk in large-cap tech sector",
+    "Market volatility and macroeconomic uncertainties"
+  ]
+}

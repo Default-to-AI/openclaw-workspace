@@ -1,0 +1,30 @@
+{
+  "ticker": "AAPL",
+  "stance": "bull",
+  "core_thesis": "Apple is a fundamentally strong large-cap technology company with robust profitability, cash flow, and a solid financial position. Despite an elevated valuation, its premium multiples are justified by strong growth prospects, brand strength, and upcoming product catalysts such as the foldable iPhone Ultra. The macro environment with stable interest rates and moderate inflation supports risk-on exposure to large-cap tech. Sentiment remains moderately positive with bullish analyst commentary and investor interest, balancing some concerns about product delays and valuation risks.",
+  "best_arguments": [
+    "Strong profitability with 27% profit margins and 35.4% operating margins",
+    "Robust free cash flow generation exceeding $100 billion annually",
+    "High return on equity at 152%, indicating effective capital use",
+    "Large cash reserves of $66.9 billion versus manageable debt of $90.5 billion",
+    "Upcoming product catalysts including foldable iPhone and iPhone Ultra launch expected in September",
+    "Positive insider buying activity and bullish analyst sentiment on AI initiatives and margins",
+    "Macro environment with stable interest rates and moderate inflation favors large-cap tech",
+    "Apple’s strong brand and ecosystem provide competitive moat and growth runway"
+  ],
+  "catalysts": [
+    "Launch of new foldable iPhone and iPhone Ultra models expected in September 2026",
+    "Upcoming earnings release on April 30, 2026",
+    "Continued innovation and expansion of Apple’s product ecosystem",
+    "Positive insider buying activity as indicated by recent Form 4 filings",
+    "Bullish analyst commentary highlighting AI initiatives and margin strength"
+  ],
+  "rebuttals_to_bear": [
+    "Valuation is elevated but justified by strong fundamentals and growth prospects",
+    "Product delays are a risk but current indications suggest foldable iPhone launch remains on track",
+    "Competitive pressures exist but Apple’s brand loyalty and ecosystem provide durable advantages",
+    "Macro risks from inflation and interest rates are mitigated by stable and predictable environment",
+    "Short-term technical resistance and RSI overbought conditions may cause pullbacks but do not negate long-term fundamentals"
+  ],
+  "confidence_1_to_10": 7
+}

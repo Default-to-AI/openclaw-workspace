@@ -1,0 +1,9 @@
+{
+  "ticker": "AAPL",
+  "gate": "APPROVED",
+  "allowed_action": "PASS",
+  "blockers": [],
+  "conditions": [],
+  "projected_trade_value_usd": 5708.29,
+  "projected_cash_after_usd": 5991.71
+}

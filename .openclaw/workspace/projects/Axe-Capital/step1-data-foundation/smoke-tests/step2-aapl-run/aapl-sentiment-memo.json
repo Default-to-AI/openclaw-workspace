@@ -1,0 +1,27 @@
+{
+  "ticker": "AAPL",
+  "analyst": "Sentiment Analyst",
+  "score_1_to_10": 7,
+  "sentiment_bias": "moderately positive",
+  "narrative_summary": "Recent news flow around Apple centers on upcoming product innovations, particularly the foldable iPhone 'Ultra' model expected in September, with some mixed reactions to leaked images and delay rumors. Positive sentiment is supported by bullish analyst commentary highlighting Apple's AI initiatives, strong margins, and loyal user base. Notable investor interest remains, though some trimming of stakes has been reported. Social signals are limited with no significant Reddit activity. Overall, the narrative balances excitement for new product launches and AI growth drivers against cautiousness due to product design critiques and delay concerns.",
+  "top_catalysts": [
+    "Foldable iPhone 'Ultra' launch on track for September",
+    "Strong analyst bullishness citing AI push and margins",
+    "Continued investor interest from prominent figures like Warren Buffett",
+    "Updates to Apple Creator Studio and software ecosystem enhancements"
+  ],
+  "top_risks": [
+    "Negative reactions to foldable iPhone dummy design leaks",
+    "Reports of potential foldable iPhone delays impacting sentiment",
+    "Trimming of stakes by some investors such as Israel Englander",
+    "Broader tech sector weakness impacting short-term momentum"
+  ],
+  "headline_takeaways": [
+    "Foldable iPhone 'Ultra' leaks reveal design and battery details",
+    "Foldable iPhone launch remains on track despite delay rumors",
+    "Analysts remain bullish on Apple’s AI and margin strength",
+    "Notable investors continue to support Apple stock",
+    "Mixed social signals with limited retail investor chatter"
+  ],
+  "confidence_1_to_10": 8
+}

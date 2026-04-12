@@ -1,0 +1,4 @@
+[console_scripts]
+axe-coo-bundle = axe_coo.cli:main
+axe-step2-analyze = axe_coo.step2_cli:main
+axe-step3-decide = axe_coo.step3_cli:main

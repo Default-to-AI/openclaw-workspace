@@ -1,0 +1,2 @@
+[console_scripts]
+axe-portfolio-review = axe_portfolio.cli:main
