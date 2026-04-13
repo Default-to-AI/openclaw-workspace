@@ -15,9 +15,8 @@ function App() {
             <span className="text-axe-dim text-xs">Operations Dashboard</span>
           </div>
           <div className="flex items-center gap-4 text-xs text-axe-dim">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-axe-green inline-block animate-pulse" />
-              LIVE
+            <span className="flex items-center gap-1.5 text-axe-dim">
+              Static · refresh manually
             </span>
           </div>
         </div>

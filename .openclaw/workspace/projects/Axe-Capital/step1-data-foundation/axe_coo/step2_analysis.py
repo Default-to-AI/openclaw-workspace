@@ -6,9 +6,11 @@ import math
 import time
 from dataclasses import dataclass
 from statistics import mean
-from typing import Any
+from typing import Any, Callable
 
 import httpx
+
+from axe_coo.util.numbers import safe_float as _safe_float
 
 OPENAI_CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions"
 DEFAULT_MODEL = "gpt-4.1-mini"
@@ -19,18 +21,10 @@ class AnalystSpec:
     name: str
     role: str
     output_keys: list[str]
-    focus_builder: callable
+    focus_builder: "Callable[[dict[str, Any]], dict[str, Any]]"
     system_prompt: str
     model: str = DEFAULT_MODEL
 
-
-def _safe_float(value: Any) -> float | None:
-    try:
-        if value is None:
-            return None
-        return float(value)
-    except Exception:
-        return None
 
 
 def _round(value: float | None, digits: int = 4) -> float | None:
@@ -59,10 +53,15 @@ def _compute_technical_snapshot(prices: list[dict[str, Any]]) -> dict[str, Any]:
         if len(vals) < 15:
             return None
         deltas = [vals[i] - vals[i - 1] for i in range(1, len(vals))]
-        gains = [max(delta, 0) for delta in deltas[-14:]]
-        losses = [abs(min(delta, 0)) for delta in deltas[-14:]]
-        avg_gain = mean(gains) if gains else 0
-        avg_loss = mean(losses) if losses else 0
+        gains = [max(d, 0.0) for d in deltas]
+        losses = [abs(min(d, 0.0)) for d in deltas]
+        # Seed with first 14-period simple average
+        avg_gain = mean(gains[:14])
+        avg_loss = mean(losses[:14])
+        # Apply Wilder's EMA for remaining periods
+        for gain, loss in zip(gains[14:], losses[14:]):
+            avg_gain = (avg_gain * 13 + gain) / 14
+            avg_loss = (avg_loss * 13 + loss) / 14
         if avg_loss == 0:
             return 100.0 if avg_gain > 0 else 50.0
         rs = avg_gain / avg_loss

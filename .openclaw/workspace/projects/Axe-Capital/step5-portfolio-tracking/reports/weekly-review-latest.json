@@ -1,5 +1,5 @@
 {
-  "review_date": "2026-04-12",
+  "review_date": "2026-04-13",
   "positions": [
     {
       "symbol": "AMZN",
@@ -149,52 +149,45 @@
     {
       "sector": "US Large Cap Tech",
       "ibkr_pct": 81.8,
-      "passive_pct": 60.0,
-      "unified_pct": 65.65
-    },
-    {
-      "sector": "S&P 500 broad",
-      "ibkr_pct": 0.0,
-      "passive_pct": 40.0,
-      "unified_pct": 18.52
+      "passive_pct": 60.0
     },
     {
       "sector": "Transportation",
       "ibkr_pct": 5.22,
-      "passive_pct": 5.0,
-      "unified_pct": 4.73
+      "passive_pct": 5.0
     },
     {
       "sector": "Space / Deep Tech",
       "ibkr_pct": 5.04,
-      "passive_pct": 4.0,
-      "unified_pct": 4.19
+      "passive_pct": 4.0
     },
     {
       "sector": "Financials",
       "ibkr_pct": 4.3,
-      "passive_pct": 4.0,
-      "unified_pct": 3.84
+      "passive_pct": 4.0
     },
     {
       "sector": "Software",
       "ibkr_pct": 3.0,
-      "passive_pct": 2.0,
-      "unified_pct": 2.31
+      "passive_pct": 2.0
     },
     {
       "sector": "EV",
       "ibkr_pct": 0.65,
-      "passive_pct": 1.0,
-      "unified_pct": 0.76
+      "passive_pct": 1.0
+    },
+    {
+      "sector": "S&P 500 broad",
+      "ibkr_pct": 0.0,
+      "passive_pct": 40.0
     }
   ],
   "spy_comparison": {
     "portfolio_cost_basis": 106651.0,
     "portfolio_market_value": 108222.0,
     "portfolio_return_pct": 1.47,
-    "spy_return_pct_same_window": 27.25,
-    "relative_alpha_pct": -25.78
+    "spy_return_pct_same_window": 25.61,
+    "relative_alpha_pct": -24.14
   },
   "hishtalmut_status": {
     "annual_ceiling_ils": 21500,

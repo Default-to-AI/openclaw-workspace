@@ -1,25 +1,14 @@
 from __future__ import annotations
 
-from datetime import datetime
-from pathlib import Path
 from typing import Any
-from zoneinfo import ZoneInfo
-
-
-def project_root() -> Path:
-    return Path(__file__).resolve().parents[1]
-
-
-def axe_root() -> Path:
-    return project_root().parent
-
-
-def today_local_iso() -> str:
-    return datetime.now(ZoneInfo("Asia/Jerusalem")).date().isoformat()
 
 
 def safe_float(value: Any) -> float | None:
-    """Canonical float coercion. Strips commas, $, %, Unicode minus, leading +."""
+    """Canonical float coercion for COO bundle values.
+
+    Strips commas, leading ``$``/``%``, Unicode minus (−), and leading ``+``.
+    Returns ``None`` for empty, ``None``, or unparseable input.
+    """
     try:
         if value is None:
             return None
@@ -29,7 +18,7 @@ def safe_float(value: Any) -> float | None:
                 .replace(",", "")
                 .replace("$", "")
                 .replace("%", "")
-                .replace("\u2212", "-")
+                .replace("\u2212", "-")  # Unicode minus sign
             )
             if cleaned.startswith("+"):
                 cleaned = cleaned[1:]

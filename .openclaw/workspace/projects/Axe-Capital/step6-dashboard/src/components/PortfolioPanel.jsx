@@ -60,7 +60,7 @@ export default function PortfolioPanel() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/portfolio')
+    fetch('/portfolio.json')
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`)
         return r.json()
@@ -198,7 +198,6 @@ export default function PortfolioPanel() {
                   <td className="text-axe-text font-medium">${fmt(p.market_value, 0)}</td>
                   <td className={pnlClass(p.unrealized_pl)}>
                     {p.unrealized_pl != null ? `${sign(p.unrealized_pl)}${fmtUSD(p.unrealized_pl).replace('-', '')}` : '—'}
-                    {p.unrealized_pl < 0 ? '' : ''}
                   </td>
                   <td className={`font-medium ${pnlClass(p.unrealized_pl_pct)}`}>
                     {p.unrealized_pl_pct != null ? `${sign(p.unrealized_pl_pct)}${fmt(p.unrealized_pl_pct)}%` : '—'}

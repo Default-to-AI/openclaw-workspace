@@ -3,8 +3,10 @@ from __future__ import annotations
 import asyncio
 import inspect
 import json
+import os
 import re
 import sys
+import time
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -16,9 +18,33 @@ import yfinance as yf
 
 from axe_alpha.util import project_root, workspace_root
 
+
+def _safe_float(value: Any) -> float | None:
+    """Canonical float coercion — matches axe_coo/util/numbers.py safe_float."""
+    try:
+        if value is None:
+            return None
+        if isinstance(value, str):
+            cleaned = (
+                value.strip()
+                .replace(",", "")
+                .replace("$", "")
+                .replace("%", "")
+                .replace("\u2212", "-")
+            )
+            if cleaned.startswith("+"):
+                cleaned = cleaned[1:]
+            if not cleaned:
+                return None
+            return float(cleaned)
+        return float(value)
+    except Exception:
+        return None
+
 OPENAI_CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions"
 LLM_MODEL = "gpt-4o-mini"
-SEC_UA = "AxeCapitalAlphaHunter/0.1 (research; contact: robert@local)"
+_sec_contact = os.getenv("SEC_CONTACT_EMAIL", "contact@axe-alpha-hunter.invalid")
+SEC_UA = f"AxeCapitalAlphaHunter/0.1 (research; contact: {_sec_contact})"
 MEGA_CAP_TECH = {"AAPL", "MSFT", "GOOG", "GOOGL", "META", "AMZN", "NVDA", "TSLA", "QQQ", "ASML"}
 
 
@@ -31,20 +57,6 @@ class Candidate:
     raw_facts: dict[str, Any]
     detected_at: str
     base_score: float
-
-
-def _safe_float(value: Any) -> float | None:
-    try:
-        if value is None:
-            return None
-        if isinstance(value, str):
-            cleaned = value.strip().replace(",", "").replace("$", "").replace("%", "").replace("−", "-")
-            if not cleaned:
-                return None
-            return float(cleaned)
-        return float(value)
-    except Exception:
-        return None
 
 
 def _headers() -> dict[str, str]:
@@ -206,6 +218,7 @@ def fetch_recent_form4_candidates(limit_companies: int = 180) -> list[Candidate]
                     detected_at=datetime.now(UTC).isoformat(),
                     base_score=7.4 if total_buy_value >= 1_000_000 else 6.8,
                 ))
+            time.sleep(0.11)  # ~9 req/s — stay within SEC's 10 req/s guidance
     return candidates
 
 

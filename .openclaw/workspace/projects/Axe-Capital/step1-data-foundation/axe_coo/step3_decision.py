@@ -11,6 +11,8 @@ from zoneinfo import ZoneInfo
 
 import httpx
 
+from axe_coo.util.numbers import safe_float as _safe_float
+
 READ_PROFILE_RULE = (
     "Read INVESTOR_PROFILE.md before every decision. All recommendations must be consistent with "
     "Robert's profile, constraints, and current portfolio state."
@@ -18,8 +20,6 @@ READ_PROFILE_RULE = (
 OPENAI_CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions"
 DEFAULT_GENERAL_MODEL = "gpt-4.1-mini"
 DEFAULT_CEO_MODEL = "gpt-4.1-mini"
-HISHTALMUT_REMAINING_ILS_2026 = 19_800.0
-
 
 @dataclass(frozen=True)
 class StageSpec:
@@ -112,23 +112,6 @@ CEO_SPEC = StageSpec(
 )
 
 
-def _safe_float(value: Any) -> float | None:
-    try:
-        if value is None:
-            return None
-        if isinstance(value, str):
-            cleaned = value.strip().replace(",", "").replace("−", "-")
-            if cleaned.endswith("%"):
-                cleaned = cleaned[:-1]
-            if cleaned.startswith("+"):
-                cleaned = cleaned[1:]
-            if not cleaned:
-                return None
-            return float(cleaned)
-        return float(value)
-    except Exception:
-        return None
-
 
 def _round(value: float | None, digits: int = 2) -> float | None:
     if value is None:
@@ -210,6 +193,9 @@ def _extract_profile_snapshot(profile_text: str, ticker: str, step2_analysis: di
         _extract_single(profile_text, r"\| US Large Cap Tech \| ~?([0-9]+(?:\.[0-9]+)?)%\+? \|")
     )
     annual_ceiling_ils = _safe_float(_extract_single(profile_text, r"Annual ceiling: ₪([0-9,]+(?:\.[0-9]+)?)/year"))
+    hishtalmut_remaining_ils = _safe_float(
+        _extract_single(profile_text, r"2026 remaining contribution room: \*\*₪([0-9,]+)\*\*")
+    ) or 0.0
     max_position_pct = _safe_float(
         _extract_single(profile_text, r"Maximum single new position: ([0-9]+(?:\.[0-9]+)?)% of IBKR NAV")
     ) or 15.0
@@ -250,8 +236,8 @@ def _extract_profile_snapshot(profile_text: str, ticker: str, step2_analysis: di
         "large_cap_tech_exposure_pct": tech_exposure_pct,
         "adds_to_overweight_sector": adds_to_overweight_sector,
         "hishtalmut_annual_ceiling_ils": annual_ceiling_ils,
-        "hishtalmut_remaining_ils_2026": HISHTALMUT_REMAINING_ILS_2026,
-        "hishtalmut_maxed_for_year": HISHTALMUT_REMAINING_ILS_2026 <= 0,
+        "hishtalmut_remaining_ils_2026": hishtalmut_remaining_ils,
+        "hishtalmut_maxed_for_year": hishtalmut_remaining_ils <= 0,
         "max_new_position_pct": max_position_pct,
         "min_new_position_usd": min_position_usd,
         "default_stop_loss_pct": 10.0,
@@ -401,7 +387,7 @@ def _investor_profile_context(profile_text: str, framework: dict[str, Any]) -> d
     }
 
 
-def build_framework(step2_analysis: dict[str, Any], investor_profile_text: str) -> dict[str, Any]:
+def build_framework(step2_analysis: dict[str, Any], investor_profile_text: str, raw_bundle: dict[str, Any] | None = None) -> dict[str, Any]:
     ticker = step2_analysis.get("ticker") or "UNKNOWN"
     supporting_data = _supporting_data(step2_analysis)
     scores = {
@@ -417,7 +403,13 @@ def build_framework(step2_analysis: dict[str, Any], investor_profile_text: str) 
     weighted_score = round(sum(scores[name] * weights[name] for name in weights), 2)
     profile_snapshot = _extract_profile_snapshot(investor_profile_text, ticker=ticker, step2_analysis=step2_analysis)
     macro_memo = _get_stage_memo(step2_analysis, "macro")
-    vix = _extract_vix_from_macro(macro_memo)
+    vix: float | None = None
+    if raw_bundle is not None:
+        macro_series = (raw_bundle.get("macro") or {}).get("VIXCLS") or []
+        if macro_series:
+            vix = _safe_float((macro_series[0] or {}).get("value"))
+    if vix is None:
+        vix = _extract_vix_from_macro(macro_memo)
     regime = _market_regime(vix)
     base_low, base_high = _position_size_band(weighted_score)
     base_mid = round((base_low + base_high) / 2, 2) if base_high else 0.0
@@ -608,6 +600,12 @@ def run_cro_review(framework: dict[str, Any], cio_memo: dict[str, Any]) -> dict[
         if profile["adds_to_overweight_sector"]:
             conditions.append("Trade adds to an already overweight US large-cap tech concentration.")
 
+    if action_candidate == "HOLD":
+        if profile["ticker_is_loser"] and stop_loss is None:
+            blockers.append(
+                "HOLD on an underwater position requires a confirmed stop-loss level."
+            )
+
     gate = "BLOCKED" if blockers else ("CONDITIONAL" if conditions else "APPROVED")
     allowed_action = "PASS" if gate == "BLOCKED" and action_candidate == "BUY" else action_candidate
     return {
@@ -702,10 +700,11 @@ async def run_step3_decision(
     investor_profile_text: str,
     api_key: str,
     timeout_seconds: float = 180.0,
+    raw_bundle: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     started = time.perf_counter()
     local_date = datetime.now(ZoneInfo("Asia/Jerusalem")).date().isoformat()
-    framework = build_framework(step2_analysis, investor_profile_text)
+    framework = build_framework(step2_analysis, investor_profile_text, raw_bundle=raw_bundle)
     profile_context = _investor_profile_context(investor_profile_text, framework)
     shared_payload = {
         "ticker": step2_analysis.get("ticker"),

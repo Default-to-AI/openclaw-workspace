@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from typing import Any
 
 from axe_coo.step3_decision import run_step3_decision
 from axe_coo.util.env import load_project_env, project_root
@@ -16,6 +17,11 @@ def main() -> None:
         "--investor-profile",
         default=str(project_root() / "INVESTOR_PROFILE.md"),
         help="Path to INVESTOR_PROFILE.md",
+    )
+    parser.add_argument(
+        "--bundle-path",
+        default=None,
+        help="Path to the raw COO bundle JSON for direct VIX extraction",
     )
     args = parser.parse_args()
 
@@ -33,11 +39,17 @@ def main() -> None:
 
     step2_analysis = json.loads(step2_path.read_text(encoding="utf-8"))
     investor_profile_text = investor_profile_path.read_text(encoding="utf-8")
+    raw_bundle: dict[str, Any] | None = None
+    if args.bundle_path:
+        from pathlib import Path as _P
+        bundle_path = _P(args.bundle_path).resolve()
+        raw_bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
     result = __import__("asyncio").run(
         run_step3_decision(
             step2_analysis=step2_analysis,
             investor_profile_text=investor_profile_text,
             api_key=api_key,
+            raw_bundle=raw_bundle,
         )
     )
 

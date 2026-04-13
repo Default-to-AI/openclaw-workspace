@@ -9,6 +9,7 @@ from __future__ import annotations
 import csv
 import json
 import re
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Tuple
@@ -138,12 +139,18 @@ def main() -> int:
     # portfolio
     p_src = ROOT / inputs["portfolio"]["source_file"]
     p_dst = ROOT / inputs["portfolio"]["normalized_file"]
+    if not p_src.exists():
+        print(f"ERROR: portfolio source not found: {p_src}", file=sys.stderr)
+        return 1
     normalize_portfolio(p_src, p_dst)
 
     # statements (KV)
     for key in ("activity", "realized", "mtm"):
         src = ROOT / inputs[key]["source_file"]
         dst = ROOT / inputs[key]["normalized_file"]
+        if not src.exists():
+            print(f"WARNING: {key} source not found: {src} — skipping", file=sys.stderr)
+            continue
         normalize_kv_statement(src, dst)
 
     print("OK: normalized ->")
