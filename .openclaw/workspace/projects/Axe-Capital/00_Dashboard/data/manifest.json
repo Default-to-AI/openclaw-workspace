@@ -1,0 +1,26 @@
+{
+  "schema": "axe-dashboard.data-manifest.v1",
+  "root": "00_Dashboard/data",
+  "inputs": {
+    "portfolio": {
+      "kind": "positions_snapshot",
+      "source_file": "data/raw/portfolio-current-10-April.csv",
+      "normalized_file": "data/portfolio_latest.normalized.csv"
+    },
+    "activity": {
+      "kind": "ibkr_activity_statement_kv",
+      "source_file": "data/raw/Activity.csv",
+      "normalized_file": "data/activity_kv.latest.csv"
+    },
+    "realized": {
+      "kind": "ibkr_realized_summary_kv",
+      "source_file": "data/raw/Statement.csv",
+      "normalized_file": "data/realized_kv.latest.csv"
+    },
+    "mtm": {
+      "kind": "ibkr_mtm_summary_kv",
+      "source_file": "data/raw/MULTI_20260410.csv",
+      "normalized_file": "data/mtm_kv.latest.csv"
+    }
+  }
+}

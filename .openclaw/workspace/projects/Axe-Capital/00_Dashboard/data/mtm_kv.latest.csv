@@ -1,0 +1,47 @@
+section,record_type,field,value
+Statement,Data,Title,MTM Summary
+Statement,Data,Period,"April 10, 2026"
+Statement,Data,WhenGenerated,"2026-04-11, 11:52:49 EDT"
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Robert Y Tiger
+Account Information,Data,Account Alias,U3314869 Robert Yonatan Tiger
+Account Information,Data,Account,U3314869 (Custom Consolidated)
+Account Information,Data,Accounts Included,"U3314869, U21335661"
+Account Information,Data,Master Name,Israel Interactive Trading - Mexem Ltd
+Account Information,Data,Account Type,Broker Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Margin
+Account Information,Data,Base Currency,USD
+Net Asset Value,Header,Asset Class,Prior Total
+Net Asset Value,Data,Cash,11454.636299647
+Net Asset Value,Data,Collateral Value,2460
+Net Asset Value,Data,Stock,107866.65
+Net Asset Value,Data,Securities Lent,-2460
+Net Asset Value,Data,Dividend Accruals,15.75
+Net Asset Value,Data,Total,119337.036299647
+Net Asset Value,Header,Time Weighted Rate of Return,
+Net Asset Value,Data,0.120984508%,
+Change in NAV,Header,Field Name,Field Value
+Change in NAV,Data,Starting Value,119337.036299647
+Change in NAV,Data,Mark-to-Market,144.37932666
+Change in NAV,Data,Ending Value,119481.415626306
+Positions and Mark-to-Market Profit and Loss,Header,DataDiscriminator,Asset Class
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Stocks
+Positions and Mark-to-Market Profit and Loss,Data,,Total
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Forex
+Positions and Mark-to-Market Profit and Loss,Data,Details,Forex
+Positions and Mark-to-Market Profit and Loss,Data,Summary,Forex
+Positions and Mark-to-Market Profit and Loss,Data,,Total
+Positions and Mark-to-Market Profit and Loss,Data,,Total (All Assets)

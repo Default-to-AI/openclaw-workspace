@@ -1,0 +1,962 @@
+section,record_type,field,value
+Statement,Data,Title,Realized Summary
+Statement,Data,Period,"May 1, 2025 - April 10, 2026"
+Statement,Data,WhenGenerated,"2026-04-11, 11:45:57 EDT"
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Robert Y Tiger
+Account Information,Data,Account Alias,U3314869 Robert Yonatan Tiger
+Account Information,Data,Account,U3314869 (Custom Consolidated)
+Account Information,Data,Accounts Included,"U3314869, U21335661"
+Account Information,Data,Master Name,Israel Interactive Trading - Mexem Ltd
+Account Information,Data,Account Type,Broker Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Margin
+Account Information,Data,Base Currency,USD
+Net Asset Value,Header,Asset Class,Prior Total
+Net Asset Value,Data,Cash,103.446355878
+Net Asset Value,Data,Collateral Value,14102
+Net Asset Value,Data,Stock,115326.58
+Net Asset Value,Data,Securities Lent,-14102
+Net Asset Value,Data,Interest Accruals,1.05
+Net Asset Value,Data,Dividend Accruals,55.06
+Net Asset Value,Data,Total,115486.136355878
+Net Asset Value,Header,Time Weighted Rate of Return,
+Net Asset Value,Data,-6.123456182%,
+Change in NAV,Header,Field Name,Field Value
+Change in NAV,Data,Starting Value,115486.136355878
+Change in NAV,Data,Details not available,
+Change in NAV,Data,Ending Value,119481.415626306
+Realized & Unrealized Performance Summary,Header,Asset Category,Symbol
+Realized & Unrealized Performance Summary,Data,Stocks,AAPL
+Realized & Unrealized Performance Summary,Data,Stocks,ABBV
+Realized & Unrealized Performance Summary,Data,Stocks,ACHR
+Realized & Unrealized Performance Summary,Data,Stocks,AMZN
+Realized & Unrealized Performance Summary,Data,Stocks,ASML
+Realized & Unrealized Performance Summary,Data,Stocks,ASTS
+Realized & Unrealized Performance Summary,Data,Stocks,BEN
+Realized & Unrealized Performance Summary,Data,Stocks,CRWD
+Realized & Unrealized Performance Summary,Data,Stocks,DPZ
+Realized & Unrealized Performance Summary,Data,Stocks,DUOL
+Realized & Unrealized Performance Summary,Data,Stocks,EFX
+Realized & Unrealized Performance Summary,Data,Stocks,ET
+Realized & Unrealized Performance Summary,Data,Stocks,ETHA
+Realized & Unrealized Performance Summary,Data,Stocks,FICO
+Realized & Unrealized Performance Summary,Data,Stocks,GE
+Realized & Unrealized Performance Summary,Data,Stocks,GOOG
+Realized & Unrealized Performance Summary,Data,Stocks,IGV
+Realized & Unrealized Performance Summary,Data,Stocks,JEPI
+Realized & Unrealized Performance Summary,Data,Stocks,JPM
+Realized & Unrealized Performance Summary,Data,Stocks,KO
+Realized & Unrealized Performance Summary,Data,Stocks,LMT
+Realized & Unrealized Performance Summary,Data,Stocks,MA
+Realized & Unrealized Performance Summary,Data,Stocks,META
+Realized & Unrealized Performance Summary,Data,Stocks,MO
+Realized & Unrealized Performance Summary,Data,Stocks,MSCI
+Realized & Unrealized Performance Summary,Data,Stocks,MSFT
+Realized & Unrealized Performance Summary,Data,Stocks,MSTY
+Realized & Unrealized Performance Summary,Data,Stocks,NFLX
+Realized & Unrealized Performance Summary,Data,Stocks,NVDA
+Realized & Unrealized Performance Summary,Data,Stocks,O
+Realized & Unrealized Performance Summary,Data,Stocks,OKLO
+Realized & Unrealized Performance Summary,Data,Stocks,ORCL
+Realized & Unrealized Performance Summary,Data,Stocks,PANW
+Realized & Unrealized Performance Summary,Data,Stocks,PLTR
+Realized & Unrealized Performance Summary,Data,Stocks,QQQ
+Realized & Unrealized Performance Summary,Data,Stocks,QQQI
+Realized & Unrealized Performance Summary,Data,Stocks,RGTI
+Realized & Unrealized Performance Summary,Data,Stocks,RKLB
+Realized & Unrealized Performance Summary,Data,Stocks,SBUX
+Realized & Unrealized Performance Summary,Data,Stocks,SMH
+Realized & Unrealized Performance Summary,Data,Stocks,SPG
+Realized & Unrealized Performance Summary,Data,Stocks,T
+Realized & Unrealized Performance Summary,Data,Stocks,TSLA
+Realized & Unrealized Performance Summary,Data,Stocks,TXRH
+Realized & Unrealized Performance Summary,Data,Stocks,UBER
+Realized & Unrealized Performance Summary,Data,Stocks,ULTY
+Realized & Unrealized Performance Summary,Data,Stocks,V
+Realized & Unrealized Performance Summary,Data,Stocks,VICI
+Realized & Unrealized Performance Summary,Data,Stocks,VRT
+Realized & Unrealized Performance Summary,Data,Total,
+Realized & Unrealized Performance Summary,Data,Forex,ILS
+Realized & Unrealized Performance Summary,Data,Total,
+Realized & Unrealized Performance Summary,Data,Total (All Assets),
+Open Positions,Header,DataDiscriminator,Asset Category
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Data,Summary,Stocks
+Open Positions,Total,,Stocks
+Forex Balances,Header,Asset Category,Currency
+Forex Balances,Data,Forex,USD
+Forex Balances,Data,Forex,USD
+Forex Balances,Data,Total,
+Trades,Header,DataDiscriminator,Asset Category
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,Data,Order,Stocks
+Trades,SubTotal,,Stocks
+Trades,Total,,Stocks
+Trades,Header,DataDiscriminator,Asset Category
+Trades,Data,Order,Forex
+Trades,Data,Order,Forex
+Trades,Data,Order,Forex
+Trades,Data,Order,Forex
+Trades,SubTotal,,Forex
+Trades,Total,,Forex
+Trades,Total,,Forex
+Forex P/L Details,Header,Asset Category,Currency
+Forex P/L Details,Data,Forex,USD
+Forex P/L Details,Data,Forex,USD
+Forex P/L Details,Data,Forex,USD
+Forex P/L Details,Data,Forex,USD
+Forex P/L Details,Data,Forex,USD
+Forex P/L Details,Data,Forex,USD
+Forex P/L Details,Data,Forex,USD
+Forex P/L Details,Data,Forex,USD
+Forex P/L Details,Data,Total,
+Transfers,Header,Asset Category,Currency
+Transfers,Data,Stocks,USD
+Transfers,Data,Stocks,USD
+Transfers,Data,Total,
+Corporate Actions,Header,Asset Category,Currency
+Corporate Actions,Data,Stocks,USD
+Corporate Actions,Data,Total,
+Deposits & Withdrawals,Header,Currency,Account
+Deposits & Withdrawals,Data,ILS,U3314869
+Deposits & Withdrawals,Data,ILS,U3314869
+Deposits & Withdrawals,Data,ILS,U3314869
+Deposits & Withdrawals,Data,ILS,U3314869
+Deposits & Withdrawals,Data,Total,
+Deposits & Withdrawals,Data,Total in USD,
+Deposits & Withdrawals,Data,USD,U3314869
+Deposits & Withdrawals,Data,USD,U21335661
+Deposits & Withdrawals,Data,Total,
+Deposits & Withdrawals,Data,Total Deposits & Withdrawals in USD,
+Dividends,Header,Currency,Account
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U21335661
+Dividends,Data,USD,U21335661
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U21335661
+Dividends,Data,USD,U21335661
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U3314869
+Dividends,Data,USD,U21335661
+Dividends,Data,USD,U3314869
+Dividends,Data,Total,
+Withholding Tax,Header,Currency,Account
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U21335661
+Withholding Tax,Data,USD,U21335661
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U21335661
+Withholding Tax,Data,USD,U21335661
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,USD,U21335661
+Withholding Tax,Data,USD,U3314869
+Withholding Tax,Data,Total,
+Interest,Header,Currency,Account
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U21335661
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U21335661
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U21335661
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U21335661
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U21335661
+Interest,Data,USD,U21335661
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,USD,U3314869
+Interest,Data,Total,
+Interest Accruals,Header,Currency,Field Name
+Interest Accruals,Data,Base Currency Summary,Starting Accrual Balance
+Interest Accruals,Data,Base Currency Summary,Interest Accrued
+Interest Accruals,Data,Base Currency Summary,Accrual Reversal
+Interest Accruals,Data,Base Currency Summary,FX Translation
+Interest Accruals,Data,Base Currency Summary,Ending Accrual Balance
+Change in Dividend Accruals,Header,Asset Category,Currency
+Change in Dividend Accruals,Data,Starting Dividend Accruals in USD,
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Stocks,USD
+Change in Dividend Accruals,Data,Total,
+Change in Dividend Accruals,Data,Ending Dividend Accruals in USD,
+Codes,Header,Code,Meaning
+Codes,Data,A,Assignment
+Codes,Data,ADR,ADR Fee Accrual
+Codes,Data,AEx,Automatic exercise for dividend-related recommendation.
+Codes,Data,AFx,AutoFX conversion resulting from trading
+Codes,Data,Adj,Adjustment
+Codes,Data,Al,Allocation
+Codes,Data,Aw,Away Trade
+Codes,Data,B,Automatic Buy-in
+Codes,Data,Bo,Direct Borrow
+Codes,Data,C,Closing Trade
+Codes,Data,CD,Cash Delivery
+Codes,Data,CP,Complex Position
+Codes,Data,Ca,Cancelled
+Codes,Data,Co,Corrected Trade
+Codes,Data,Cx,Part or all of this transaction was a Crossing executed as dual agent by Broker for two Broker customers
+Codes,Data,DT,Discounted Trade
+Codes,Data,De,Delivery or Conversion Action
+Codes,Data,ETF,ETF Creation/Redemption
+Codes,Data,Ep,Resulted from an Expired Position
+Codes,Data,Ex,Exercise
+Codes,Data,FP,"Broker acted as agent for the fractional share portion of this trade, which was executed by a Broker affiliate as principal."
+Codes,Data,FPA,Broker acted as agent for both the fractional share portion and the whole share portion of this trade; the fractional share portion was executed by a Broker Affiliate as principal.
+Codes,Data,G,Trade in Guaranteed Account Segment
+Codes,Data,GEA,Exercise or Assignment resulting from offsetting positions
+Codes,Data,HC,Highest Cost tax basis election
+Codes,Data,HFI,Investment Transferred to Hedge Fund
+Codes,Data,HFR,Redemption from Hedge Fund
+Codes,Data,I,Internal Transfer
+Codes,Data,IA,This transaction was executed against a Broker affiliate
+Codes,Data,IM,A portion of the order was executed against a Broker affiliate; A broker acted as agent on a portion.
+Codes,Data,INV,Investment Transfer from Investor
+Codes,Data,IPO,This transaction was executed as part of an IPO in which Broker was a member of the selling group and is classified as a Principal trade.
+Codes,Data,L,Ordered by Broker (Margin Violation)
+Codes,Data,LD,Adjusted by Loss Disallowed from Wash Sale
+Codes,Data,LF,Liquidation of fractional position by IB
+Codes,Data,LI,"Last In, First Out (LIFO) tax basis election"
+Codes,Data,LT,Long Term P/L
+Codes,Data,Lo,Direct Loan
+Codes,Data,M,Entered manually by Broker
+Codes,Data,MEx,Manual exercise for dividend-related recommendation.
+Codes,Data,ML,Maximize Losses tax basis election
+Codes,Data,MLG,Maximize Long Term Gain tax basis election
+Codes,Data,MLL,Maximize Long Term Loss tax basis election
+Codes,Data,MSG,Maximize Short Term Gain tax basis election
+Codes,Data,MSL,Maximize Short Term Loss tax basis election
+Codes,Data,O,Opening Trade
+Codes,Data,Off,Yes and No contracts offset to $1.00 cash settlement
+Codes,Data,P,Partial Execution
+Codes,Data,PE,Perpetual Investment
+Codes,Data,PI,Price Improvement
+Codes,Data,PTA,Post Trade Allocation
+Codes,Data,Po,Interest or Dividend Accrual Posting
+Codes,Data,Pr,Part or all of this transaction was executed by the Exchange as a Crossing by Broker against a Broker affiliate and is therefore classified as a Principal and not an agency trade
+Codes,Data,R,Dividend Reinvestment
+Codes,Data,RED,Redemption to Investor
+Codes,Data,RI,Recurring Investment
+Codes,Data,RP,"Broker acted as agent for the fractional share portion of this trade, which was executed by a Broker affiliate as riskless principal."
+Codes,Data,RPA,Broker acted as agent for both the fractional share portion and the whole share portion of this trade; the fractional share portion was executed by a Broker Affiliate as riskless principal.
+Codes,Data,Rb,Rebill
+Codes,Data,Re,Interest or Dividend Accrual Reversal
+Codes,Data,Ri,Reimbursement
+Codes,Data,S0,Contract settled to zero value
+Codes,Data,S1,Contract settled to $1.00
+Codes,Data,SF,Trade is subject to IBKR Lite Surcharge Fee if volume of such trades exceeds 10% of the total monthly Lite trade volume
+Codes,Data,SI,This order was solicited by Broker
+Codes,Data,SL,Specific Lot tax basis election
+Codes,Data,SO,This order was marked as solicited by your Introducing Broker
+Codes,Data,SS,Customer designated this trade for shortened settlement and so is subject to execution at prices above the prevailing market
+Codes,Data,ST,Short Term P/L
+Codes,Data,T,Transfer
+Codes,Data,Un,Unvested shares from stock grant
+Codes,Data,XCH,Mutual Fund Exchange Transaction
