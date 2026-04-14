@@ -1,5 +1,11 @@
 import './index.css'
 import PortfolioPanel from './components/PortfolioPanel'
+import TargetsPanel from './components/TargetsPanel'
+import RiskPanel from './components/RiskPanel'
+import ResearchPanel from './components/ResearchPanel'
+import DecisionLogPanel from './components/DecisionLogPanel'
+import AutomationPanel from './components/AutomationPanel'
+import RunbookPanel from './components/RunbookPanel'
 
 function App() {
   return (
@@ -25,6 +31,24 @@ function App() {
       {/* Main content */}
       <main className="max-w-screen-2xl mx-auto px-6 py-6">
         <PortfolioPanel />
+        <div className="mt-6">
+          <TargetsPanel />
+        </div>
+        <div className="mt-6">
+          <RiskPanel />
+        </div>
+        <div className="mt-6">
+          <ResearchPanel />
+        </div>
+        <div className="mt-6">
+          <DecisionLogPanel />
+        </div>
+        <div className="mt-6">
+          <AutomationPanel />
+        </div>
+        <div className="mt-6">
+          <RunbookPanel />
+        </div>
       </main>
     </div>
   )

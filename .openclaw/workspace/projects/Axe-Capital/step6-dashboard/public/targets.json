@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "as_of": "2026-04-13",
+  "notes": "Per-position targets/stops. Edit manually. id must be unique and stable.",
+  "positions": [
+    {
+      "id": "FICO",
+      "symbol": "FICO",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "IGV",
+      "symbol": "IGV",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "MSFT",
+      "symbol": "MSFT",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "RGTI",
+      "symbol": "RGTI",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "RKLB",
+      "symbol": "RKLB",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "TSLA",
+      "symbol": "TSLA",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "UBER",
+      "symbol": "UBER",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "AMZN",
+      "symbol": "AMZN",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "ASML",
+      "symbol": "ASML",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "GOOG",
+      "symbol": "GOOG",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "JPM",
+      "symbol": "JPM",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "META",
+      "symbol": "META",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    },
+    {
+      "id": "QQQ",
+      "symbol": "QQQ",
+      "profit_target_price": null,
+      "profit_target_pct": null,
+      "stop_price": null,
+      "stop_pct": null,
+      "comment": ""
+    }
+  ]
+}
