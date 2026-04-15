@@ -5,8 +5,8 @@ domain: finance
 created: 12-04-2026
 updated: 12-04-2026
 sources:
-  - "[[Archive/_old_50_AISphere/Projects/AxeCapital/01_Spec/02-system-architecture]]"
-  - "[[Archive/_old_50_AISphere/Projects/AxeCapital/01_Spec/Org/org-chart-and-contracts]]"
+  - "[[projects/Axe-Capital/spec/02-system-architecture]]"
+  - "[[projects/Axe-Capital/spec/Org/org-chart-and-contracts]]"
 tags: [axe-capital, agents, orchestration, trading, multi-agent]
 ---
 

@@ -1,20 +1,28 @@
 # Axe Capital — Index
 
-## 01_Spec
-- [[30_Finance/AxeCapital/01_Spec/00-vision-and-non-negotiables]]
-- [[30_Finance/AxeCapital/01_Spec/01-strategy-overview]]
-- [[30_Finance/AxeCapital/01_Spec/02-system-architecture]]
+## Spec
+- [[spec/00-vision-and-non-negotiables]]
+- [[spec/01-strategy-overview]]
+- [[spec/02-system-architecture]]
+- [[spec/Org/org-chart-and-contracts]]
+- [[spec/Org/RACI_HedgeFund_CoreProcesses]]
+- [[spec/Org/TOM_HedgeFund_OperatingModel]]
+- [[spec/Risk/Risk_Charter_Draft]]
+- [[spec/axe-capital-architecture-summary]]
 
-## 02_Plans
-- [[30_Finance/AxeCapital/02_Plans/00-master-plan]]
-- [[30_Finance/AxeCapital/02_Plans/01-milestones-and-kpis]]
+## Plans
+- [[plans/Implementation Plan]]
+- [[plans/research-and-planning-roadmap]]
+- [[plans/weekly-research-workflow]]
+- [[plans/Cadence_Meetings_and_Reports]]
+- [[plans/IC_Packet_Template]]
+- [[plans/approval-queue]]
 
-## 03_Runbooks
-- [[30_Finance/AxeCapital/03_Runbooks/ibkr-paper-live-switch]]
-- [[30_Finance/AxeCapital/03_Runbooks/incident-response]]
+## Decision Log
+- [[decision-log/README]]
 
-## 04_DecisionLog
-- [[30_Finance/AxeCapital/04_DecisionLog/README]]
+## Reports
+<!-- Agent-generated reports go here -->
 
-## 05_Engineering
-- [[30_Finance/AxeCapital/05_Engineering/repo-setup]]
+## Sources
+<!-- Research memos and source documents -->

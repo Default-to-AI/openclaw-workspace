@@ -1,6 +1,6 @@
 ---
 type: dashboard
-project: AxeCapital
+project: Axe-Capital
 created: 2026-04-11
 mode: phase1-manual-csv
 ---
@@ -32,7 +32,7 @@ TABLE
   market_value as MV,
   unrealized_pl as "UPL$",
   unrealized_pl_pct + "%" as "UPL%"
-FROM csv("50_AISphere/Projects/AxeCapital/00_Dashboard/data/portfolio_latest.normalized.csv")
+FROM csv("projects/Axe-Capital/dashboard/data/portfolio_latest.normalized.csv")
 WHERE symbol != "Total"
 SORT market_value desc
 ```

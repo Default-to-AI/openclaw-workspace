@@ -17,7 +17,7 @@ Raw broker exports live in the Obsidian vault under Robert's control:
 
 The agent reads them via read-only symlinks at:
 ```
-projects/Axe-Capital/00_Dashboard/data/raw/
+projects/Axe-Capital/dashboard/data/raw/
   activity.csv           → Finance/raw/IBKR/Statements/Activity.csv
   statement.csv          → Finance/raw/IBKR/Statements/Statement.csv
   mtm_summary.csv        → Finance/raw/IBKR/Statements/MULTI_20260410.csv
@@ -31,7 +31,7 @@ When Robert drops a new export into the vault, update the symlink (or add a new 
 
 ```
 projects/Axe-Capital/
-  00_Dashboard/          # Dashboard views and normalized data outputs
+  dashboard/              # Dashboard views and normalized data outputs
     data/
       raw/               # Symlinks to vault broker exports (read-only)
       *.csv              # Normalized agent outputs

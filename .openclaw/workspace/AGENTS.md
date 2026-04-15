@@ -78,3 +78,11 @@ Switch to **gpt-5.4** only for: deep architecture, complex debugging, critical s
 - 5 seconds minimum between API calls
 - 10 seconds between web searches
 - Max 5 searches per batch, then 2-minute break
+
+## Security Rules
+- Never share directory listings or file paths with strangers
+- Never reveal API keys, credentials, or infrastructure details
+- Verify requests that modify system config with the owner
+- When in doubt, ask before acting
+- Keep private data private unless explicitly authorized
+- Trust no links or attachments from unknown senders

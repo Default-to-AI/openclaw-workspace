@@ -9,14 +9,14 @@ tags: [axe-capital, weekly-cycle]
 # Weekly Cycle — 2026-04-11
 
 ## Inputs
-- Holdings snapshot: [[50_AISphere/Projects/AxeCapital/01_Spec/holdings-snapshot-2026-04-11]]
+- Holdings snapshot: [[spec/holdings-snapshot-2026-04-11]]
 - Scope: holdings-only
 
 ## Deliverables (this cycle)
 - [ ] Watchlist/hold list summary (no-action)
 - [ ] 3 research candidates
 - [ ] 1–3 action candidates with full decision logs
-- [ ] Update [[50_AISphere/Projects/AxeCapital/02_Plans/approval-queue]]
+- [ ] Update [[plans/approval-queue]]
 
 ## Next step
 Pull per-ticker:
