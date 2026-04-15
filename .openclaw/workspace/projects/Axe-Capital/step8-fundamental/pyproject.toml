@@ -1,0 +1,20 @@
+[project]
+name = "axe-fundamental"
+version = "0.1.0"
+description = "Fundamental Analyst agent for Axe Capital"
+requires-python = ">=3.11"
+dependencies = ["axe-core", "yfinance", "openai", "jinja2"]
+
+[project.scripts]
+axe-fundamental = "axe_fundamental.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["axe_fundamental*"]
+
+[tool.uv.sources]
+axe-core = { path = "../step0-shared", editable = true }
