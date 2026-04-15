@@ -31,6 +31,13 @@ uvicorn axe_orchestrator.api:app --reload --port 8000
 
 The dashboard proxies `/api/*` to port 8000 in local dev and falls back to static artifacts when the API is unavailable.
 
+Refresh examples:
+
+```bash
+curl -s -X POST http://localhost:8000/refresh/portfolio
+curl -s -X POST http://localhost:8000/refresh/all
+```
+
 ## Design notes
 
 - The dashboard must remain readable from static files alone.

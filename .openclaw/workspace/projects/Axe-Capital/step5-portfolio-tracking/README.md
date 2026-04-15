@@ -24,3 +24,15 @@ python -m axe_portfolio.cli
 ```
 
 Use port `7497` for TWS paper by default or `4001` for IB Gateway. This adapter is read-only and does not place orders.
+
+Supported environment variables:
+
+```text
+AXE_PORTFOLIO_SOURCE=csv|ibkr|auto
+AXE_IBKR_HOST=127.0.0.1
+AXE_IBKR_PORT=7497
+AXE_IBKR_CLIENT_ID=51
+AXE_IBKR_ACCOUNT=DU1234567 (optional)
+AXE_IBKR_READONLY=1
+AXE_IBKR_TIMEOUT=10
+```

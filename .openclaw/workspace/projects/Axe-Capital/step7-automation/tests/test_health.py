@@ -26,7 +26,7 @@ def test_generate_health_reads_artifacts(tmp_path):
     assert report["artifacts"]["portfolio"]["status"] == "fresh"
     assert report["artifacts"]["alpha"]["status"] == "fresh"
     assert report["artifacts"]["news"]["status"] == "missing"
-    assert report["freshness_thresholds_min"] == {"portfolio": 240, "alpha": 1440, "news": 60}
+    assert report["freshness_thresholds_min"] == {"portfolio": 240, "alpha": 1440, "news": 60, "decision": 1440}
 
     from axe_core.schemas import HealthReport
     HealthReport.model_validate(report)
