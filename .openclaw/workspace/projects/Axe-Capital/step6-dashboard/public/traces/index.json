@@ -1,10 +1,32 @@
 {
-  "generated_at": "2026-04-15T18:56:48Z",
+  "generated_at": "2026-04-15T21:21:41Z",
   "retention": {
     "max_runs_per_agent": 50,
     "total_cap": 500
   },
   "runs": [
+    {
+      "run_id": "axe_fundamental-15-04-2026T21-21-33Z",
+      "agent": "axe_fundamental",
+      "started_at": "2026-04-15T21:21:33Z",
+      "ended_at": "2026-04-15T21:21:41Z",
+      "duration_ms": 8580,
+      "status": "success",
+      "event_count": 2,
+      "summary": "Complete for AAPL",
+      "artifact_written": "AAPL-fundamental-2026-04-15T21-21-33Z.json"
+    },
+    {
+      "run_id": "decision-15-04-2026T21-19-27Z",
+      "agent": "axe_decision",
+      "started_at": "2026-04-15T21:19:27Z",
+      "ended_at": "2026-04-15T21:20:18Z",
+      "duration_ms": 51819,
+      "status": "success",
+      "event_count": 5,
+      "summary": "decision memo generated for MSFT",
+      "artifact_written": "decision-latest.json"
+    },
     {
       "run_id": "decision-15-04-2026T18-56-00Z",
       "agent": "axe_decision",

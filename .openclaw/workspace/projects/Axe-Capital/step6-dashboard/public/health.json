@@ -1,28 +1,28 @@
 {
-  "generated_at": "2026-04-15T18:56:48Z",
+  "generated_at": "2026-04-15T21:20:18Z",
   "artifacts": {
     "portfolio": {
       "last_refresh": "2026-04-15T18:55:12Z",
-      "age_min": 1,
+      "age_min": 145,
       "status": "fresh"
     },
     "alpha": {
       "last_refresh": "2026-04-15T09:00:00Z",
-      "age_min": 596,
+      "age_min": 740,
       "status": "fresh"
     },
     "news": {
       "last_refresh": "2026-04-15T18:20:24Z",
-      "age_min": 36,
-      "status": "fresh"
+      "age_min": 179,
+      "status": "stale"
     },
     "decision": {
-      "last_refresh": "2026-04-15T18:56:00Z",
+      "last_refresh": "2026-04-15T21:19:27Z",
       "age_min": 0,
       "status": "fresh"
     },
     "traces": {
-      "last_refresh": "2026-04-15T18:56:48Z",
+      "last_refresh": "2026-04-15T21:20:18Z",
       "age_min": 0,
       "status": "fresh"
     }

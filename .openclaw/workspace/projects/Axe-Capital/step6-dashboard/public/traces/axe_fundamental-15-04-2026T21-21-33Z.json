@@ -1,0 +1,22 @@
+{
+  "run_id": "axe_fundamental-15-04-2026T21-21-33Z",
+  "agent": "axe_fundamental",
+  "started_at": "2026-04-15T21:21:33Z",
+  "status": "success",
+  "summary": "Complete for AAPL",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-15T21:21:33.484Z",
+      "step": "fetch_data",
+      "thought": "Fetching data for AAPL"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-15T21:21:34.484Z",
+      "step": "llm_analysis",
+      "thought": "Running LLM analysis"
+    }
+  ],
+  "ended_at": "2026-04-15T21:21:41Z"
+}

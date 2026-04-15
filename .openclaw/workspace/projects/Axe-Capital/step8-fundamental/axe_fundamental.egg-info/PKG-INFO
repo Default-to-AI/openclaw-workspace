@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: axe-fundamental
+Version: 0.1.0
+Summary: Fundamental Analyst agent for Axe Capital
+Requires-Python: >=3.11
+Requires-Dist: axe-core
+Requires-Dist: yfinance
+Requires-Dist: openai
+Requires-Dist: jinja2

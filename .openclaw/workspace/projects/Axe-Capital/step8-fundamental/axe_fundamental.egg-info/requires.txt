@@ -1,0 +1,4 @@
+axe-core
+yfinance
+openai
+jinja2
