@@ -68,8 +68,11 @@ Transform the Axe Capital dashboard from a portfolio monitor into a **research-a
 | `axe_coo` | Data pipeline (existing) | `step1-data-foundation/` |
 | `axe_alpha` | Alpha Hunter (existing) | `step4-alpha-hunter/` |
 | `axe_portfolio` | Portfolio tracker (existing) | `step5-portfolio-tracking/` |
-| `axe_news` | RSS ingestion + LLM impact scorer (NEW) | `step3-news/` |
+| `axe_news` | RSS ingestion + LLM impact scorer (NEW) | `step2-news/` |
+| `axe_dashboard` | React/Vite UI (existing) — artifact home in `step6-dashboard/public/` | `step6-dashboard/` |
 | `axe_orchestrator` | CLI + FastAPI backend | `step7-automation/` |
+
+**Note on step numbering:** Existing dirs jump 1→4→5→6→7. `axe_news` slots into `step2-news/` to fill the gap. The numbering reflects build-order history, not a strict dependency chain.
 
 All agent packages depend on `axe_core`. Agent packages do NOT depend on each other.
 
@@ -197,11 +200,11 @@ Rolling index of most recent runs. Panels 5 and 6 read this.
 ```
 
 **Update semantics:**
-- Appended (not replaced) on every run completion by `axe_core.trace.finalize()`
-- Sorted newest-first
-- Per-agent cap: keep newest 50 runs each; older trace files AND their entries pruned together
-- Global cap: 500 runs total (safety)
-- Pruning runs atomically inside `finalize()`; no external janitor
+- File is a single JSON object (NOT JSONL). Rewritten atomically on every run completion by `axe_core.trace.finalize()` — write to `traces/index.json.tmp`, then `rename()`.
+- The `runs` array inside is appended to (new run prepended at index 0), sorted newest-first.
+- Per-agent cap: keep newest 50 runs each; older trace files AND their entries pruned together.
+- Global cap: 500 runs total (safety).
+- Pruning runs atomically inside `finalize()`; no external janitor.
 
 ### 5.5 `decision-log.jsonl` (EXISTS — extend)
 
