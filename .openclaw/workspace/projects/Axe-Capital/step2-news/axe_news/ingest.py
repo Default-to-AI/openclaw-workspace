@@ -55,7 +55,11 @@ def parse_feed_bytes(raw: bytes, feed: Feed) -> list[RawItem]:
 
 
 async def fetch_feed(feed: Feed, timeout: float = 15.0) -> list[RawItem]:
-    async with httpx.AsyncClient(timeout=timeout, headers={"User-Agent": USER_AGENT}) as client:
+    async with httpx.AsyncClient(
+        timeout=timeout,
+        headers={"User-Agent": USER_AGENT},
+        follow_redirects=True,
+    ) as client:
         resp = await client.get(feed.url)
         resp.raise_for_status()
         return parse_feed_bytes(resp.content, feed)
