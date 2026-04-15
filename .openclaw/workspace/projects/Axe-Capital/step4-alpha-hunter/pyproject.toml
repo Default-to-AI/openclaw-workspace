@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Axe Capital Step 4: Alpha Hunter proactive scan"
 requires-python = ">=3.11"
 dependencies = [
+  "axe-core",
   "httpx>=0.27",
   "python-dotenv>=1.0",
   "yfinance>=0.2.50",
@@ -11,6 +12,9 @@ dependencies = [
   "pandas>=2.2",
   "playwright>=1.52.0",
 ]
+
+[tool.uv.sources]
+axe-core = { path = "../step0-shared", editable = true }
 
 [project.scripts]
 axe-alpha-scan = "axe_alpha.cli:main"
