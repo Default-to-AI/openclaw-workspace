@@ -1,0 +1,24 @@
+[project]
+name = "axe-orchestrator"
+version = "0.1.0"
+description = "Axe Capital orchestrator CLI (and future FastAPI backend)"
+requires-python = ">=3.11"
+dependencies = ["axe-core"]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+api = ["fastapi>=0.110", "uvicorn>=0.29", "sse-starlette>=2.0"]
+
+[project.scripts]
+axe = "axe_orchestrator.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["axe_orchestrator*"]
+
+[tool.uv.sources]
+axe-core = { path = "../step0-shared", editable = true }
