@@ -170,6 +170,13 @@ def _cash_from_account_summary(ib: Any, account: str | None) -> float:
     return fallback
 
 
+def _ensure_account_updates(ib: Any, account: str | None) -> None:
+    try:
+        ib.reqAccountUpdates(account or "")
+    except Exception:
+        pass
+
+
 def _aggregate_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     grouped: dict[str, dict[str, Any]] = {}
     for row in rows:
@@ -250,6 +257,7 @@ def fetch_ibkr_portfolio(config: IBKRConnectionConfig | None = None, ib_factory:
         cash = 0.0
 
         for account in accounts:
+            _ensure_account_updates(ib, account)
             rows.extend(
                 [
                     row
@@ -261,6 +269,7 @@ def fetch_ibkr_portfolio(config: IBKRConnectionConfig | None = None, ib_factory:
 
         if not rows:
             for account in accounts:
+                _ensure_account_updates(ib, account)
                 rows.extend(
                     [
                         row

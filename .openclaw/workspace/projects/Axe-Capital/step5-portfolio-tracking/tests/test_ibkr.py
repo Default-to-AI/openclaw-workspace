@@ -32,9 +32,13 @@ class _AccountValue:
 class _FakeIB:
     connected_with = None
     disconnected = False
+    account_updates: list[str] = []
 
     def connect(self, *args, **kwargs):
         type(self).connected_with = (args, kwargs)
+
+    def reqAccountUpdates(self, account=""):
+        type(self).account_updates.append(account)
 
     def managedAccounts(self):
         return ["DU123", "DU999"]
@@ -87,4 +91,5 @@ def test_fetch_ibkr_portfolio_maps_live_snapshot():
         ("localhost", 4001),
         {"clientId": 77, "timeout": 3, "readonly": True, "account": ""},
     )
+    assert _FakeIB.account_updates == ["DU123", "DU999"]
     assert _FakeIB.disconnected is True
