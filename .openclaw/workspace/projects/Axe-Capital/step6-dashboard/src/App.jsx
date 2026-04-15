@@ -2,7 +2,7 @@ import './index.css'
 import PortfolioPanel from './components/PortfolioPanel'
 import TargetsPanel from './components/TargetsPanel'
 import AlphaPanel from './components/AlphaPanel'
-import ResearchPanel from './components/ResearchPanel'
+import NewsPanel from './components/NewsPanel'
 import DecisionLogPanel from './components/DecisionLogPanel'
 import AutomationPanel from './components/AutomationPanel'
 import RunbookPanel from './components/RunbookPanel'
@@ -38,7 +38,7 @@ function App() {
           <AlphaPanel />
         </div>
         <div className="mt-6">
-          <ResearchPanel />
+          <NewsPanel />
         </div>
         <div className="mt-6">
           <DecisionLogPanel />
