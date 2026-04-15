@@ -4,7 +4,7 @@ import TargetsPanel from './components/TargetsPanel'
 import AlphaPanel from './components/AlphaPanel'
 import NewsPanel from './components/NewsPanel'
 import DecisionLogPanel from './components/DecisionLogPanel'
-import AutomationPanel from './components/AutomationPanel'
+import AgentStatusPanel from './components/AgentStatusPanel'
 import RunbookPanel from './components/RunbookPanel'
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
           <DecisionLogPanel />
         </div>
         <div className="mt-6">
-          <AutomationPanel />
+          <AgentStatusPanel onOpenTrace={() => {}} />
         </div>
         <div className="mt-6">
           <RunbookPanel />
