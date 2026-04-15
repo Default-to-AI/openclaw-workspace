@@ -1,16 +1,46 @@
-# React + Vite
+# Axe Capital Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Step 6 dashboard is the research surface for Axe Capital.
 
-Currently, two official plugins are available:
+## Panels
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Portfolio State
+2. Watchlist & Targets
+3. Alpha Opportunities
+4. Hot News
+5. Agent Status Board
+6. Internal Dialogue Viewer
+7. Decision Archive
 
-## React Compiler
+## Data model
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The UI renders pre-generated artifacts from `public/` and upgrades to API-backed controls when the backend is available.
 
-## Expanding the ESLint configuration
+Primary artifacts:
+- `portfolio.json`
+- `targets.json`
+- `alpha-latest.json`
+- `news-latest.json`
+- `traces/index.json`
+- `traces/<run-id>.json`
+- `decision-log.jsonl`
+- `health.json`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Development
+
+```bash
+npm run dev
+```
+
+The Vite dev server proxies `/api/*` to `http://localhost:8000`.
+
+## Backend pairing
+
+Run the API from Step 7 when you want refresh buttons and live trace streaming:
+
+```bash
+cd ../step7-automation
+uvicorn axe_orchestrator.api:app --reload --port 8000
+```
+
+If the API is unavailable, the dashboard still reads static artifacts directly.

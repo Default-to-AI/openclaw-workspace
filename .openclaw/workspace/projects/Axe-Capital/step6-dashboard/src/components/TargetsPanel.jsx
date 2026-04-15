@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { fetchJsonWithFallback } from '../lib/api'
 
 const fmt = (n, digits = 2) =>
   n == null ? '—' : n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits })
@@ -14,9 +15,7 @@ const pnlClass = (n) => {
 
 function Badge({ label, className = '' }) {
   return (
-    <span className={`text-[11px] px-2 py-0.5 rounded-full border border-axe-border bg-axe-muted/20 text-axe-dim ${className}`}>
-      {label}
-    </span>
+    <span className={`ui-badge text-axe-dim border-axe-border bg-axe-muted/20 ${className}`}>{label}</span>
   )
 }
 
@@ -41,13 +40,14 @@ function proximityPct({ last, level }) {
 
 function StatusPill({ status }) {
   const cls =
-    status === 'BREACHED' ? 'bg-red-900/20 text-axe-red border-red-800/60' :
-    status === 'NEAR' ? 'bg-amber-900/15 text-amber-300 border-amber-800/60' :
-    status === 'OK' ? 'bg-emerald-900/10 text-emerald-300 border-emerald-800/60' :
-    'bg-axe-muted/10 text-axe-dim border-axe-border'
-  return (
-    <span className={`text-[11px] px-2 py-0.5 rounded-full border ${cls}`}> {status} </span>
-  )
+    status === 'BREACHED'
+      ? 'bg-red-900/20 text-axe-red border-red-800/60'
+      : status === 'NEAR'
+        ? 'bg-amber-900/15 text-amber-300 border-amber-800/60'
+        : status === 'OK'
+          ? 'bg-emerald-900/10 text-emerald-300 border-emerald-800/60'
+          : 'bg-axe-muted/10 text-axe-dim border-axe-border'
+  return <span className={`text-[11px] px-2 py-0.5 rounded-full border ${cls}`}>{status}</span>
 }
 
 export default function TargetsPanel() {
@@ -57,19 +57,27 @@ export default function TargetsPanel() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let cancelled = false
+    setLoading(true)
     Promise.all([
-      fetch('/portfolio.json').then((r) => (r.ok ? r.json() : Promise.reject(new Error(`portfolio HTTP ${r.status}`)))),
-      fetch('/targets.json').then((r) => (r.ok ? r.json() : Promise.reject(new Error(`targets HTTP ${r.status}`))))
+      fetchJsonWithFallback({ filePath: '/portfolio.json' }),
+      fetchJsonWithFallback({ filePath: '/targets.json' }),
     ])
       .then(([p, t]) => {
+        if (cancelled) return
         setPortfolio(p)
         setTargets(t)
         setLoading(false)
       })
-      .catch((e) => {
-        setError(e.message)
+      .catch((err) => {
+        if (cancelled) return
+        setError(err.message)
         setLoading(false)
       })
+
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   const rows = useMemo(() => {
@@ -92,14 +100,14 @@ export default function TargetsPanel() {
         last,
         avg,
         profit_target_price: tp?.profit_target_price ?? null,
-        profit_target_pct: tp?.profit_target_pct ?? null
+        profit_target_pct: tp?.profit_target_pct ?? null,
       })
 
       const stopPrice = resolveStopPrice({
         last,
         avg,
         stop_price: tp?.stop_price ?? null,
-        stop_pct: tp?.stop_pct ?? null
+        stop_pct: tp?.stop_pct ?? null,
       })
 
       const distToTargetVsLastPct =
@@ -133,7 +141,7 @@ export default function TargetsPanel() {
         distToStopPct,
         status,
         needsConfig,
-        comment: tp?.comment ?? ''
+        comment: tp?.comment ?? '',
       }
     })
   }, [portfolio, targets])
@@ -152,19 +160,11 @@ export default function TargetsPanel() {
   }, [rows])
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64 text-axe-dim text-sm">
-        Loading watchlist & targets...
-      </div>
-    )
+    return <section className="panel-card"><div className="text-sm text-axe-dim">Loading targets…</div></section>
   }
 
   if (error) {
-    return (
-      <div className="flex items-center justify-center h-64 text-axe-red text-sm">
-        Error: {error}
-      </div>
-    )
+    return <section className="panel-card"><div className="text-sm text-red-300">Failed to load targets: {error}</div></section>
   }
 
   const configured = sorted.filter((r) => !r.needsConfig).length
@@ -172,29 +172,31 @@ export default function TargetsPanel() {
   const near = sorted.filter((r) => r.status === 'NEAR').length
 
   return (
-    <div className="space-y-5">
-      <div className="flex items-center justify-between">
+    <section className="panel-card">
+      <div className="panel-header">
         <div>
-          <h2 className="text-axe-text font-semibold text-base tracking-wide">
-            Panel 2 — Watchlist & Targets
-          </h2>
-          <p className="text-axe-dim text-xs mt-0.5">
-            Per-position rules (profit target + stop), derived from targets.json
+          <div className="panel-title">Panel 2 — Watchlist & Targets</div>
+          <p className="text-axe-dim text-xs mt-1">
+            Profit target + stop rules from targets.json. Percent bases: avg cost (fallback to last).
           </p>
         </div>
-        <div className="flex items-center gap-2 text-xs">
+        <div className="flex flex-wrap items-center gap-2 text-xs">
           <Badge label={`${configured}/${sorted.length} configured`} />
-          <Badge label={`${breached} breached`} className={breached > 0 ? 'text-axe-red border-red-800/60 bg-red-900/20' : ''} />
-          <Badge label={`${near} near stop`} className={near > 0 ? 'text-amber-300 border-amber-800/60 bg-amber-900/15' : ''} />
+          <Badge
+            label={`${breached} breached`}
+            className={breached > 0 ? 'text-red-300 border-red-700/60 bg-red-900/10' : ''}
+          />
+          <Badge
+            label={`${near} near stop`}
+            className={near > 0 ? 'text-amber-300 border-amber-700/60 bg-amber-900/10' : ''}
+          />
         </div>
       </div>
 
-      <div className="bg-axe-surface border border-axe-border rounded-lg overflow-hidden">
+      <div className="bg-axe-bg/30 border border-axe-border rounded-lg overflow-hidden mt-4">
         <div className="px-4 py-3 border-b border-axe-border flex items-center justify-between">
           <span className="text-axe-text text-sm font-medium">Targets Table</span>
-          <span className="text-axe-dim text-xs">
-            Defaults: target/stop can be set by price or by % from avg cost (falls back to last)
-          </span>
+          <span className="text-axe-dim text-xs">Configure in public/targets.json</span>
         </div>
         <div className="overflow-x-auto">
           <table className="data-table">
@@ -243,15 +245,22 @@ export default function TargetsPanel() {
                   <td className="pr-4 text-left text-axe-dim max-w-[240px] truncate">{r.comment || '—'}</td>
                 </tr>
               ))}
+
+              {sorted.length === 0 && (
+                <tr>
+                  <td colSpan={11} className="pl-4 pr-4 py-6 text-center text-axe-dim text-xs">
+                    No positions found in portfolio.json.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
       </div>
 
-      <div className="text-axe-dim text-xs">
-        Edit <span className="text-axe-text">public/targets.json</span> to set targets/stops. (Phase 1 is static files, no API.)
+      <div className="text-axe-dim text-xs mt-3">
+        Edit <span className="text-axe-text">public/targets.json</span> to set targets/stops.
       </div>
-    </div>
+    </section>
   )
 }
-

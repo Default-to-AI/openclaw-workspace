@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import json
-import os
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -57,6 +56,7 @@ class Tracer:
         ts = self.now()
         self.run_id = _fmt_run_id(self.agent, ts)
         self.started_at = ts.strftime("%Y-%m-%dT%H:%M:%SZ")
+        self._write_trace(status="partial", summary="run started")
 
     def event(
         self,
@@ -80,6 +80,7 @@ class Tracer:
         if elapsed_ms is not None:
             entry["elapsed_ms"] = elapsed_ms
         self._events.append(entry)
+        self._write_trace(status="partial", summary=f"{self.agent} running")
 
     def finalize(
         self,
@@ -91,21 +92,8 @@ class Tracer:
         ended_str = ended.strftime("%Y-%m-%dT%H:%M:%SZ")
         duration_ms = self._duration_ms(ended)
 
-        trace_dir = _public_dir() / "traces"
-        trace_dir.mkdir(parents=True, exist_ok=True)
-        trace_path = trace_dir / f"{self.run_id}.json"
-        _atomic_write_json(
-            trace_path,
-            {
-                "run_id": self.run_id,
-                "agent": self.agent,
-                "started_at": self.started_at,
-                "ended_at": ended_str,
-                "status": status,
-                "summary": summary,
-                "events": self._events,
-            },
-        )
+        trace_dir = self._trace_dir()
+        self._write_trace(status=status, summary=summary, ended_at=ended_str)
 
         index_path = trace_dir / "index.json"
         index = _load_index(index_path)
@@ -129,6 +117,30 @@ class Tracer:
     def _duration_ms(self, ended: datetime) -> int:
         started = datetime.strptime(self.started_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
         return int((ended - started).total_seconds() * 1000)
+
+    def _trace_dir(self) -> Path:
+        trace_dir = _public_dir() / "traces"
+        trace_dir.mkdir(parents=True, exist_ok=True)
+        return trace_dir
+
+    def _write_trace(
+        self,
+        *,
+        status: Status,
+        summary: str,
+        ended_at: str | None = None,
+    ) -> None:
+        payload = {
+            "run_id": self.run_id,
+            "agent": self.agent,
+            "started_at": self.started_at,
+            "status": status,
+            "summary": summary,
+            "events": self._events,
+        }
+        if ended_at is not None:
+            payload["ended_at"] = ended_at
+        _atomic_write_json(self._trace_dir() / f"{self.run_id}.json", payload)
 
 
 def _load_index(path: Path) -> dict[str, Any]:

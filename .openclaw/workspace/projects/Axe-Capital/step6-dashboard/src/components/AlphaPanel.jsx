@@ -1,75 +1,120 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
+import { fetchJsonWithFallback } from '../lib/api'
 
-function convictionColor(score) {
-  if (score >= 8) return "bg-green-600 text-white";
-  if (score >= 6) return "bg-yellow-500 text-black";
-  return "bg-gray-400 text-white";
+function convictionTone(score) {
+  if (score >= 8) return 'text-emerald-300 border-emerald-700/60 bg-emerald-900/10'
+  if (score >= 6) return 'text-amber-300 border-amber-700/60 bg-amber-900/10'
+  return 'text-axe-dim border-axe-border bg-axe-muted/20'
 }
 
-function OpportunityCard({ opp }) {
-  const [open, setOpen] = useState(false);
+function OpportunityCard({ opp, rank }) {
+  const [open, setOpen] = useState(rank === 1)
+
   return (
-    <div className="border border-gray-200 rounded-lg p-4 mb-3 bg-white">
-      <button
-        className="w-full flex items-center justify-between text-left"
-        onClick={() => setOpen((v) => !v)}
-      >
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-lg font-bold">{opp.ticker}</span>
-          <span className="text-sm text-gray-600">{opp.opportunity_type}</span>
-          <span className={`text-xs px-2 py-0.5 rounded ${convictionColor(opp.conviction_score)}`}>
-            conviction {opp.conviction_score}/10
-          </span>
+    <article className="border border-axe-border rounded-lg bg-axe-bg/30 p-4">
+      <button className="w-full text-left" onClick={() => setOpen((value) => !value)}>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="ui-badge text-axe-dim border-axe-border">#{rank}</span>
+              <span className="text-lg font-semibold text-axe-text">{opp.ticker}</span>
+              <span className="ui-badge text-axe-dim border-axe-border bg-axe-muted/20">{opp.opportunity_type}</span>
+              <span className={`ui-badge ${convictionTone(opp.conviction_score)}`}>
+                conviction {opp.conviction_score}/10
+              </span>
+            </div>
+            <p className="text-sm text-axe-text mt-3 leading-6">{opp.thesis}</p>
+          </div>
+          <span className="text-axe-dim text-sm shrink-0">{open ? 'Hide' : 'Expand'}</span>
         </div>
-        <span className="text-gray-400">{open ? "▾" : "▸"}</span>
       </button>
-      <p className="mt-2 text-sm text-gray-800">{opp.thesis}</p>
+
       {open && (
-        <div className="mt-3 space-y-2 text-sm">
-          <div><span className="font-semibold">Trigger:</span> {opp.trigger_source} — {opp.trigger_data_point}</div>
-          <div><span className="font-semibold">Why retail misses this:</span> {opp.why_retail_is_missing_this}</div>
-          <div><span className="font-semibold">Risk flags:</span> {opp.risk_flags}</div>
-          <details className="mt-2">
-            <summary className="cursor-pointer text-gray-600">Raw facts</summary>
-            <pre className="bg-gray-50 p-2 rounded text-xs overflow-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="space-y-3 text-sm">
+            <div>
+              <div className="text-axe-dim text-xs uppercase tracking-wider">Trigger</div>
+              <div className="text-axe-text mt-1">{opp.trigger_source}</div>
+              <div className="text-axe-dim mt-1">{opp.trigger_data_point}</div>
+            </div>
+            <div>
+              <div className="text-axe-dim text-xs uppercase tracking-wider">Why this matters</div>
+              <div className="text-axe-text mt-1">{opp.why_retail_is_missing_this}</div>
+            </div>
+          </div>
+
+          <div className="space-y-3 text-sm">
+            <div>
+              <div className="text-axe-dim text-xs uppercase tracking-wider">Risk flags</div>
+              <div className="text-red-200 mt-1">{opp.risk_flags}</div>
+            </div>
+            <div>
+              <div className="text-axe-dim text-xs uppercase tracking-wider">Base score</div>
+              <div className="text-axe-text mt-1">{opp.base_score}</div>
+            </div>
+          </div>
+
+          <details className="md:col-span-2">
+            <summary className="cursor-pointer text-sm text-axe-dim">Raw facts</summary>
+            <pre className="mt-3 rounded-lg border border-axe-border bg-axe-bg p-3 text-xs text-axe-text overflow-auto">
               {JSON.stringify(opp.raw_facts, null, 2)}
             </pre>
           </details>
         </div>
       )}
-    </div>
-  );
+    </article>
+  )
 }
 
 export default function AlphaPanel() {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch("/alpha-latest.json")
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then(setData)
-      .catch((e) => setError(e.message));
-  }, []);
-
-  if (error) return <section className="p-4"><h2 className="text-xl font-bold mb-2">Alpha Opportunities</h2><p className="text-red-600">Failed to load: {error}</p></section>;
-  if (!data) return <section className="p-4"><h2 className="text-xl font-bold mb-2">Alpha Opportunities</h2><p className="text-gray-500">Loading…</p></section>;
-
-  const opps = data.top_opportunities || [];
+    let cancelled = false
+    fetchJsonWithFallback({ filePath: '/alpha-latest.json' })
+      .then((payload) => {
+        if (cancelled) return
+        setData(payload)
+      })
+      .catch((err) => {
+        if (cancelled) return
+        setError(err.message)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   return (
-    <section className="p-4">
-      <div className="flex items-baseline justify-between mb-3">
-        <h2 className="text-xl font-bold">Alpha Opportunities</h2>
-        <span className="text-xs text-gray-500">
-          {opps.length} opportunities · {data.generated_at}
-        </span>
+    <section className="panel-card h-full">
+      <div className="panel-header">
+        <div>
+          <div className="panel-title">Panel 3 — Alpha Opportunities</div>
+          <p className="text-axe-dim text-xs mt-1">
+            Ranked opportunities surfaced by Alpha Hunter.
+          </p>
+        </div>
+        <div className="text-axe-dim text-xs">
+          {data ? `${(data.top_opportunities || []).length} ideas · ${data.generated_at || 'time unknown'}` : 'loading…'}
+        </div>
       </div>
-      {opps.length === 0 ? (
-        <p className="text-gray-500">No opportunities in latest scan.</p>
-      ) : (
-        opps.map((opp) => <OpportunityCard key={opp.ticker} opp={opp} />)
+
+      {error && <div className="mt-4 text-sm text-red-300">Failed to load alpha report: {error}</div>}
+
+      {!error && !data && <div className="mt-4 text-sm text-axe-dim">Loading alpha report…</div>}
+
+      {!error && data && (
+        <div className="space-y-4 mt-4">
+          {(data.top_opportunities || []).length === 0 ? (
+            <div className="text-sm text-axe-dim">No opportunities in the latest scan.</div>
+          ) : (
+            (data.top_opportunities || []).map((opp, index) => (
+              <OpportunityCard key={`${opp.ticker}-${index}`} opp={opp} rank={index + 1} />
+            ))
+          )}
+        </div>
       )}
     </section>
-  );
+  )
 }

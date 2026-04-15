@@ -1,4 +1,4 @@
-"""`axe` CLI: axe run alpha|news|portfolio|all"""
+"""`axe` CLI: axe run alpha|news|portfolio|all | axe health"""
 from __future__ import annotations
 
 import argparse
@@ -6,7 +6,7 @@ import sys
 
 from axe_orchestrator import runners
 
-TARGET_NAMES = ("alpha", "news", "portfolio")
+TARGET_NAMES = tuple(runners.AGENT_ORDER)
 
 
 def _target(name: str) -> int:
@@ -15,6 +15,7 @@ def _target(name: str) -> int:
 
 def _refresh_health() -> None:
     from axe_orchestrator.health import write_health
+
     try:
         write_health()
     except Exception as exc:
@@ -32,6 +33,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "health":
         from axe_orchestrator.health import write_health
+
         path = write_health()
         print(f"[axe] wrote {path}")
         return 0
@@ -46,14 +48,13 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.target == "all":
         failures = 0
-        for name in ("portfolio", "alpha", "news"):
+        for name in runners.AGENT_ORDER:
             rc = _target(name)
             print(f"[axe] {name} -> rc={rc}")
             if rc != 0:
                 failures += 1
-        rc = 0 if failures == 0 else 1
         _refresh_health()
-        return rc
+        return 0 if failures == 0 else 1
 
     rc = _target(args.target)
     _refresh_health()

@@ -9,8 +9,8 @@ mode: phase1-manual-csv
 
 ## 1) Portfolio snapshot (normalized)
 Sources:
-- Raw: `00_Dashboard/data/raw/portfolio-current-10-April.csv`
-- Normalized (stable): `00_Dashboard/data/portfolio_latest.normalized.csv`
+- Raw: `dashboard/data/raw/portfolio-current.csv`
+- Normalized (stable): `dashboard/data/portfolio_latest.normalized.csv`
 
 ### Quick KPIs (computed from latest normalized snapshot)
 - Total market value (ex-cash): **$108,222**
@@ -40,14 +40,14 @@ SORT market_value desc
 Columns in CSV: `symbol, position, last, change_pct, avg_price, cost_basis, market_value, unrealized_pl, unrealized_pl_pct, pe, eps_current`
 
 View note:
-- `00_Dashboard/views/portfolio_view.md`
+- `dashboard/views/portfolio_view.md`
 
 ## 2) P&L (Phase 1, normalized inputs)
 Normalized inputs (stable filenames):
-- Portfolio snapshot (unrealized by line): `00_Dashboard/data/portfolio_latest.normalized.csv`
-- Activity statement KV: `00_Dashboard/data/activity_kv.latest.csv`
-- Realized summary KV: `00_Dashboard/data/realized_kv.latest.csv`
-- MTM summary KV: `00_Dashboard/data/mtm_kv.latest.csv`
+- Portfolio snapshot (unrealized by line): `dashboard/data/portfolio_latest.normalized.csv`
+- Activity statement KV: `dashboard/data/activity_kv.latest.csv`
+- Realized summary KV: `dashboard/data/realized_kv.latest.csv`
+- MTM summary KV: `dashboard/data/mtm_kv.latest.csv`
 
 Status: **Inputs normalized. Rendering next.**
 

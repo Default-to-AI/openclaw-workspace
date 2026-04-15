@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-04-15T15:17:58Z",
+  "retention": {
+    "max_runs_per_agent": 50,
+    "total_cap": 500
+  },
+  "runs": [
+    {
+      "run_id": "portfolio-15-04-2026T15-17-56Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-15T15:17:56Z",
+      "ended_at": "2026-04-15T15:17:58Z",
+      "duration_ms": 2081,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-15-04-2026T15-17-27Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-15T15:17:27Z",
+      "ended_at": "2026-04-15T15:17:28Z",
+      "duration_ms": 1894,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-15-04-2026T14-28-42Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-15T14:28:42Z",
+      "ended_at": "2026-04-15T14:28:42Z",
+      "duration_ms": 698,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: [Errno 2] No such file or directory: '/home/tiger/.openclaw/workspace/projects/Axe-Capital/00_Dashboard/data/raw/portfolio-current.csv'",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-15-04-2026T14-24-55Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-15T14:24:55Z",
+      "ended_at": "2026-04-15T14:24:55Z",
+      "duration_ms": 143,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: [Errno 2] No such file or directory: '/home/tiger/.openclaw/workspace/projects/Axe-Capital/00_Dashboard/data/raw/portfolio-current.csv'",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-15-04-2026T14-17-54Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-15T14:17:54Z",
+      "ended_at": "2026-04-15T14:17:54Z",
+      "duration_ms": 171,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: [Errno 2] No such file or directory: '/home/tiger/.openclaw/workspace/projects/Axe-Capital/00_Dashboard/data/raw/portfolio-current.csv'",
+      "artifact_written": null
+    }
+  ]
+}

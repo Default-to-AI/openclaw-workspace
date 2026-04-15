@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import inspect
+import io
 import json
 import os
 import re
@@ -148,7 +150,7 @@ def fetch_recent_8k_events(limit: int = 120) -> list[Candidate]:
     return candidates
 
 
-def fetch_recent_form4_candidates(limit_companies: int = 180) -> list[Candidate]:
+def fetch_recent_form4_candidates(limit_companies: int = 40) -> list[Candidate]:
     url = "https://www.sec.gov/files/company_tickers.json"
     with httpx.Client(timeout=20.0, headers=_headers()) as client:
         ticker_map = client.get(url).json()
@@ -227,19 +229,22 @@ def fetch_earnings_drift_candidates(tickers: list[str]) -> list[Candidate]:
     for ticker in tickers:
         try:
             t = yf.Ticker(ticker)
-            earnings_dates = t.earnings_dates
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                earnings_dates = t.earnings_dates
             if earnings_dates is None or len(earnings_dates) == 0:
                 continue
             last_idx = earnings_dates.index[0].to_pydatetime()
             if datetime.now(last_idx.tzinfo or UTC) - last_idx > timedelta(days=14):
                 continue
-            hist = t.history(period="1mo", interval="1d", auto_adjust=False)
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                hist = t.history(period="1mo", interval="1d", auto_adjust=False)
             if hist is None or len(hist) < 6:
                 continue
             close_before = float(hist.iloc[-6]["Close"])
             close_after = float(hist.iloc[-1]["Close"])
             reaction_pct = ((close_after / close_before) - 1) * 100 if close_before else 0.0
-            info = t.get_info() or {}
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                info = t.get_info() or {}
             eps_current = _safe_float(info.get("trailingEps"))
             eps_forward = _safe_float(info.get("forwardEps"))
             if eps_current is None or eps_forward is None or eps_forward <= eps_current:
@@ -251,14 +256,18 @@ def fetch_earnings_drift_candidates(tickers: list[str]) -> list[Candidate]:
                 opportunity_type="earnings_drift",
                 trigger_source="yfinance_earnings",
                 trigger_data_point=f"Forward EPS {eps_forward:.2f} vs trailing {eps_current:.2f}, price reaction only {reaction_pct:.2f}%",
-                raw_facts={"reaction_pct": round(reaction_pct, 2), "trailing_eps": eps_current, "forward_eps": eps_forward, "last_earnings_date": last_idx.date().isoformat()},
+                raw_facts={
+                    "reaction_pct": round(reaction_pct, 2),
+                    "trailing_eps": eps_current,
+                    "forward_eps": eps_forward,
+                    "last_earnings_date": last_idx.date().isoformat(),
+                },
                 detected_at=datetime.now(UTC).isoformat(),
                 base_score=6.9,
             ))
         except Exception:
             continue
     return candidates
-
 
 def fetch_spinoff_restructuring_candidates() -> list[Candidate]:
     candidates: list[Candidate] = []
@@ -407,15 +416,21 @@ async def run_alpha_hunter_scan(api_key: str) -> dict[str, Any]:
     ]
 
     candidates = []
-    candidates.extend(fetch_recent_8k_events())
-    candidates.extend(fetch_recent_form4_candidates())
+    print("[axe_alpha] stage: 8-K scan")
+    candidates.extend(fetch_recent_8k_events(limit=60))
+    print("[axe_alpha] stage: Form 4 scan")
+    candidates.extend(fetch_recent_form4_candidates(limit_companies=40))
+    print("[axe_alpha] stage: earnings drift scan")
     candidates.extend(fetch_earnings_drift_candidates(scan_universe))
+    print("[axe_alpha] stage: restructuring scan")
     candidates.extend(fetch_spinoff_restructuring_candidates())
+    print("[axe_alpha] stage: options flow scan")
     candidates.extend(await fetch_options_flow_candidates(scan_universe))
     deduped = _dedupe_candidates(candidates)
     deduped.sort(key=lambda c: c.base_score, reverse=True)
     deduped = deduped[:12]
 
+    print(f"[axe_alpha] stage: LLM summarize for {len(deduped)} candidates")
     async with httpx.AsyncClient(timeout=httpx.Timeout(60.0)) as client:
         summaries = await asyncio.gather(*[
             _llm_summarize_candidate(client, api_key, candidate, profile_guardrail)

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -16,6 +16,10 @@ def axe_root() -> Path:
 
 def today_local_iso() -> str:
     return datetime.now(ZoneInfo("Asia/Jerusalem")).date().isoformat()
+
+
+def now_utc_iso() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def safe_float(value: Any) -> float | None:

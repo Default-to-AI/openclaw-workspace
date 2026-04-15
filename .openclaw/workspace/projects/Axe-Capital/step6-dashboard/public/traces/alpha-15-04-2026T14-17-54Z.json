@@ -1,0 +1,21 @@
+{
+  "run_id": "alpha-15-04-2026T14-17-54Z",
+  "agent": "axe_alpha",
+  "started_at": "2026-04-15T14:17:54Z",
+  "status": "partial",
+  "summary": "axe_alpha running",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-15T14:17:54.928Z",
+      "step": "load_env",
+      "thought": "env loaded, key resolved"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-15T14:17:54.929Z",
+      "step": "scan",
+      "thought": "running alpha hunter scan"
+    }
+  ]
+}

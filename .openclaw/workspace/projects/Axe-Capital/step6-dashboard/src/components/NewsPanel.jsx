@@ -1,72 +1,95 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
+import { fetchJsonWithFallback } from '../lib/api'
 
-function scoreColor(score) {
-  if (score >= 9) return "bg-red-600 text-white";
-  if (score >= 7) return "bg-orange-500 text-white";
-  return "bg-yellow-400 text-black";
+function impactTone(score) {
+  if (score >= 9) return 'text-red-200 border-red-700/60 bg-red-900/20'
+  if (score >= 7) return 'text-amber-300 border-amber-700/60 bg-amber-900/10'
+  return 'text-axe-text border-axe-border bg-axe-muted/20'
 }
 
-function relevanceChip(rel) {
-  const colors = {
-    held: "bg-blue-600 text-white",
-    watchlist: "bg-blue-300 text-black",
-    sector: "bg-gray-200 text-gray-800",
-    none: "bg-gray-100 text-gray-500",
-  };
-  return colors[rel] || colors.none;
+function relevanceTone(value) {
+  const tones = {
+    held: 'text-emerald-300 border-emerald-700/60 bg-emerald-900/10',
+    watchlist: 'text-sky-300 border-sky-700/60 bg-sky-900/10',
+    sector: 'text-axe-dim border-axe-border bg-axe-muted/20',
+    none: 'text-axe-dim border-axe-border bg-axe-muted/20',
+  }
+  return tones[value] || tones.none
 }
 
-function NewsItem({ item }) {
+function NewsCard({ item }) {
   return (
-    <article className="border-b border-gray-100 py-3">
-      <div className="flex items-center gap-2 mb-1">
-        <span className={`text-xs px-2 py-0.5 rounded ${scoreColor(item.impact_score)}`}>
-          impact {item.impact_score}
-        </span>
-        <span className={`text-xs px-2 py-0.5 rounded ${relevanceChip(item.portfolio_relevance)}`}>
-          {item.portfolio_relevance}
-        </span>
-        {item.tickers_mentioned?.map((t) => (
-          <span key={t} className="text-xs font-mono bg-gray-100 px-2 py-0.5 rounded">{t}</span>
+    <article className="border border-axe-border rounded-lg bg-axe-bg/30 p-4">
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <span className={`ui-badge ${impactTone(item.impact_score)}`}>impact {item.impact_score}</span>
+        <span className={`ui-badge ${relevanceTone(item.portfolio_relevance)}`}>{item.portfolio_relevance}</span>
+        {(item.tickers_mentioned || []).map((ticker) => (
+          <span key={ticker} className="ui-badge text-axe-text border-axe-border bg-axe-muted/20">{ticker}</span>
         ))}
-        <span className="ml-auto text-xs text-gray-500">{item.source} · {item.published_at}</span>
+        <span className="ml-auto text-xs text-axe-dim">{item.source} · {item.published_at}</span>
       </div>
-      <a href={item.url} target="_blank" rel="noreferrer" className="font-semibold text-gray-900 hover:underline">
+
+      <a href={item.url} target="_blank" rel="noreferrer" className="text-axe-text font-semibold hover:underline">
         {item.title}
       </a>
-      <p className="text-sm text-gray-700 mt-1">{item.impact_rationale}</p>
+
+      <p className="text-sm text-axe-text mt-3 leading-6">{item.impact_rationale}</p>
+
       {item.decision_hook && (
-        <p className="text-sm text-blue-700 mt-1">→ {item.decision_hook}</p>
+        <div className="mt-3 rounded-lg border border-sky-800/50 bg-sky-950/20 p-3 text-sm text-sky-200">
+          Decision hook: {item.decision_hook}
+        </div>
       )}
     </article>
-  );
+  )
 }
 
 export default function NewsPanel() {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch("/news-latest.json")
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then(setData)
-      .catch((e) => setError(e.message));
-  }, []);
-
-  if (error) return <section className="p-4"><h2 className="text-xl font-bold mb-2">Hot News</h2><p className="text-red-600">Failed to load: {error}</p></section>;
-  if (!data) return <section className="p-4"><h2 className="text-xl font-bold mb-2">Hot News</h2><p className="text-gray-500">Loading…</p></section>;
+    let cancelled = false
+    fetchJsonWithFallback({ filePath: '/news-latest.json' })
+      .then((payload) => {
+        if (cancelled) return
+        setData(payload)
+      })
+      .catch((err) => {
+        if (cancelled) return
+        setError(err.message)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   return (
-    <section className="p-4">
-      <div className="flex items-baseline justify-between mb-3">
-        <h2 className="text-xl font-bold">Hot News</h2>
-        <span className="text-xs text-gray-500">{data.items_kept} kept of {data.items_in} · {data.generated_at}</span>
+    <section className="panel-card h-full">
+      <div className="panel-header">
+        <div>
+          <div className="panel-title">Panel 4 — Hot News</div>
+          <p className="text-axe-dim text-xs mt-1">
+            High-impact news only. Noise stays out.
+          </p>
+        </div>
+        <div className="text-axe-dim text-xs">
+          {data ? `${data.items_kept} kept of ${data.items_in} · ${data.generated_at || 'time unknown'}` : 'loading…'}
+        </div>
       </div>
-      {data.items.length === 0 ? (
-        <p className="text-gray-500 text-sm">No items cleared the impact threshold.</p>
-      ) : (
-        data.items.map((it) => <NewsItem key={it.id} item={it} />)
+
+      {error && <div className="mt-4 text-sm text-red-300">Failed to load news: {error}</div>}
+      {!error && !data && <div className="mt-4 text-sm text-axe-dim">Loading news…</div>}
+
+      {!error && data && (
+        <div className="space-y-4 mt-4">
+          {(data.items || []).length === 0 ? (
+            <div className="text-sm text-axe-dim">No stories cleared the impact threshold.</div>
+          ) : (
+            (data.items || []).map((item) => <NewsCard key={item.id} item={item} />)
+          )}
+        </div>
       )}
     </section>
-  );
+  )
 }

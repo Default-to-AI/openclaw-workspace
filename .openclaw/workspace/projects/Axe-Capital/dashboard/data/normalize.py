@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Tuple
 
 
-ROOT = Path(__file__).resolve().parents[1]  # .../00_Dashboard
+ROOT = Path(__file__).resolve().parents[1]  # .../dashboard
 DATA = ROOT / "data"
 
 

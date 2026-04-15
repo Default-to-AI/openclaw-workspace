@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import sys
+
 from axe_orchestrator import cli, runners
 
 
@@ -33,7 +35,7 @@ def test_run_all_invokes_every_agent_even_if_one_fails(monkeypatch):
     exit_code = cli.main(["run", "all"])
 
     assert order == ["portfolio", "alpha", "news"]
-    assert exit_code == 1  # one failure bubbles up
+    assert exit_code == 1
 
 
 def test_unknown_target_returns_nonzero(monkeypatch, capsys):
@@ -46,12 +48,15 @@ def test_runners_shell_out(monkeypatch):
     def fake_run(cmd, check, cwd):
         captured["cmd"] = cmd
         captured["cwd"] = str(cwd)
+
         class R:
             returncode = 0
+
         return R()
 
     import subprocess
+
     monkeypatch.setattr(subprocess, "run", fake_run)
     assert runners.run_alpha() == 0
-    assert captured["cmd"][0:2] == ["python", "-m"]
+    assert captured["cmd"][0:2] == [sys.executable, "-m"]
     assert "axe_alpha.cli" in captured["cmd"][2]

@@ -3,8 +3,8 @@
 Pure Python portfolio tracking layer.
 
 Inputs:
-- raw IBKR export CSV from Vault (read-only source)
-- normalized CSV stored inside Axe Capital project
+- portfolio CSV discovered under dashboard/data, preferably the normalized snapshot
+- normalized CSV stored inside dashboard/data and refreshed as needed
 - passive allocation and hishtalmut state from `INVESTOR_PROFILE.md`
 
 Outputs:

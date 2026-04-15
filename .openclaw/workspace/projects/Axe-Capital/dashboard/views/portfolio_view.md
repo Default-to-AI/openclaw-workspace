@@ -1,6 +1,6 @@
 # Portfolio View
 
-Data source: `00_Dashboard/data/portfolio_latest.normalized.csv`
+Data source: `dashboard/data/portfolio_latest.normalized.csv`
 
 ## Suggested sort
 - Biggest $ unrealized P&L (winners)

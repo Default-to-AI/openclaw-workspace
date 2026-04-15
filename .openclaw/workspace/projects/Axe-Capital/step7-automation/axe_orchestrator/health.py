@@ -1,4 +1,4 @@
-"""Generate health.json from artifact mtimes / generated_at fields."""
+"""Generate health.json from artifact metadata with timestamp and mtime fallback."""
 from __future__ import annotations
 
 import json
@@ -21,16 +21,24 @@ def _read_generated_at(path: Path) -> str | None:
         return None
     try:
         data = json.loads(path.read_text())
-        return data.get("generated_at")
+        generated_at = data.get("generated_at")
+        if generated_at:
+            return generated_at
     except Exception:
-        return None
+        pass
+    return datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _parse_timestamp(value: str) -> datetime:
+    normalized = value.replace("Z", "+00:00")
+    return datetime.fromisoformat(normalized).astimezone(timezone.utc)
 
 
 def compute_status(last_refresh: str | None, threshold_min: int, now: datetime) -> tuple[int | None, str]:
     if not last_refresh:
         return (None, "missing")
     try:
-        ts = datetime.strptime(last_refresh[:19], "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
+        ts = _parse_timestamp(last_refresh)
     except ValueError:
         return (None, "missing")
     age_min = int((now - ts).total_seconds() // 60)
