@@ -37,18 +37,26 @@ class _FakeIB:
         type(self).connected_with = (args, kwargs)
 
     def managedAccounts(self):
-        return ["DU123"]
+        return ["DU123", "DU999"]
 
     def portfolio(self, account=None):
-        assert account == "DU123"
-        return [
-            _PortfolioItem(_Contract("MSFT"), 2, 425.5, 400.0, 851.0, 51.0),
-            _PortfolioItem(_Contract("USD", "CASH"), 1000, 1, 1, 1000, 0),
-        ]
+        if account == "DU123":
+            return [
+                _PortfolioItem(_Contract("MSFT"), 2, 425.5, 400.0, 851.0, 51.0),
+                _PortfolioItem(_Contract("USD", "CASH"), 1000, 1, 1, 1000, 0),
+            ]
+        if account == "DU999":
+            return [
+                _PortfolioItem(_Contract("MSFT"), 1, 425.5, 410.0, 425.5, 15.5),
+            ]
+        raise AssertionError(f"unexpected account: {account}")
 
     def accountSummary(self, account=None):
-        assert account == "DU123"
-        return [_AccountValue("TotalCashValue", "1234.56")]
+        if account == "DU123":
+            return [_AccountValue("TotalCashValue", "1234.56")]
+        if account == "DU999":
+            return [_AccountValue("TotalCashValue", "10.00")]
+        raise AssertionError(f"unexpected account: {account}")
 
     def disconnect(self):
         type(self).disconnected = True
@@ -59,18 +67,18 @@ def test_fetch_ibkr_portfolio_maps_live_snapshot():
 
     rows, cash = fetch_ibkr_portfolio(config=config, ib_factory=_FakeIB)
 
-    assert cash == 1234.56
+    assert cash == 1244.56
     assert rows == [
         {
             "symbol": "MSFT",
-            "position": 2.0,
+            "position": 3.0,
             "last": 425.5,
             "change_pct": None,
-            "avg_price": 400.0,
-            "cost_basis": 800.0,
-            "market_value": 851.0,
-            "unrealized_pl": 51.0,
-            "unrealized_pl_pct": 6.38,
+            "avg_price": 403.333333,
+            "cost_basis": 1210.0,
+            "market_value": 1276.5,
+            "unrealized_pl": 66.5,
+            "unrealized_pl_pct": 5.5,
             "pe": None,
             "eps_current": None,
         }
