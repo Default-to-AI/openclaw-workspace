@@ -38,3 +38,14 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+## Vault workflow
+
+- Intake goes to `obsidian-vault/raw/` first.
+- Later triage moves material into domain folders and wiki folders.
+- `_INDEX.md` is optional, not assumed.
+
+## Safety
+
+- Ask before destructive actions.
+- Ask before system changes.

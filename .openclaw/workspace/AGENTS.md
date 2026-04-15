@@ -8,7 +8,9 @@
 4. If main session: read `MEMORY.md`
 
 ### Vault / Knowledge loading rules
-- **Index-first**: start from an `_INDEX.md` hub and open only 1–3 notes.
+- **Primary knowledge base**: Obsidian vault is available at `obsidian-vault/`. Treat it as the second brain.
+- **RAW-first**: new information lands in `obsidian-vault/raw/` first. Agents later sort it into domain notes and wiki notes.
+- **Index optional**: do not assume `_INDEX.md` exists. If one exists, use it as a hub, otherwise discover structure from `raw/`, domain folders, and wiki folders.
 - **Pull, don’t push**: never load large notes by default.
 - **One objective per session**: switching topics → start a new session (or explicitly declare a new section).
 - Long outputs go to vault files, chat gets TL;DR + links.
@@ -30,6 +32,7 @@
 
 - No private data exfiltration. Ever.
 - No destructive commands without explicit approval.
+- Ask before destructive actions or system-level changes.
 - `trash` > `rm`
 - Ask before: emails, public posts, anything leaving the machine.
 
