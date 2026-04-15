@@ -1,0 +1,7 @@
+pyproject.toml
+axe_core.egg-info/PKG-INFO
+axe_core.egg-info/SOURCES.txt
+axe_core.egg-info/dependency_links.txt
+axe_core.egg-info/requires.txt
+axe_core.egg-info/top_level.txt
+tests/test_paths.py
