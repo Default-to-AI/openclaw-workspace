@@ -13,13 +13,28 @@ def _target(name: str) -> int:
     return getattr(runners, f"run_{name}")()
 
 
+def _refresh_health() -> None:
+    from axe_orchestrator.health import write_health
+    try:
+        write_health()
+    except Exception as exc:
+        print(f"[axe] warning: failed to write health.json: {exc}")
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="axe")
     sub = parser.add_subparsers(dest="cmd", required=True)
     run = sub.add_parser("run", help="Run an agent")
     run.add_argument("target")
+    sub.add_parser("health", help="Regenerate health.json from current artifacts")
 
     args = parser.parse_args(argv)
+
+    if args.cmd == "health":
+        from axe_orchestrator.health import write_health
+        path = write_health()
+        print(f"[axe] wrote {path}")
+        return 0
 
     if args.cmd != "run":
         parser.error(f"unknown command: {args.cmd}")
@@ -36,9 +51,13 @@ def main(argv: list[str] | None = None) -> int:
             print(f"[axe] {name} -> rc={rc}")
             if rc != 0:
                 failures += 1
-        return 0 if failures == 0 else 1
+        rc = 0 if failures == 0 else 1
+        _refresh_health()
+        return rc
 
-    return _target(args.target)
+    rc = _target(args.target)
+    _refresh_health()
+    return rc
 
 
 if __name__ == "__main__":

@@ -1,5 +1,30 @@
 {
-  "ts": 1776090608371,
-  "status": "OK",
-  "notes": "daily refresh complete"
+  "generated_at": "2026-04-15T11:23:40Z",
+  "artifacts": {
+    "portfolio": {
+      "last_refresh": null,
+      "age_min": null,
+      "status": "missing"
+    },
+    "alpha": {
+      "last_refresh": "2026-04-15T09:00:00Z",
+      "age_min": 143,
+      "status": "fresh"
+    },
+    "news": {
+      "last_refresh": null,
+      "age_min": null,
+      "status": "missing"
+    },
+    "traces": {
+      "last_refresh": null,
+      "age_min": null,
+      "status": "missing"
+    }
+  },
+  "freshness_thresholds_min": {
+    "portfolio": 240,
+    "alpha": 1440,
+    "news": 60
+  }
 }

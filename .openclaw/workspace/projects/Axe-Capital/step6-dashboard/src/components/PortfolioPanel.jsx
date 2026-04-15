@@ -23,6 +23,19 @@ function AlertBadge({ status }) {
   )
 }
 
+function FreshnessBadge({ health }) {
+  if (!health) return null
+  const portfolio = health.artifacts?.portfolio
+  if (!portfolio) return null
+  const color = {
+    fresh: 'bg-green-100 text-green-800',
+    stale: 'bg-yellow-100 text-yellow-800',
+    missing: 'bg-red-100 text-red-800',
+  }[portfolio.status] || 'bg-gray-100 text-gray-700'
+  const label = portfolio.age_min != null ? `${portfolio.status} · ${portfolio.age_min}m old` : portfolio.status
+  return <span className={`text-xs px-2 py-0.5 rounded ${color}`}>{label}</span>
+}
+
 function StatCard({ label, value, sub, valueClass = '' }) {
   return (
     <div className="stat-card flex flex-col gap-1">
@@ -58,6 +71,7 @@ export default function PortfolioPanel() {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [health, setHealth] = useState(null)
 
   useEffect(() => {
     fetch('/portfolio.json')
@@ -67,6 +81,13 @@ export default function PortfolioPanel() {
       })
       .then((d) => { setData(d); setLoading(false) })
       .catch((e) => { setError(e.message); setLoading(false) })
+  }, [])
+
+  useEffect(() => {
+    fetch('/health.json')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setHealth(d))
+      .catch(() => setHealth(null))
   }, [])
 
   if (loading) {
@@ -93,9 +114,12 @@ export default function PortfolioPanel() {
       {/* Panel header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-axe-text font-semibold text-base tracking-wide">
-            Panel 1 — Portfolio State
-          </h2>
+          <div className="flex items-center gap-2">
+            <h2 className="text-axe-text font-semibold text-base tracking-wide">
+              Panel 1 — Portfolio State
+            </h2>
+            <FreshnessBadge health={health} />
+          </div>
           <p className="text-axe-dim text-xs mt-0.5">
             IBKR · as of {review_date}
           </p>
