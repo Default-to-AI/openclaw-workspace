@@ -1,0 +1,30 @@
+{
+  "report_date": "2026-04-15",
+  "generated_at": "2026-04-15T09:00:00Z",
+  "top_opportunities": [
+    {
+      "ticker": "RTX",
+      "opportunity_type": "earnings_drift",
+      "thesis": "Raytheon's last print beat on margins but the stock drifted sideways. Defense backlog growth not yet reflected in multiples.",
+      "conviction_score": 7,
+      "trigger_source": "yfinance_earnings",
+      "trigger_data_point": "Q1 EPS beat by 8%, revenue in-line, guide raised",
+      "why_retail_is_missing_this": "Defense stocks lag tech narrative in social feeds; margin expansion is not a meme.",
+      "risk_flags": "Budget continuing resolution risk; FX headwinds in 2H.",
+      "raw_facts": {"eps_actual": 1.50, "eps_estimate": 1.39},
+      "base_score": 6.9
+    },
+    {
+      "ticker": "ASML",
+      "opportunity_type": "insider_cluster",
+      "thesis": "Three insiders bought in open market within 5 days at ~€650, cluster size $4.2M.",
+      "conviction_score": 8,
+      "trigger_source": "sec_form4_cluster",
+      "trigger_data_point": "3 insiders, $4.2M, 11-14 Apr 2026",
+      "why_retail_is_missing_this": "Form 4 signal buried under daily noise; cluster detection requires tooling.",
+      "risk_flags": "China export control overhang unchanged.",
+      "raw_facts": {"cluster_count": 3, "cluster_value_usd": 4200000},
+      "base_score": 7.4
+    }
+  ]
+}
