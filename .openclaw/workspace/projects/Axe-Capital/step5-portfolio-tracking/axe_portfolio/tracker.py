@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,11 +11,11 @@ from typing import Any
 import pandas as pd
 import yfinance as yf
 
+from axe_portfolio.ibkr import fetch_ibkr_portfolio
 from axe_portfolio.util import axe_root, now_utc_iso, project_root, safe_float as _safe_float, today_local_iso
 
 DATA_DIR_CANDIDATES = [
     axe_root() / "dashboard" / "data",
-    axe_root() / "00_Dashboard" / "data",
 ]
 PREFERRED_DATA_DIR = axe_root() / "dashboard" / "data"
 NORMALIZED_OUTPUT_PATH = PREFERRED_DATA_DIR / "portfolio_latest.normalized.csv"
@@ -248,6 +249,22 @@ def _read_cash_from_existing_dashboard() -> float:
 
 
 def _resolve_portfolio_input() -> PortfolioInput:
+    source = os.getenv("AXE_PORTFOLIO_SOURCE", "csv").strip().lower()
+    if source not in {"csv", "ibkr", "auto"}:
+        raise ValueError("AXE_PORTFOLIO_SOURCE must be one of: csv, ibkr, auto")
+
+    if source in {"ibkr", "auto"}:
+        try:
+            rows, cash = fetch_ibkr_portfolio()
+        except Exception:
+            if source == "ibkr":
+                raise
+        else:
+            if rows:
+                return PortfolioInput(kind="ibkr", path=Path("ibkr://live"), rows=rows, cash=cash)
+            if source == "ibkr":
+                raise RuntimeError("IBKR connection succeeded, but no portfolio positions were returned.")
+
     normalized_source = _resolve_normalized_source()
     if normalized_source is not None:
         return PortfolioInput(
@@ -283,7 +300,7 @@ def _resolve_portfolio_input() -> PortfolioInput:
         ], include_raw_subdir=True)
     )
     raise FileNotFoundError(
-        "No portfolio CSV found. Checked normalized and raw candidates under dashboard/data and 00_Dashboard/data: "
+        "No portfolio CSV found. Checked normalized and raw candidates under dashboard/data: "
         + ", ".join(searched)
     )
 

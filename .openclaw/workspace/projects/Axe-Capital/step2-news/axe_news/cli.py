@@ -6,12 +6,13 @@ import json
 import os
 
 from axe_core import Tracer
-from axe_core.paths import public_dir
+from axe_core.paths import project_root, public_dir
 from axe_news.feeds import FEEDS, yahoo_ticker_feed
 from axe_news.ingest import dedupe, extract_tickers, fetch_feed
 from axe_news.pipeline import assemble_report, classify_relevance
 from axe_news.scorer import score_item
 from axe_news.watchlist import load_watchlist
+from dotenv import load_dotenv
 
 
 def _atomic_write_json(path, data) -> None:
@@ -33,9 +34,11 @@ async def _fetch_all(feeds) -> tuple[list, list[str]]:
 
 
 def main() -> None:
-    api_key = os.getenv("ANTHROPIC_API_KEY")
+    # Load project-level env (OPENAI_API_KEY, NEWSAPI_KEY, etc.)
+    load_dotenv(project_root() / ".env", override=False)
+    api_key = os.getenv("OPENAI_API_KEY", "").strip()
     if not api_key:
-        raise SystemExit("ANTHROPIC_API_KEY not set")
+        raise SystemExit("OPENAI_API_KEY not set")
 
     watchlist = load_watchlist()
     held = watchlist  # Held subset — same as watchlist for now; refine when holdings drift from profile.

@@ -1,0 +1,1278 @@
+{
+  "path": "/home/tiger/.openclaw/openclaw.json",
+  "exists": true,
+  "raw": null,
+  "parsed": {
+    "agents": {
+      "defaults": {
+        "workspace": "/home/tiger/.openclaw/workspace",
+        "model": {
+          "primary": "openai-codex/gpt-5.2",
+          "fallbacks": [
+            "openai-codex/gpt-5.4"
+          ]
+        },
+        "models": {
+          "openai-codex/gpt-5.2": {
+            "alias": "GPT-5.2"
+          },
+          "openai-codex/gpt-5.4": {
+            "alias": "GPT-5.4"
+          },
+          "openai-codex/gpt-5.4-mini": {
+            "alias": "GPT-5.4 Mini"
+          },
+          "nvidia-kimi-k2-5/moonshotai/kimi-k2.5": {
+            "alias": "Kimi-Free"
+          }
+        },
+        "subagents": {
+          "model": "openai-codex/gpt-5.4-mini"
+        },
+        "sandbox": {
+          "mode": "off",
+          "scope": "agent",
+          "workspaceAccess": "rw"
+        },
+        "elevatedDefault": "ask"
+      },
+      "list": [
+        {
+          "id": "main"
+        }
+      ]
+    },
+    "bindings": [],
+    "gateway": {
+      "mode": "local",
+      "auth": {
+        "mode": "token",
+        "token": "__OPENCLAW_REDACTED__"
+      },
+      "port": 19444,
+      "bind": "loopback",
+      "tailscale": {
+        "mode": "serve",
+        "resetOnExit": false
+      },
+      "controlUi": {
+        "allowInsecureAuth": false,
+        "allowedOrigins": [
+          "https://tiger-wsl.tail1cb9e0.ts.net"
+        ]
+      },
+      "nodes": {
+        "denyCommands": [
+          "camera.snap",
+          "camera.clip",
+          "screen.record",
+          "contacts.add",
+          "calendar.add",
+          "reminders.add",
+          "sms.send",
+          "sms.search"
+        ]
+      }
+    },
+    "session": {
+      "dmScope": "per-channel-peer",
+      "maintenance": {
+        "pruneAfter": "12h"
+      }
+    },
+    "tools": {
+      "profile": "full",
+      "web": {
+        "search": {
+          "provider": "brave",
+          "enabled": true
+        }
+      },
+      "deny": [],
+      "fs": {
+        "workspaceOnly": true
+      },
+      "exec": {
+        "security": "allowlist",
+        "ask": "always"
+      },
+      "elevated": {
+        "enabled": true
+      },
+      "agentToAgent": {
+        "enabled": true
+      }
+    },
+    "models": {
+      "mode": "merge",
+      "providers": {
+        "nvidia-kimi-k2-5": {
+          "baseUrl": "https://integrate.api.nvidia.com/v1",
+          "api": "openai-completions",
+          "apiKey": {
+            "source": "env",
+            "provider": "default",
+            "id": "__OPENCLAW_REDACTED__"
+          },
+          "models": [
+            {
+              "id": "moonshotai/kimi-k2.5",
+              "name": "moonshotai/kimi-k2.5 (Custom Provider)",
+              "contextWindow": 50000,
+              "maxTokens": 4096,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "reasoning": false
+            }
+          ]
+        }
+      }
+    },
+    "channels": {
+      "telegram": {
+        "dmPolicy": "pairing",
+        "botToken": "__OPENCLAW_REDACTED__"
+      }
+    },
+    "plugins": {
+      "entries": {
+        "memory-core": {
+          "config": {
+            "dreaming": {
+              "enabled": true
+            }
+          }
+        },
+        "brave": {
+          "config": {
+            "webSearch": {
+              "apiKey": "__OPENCLAW_REDACTED__"
+            }
+          },
+          "enabled": true
+        },
+        "telegram": {
+          "enabled": true
+        },
+        "openai": {
+          "enabled": true
+        },
+        "browser": {
+          "enabled": true
+        },
+        "anthropic": {
+          "enabled": true,
+          "config": {}
+        },
+        "codex": {
+          "enabled": true,
+          "config": {}
+        }
+      },
+      "enabled": true
+    },
+    "hooks": {
+      "internal": {
+        "enabled": false,
+        "entries": {
+          "bootstrap-extra-files": {
+            "enabled": false
+          },
+          "command-logger": {
+            "enabled": true
+          },
+          "session-memory": {
+            "enabled": true
+          }
+        }
+      },
+      "enabled": false
+    },
+    "wizard": {
+      "lastRunAt": "2026-04-11T05:04:09.729Z",
+      "lastRunVersion": "2026.4.9",
+      "lastRunCommand": "configure",
+      "lastRunMode": "local"
+    },
+    "meta": {
+      "lastTouchedVersion": "2026.4.14",
+      "lastTouchedAt": "2026-04-15T17:10:49.425Z"
+    },
+    "auth": {
+      "profiles": {
+        "openai-codex:robtigercode@gmail.com": {
+          "provider": "openai-codex",
+          "mode": "oauth",
+          "email": "robtigercode@gmail.com"
+        }
+      }
+    },
+    "discovery": {
+      "mdns": {
+        "mode": "minimal"
+      }
+    },
+    "browser": {
+      "ssrfPolicy": {
+        "dangerouslyAllowPrivateNetwork": false,
+        "hostnameAllowlist": [
+          "*.example.com"
+        ]
+      }
+    },
+    "skills": {
+      "entries": {
+        "obsidian": {
+          "enabled": false
+        }
+      }
+    },
+    "commands": {
+      "native": true,
+      "nativeSkills": true,
+      "bash": true,
+      "config": true,
+      "plugins": true
+    },
+    "cron": {
+      "enabled": true
+    },
+    "cli": {
+      "banner": {
+        "taglineMode": "off"
+      }
+    }
+  },
+  "sourceConfig": {
+    "agents": {
+      "defaults": {
+        "workspace": "/home/tiger/.openclaw/workspace",
+        "model": {
+          "primary": "openai-codex/gpt-5.2",
+          "fallbacks": [
+            "openai-codex/gpt-5.4"
+          ]
+        },
+        "models": {
+          "openai-codex/gpt-5.2": {
+            "alias": "GPT-5.2"
+          },
+          "openai-codex/gpt-5.4": {
+            "alias": "GPT-5.4"
+          },
+          "openai-codex/gpt-5.4-mini": {
+            "alias": "GPT-5.4 Mini"
+          },
+          "nvidia-kimi-k2-5/moonshotai/kimi-k2.5": {
+            "alias": "Kimi-Free"
+          }
+        },
+        "subagents": {
+          "model": "openai-codex/gpt-5.4-mini"
+        },
+        "sandbox": {
+          "mode": "off",
+          "scope": "agent",
+          "workspaceAccess": "rw"
+        },
+        "elevatedDefault": "ask"
+      },
+      "list": [
+        {
+          "id": "main"
+        }
+      ]
+    },
+    "bindings": [],
+    "gateway": {
+      "mode": "local",
+      "auth": {
+        "mode": "token",
+        "token": "__OPENCLAW_REDACTED__"
+      },
+      "port": 19444,
+      "bind": "loopback",
+      "tailscale": {
+        "mode": "serve",
+        "resetOnExit": false
+      },
+      "controlUi": {
+        "allowInsecureAuth": false,
+        "allowedOrigins": [
+          "https://tiger-wsl.tail1cb9e0.ts.net"
+        ]
+      },
+      "nodes": {
+        "denyCommands": [
+          "camera.snap",
+          "camera.clip",
+          "screen.record",
+          "contacts.add",
+          "calendar.add",
+          "reminders.add",
+          "sms.send",
+          "sms.search"
+        ]
+      }
+    },
+    "session": {
+      "dmScope": "per-channel-peer",
+      "maintenance": {
+        "pruneAfter": "12h"
+      }
+    },
+    "tools": {
+      "profile": "full",
+      "web": {
+        "search": {
+          "provider": "brave",
+          "enabled": true
+        }
+      },
+      "deny": [],
+      "fs": {
+        "workspaceOnly": true
+      },
+      "exec": {
+        "security": "allowlist",
+        "ask": "always"
+      },
+      "elevated": {
+        "enabled": true
+      },
+      "agentToAgent": {
+        "enabled": true
+      }
+    },
+    "models": {
+      "mode": "merge",
+      "providers": {
+        "nvidia-kimi-k2-5": {
+          "baseUrl": "https://integrate.api.nvidia.com/v1",
+          "api": "openai-completions",
+          "apiKey": {
+            "source": "env",
+            "provider": "default",
+            "id": "__OPENCLAW_REDACTED__"
+          },
+          "models": [
+            {
+              "id": "moonshotai/kimi-k2.5",
+              "name": "moonshotai/kimi-k2.5 (Custom Provider)",
+              "contextWindow": 50000,
+              "maxTokens": 4096,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "reasoning": false
+            }
+          ]
+        }
+      }
+    },
+    "channels": {
+      "telegram": {
+        "dmPolicy": "pairing",
+        "botToken": "__OPENCLAW_REDACTED__"
+      }
+    },
+    "plugins": {
+      "entries": {
+        "memory-core": {
+          "config": {
+            "dreaming": {
+              "enabled": true
+            }
+          }
+        },
+        "brave": {
+          "config": {
+            "webSearch": {
+              "apiKey": "__OPENCLAW_REDACTED__"
+            }
+          },
+          "enabled": true
+        },
+        "telegram": {
+          "enabled": true
+        },
+        "openai": {
+          "enabled": true
+        },
+        "browser": {
+          "enabled": true
+        },
+        "anthropic": {
+          "enabled": true,
+          "config": {}
+        },
+        "codex": {
+          "enabled": true,
+          "config": {}
+        }
+      },
+      "enabled": true
+    },
+    "hooks": {
+      "internal": {
+        "enabled": false,
+        "entries": {
+          "bootstrap-extra-files": {
+            "enabled": false
+          },
+          "command-logger": {
+            "enabled": true
+          },
+          "session-memory": {
+            "enabled": true
+          }
+        }
+      },
+      "enabled": false
+    },
+    "wizard": {
+      "lastRunAt": "2026-04-11T05:04:09.729Z",
+      "lastRunVersion": "2026.4.9",
+      "lastRunCommand": "configure",
+      "lastRunMode": "local"
+    },
+    "meta": {
+      "lastTouchedVersion": "2026.4.14",
+      "lastTouchedAt": "2026-04-15T17:10:49.425Z"
+    },
+    "auth": {
+      "profiles": {
+        "openai-codex:robtigercode@gmail.com": {
+          "provider": "openai-codex",
+          "mode": "oauth",
+          "email": "robtigercode@gmail.com"
+        }
+      }
+    },
+    "discovery": {
+      "mdns": {
+        "mode": "minimal"
+      }
+    },
+    "browser": {
+      "ssrfPolicy": {
+        "dangerouslyAllowPrivateNetwork": false,
+        "hostnameAllowlist": [
+          "*.example.com"
+        ]
+      }
+    },
+    "skills": {
+      "entries": {
+        "obsidian": {
+          "enabled": false
+        }
+      }
+    },
+    "commands": {
+      "native": true,
+      "nativeSkills": true,
+      "bash": true,
+      "config": true,
+      "plugins": true
+    },
+    "cron": {
+      "enabled": true
+    },
+    "cli": {
+      "banner": {
+        "taglineMode": "off"
+      }
+    }
+  },
+  "resolved": {
+    "agents": {
+      "defaults": {
+        "workspace": "/home/tiger/.openclaw/workspace",
+        "model": {
+          "primary": "openai-codex/gpt-5.2",
+          "fallbacks": [
+            "openai-codex/gpt-5.4"
+          ]
+        },
+        "models": {
+          "openai-codex/gpt-5.2": {
+            "alias": "GPT-5.2"
+          },
+          "openai-codex/gpt-5.4": {
+            "alias": "GPT-5.4"
+          },
+          "openai-codex/gpt-5.4-mini": {
+            "alias": "GPT-5.4 Mini"
+          },
+          "nvidia-kimi-k2-5/moonshotai/kimi-k2.5": {
+            "alias": "Kimi-Free"
+          }
+        },
+        "subagents": {
+          "model": "openai-codex/gpt-5.4-mini"
+        },
+        "sandbox": {
+          "mode": "off",
+          "scope": "agent",
+          "workspaceAccess": "rw"
+        },
+        "elevatedDefault": "ask"
+      },
+      "list": [
+        {
+          "id": "main"
+        }
+      ]
+    },
+    "bindings": [],
+    "gateway": {
+      "mode": "local",
+      "auth": {
+        "mode": "token",
+        "token": "__OPENCLAW_REDACTED__"
+      },
+      "port": 19444,
+      "bind": "loopback",
+      "tailscale": {
+        "mode": "serve",
+        "resetOnExit": false
+      },
+      "controlUi": {
+        "allowInsecureAuth": false,
+        "allowedOrigins": [
+          "https://tiger-wsl.tail1cb9e0.ts.net"
+        ]
+      },
+      "nodes": {
+        "denyCommands": [
+          "camera.snap",
+          "camera.clip",
+          "screen.record",
+          "contacts.add",
+          "calendar.add",
+          "reminders.add",
+          "sms.send",
+          "sms.search"
+        ]
+      }
+    },
+    "session": {
+      "dmScope": "per-channel-peer",
+      "maintenance": {
+        "pruneAfter": "12h"
+      }
+    },
+    "tools": {
+      "profile": "full",
+      "web": {
+        "search": {
+          "provider": "brave",
+          "enabled": true
+        }
+      },
+      "deny": [],
+      "fs": {
+        "workspaceOnly": true
+      },
+      "exec": {
+        "security": "allowlist",
+        "ask": "always"
+      },
+      "elevated": {
+        "enabled": true
+      },
+      "agentToAgent": {
+        "enabled": true
+      }
+    },
+    "models": {
+      "mode": "merge",
+      "providers": {
+        "nvidia-kimi-k2-5": {
+          "baseUrl": "https://integrate.api.nvidia.com/v1",
+          "api": "openai-completions",
+          "apiKey": {
+            "source": "env",
+            "provider": "default",
+            "id": "__OPENCLAW_REDACTED__"
+          },
+          "models": [
+            {
+              "id": "moonshotai/kimi-k2.5",
+              "name": "moonshotai/kimi-k2.5 (Custom Provider)",
+              "contextWindow": 50000,
+              "maxTokens": 4096,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "reasoning": false
+            }
+          ]
+        }
+      }
+    },
+    "channels": {
+      "telegram": {
+        "dmPolicy": "pairing",
+        "botToken": "__OPENCLAW_REDACTED__"
+      }
+    },
+    "plugins": {
+      "entries": {
+        "memory-core": {
+          "config": {
+            "dreaming": {
+              "enabled": true
+            }
+          }
+        },
+        "brave": {
+          "config": {
+            "webSearch": {
+              "apiKey": "__OPENCLAW_REDACTED__"
+            }
+          },
+          "enabled": true
+        },
+        "telegram": {
+          "enabled": true
+        },
+        "openai": {
+          "enabled": true
+        },
+        "browser": {
+          "enabled": true
+        },
+        "anthropic": {
+          "enabled": true,
+          "config": {}
+        },
+        "codex": {
+          "enabled": true,
+          "config": {}
+        }
+      },
+      "enabled": true
+    },
+    "hooks": {
+      "internal": {
+        "enabled": false,
+        "entries": {
+          "bootstrap-extra-files": {
+            "enabled": false
+          },
+          "command-logger": {
+            "enabled": true
+          },
+          "session-memory": {
+            "enabled": true
+          }
+        }
+      },
+      "enabled": false
+    },
+    "wizard": {
+      "lastRunAt": "2026-04-11T05:04:09.729Z",
+      "lastRunVersion": "2026.4.9",
+      "lastRunCommand": "configure",
+      "lastRunMode": "local"
+    },
+    "meta": {
+      "lastTouchedVersion": "2026.4.14",
+      "lastTouchedAt": "2026-04-15T17:10:49.425Z"
+    },
+    "auth": {
+      "profiles": {
+        "openai-codex:robtigercode@gmail.com": {
+          "provider": "openai-codex",
+          "mode": "oauth",
+          "email": "robtigercode@gmail.com"
+        }
+      }
+    },
+    "discovery": {
+      "mdns": {
+        "mode": "minimal"
+      }
+    },
+    "browser": {
+      "ssrfPolicy": {
+        "dangerouslyAllowPrivateNetwork": false,
+        "hostnameAllowlist": [
+          "*.example.com"
+        ]
+      }
+    },
+    "skills": {
+      "entries": {
+        "obsidian": {
+          "enabled": false
+        }
+      }
+    },
+    "commands": {
+      "native": true,
+      "nativeSkills": true,
+      "bash": true,
+      "config": true,
+      "plugins": true
+    },
+    "cron": {
+      "enabled": true
+    },
+    "cli": {
+      "banner": {
+        "taglineMode": "off"
+      }
+    }
+  },
+  "valid": true,
+  "runtimeConfig": {
+    "meta": {
+      "lastTouchedVersion": "2026.4.14",
+      "lastTouchedAt": "2026-04-15T17:10:49.425Z"
+    },
+    "wizard": {
+      "lastRunAt": "2026-04-11T05:04:09.729Z",
+      "lastRunVersion": "2026.4.9",
+      "lastRunCommand": "configure",
+      "lastRunMode": "local"
+    },
+    "cli": {
+      "banner": {
+        "taglineMode": "off"
+      }
+    },
+    "browser": {
+      "ssrfPolicy": {
+        "dangerouslyAllowPrivateNetwork": false,
+        "hostnameAllowlist": [
+          "*.example.com"
+        ]
+      }
+    },
+    "auth": {
+      "profiles": {
+        "openai-codex:robtigercode@gmail.com": {
+          "provider": "openai-codex",
+          "mode": "oauth",
+          "email": "robtigercode@gmail.com"
+        }
+      }
+    },
+    "models": {
+      "mode": "merge",
+      "providers": {
+        "nvidia-kimi-k2-5": {
+          "baseUrl": "https://integrate.api.nvidia.com/v1",
+          "apiKey": {
+            "source": "env",
+            "provider": "default",
+            "id": "__OPENCLAW_REDACTED__"
+          },
+          "api": "openai-completions",
+          "models": [
+            {
+              "id": "moonshotai/kimi-k2.5",
+              "name": "moonshotai/kimi-k2.5 (Custom Provider)",
+              "reasoning": false,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 50000,
+              "maxTokens": 4096,
+              "api": "openai-completions"
+            }
+          ]
+        }
+      }
+    },
+    "agents": {
+      "defaults": {
+        "model": {
+          "primary": "openai-codex/gpt-5.2",
+          "fallbacks": [
+            "openai-codex/gpt-5.4"
+          ]
+        },
+        "models": {
+          "openai-codex/gpt-5.2": {
+            "alias": "GPT-5.2"
+          },
+          "openai-codex/gpt-5.4": {
+            "alias": "GPT-5.4"
+          },
+          "openai-codex/gpt-5.4-mini": {
+            "alias": "GPT-5.4 Mini"
+          },
+          "nvidia-kimi-k2-5/moonshotai/kimi-k2.5": {
+            "alias": "Kimi-Free"
+          }
+        },
+        "workspace": "/home/tiger/.openclaw/workspace",
+        "elevatedDefault": "ask",
+        "subagents": {
+          "model": "openai-codex/gpt-5.4-mini",
+          "maxConcurrent": 8
+        },
+        "sandbox": {
+          "mode": "off",
+          "workspaceAccess": "rw",
+          "scope": "agent"
+        },
+        "maxConcurrent": 4
+      },
+      "list": [
+        {
+          "id": "main"
+        }
+      ]
+    },
+    "tools": {
+      "profile": "full",
+      "deny": [],
+      "web": {
+        "search": {
+          "enabled": true,
+          "provider": "brave"
+        }
+      },
+      "agentToAgent": {
+        "enabled": true
+      },
+      "elevated": {
+        "enabled": true
+      },
+      "exec": {
+        "security": "allowlist",
+        "ask": "always"
+      },
+      "fs": {
+        "workspaceOnly": true
+      }
+    },
+    "bindings": [],
+    "commands": {
+      "native": true,
+      "nativeSkills": true,
+      "bash": true,
+      "config": true,
+      "plugins": true,
+      "restart": true,
+      "ownerDisplay": "raw"
+    },
+    "session": {
+      "dmScope": "per-channel-peer",
+      "maintenance": {
+        "pruneAfter": "12h"
+      }
+    },
+    "cron": {
+      "enabled": true
+    },
+    "hooks": {
+      "enabled": false,
+      "internal": {
+        "enabled": false,
+        "entries": {
+          "bootstrap-extra-files": {
+            "enabled": false
+          },
+          "command-logger": {
+            "enabled": true
+          },
+          "session-memory": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    "channels": {
+      "telegram": {
+        "dmPolicy": "pairing",
+        "botToken": "__OPENCLAW_REDACTED__",
+        "groupPolicy": "allowlist"
+      }
+    },
+    "discovery": {
+      "mdns": {
+        "mode": "minimal"
+      }
+    },
+    "gateway": {
+      "port": 19444,
+      "mode": "local",
+      "bind": "loopback",
+      "controlUi": {
+        "allowedOrigins": [
+          "https://tiger-wsl.tail1cb9e0.ts.net"
+        ],
+        "allowInsecureAuth": false
+      },
+      "auth": {
+        "mode": "token",
+        "token": "__OPENCLAW_REDACTED__"
+      },
+      "tailscale": {
+        "mode": "serve",
+        "resetOnExit": false
+      },
+      "nodes": {
+        "denyCommands": [
+          "camera.snap",
+          "camera.clip",
+          "screen.record",
+          "contacts.add",
+          "calendar.add",
+          "reminders.add",
+          "sms.send",
+          "sms.search"
+        ]
+      }
+    },
+    "skills": {
+      "entries": {
+        "obsidian": {
+          "enabled": false
+        }
+      }
+    },
+    "plugins": {
+      "enabled": true,
+      "entries": {
+        "memory-core": {
+          "config": {
+            "dreaming": {
+              "enabled": true
+            }
+          }
+        },
+        "brave": {
+          "enabled": true,
+          "config": {
+            "webSearch": {
+              "apiKey": "__OPENCLAW_REDACTED__"
+            }
+          }
+        },
+        "telegram": {
+          "enabled": true,
+          "config": {}
+        },
+        "openai": {
+          "enabled": true,
+          "config": {
+            "personality": "friendly"
+          }
+        },
+        "browser": {
+          "enabled": true,
+          "config": {}
+        },
+        "anthropic": {
+          "enabled": true,
+          "config": {}
+        },
+        "codex": {
+          "enabled": true,
+          "config": {}
+        }
+      }
+    },
+    "messages": {
+      "ackReactionScope": "group-mentions"
+    }
+  },
+  "config": {
+    "meta": {
+      "lastTouchedVersion": "2026.4.14",
+      "lastTouchedAt": "2026-04-15T17:10:49.425Z"
+    },
+    "wizard": {
+      "lastRunAt": "2026-04-11T05:04:09.729Z",
+      "lastRunVersion": "2026.4.9",
+      "lastRunCommand": "configure",
+      "lastRunMode": "local"
+    },
+    "cli": {
+      "banner": {
+        "taglineMode": "off"
+      }
+    },
+    "browser": {
+      "ssrfPolicy": {
+        "dangerouslyAllowPrivateNetwork": false,
+        "hostnameAllowlist": [
+          "*.example.com"
+        ]
+      }
+    },
+    "auth": {
+      "profiles": {
+        "openai-codex:robtigercode@gmail.com": {
+          "provider": "openai-codex",
+          "mode": "oauth",
+          "email": "robtigercode@gmail.com"
+        }
+      }
+    },
+    "models": {
+      "mode": "merge",
+      "providers": {
+        "nvidia-kimi-k2-5": {
+          "baseUrl": "https://integrate.api.nvidia.com/v1",
+          "apiKey": {
+            "source": "env",
+            "provider": "default",
+            "id": "__OPENCLAW_REDACTED__"
+          },
+          "api": "openai-completions",
+          "models": [
+            {
+              "id": "moonshotai/kimi-k2.5",
+              "name": "moonshotai/kimi-k2.5 (Custom Provider)",
+              "reasoning": false,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 50000,
+              "maxTokens": 4096,
+              "api": "openai-completions"
+            }
+          ]
+        }
+      }
+    },
+    "agents": {
+      "defaults": {
+        "model": {
+          "primary": "openai-codex/gpt-5.2",
+          "fallbacks": [
+            "openai-codex/gpt-5.4"
+          ]
+        },
+        "models": {
+          "openai-codex/gpt-5.2": {
+            "alias": "GPT-5.2"
+          },
+          "openai-codex/gpt-5.4": {
+            "alias": "GPT-5.4"
+          },
+          "openai-codex/gpt-5.4-mini": {
+            "alias": "GPT-5.4 Mini"
+          },
+          "nvidia-kimi-k2-5/moonshotai/kimi-k2.5": {
+            "alias": "Kimi-Free"
+          }
+        },
+        "workspace": "/home/tiger/.openclaw/workspace",
+        "elevatedDefault": "ask",
+        "subagents": {
+          "model": "openai-codex/gpt-5.4-mini",
+          "maxConcurrent": 8
+        },
+        "sandbox": {
+          "mode": "off",
+          "workspaceAccess": "rw",
+          "scope": "agent"
+        },
+        "maxConcurrent": 4
+      },
+      "list": [
+        {
+          "id": "main"
+        }
+      ]
+    },
+    "tools": {
+      "profile": "full",
+      "deny": [],
+      "web": {
+        "search": {
+          "enabled": true,
+          "provider": "brave"
+        }
+      },
+      "agentToAgent": {
+        "enabled": true
+      },
+      "elevated": {
+        "enabled": true
+      },
+      "exec": {
+        "security": "allowlist",
+        "ask": "always"
+      },
+      "fs": {
+        "workspaceOnly": true
+      }
+    },
+    "bindings": [],
+    "commands": {
+      "native": true,
+      "nativeSkills": true,
+      "bash": true,
+      "config": true,
+      "plugins": true,
+      "restart": true,
+      "ownerDisplay": "raw"
+    },
+    "session": {
+      "dmScope": "per-channel-peer",
+      "maintenance": {
+        "pruneAfter": "12h"
+      }
+    },
+    "cron": {
+      "enabled": true
+    },
+    "hooks": {
+      "enabled": false,
+      "internal": {
+        "enabled": false,
+        "entries": {
+          "bootstrap-extra-files": {
+            "enabled": false
+          },
+          "command-logger": {
+            "enabled": true
+          },
+          "session-memory": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    "channels": {
+      "telegram": {
+        "dmPolicy": "pairing",
+        "botToken": "__OPENCLAW_REDACTED__",
+        "groupPolicy": "allowlist"
+      }
+    },
+    "discovery": {
+      "mdns": {
+        "mode": "minimal"
+      }
+    },
+    "gateway": {
+      "port": 19444,
+      "mode": "local",
+      "bind": "loopback",
+      "controlUi": {
+        "allowedOrigins": [
+          "https://tiger-wsl.tail1cb9e0.ts.net"
+        ],
+        "allowInsecureAuth": false
+      },
+      "auth": {
+        "mode": "token",
+        "token": "__OPENCLAW_REDACTED__"
+      },
+      "tailscale": {
+        "mode": "serve",
+        "resetOnExit": false
+      },
+      "nodes": {
+        "denyCommands": [
+          "camera.snap",
+          "camera.clip",
+          "screen.record",
+          "contacts.add",
+          "calendar.add",
+          "reminders.add",
+          "sms.send",
+          "sms.search"
+        ]
+      }
+    },
+    "skills": {
+      "entries": {
+        "obsidian": {
+          "enabled": false
+        }
+      }
+    },
+    "plugins": {
+      "enabled": true,
+      "entries": {
+        "memory-core": {
+          "config": {
+            "dreaming": {
+              "enabled": true
+            }
+          }
+        },
+        "brave": {
+          "enabled": true,
+          "config": {
+            "webSearch": {
+              "apiKey": "__OPENCLAW_REDACTED__"
+            }
+          }
+        },
+        "telegram": {
+          "enabled": true,
+          "config": {}
+        },
+        "openai": {
+          "enabled": true,
+          "config": {
+            "personality": "friendly"
+          }
+        },
+        "browser": {
+          "enabled": true,
+          "config": {}
+        },
+        "anthropic": {
+          "enabled": true,
+          "config": {}
+        },
+        "codex": {
+          "enabled": true,
+          "config": {}
+        }
+      }
+    },
+    "messages": {
+      "ackReactionScope": "group-mentions"
+    }
+  },
+  "hash": "418a25e796923fbb3714db61bd0bf93747233c2285adc4626d823dbbc530f364",
+  "issues": [],
+  "warnings": [],
+  "legacyIssues": []
+}

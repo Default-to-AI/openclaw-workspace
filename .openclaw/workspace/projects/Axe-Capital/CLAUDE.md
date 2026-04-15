@@ -17,7 +17,7 @@ Raw broker exports live in the Obsidian vault under Robert's control:
 
 The agent reads them via read-only symlinks at:
 ```
-projects/Axe-Capital/dashboard/data/raw/
+projects/Axe-Capital/dashboard/data/
   activity.csv           → Finance/raw/IBKR/Statements/Activity.csv
   statement.csv          → Finance/raw/IBKR/Statements/Statement.csv
   mtm_summary.csv        → Finance/raw/IBKR/Statements/MULTI_20260410.csv
@@ -31,17 +31,24 @@ When Robert drops a new export into the vault, update the symlink (or add a new 
 
 ```
 projects/Axe-Capital/
-  dashboard/              # Dashboard views and normalized data outputs
-    data/
-      raw/               # Symlinks to vault broker exports (read-only)
-      *.csv              # Normalized agent outputs
-      normalize.py       # Data pipeline script
-      manifest.json      # Data source manifest
-    views/               # Rendered portfolio views
-  spec/                  # Vision, strategy, architecture, org, risk docs
-  plans/                 # Implementation plans, roadmaps, weekly cycles
-  runbooks/              # Operational runbooks for agent workflows
-  decision-log/          # Investment and architecture decision records
+  step6-dashboard/          # Dashboard UI (artifact home: public/)
+    public/                 # All artifacts (portfolio.json, alpha-latest.json, etc.)
+  dashboard/                # Broker data (symlinks to vault)
+    data/                  # Raw broker exports (symlinks)
+  deprecated/               # Legacy items (superseded)
+  spec/                    # Vision, strategy, architecture, org, risk docs
+  plans/                   # Implementation plans, roadmaps, weekly cycles
+  runbooks/                # Operational runbooks for agent workflows
+  decision-log/            # Investment and architecture decision records
+  sources/                 # Research memos and source documents
+  step0-shared/            # axe_core shared package
+  step1-data-foundation/   # axe_coo data pipeline
+  step2-news/              # axe_news RSS + LLM scorer
+  step3-debate-decision/   # axe_decision debate layer
+  step4-alpha-hunter/      # axe_alpha alpha scanner
+  step5-portfolio-tracking/ # axe_portfolio tracker
+  step7-automation/       # axe_orchestrator CLI + FastAPI
+```
   sources/               # Research memos and source documents
   reports/               # Weekly review and ad-hoc report outputs
   step1-data-foundation/ # COO data pipeline package (axe_coo)

@@ -18,6 +18,7 @@ AGENT_RUNNERS: dict[str, Callable[[], int]] = {
     "portfolio": runners.run_portfolio,
     "alpha": runners.run_alpha,
     "news": runners.run_news,
+    "decision": runners.run_decision,
 }
 REFRESH_LOCK = asyncio.Lock()
 

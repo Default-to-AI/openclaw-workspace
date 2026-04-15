@@ -1,0 +1,27 @@
+{
+  "run_id": "portfolio-15-04-2026T18-55-12Z",
+  "agent": "axe_portfolio",
+  "started_at": "2026-04-15T18:55:12Z",
+  "status": "success",
+  "summary": "portfolio review \u2014 13 positions",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-15T18:55:12.097Z",
+      "step": "load_inputs",
+      "thought": "reading IBKR CSV + portfolio snapshot"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-15T18:55:12.873Z",
+      "step": "review_complete",
+      "thought": "normalized 13 positions",
+      "io": {
+        "out": {
+          "positions": 13
+        }
+      }
+    }
+  ],
+  "ended_at": "2026-04-15T18:55:12Z"
+}

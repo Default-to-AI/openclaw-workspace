@@ -1,4 +1,4 @@
-"""LLM-based impact scoring using Claude Haiku 4.5 with prompt caching."""
+"""LLM-based impact scoring using OpenAI (JSON-only)"""
 from __future__ import annotations
 
 import json
@@ -6,12 +6,13 @@ import re
 from dataclasses import dataclass
 from typing import Literal
 
-import anthropic
+import httpx
 
 from axe_news.ingest import RawItem
 
-MODEL = "claude-haiku-4-5-20251001"
-MODEL_NAME_FOR_ARTIFACT = "claude-haiku-4-5"
+OPENAI_CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions"
+MODEL = "gpt-4o-mini"
+MODEL_NAME_FOR_ARTIFACT = "gpt-4o-mini"
 
 PortfolioRelevance = Literal["held", "watchlist", "sector", "none"]
 
@@ -98,20 +99,24 @@ def score_item(
     relevance: PortfolioRelevance,
     api_key: str,
 ) -> ImpactScore | None:
-    client = anthropic.Anthropic(api_key=api_key)
-    message = client.messages.create(
-        model=MODEL,
-        max_tokens=400,
-        system=[
-            {
-                "type": "text",
-                "text": SYSTEM_PROMPT,
-                "cache_control": {"type": "ephemeral"},
-            }
+    payload = {
+        "model": MODEL,
+        "temperature": 0.2,
+        "max_tokens": 400,
+        "response_format": {"type": "json_object"},
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": build_prompt(item, tickers)},
         ],
-        messages=[{"role": "user", "content": build_prompt(item, tickers)}],
-    )
-    text = "".join(getattr(b, "text", "") for b in message.content)
+    }
+    with httpx.Client(timeout=30.0) as client:
+        resp = client.post(
+            OPENAI_CHAT_COMPLETIONS_URL,
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            json=payload,
+        )
+        resp.raise_for_status()
+        text = resp.json()["choices"][0]["message"]["content"]
     result = parse_response(text)
     if result and result.portfolio_relevance not in ("held", "watchlist", "sector", "none"):
         # Normalize bad enum back to "none".

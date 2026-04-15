@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { fetchHealth, fetchJsonWithFallback } from '../lib/api'
 
-const AGENTS = ['axe_portfolio', 'axe_alpha', 'axe_news']
+const AGENTS = ['axe_portfolio', 'axe_alpha', 'axe_news', 'axe_decision']
 
 function agentKey(agent) {
   return {
     axe_portfolio: 'portfolio',
     axe_alpha: 'alpha',
     axe_news: 'news',
+    axe_decision: 'decision',
   }[agent] || agent
 }
 

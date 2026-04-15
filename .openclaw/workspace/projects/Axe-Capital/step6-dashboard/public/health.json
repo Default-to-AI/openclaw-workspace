@@ -1,23 +1,28 @@
 {
-  "generated_at": "2026-04-15T15:17:28Z",
+  "generated_at": "2026-04-15T18:56:48Z",
   "artifacts": {
     "portfolio": {
-      "last_refresh": "2026-04-15T15:17:28Z",
-      "age_min": 0,
+      "last_refresh": "2026-04-15T18:55:12Z",
+      "age_min": 1,
       "status": "fresh"
     },
     "alpha": {
       "last_refresh": "2026-04-15T09:00:00Z",
-      "age_min": 377,
+      "age_min": 596,
       "status": "fresh"
     },
     "news": {
-      "last_refresh": null,
-      "age_min": null,
-      "status": "missing"
+      "last_refresh": "2026-04-15T18:20:24Z",
+      "age_min": 36,
+      "status": "fresh"
+    },
+    "decision": {
+      "last_refresh": "2026-04-15T18:56:00Z",
+      "age_min": 0,
+      "status": "fresh"
     },
     "traces": {
-      "last_refresh": "2026-04-15T15:17:28Z",
+      "last_refresh": "2026-04-15T18:56:48Z",
       "age_min": 0,
       "status": "fresh"
     }
@@ -25,6 +30,7 @@
   "freshness_thresholds_min": {
     "portfolio": 240,
     "alpha": 1440,
-    "news": 60
+    "news": 60,
+    "decision": 1440
   }
 }

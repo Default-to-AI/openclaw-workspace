@@ -1,0 +1,2 @@
+[console_scripts]
+axe-decision = axe_decision.cli:main

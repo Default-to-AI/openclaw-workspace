@@ -14,6 +14,7 @@ AGENT_SHORT = {
     "axe_news": "news",
     "axe_portfolio": "portfolio",
     "axe_coo": "coo",
+    "axe_decision": "decision",
     "axe_orchestrator": "orch",
 }
 MAX_PER_AGENT = 50

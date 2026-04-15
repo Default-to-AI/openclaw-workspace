@@ -7,7 +7,7 @@ import sys
 from axe_core.paths import project_root
 
 
-AGENT_ORDER = ("portfolio", "alpha", "news")
+AGENT_ORDER = ("portfolio", "alpha", "news", "decision")
 
 
 def _run_module(module: str, cwd_subdir: str) -> int:
@@ -30,6 +30,18 @@ def run_portfolio() -> int:
 
 def run_news() -> int:
     return _run_module("axe_news.cli", "step2-news")
+
+
+def run_decision() -> int:
+    # Default demo ticker until the dashboard can pass parameters.
+    ticker = "MSFT"
+    cwd = project_root() / "step3-debate-decision"
+    result = subprocess.run(
+        [sys.executable, "-m", "axe_decision.cli", ticker],
+        check=False,
+        cwd=cwd,
+    )
+    return 0 if result.returncode == 0 else 1
 
 
 def run_all() -> dict[str, int]:

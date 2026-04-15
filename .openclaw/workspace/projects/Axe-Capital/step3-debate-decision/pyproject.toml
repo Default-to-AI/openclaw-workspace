@@ -1,0 +1,24 @@
+[project]
+name = "axe-decision"
+version = "0.1.0"
+description = "Axe Capital Step 3: Debate + Decision layer (Bull/Bear/CIO/CRO/CEO)"
+requires-python = ">=3.11"
+dependencies = [
+  "axe-core",
+  "httpx>=0.27",
+  "python-dotenv>=1.0",
+]
+
+[tool.uv.sources]
+axe-core = { path = "../step0-shared", editable = true }
+
+[project.scripts]
+axe-decision = "axe_decision.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["axe_decision*"]

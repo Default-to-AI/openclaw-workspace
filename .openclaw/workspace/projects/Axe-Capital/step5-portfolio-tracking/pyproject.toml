@@ -5,6 +5,7 @@ description = "Axe Capital Step 5: portfolio tracking"
 requires-python = ">=3.11"
 dependencies = [
   "axe-core",
+  "ib_async>=2.1",
   "pandas>=2.2",
   "python-dotenv>=1.0",
   "yfinance>=0.2.50",

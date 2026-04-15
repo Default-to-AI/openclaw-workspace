@@ -1,9 +1,9 @@
 # Axe Capital — Index
 
 ## Spec
-- [[spec/00-vision-and-non-negotiables]]
-- [[spec/01-strategy-overview]]
-- [[spec/02-system-architecture]]
+- [[spec/01-vision-and-non-negotiables]]
+- [[spec/02-strategy-overview]]
+- [[spec/03-system-architecture]]
 - [[spec/Org/org-chart-and-contracts]]
 - [[spec/Org/RACI_HedgeFund_CoreProcesses]]
 - [[spec/Org/TOM_HedgeFund_OperatingModel]]
