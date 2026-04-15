@@ -102,7 +102,10 @@ export default function TargetsPanel() {
         stop_pct: tp?.stop_pct ?? null
       })
 
-      const distToTargetPct = targetPrice == null ? null : ((targetPrice - last) / last) * 100
+      const distToTargetVsLastPct =
+        targetPrice == null || last == null || last === 0 ? null : ((targetPrice - last) / last) * 100
+      const distToTargetVsAvgPct =
+        targetPrice == null || avg == null || avg === 0 ? null : ((targetPrice - avg) / avg) * 100
       const distToStopPct = stopPrice == null ? null : ((last - stopPrice) / last) * 100
 
       const stopProx = proximityPct({ last, level: stopPrice })
@@ -125,7 +128,8 @@ export default function TargetsPanel() {
         avg,
         targetPrice,
         stopPrice,
-        distToTargetPct,
+        distToTargetVsAvgPct,
+        distToTargetVsLastPct,
         distToStopPct,
         status,
         needsConfig,
@@ -200,7 +204,8 @@ export default function TargetsPanel() {
                 <th>Last</th>
                 <th>Avg</th>
                 <th>Target $</th>
-                <th>Dist→Target%</th>
+                <th>Δ vs avg cost</th>
+                <th>Δ vs last</th>
                 <th>Stop $</th>
                 <th>Dist→Stop%</th>
                 <th>Status</th>
@@ -217,8 +222,11 @@ export default function TargetsPanel() {
                   <td className={r.targetPrice == null ? 'text-axe-red' : 'text-axe-text'}>
                     {r.targetPrice == null ? '—' : `$${fmt(r.targetPrice)}`}
                   </td>
-                  <td className={pnlClass(r.distToTargetPct)}>
-                    {r.distToTargetPct == null ? '—' : `${sign(r.distToTargetPct)}${fmt(r.distToTargetPct)}%`}
+                  <td className={pnlClass(r.distToTargetVsAvgPct)}>
+                    {r.distToTargetVsAvgPct == null ? '—' : `${sign(r.distToTargetVsAvgPct)}${fmt(r.distToTargetVsAvgPct)}%`}
+                  </td>
+                  <td className={pnlClass(r.distToTargetVsLastPct)}>
+                    {r.distToTargetVsLastPct == null ? '—' : `${sign(r.distToTargetVsLastPct)}${fmt(r.distToTargetVsLastPct)}%`}
                   </td>
                   <td className={r.stopPrice == null ? 'text-axe-red' : 'text-axe-dim'}>
                     {r.stopPrice == null ? '—' : `$${fmt(r.stopPrice)}`}
