@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+  <title>Reuters Biz (fixture)</title>
+  <link>https://reuters.example/biz</link>
+  <description>test</description>
+  <item>
+    <title>MSFT faces new DOJ antitrust probe over AI bundling</title>
+    <link>https://reuters.example/msft-antitrust</link>
+    <pubDate>Wed, 15 Apr 2026 08:41:00 GMT</pubDate>
+    <description>The Department of Justice opened an inquiry into Microsoft and GOOG cloud bundling practices.</description>
+  </item>
+  <item>
+    <title>Analyst raises AAPL price target to $250</title>
+    <link>https://reuters.example/aapl-pt</link>
+    <pubDate>Wed, 15 Apr 2026 08:30:00 GMT</pubDate>
+    <description>Routine price target bump.</description>
+  </item>
+  <item>
+    <title>RTX Q1 earnings beat estimates</title>
+    <link>https://reuters.example/rtx-q1</link>
+    <pubDate>Wed, 15 Apr 2026 07:00:00 GMT</pubDate>
+    <description>Raytheon reported Q1 EPS $1.50 beating $1.39.</description>
+  </item>
+</channel></rss>
