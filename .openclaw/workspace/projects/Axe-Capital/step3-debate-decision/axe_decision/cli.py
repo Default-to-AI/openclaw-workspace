@@ -38,6 +38,39 @@ def _append_jsonl(path: Path, obj: dict) -> None:
         f.write(line + "\n")
 
 
+def _update_approval_queue(pub: Path, ticker: str, ceo: dict, generated_at: str) -> None:
+    """Append actionable CEO decisions to approval-queue.md pending table."""
+    action = ceo.get("action", "PASS")
+    if action == "PASS":
+        return  # PASS decisions don't go to the approval queue
+
+    queue_path = pub / "approval-queue.md"
+    if not queue_path.exists():
+        return  # template not present, skip silently
+
+    content = queue_path.read_text(encoding="utf-8")
+
+    # Build the new row
+    date_str = generated_at[:10]
+    size = f"{ceo.get('position_size_pct', 0)}% NAV"
+    thesis_short = (ceo.get("thesis") or "")[:80].replace("|", "/")
+    invalidation_short = (ceo.get("stop_loss") or "")
+    log_link = f"decisions/{ticker}-{generated_at.replace(':', '-')}.json"
+
+    new_row = (
+        f"| {date_str} | {ticker} | {action} | {size} "
+        f"| {thesis_short} | Stop: {invalidation_short} | [{ticker} memo]({log_link}) |"
+    )
+
+    # Insert before the blank line after the table header
+    marker = "| Date | Ticker | Action | Size | Thesis (1 line) | Invalidation | Decision Log |"
+    header_line = "|------|--------|--------|------|-----------------|-------------|--------------|"
+    if marker in content and header_line in content:
+        insert_after = content.index(header_line) + len(header_line)
+        content = content[:insert_after] + "\n" + new_row + content[insert_after:]
+        queue_path.write_text(content, encoding="utf-8")
+
+
 def _load_analyst_reports(ticker: str) -> dict:
     reports_dir = public_dir() / "analyst-reports"
     index_path = reports_dir / "index.json"
@@ -199,6 +232,8 @@ def main(argv: list[str] | None = None) -> int:
             "tags": ["step3", "memo"],
         },
     )
+
+    _update_approval_queue(pub, ticker, ceo, ctx["generated_at"])
 
     tracer.finalize(status="success", summary=f"decision memo generated for {ticker}", artifact_written="decision-latest.json")
     print(json.dumps({"latest": str(latest_path), "archive": str(archive_path), "run_id": tracer.run_id}, indent=2))
