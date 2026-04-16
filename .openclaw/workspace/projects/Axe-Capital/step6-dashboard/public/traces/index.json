@@ -1,10 +1,21 @@
 {
-  "generated_at": "2026-04-16T01:22:16Z",
+  "generated_at": "2026-04-16T02:09:12Z",
   "retention": {
     "max_runs_per_agent": 50,
     "total_cap": 500
   },
   "runs": [
+    {
+      "run_id": "decision-16-04-2026T02-08-16Z",
+      "agent": "axe_decision",
+      "started_at": "2026-04-16T02:08:16Z",
+      "ended_at": "2026-04-16T02:09:12Z",
+      "duration_ms": 56960,
+      "status": "success",
+      "event_count": 6,
+      "summary": "decision memo generated for MSFT",
+      "artifact_written": "decision-latest.json"
+    },
     {
       "run_id": "decision-16-04-2026T01-21-17Z",
       "agent": "axe_decision",

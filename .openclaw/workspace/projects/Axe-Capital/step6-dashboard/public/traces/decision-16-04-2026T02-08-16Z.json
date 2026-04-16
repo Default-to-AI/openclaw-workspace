@@ -1,0 +1,46 @@
+{
+  "run_id": "decision-16-04-2026T02-08-16Z",
+  "agent": "axe_decision",
+  "started_at": "2026-04-16T02:08:16Z",
+  "status": "success",
+  "summary": "decision memo generated for MSFT",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T02:08:16.312Z",
+      "step": "load_context",
+      "thought": "loading context for MSFT"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T02:08:16.315Z",
+      "step": "bull",
+      "thought": "draft bull case"
+    },
+    {
+      "seq": 3,
+      "t": "2026-04-16T02:08:25.203Z",
+      "step": "bear",
+      "thought": "draft bear case"
+    },
+    {
+      "seq": 4,
+      "t": "2026-04-16T02:08:46.820Z",
+      "step": "risk_manager",
+      "thought": "risk gate and sizing constraints"
+    },
+    {
+      "seq": 5,
+      "t": "2026-04-16T02:09:02.014Z",
+      "step": "compliance",
+      "thought": "audit evidence and assumptions"
+    },
+    {
+      "seq": 6,
+      "t": "2026-04-16T02:09:10.018Z",
+      "step": "ceo",
+      "thought": "final decision memo"
+    }
+  ],
+  "ended_at": "2026-04-16T02:09:12Z"
+}

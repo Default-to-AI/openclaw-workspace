@@ -91,18 +91,18 @@ This is the punch list that prevents Axe from feeling like a real product you ca
 ### 3) Artifact hygiene (the app needs to stay clean)
 **Missing:** retention policies and consistent artifact contracts.
 
-- [ ] trace pruning (keep last N runs per agent)
+- [x] trace pruning (keep last N runs per agent)
 - [ ] decision/archive pruning rules (or paging/search)
-- [ ] stable artifact schema versioning (so UI doesn’t break when we evolve payloads)
+- [x] stable artifact schema versioning (so UI doesn’t break when we evolve payloads)
 
 ### 4) “Research platform” pipeline is incomplete (big feature gap)
 The roadmap/specs describe a hedge-fund org model (specialists → debate → memo).
 Right now, the specialist agents are the largest missing capability.
 
-- [ ] Fundamental Analyst agent (writes a report artifact)
-- [ ] Technical Analyst agent (writes a report artifact)
-- [ ] Macro Strategist agent (writes a report artifact)
-- [ ] Wire those reports into bull/bear debate and the final memo
+- [x] Fundamental Analyst agent (writes a report artifact)
+- [x] Technical Analyst agent (writes a report artifact)
+- [x] Macro Strategist agent (writes a report artifact)
+- [x] Wire those reports into bull/bear debate and the final memo
 
 ### 5) Deployment & access model (so you don’t babysit it)
 You already have Tailscale in play; Axe should leverage it consistently.
@@ -136,15 +136,9 @@ Definition of done:
 - [ ] dashboard shows clear status if API is down (already partially true) and if refresh is in progress
 - [ ] portfolio auto-refresh runs on schedule when market is open (configurable)
 
-Only after that, build the missing specialist agents and wire them into step3.
-
 ---
 
-## Next actions I can take autonomously (pick one)
+## Next actions I can take autonomously
 
-1) **App-mode sprint (recommended):** add `scripts/dev.sh`, `scripts/run_api.sh`, `scripts/run_dashboard.sh`, and `scripts/schedule_refresh.sh` + update runbooks.
-
-2) **Research-pipeline sprint:** implement the 3 specialist agents (fundamental/technical/macro) + feed their reports into step3 debate.
-
-Reply with `1` or `2`.
+**App-mode sprint (recommended):** add `scripts/dev.sh`, `scripts/run_api.sh`, `scripts/run_dashboard.sh`, and `scripts/schedule_refresh.sh` + update runbooks.
 
