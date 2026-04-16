@@ -8,6 +8,7 @@ import AgentStatusPanel from './components/AgentStatusPanel'
 import TraceViewerPanel from './components/TraceViewerPanel'
 import DecisionArchivePanel from './components/DecisionArchivePanel'
 import DecisionReportPanel from './components/DecisionReportPanel'
+import AnalystReportsPanel from './components/AnalystReportsPanel'
 import RefreshBar from './components/RefreshBar'
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
         </div>
 
         <DecisionReportPanel key={`decision-report-${refreshToken}`} refreshToken={refreshToken} />
+        <AnalystReportsPanel key={`analyst-${refreshToken}`} refreshToken={refreshToken} />
 
         <DecisionArchivePanel
           key={`archive-${refreshToken}`}
