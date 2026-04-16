@@ -7,6 +7,7 @@ const TARGETS = [
   { id: 'alpha', label: 'Alpha' },
   { id: 'news', label: 'News' },
   { id: 'specialists', label: 'Specialists' },
+  { id: 'specialists_decide', label: 'Specialists + Decision' },
   { id: 'opportunities', label: 'Opportunities' },
   { id: 'decision', label: 'Decision' },
 ]

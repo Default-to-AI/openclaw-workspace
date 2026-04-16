@@ -15,6 +15,7 @@ AGENT_ORDER = (
     "alpha",
     "news",
     "specialists",
+    "specialists_decide",
     "opportunities",
     "fundamental",
     "technical",
@@ -99,19 +100,31 @@ def opportunity_tickers(limit: int = 2) -> list[str]:
     return tickers
 
 
-def run_specialists() -> int:
+def run_specialists(ticker: str | None = None) -> int:
+    """Run fundamental/technical/macro for a single ticker or all portfolio symbols."""
     portfolio_rc = run_portfolio()
     if portfolio_rc != 0:
         return portfolio_rc
     failures = 0
-    symbols = portfolio_symbols()
+    symbols = [ticker.upper()] if ticker else portfolio_symbols()
     if not symbols:
         return 1
-
     for symbol in symbols:
         failures += run_fundamental(symbol)
         failures += run_technical(symbol)
         failures += run_macro(symbol)
+    return 0 if failures == 0 else failures
+
+
+def run_specialists_and_decide(ticker: str | None = None) -> int:
+    """Run specialists then immediately run the decision memo for each symbol."""
+    rc = run_specialists(ticker)
+    if rc != 0:
+        return rc
+    symbols = [ticker.upper()] if ticker else portfolio_symbols()
+    failures = 0
+    for symbol in symbols:
+        failures += run_decision(symbol)
     return 0 if failures == 0 else failures
 
 

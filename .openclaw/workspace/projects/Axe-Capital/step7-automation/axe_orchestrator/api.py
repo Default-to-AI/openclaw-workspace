@@ -19,6 +19,7 @@ AGENT_RUNNERS: dict[str, Callable[[], int]] = {
     "alpha": runners.run_alpha,
     "news": runners.run_news,
     "specialists": runners.run_specialists,
+    "specialists_decide": runners.run_specialists_and_decide,
     "opportunities": runners.run_opportunities,
     "decision": runners.run_decision,
 }
