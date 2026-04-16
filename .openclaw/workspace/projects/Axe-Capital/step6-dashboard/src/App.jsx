@@ -9,6 +9,7 @@ import TraceViewerPanel from './components/TraceViewerPanel'
 import DecisionArchivePanel from './components/DecisionArchivePanel'
 import DecisionReportPanel from './components/DecisionReportPanel'
 import AnalystReportsPanel from './components/AnalystReportsPanel'
+import WeeklyReviewPanel from './components/WeeklyReviewPanel'
 import RefreshBar from './components/RefreshBar'
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
 
         <DecisionReportPanel key={`decision-report-${refreshToken}`} refreshToken={refreshToken} />
         <AnalystReportsPanel key={`analyst-${refreshToken}`} refreshToken={refreshToken} />
+        <WeeklyReviewPanel key={`weekly-${refreshToken}`} refreshToken={refreshToken} />
 
         <DecisionArchivePanel
           key={`archive-${refreshToken}`}
