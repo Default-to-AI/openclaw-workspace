@@ -71,6 +71,14 @@ Use these guardrails to reduce common coding mistakes. Bias toward caution over 
 - For multi-step work, keep a brief step -> verify plan.
 - Do not declare completion without verifying the result through the lightest practical check.
 
+## Coding Tasks (Claude Code + gstack)
+- When spawning Claude Code sessions for coding work, tell the session to use gstack skills.
+- Security audit: "Load gstack. Run /cso"
+- Code review: "Load gstack. Run /review"
+- QA test a URL: "Load gstack. Run /qa https://..."
+- Build a feature end-to-end: "Load gstack. Run /autoplan, implement the plan, then run /ship"
+- Plan before building: "Load gstack. Run /office-hours then /autoplan. Save the plan, don't implement."
+
 ## Heartbeats
 
 - Follow `HEARTBEAT.md` strictly.
@@ -101,8 +109,9 @@ Efficient deep comprehension and exam performance.
 
 # MODEL SELECTION RULE
 
-Default: Always use **gpt-5.2**.
-Switch to **gpt-5.4** only for: deep architecture, complex debugging, critical security.
+Default: Always use **MinMax-M2.7**.
+Fallbacks (in order): **gpt-5.2**, then **Kimi-Free**.
+Use **gpt-5.4** only for: heavy reasoning, deep architecture, complex debugging, critical security (heavy artillery).
 
 ---
 

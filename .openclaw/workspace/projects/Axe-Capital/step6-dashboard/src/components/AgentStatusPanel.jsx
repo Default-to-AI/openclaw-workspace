@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { fetchHealth, fetchJsonWithFallback } from '../lib/api'
+import { fetchHealth, fetchJsonWithFallback, describeError } from '../lib/api'
 
 const AGENTS = ['axe_portfolio', 'axe_alpha', 'axe_news', 'axe_decision']
 
@@ -52,7 +52,7 @@ export default function AgentStatusPanel({ onOpenTrace = () => {} }) {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
       })
     return () => {
       cancelled = true
@@ -73,7 +73,7 @@ export default function AgentStatusPanel({ onOpenTrace = () => {} }) {
     <section className="panel-card h-full">
       <div className="panel-header">
         <div>
-          <div className="panel-title">Panel 5 — Agent Status Board</div>
+          <div className="panel-title">Agent Status Board</div>
           <p className="text-axe-dim text-xs mt-1">
             Latest run status, freshness, and trace handoff per agent.
           </p>

@@ -1,0 +1,58 @@
+{
+  "run_id": "news-16-04-2026T15-00-52Z",
+  "agent": "axe_news",
+  "started_at": "2026-04-16T15:00:52Z",
+  "status": "success",
+  "summary": "290 in, 17 kept (score>=6)",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T15:00:52.506Z",
+      "step": "load_watchlist",
+      "thought": "watchlist has 13 tickers"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T15:00:52.506Z",
+      "step": "fetch_feeds",
+      "thought": "polling 16 feeds",
+      "io": {
+        "in": {
+          "feed_count": 16
+        }
+      }
+    },
+    {
+      "seq": 3,
+      "t": "2026-04-16T15:00:54.130Z",
+      "step": "dedupe",
+      "thought": "290 raw \u2192 267 unique",
+      "io": {
+        "in": {
+          "n": 290
+        },
+        "out": {
+          "n": 267
+        }
+      }
+    },
+    {
+      "seq": 4,
+      "t": "2026-04-16T15:02:37.091Z",
+      "step": "score",
+      "thought": "scored 58 items via Haiku 4.5",
+      "io": {
+        "out": {
+          "scored": 58
+        }
+      }
+    },
+    {
+      "seq": 5,
+      "t": "2026-04-16T15:02:37.093Z",
+      "step": "write_artifact",
+      "thought": "wrote 17 items to news-latest.json"
+    }
+  ],
+  "ended_at": "2026-04-16T15:02:37Z"
+}

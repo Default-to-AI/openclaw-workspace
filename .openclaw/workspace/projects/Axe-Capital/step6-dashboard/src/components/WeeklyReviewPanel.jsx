@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJsonWithFallback } from '../lib/api'
+import { fetchJsonWithFallback, describeError } from '../lib/api'
 
 const fmt = (n, digits = 2) =>
   n == null ? '—' : n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits })
@@ -32,7 +32,7 @@ export default function WeeklyReviewPanel({ refreshToken }) {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
       })
     return () => { cancelled = true }
   }, [refreshToken])

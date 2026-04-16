@@ -1,180 +1,180 @@
 {
-  "generated_at": "2026-04-16T01:19:23Z",
+  "generated_at": "2026-04-16T16:43:17Z",
   "review_date": "2026-04-16",
   "positions": [
     {
       "symbol": "AMZN",
-      "market_value": 9031.0,
-      "unrealized_pl": 788.99,
-      "unrealized_pl_pct": 9.57,
+      "market_value": 8242.01,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 203.77,
-      "distance_to_stop_pct": 17.86,
-      "alert_status": "GREEN",
+      "distance_to_stop_pct": 10.0,
+      "alert_status": "YELLOW",
       "sector_tag": "US Large Cap Tech",
-      "weight_pct": 7.91
+      "weight_pct": 7.58
     },
     {
       "symbol": "ASML",
-      "market_value": 8272.77,
-      "unrealized_pl": 594.71,
-      "unrealized_pl_pct": 7.75,
-      "stop_loss_level": 1233.97,
-      "distance_to_stop_pct": 16.47,
-      "alert_status": "GREEN",
+      "market_value": 9679.24,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
+      "stop_loss_level": 1246.56,
+      "distance_to_stop_pct": 10.0,
+      "alert_status": "YELLOW",
       "sector_tag": "US Large Cap Tech",
-      "weight_pct": 7.25
+      "weight_pct": 8.9
     },
     {
       "symbol": "FICO",
-      "market_value": 1128.15,
-      "unrealized_pl": -106.18,
-      "unrealized_pl_pct": -8.6,
+      "market_value": 1234.33,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 1019.17,
-      "distance_to_stop_pct": 1.53,
-      "alert_status": "RED",
+      "distance_to_stop_pct": 10.0,
+      "alert_status": "YELLOW",
       "sector_tag": "Software",
-      "weight_pct": 0.99
+      "weight_pct": 1.13
     },
     {
       "symbol": "GOOG",
-      "market_value": 13400.0,
-      "unrealized_pl": 1848.3,
-      "unrealized_pl_pct": 16.0,
+      "market_value": 11551.7,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 259.91,
-      "distance_to_stop_pct": 22.41,
-      "alert_status": "GREEN",
+      "distance_to_stop_pct": 10.0,
+      "alert_status": "YELLOW",
       "sector_tag": "US Large Cap Tech",
-      "weight_pct": 11.74
+      "weight_pct": 10.62
     },
     {
       "symbol": "IGV",
-      "market_value": 2509.64,
-      "unrealized_pl": -110.99,
-      "unrealized_pl_pct": -4.24,
+      "market_value": 2620.62,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 78.62,
-      "distance_to_stop_pct": 6.02,
+      "distance_to_stop_pct": 10.0,
       "alert_status": "YELLOW",
       "sector_tag": "Software",
-      "weight_pct": 2.2
+      "weight_pct": 2.41
     },
     {
       "symbol": "JPM",
-      "market_value": 4597.5,
-      "unrealized_pl": -34.35,
-      "unrealized_pl_pct": -0.74,
+      "market_value": 4631.85,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 277.91,
-      "distance_to_stop_pct": 9.33,
+      "distance_to_stop_pct": 10.0,
       "alert_status": "YELLOW",
       "sector_tag": "Financials",
-      "weight_pct": 4.03
+      "weight_pct": 4.26
     },
     {
       "symbol": "META",
-      "market_value": 12132.0,
-      "unrealized_pl": 1220.05,
-      "unrealized_pl_pct": 11.18,
+      "market_value": 10911.95,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 545.6,
-      "distance_to_stop_pct": 19.05,
-      "alert_status": "GREEN",
+      "distance_to_stop_pct": 10.0,
+      "alert_status": "YELLOW",
       "sector_tag": "US Large Cap Tech",
-      "weight_pct": 10.63
+      "weight_pct": 10.03
     },
     {
       "symbol": "MSFT",
-      "market_value": 5823.72,
-      "unrealized_pl": -73.24,
-      "unrealized_pl_pct": -1.24,
+      "market_value": 5896.96,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 379.09,
-      "distance_to_stop_pct": 8.87,
+      "distance_to_stop_pct": 10.0,
       "alert_status": "YELLOW",
       "sector_tag": "US Large Cap Tech",
-      "weight_pct": 5.1
+      "weight_pct": 5.42
     },
     {
       "symbol": "QQQ",
-      "market_value": 44225.65,
-      "unrealized_pl": 2836.77,
-      "unrealized_pl_pct": 6.85,
+      "market_value": 41388.88,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 537.66,
-      "distance_to_stop_pct": 15.77,
-      "alert_status": "GREEN",
+      "distance_to_stop_pct": 3.84,
+      "alert_status": "RED",
       "sector_tag": "US Large Cap Tech",
-      "weight_pct": 38.76
+      "weight_pct": 38.06
     },
     {
       "symbol": "RGTI",
-      "market_value": 429.44,
-      "unrealized_pl": -19.96,
-      "unrealized_pl_pct": -4.44,
+      "market_value": 449.4,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 18.38,
-      "distance_to_stop_pct": 5.84,
-      "alert_status": "YELLOW",
+      "distance_to_stop_pct": 10.02,
+      "alert_status": "GREEN",
       "sector_tag": "Space / Deep Tech",
-      "weight_pct": 0.38
+      "weight_pct": 0.41
     },
     {
       "symbol": "RKLB",
-      "market_value": 5538.75,
-      "unrealized_pl": -0.55,
-      "unrealized_pl_pct": -0.01,
+      "market_value": 5539.3,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 66.47,
-      "distance_to_stop_pct": 9.99,
+      "distance_to_stop_pct": 10.0,
       "alert_status": "YELLOW",
       "sector_tag": "Space / Deep Tech",
-      "weight_pct": 4.85
+      "weight_pct": 5.09
     },
     {
       "symbol": "TSLA",
-      "market_value": 787.08,
-      "unrealized_pl": -67.04,
-      "unrealized_pl_pct": -7.85,
+      "market_value": 854.12,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 384.35,
-      "distance_to_stop_pct": 2.34,
-      "alert_status": "RED",
+      "distance_to_stop_pct": 10.0,
+      "alert_status": "YELLOW",
       "sector_tag": "EV",
-      "weight_pct": 0.69
+      "weight_pct": 0.79
     },
     {
       "symbol": "UBER",
-      "market_value": 6225.6,
-      "unrealized_pl": 472.3,
-      "unrealized_pl_pct": 8.21,
+      "market_value": 5753.3,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
       "stop_loss_level": 64.72,
-      "distance_to_stop_pct": 16.83,
+      "distance_to_stop_pct": 10.01,
       "alert_status": "GREEN",
       "sector_tag": "Transportation",
-      "weight_pct": 5.46
+      "weight_pct": 5.29
     }
   ],
   "sector_concentration": [
     {
       "sector": "US Large Cap Tech",
-      "ibkr_pct": 81.41,
+      "ibkr_pct": 80.61,
       "passive_pct": 60.0
     },
     {
-      "sector": "Transportation",
-      "ibkr_pct": 5.46,
-      "passive_pct": 5.0
-    },
-    {
       "sector": "Space / Deep Tech",
-      "ibkr_pct": 5.23,
+      "ibkr_pct": 5.51,
       "passive_pct": 4.0
     },
     {
+      "sector": "Transportation",
+      "ibkr_pct": 5.29,
+      "passive_pct": 5.0
+    },
+    {
       "sector": "Financials",
-      "ibkr_pct": 4.03,
+      "ibkr_pct": 4.26,
       "passive_pct": 4.0
     },
     {
       "sector": "Software",
-      "ibkr_pct": 3.19,
+      "ibkr_pct": 3.54,
       "passive_pct": 2.0
     },
     {
       "sector": "EV",
-      "ibkr_pct": 0.69,
+      "ibkr_pct": 0.79,
       "passive_pct": 1.0
     },
     {
@@ -184,11 +184,11 @@
     }
   ],
   "spy_comparison": {
-    "portfolio_cost_basis": 106752.48,
-    "portfolio_market_value": 114101.3,
-    "portfolio_return_pct": 6.88,
-    "spy_return_pct_same_window": 33.15,
-    "relative_alpha_pct": -26.27
+    "portfolio_cost_basis": 108753.66,
+    "portfolio_market_value": 108753.66,
+    "portfolio_return_pct": 0.0,
+    "spy_return_pct_same_window": 33.42,
+    "relative_alpha_pct": -33.42
   },
   "hishtalmut_status": {
     "annual_ceiling_ils": 21500,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchTextWithFallback } from '../lib/api'
+import { fetchTextWithFallback, describeError } from '../lib/api'
 
 function parseApprovalQueue(text) {
   const lines = text.split('\n')
@@ -76,7 +76,7 @@ export default function ApprovalQueuePanel({ refreshToken }) {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
       })
     return () => { cancelled = true }
   }, [refreshToken])

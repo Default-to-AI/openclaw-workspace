@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJsonWithFallback } from '../lib/api'
+import { fetchJsonWithFallback, describeError, fmtDate } from '../lib/api'
 
 const AGENT_LABELS = {
   fundamental: 'Fundamental',
@@ -79,7 +79,7 @@ export default function AnalystReportsPanel({ refreshToken }) {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
       })
     return () => { cancelled = true }
   }, [refreshToken])
@@ -119,7 +119,7 @@ export default function AnalystReportsPanel({ refreshToken }) {
           </p>
         </div>
         <div className="text-axe-dim text-xs">
-          {index ? `${symbols.length} symbol${symbols.length !== 1 ? 's' : ''} · ${index.generated_at || ''}` : 'loading…'}
+          {index ? `${symbols.length} symbol${symbols.length !== 1 ? 's' : ''} · ${fmtDate(index.generated_at) || ''}` : 'loading…'}
         </div>
       </div>
 

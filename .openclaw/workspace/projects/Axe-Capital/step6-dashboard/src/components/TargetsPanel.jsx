@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { fetchJsonWithFallback } from '../lib/api'
+import { fetchJsonWithFallback, describeError } from '../lib/api'
 
 const fmt = (n, digits = 2) =>
   n == null ? '—' : n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits })
@@ -71,7 +71,7 @@ export default function TargetsPanel() {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
         setLoading(false)
       })
 
@@ -175,7 +175,7 @@ export default function TargetsPanel() {
     <section className="panel-card">
       <div className="panel-header">
         <div>
-          <div className="panel-title">Panel 2 — Watchlist & Targets</div>
+          <div className="panel-title">Watchlist & Targets</div>
           <p className="text-axe-dim text-xs mt-1">
             Profit target + stop rules from targets.json. Percent bases: avg cost (fallback to last).
           </p>

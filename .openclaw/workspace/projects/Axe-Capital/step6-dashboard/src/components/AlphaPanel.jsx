@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJsonWithFallback } from '../lib/api'
+import { fetchJsonWithFallback, describeError } from '../lib/api'
 
 function convictionTone(score) {
   if (score >= 8) return 'text-emerald-300 border-emerald-700/60 bg-emerald-900/10'
@@ -79,7 +79,7 @@ export default function AlphaPanel() {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
       })
     return () => {
       cancelled = true
@@ -90,7 +90,7 @@ export default function AlphaPanel() {
     <section className="panel-card h-full">
       <div className="panel-header">
         <div>
-          <div className="panel-title">Panel 3 — Alpha Opportunities</div>
+          <div className="panel-title">Alpha Opportunities</div>
           <p className="text-axe-dim text-xs mt-1">
             Ranked opportunities surfaced by Alpha Hunter.
           </p>

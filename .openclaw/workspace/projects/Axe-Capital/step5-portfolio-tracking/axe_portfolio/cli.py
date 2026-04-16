@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 
 from dotenv import load_dotenv
 from axe_core import Tracer
@@ -17,9 +18,12 @@ def main() -> None:
     try:
         artifacts = run_portfolio_review()
     except Exception as exc:
-        tracer.event(step="error", thought=f"review failed: {exc}")
-        tracer.finalize(status="failed", summary=f"review failed: {exc}", artifact_written=None)
-        raise
+        exc_desc = f"{type(exc).__name__}: {exc}" if str(exc) else type(exc).__name__
+        tracer.event(step="error", thought=f"review failed: {exc_desc}")
+        tracer.finalize(status="failed", summary=f"review failed: {exc_desc}", artifact_written=None)
+        # Force-exit: ib_async leaves non-daemon threads alive after a failed
+        # connection that prevent normal Python exit.
+        os._exit(1)
 
     n_positions = len(artifacts.position_table)
     tracer.event(

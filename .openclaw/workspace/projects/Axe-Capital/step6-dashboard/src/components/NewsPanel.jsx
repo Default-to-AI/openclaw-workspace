@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJsonWithFallback } from '../lib/api'
+import { fetchJsonWithFallback, describeError, fmtDate } from '../lib/api'
 
 function impactTone(score) {
   if (score >= 9) return 'text-red-200 border-red-700/60 bg-red-900/20'
@@ -26,7 +26,7 @@ function NewsCard({ item }) {
         {(item.tickers_mentioned || []).map((ticker) => (
           <span key={ticker} className="ui-badge text-axe-text border-axe-border bg-axe-muted/20">{ticker}</span>
         ))}
-        <span className="ml-auto text-xs text-axe-dim">{item.source} · {item.published_at}</span>
+        <span className="ml-auto text-xs text-axe-dim">{item.source} · {fmtDate(item.published_at)}</span>
       </div>
 
       <a href={item.url} target="_blank" rel="noreferrer" className="text-axe-text font-semibold hover:underline">
@@ -57,7 +57,7 @@ export default function NewsPanel() {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
       })
     return () => {
       cancelled = true
@@ -68,13 +68,13 @@ export default function NewsPanel() {
     <section className="panel-card h-full">
       <div className="panel-header">
         <div>
-          <div className="panel-title">Panel 4 — Hot News</div>
+          <div className="panel-title">Hot News</div>
           <p className="text-axe-dim text-xs mt-1">
             High-impact news only. Noise stays out.
           </p>
         </div>
         <div className="text-axe-dim text-xs">
-          {data ? `${data.items_kept} kept of ${data.items_in} · ${data.generated_at || 'time unknown'}` : 'loading…'}
+          {data ? `${data.items_kept} kept of ${data.items_in} · ${fmtDate(data.generated_at) || 'time unknown'}` : 'loading…'}
         </div>
       </div>
 

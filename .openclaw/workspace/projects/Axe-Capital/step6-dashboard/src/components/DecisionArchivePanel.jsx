@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { fetchTextWithFallback } from '../lib/api'
+import { fetchTextWithFallback, describeError } from '../lib/api'
 
 function parseJsonl(text) {
   return text
@@ -51,7 +51,7 @@ export default function DecisionArchivePanel({ onOpenTrace = () => {} }) {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
       })
     return () => {
       cancelled = true

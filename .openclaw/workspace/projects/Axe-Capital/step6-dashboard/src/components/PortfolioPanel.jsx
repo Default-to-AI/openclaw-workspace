@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { fetchHealth, fetchJsonWithFallback } from '../lib/api'
+import { fetchHealth, fetchJsonWithFallback, describeError } from '../lib/api'
 
 const OPTIONAL_COLUMNS = [
   { id: 'sector',     label: 'Sector',      defaultOn: true  },
@@ -157,7 +157,7 @@ export default function PortfolioPanel() {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
         setLoading(false)
       })
 
@@ -186,7 +186,7 @@ export default function PortfolioPanel() {
       <div className="panel-header">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <div className="panel-title">Panel 1 — Portfolio State</div>
+            <div className="panel-title">Portfolio State</div>
             <FreshnessBadge health={health} />
           </div>
           <p className="text-axe-dim text-xs mt-1">
@@ -275,7 +275,7 @@ export default function PortfolioPanel() {
               <table className="data-table">
                 <thead>
                   <tr>
-                    <th className="pl-4">Symbol</th>
+                    <th>Symbol</th>
                     {col('sector') && <th>Sector</th>}
                     {col('shares') && <th>Shares</th>}
                     {col('last') && <th>Last</th>}
@@ -288,13 +288,13 @@ export default function PortfolioPanel() {
                     {col('stop') && <th>Stop</th>}
                     {col('dist') && <th>Dist%</th>}
                     {col('weight') && <th>Wt%</th>}
-                    <th className="pr-4">Status</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.positions.map((p) => (
                     <tr key={p.symbol}>
-                      <td className="pl-4 font-semibold text-axe-text">{p.symbol}</td>
+                      <td className="font-semibold text-axe-text">{p.symbol}</td>
                       {col('sector') && <td className="text-left text-axe-dim max-w-[120px] truncate">{p.sector_tag}</td>}
                       {col('shares') && <td>{fmt(p.shares, p.shares % 1 === 0 ? 0 : 4)}</td>}
                       {col('last') && <td className="text-axe-text">${fmt(p.last_price)}</td>}
@@ -323,7 +323,7 @@ export default function PortfolioPanel() {
                         </td>
                       )}
                       {col('weight') && <td className="text-axe-dim">{fmt(p.weight_pct, 1)}%</td>}
-                      <td className="pr-4">
+                      <td>
                         <AlertBadge status={p.alert_status} />
                       </td>
                     </tr>

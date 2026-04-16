@@ -1,0 +1,22 @@
+{
+  "run_id": "portfolio-16-04-2026T13-16-08Z",
+  "agent": "axe_portfolio",
+  "started_at": "2026-04-16T13:16:08Z",
+  "status": "failed",
+  "summary": "review failed: IBKR connection succeeded, but no portfolio positions were returned.",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T13:16:08.840Z",
+      "step": "load_inputs",
+      "thought": "reading IBKR CSV + portfolio snapshot"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T13:31:50.147Z",
+      "step": "error",
+      "thought": "review failed: IBKR connection succeeded, but no portfolio positions were returned."
+    }
+  ],
+  "ended_at": "2026-04-16T13:31:50Z"
+}

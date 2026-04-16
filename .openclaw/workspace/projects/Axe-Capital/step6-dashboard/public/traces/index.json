@@ -1,10 +1,219 @@
 {
-  "generated_at": "2026-04-16T02:09:12Z",
+  "generated_at": "2026-04-16T16:43:17Z",
   "retention": {
     "max_runs_per_agent": 50,
     "total_cap": 500
   },
   "runs": [
+    {
+      "run_id": "portfolio-16-04-2026T16-43-16Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T16:43:16Z",
+      "ended_at": "2026-04-16T16:43:17Z",
+      "duration_ms": 1825,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T16-24-02Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T16:24:02Z",
+      "ended_at": "2026-04-16T16:24:04Z",
+      "duration_ms": 2009,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T16-23-37Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T16:23:37Z",
+      "ended_at": "2026-04-16T16:23:38Z",
+      "duration_ms": 1868,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T16-23-26Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T16:23:26Z",
+      "ended_at": "2026-04-16T16:23:27Z",
+      "duration_ms": 1782,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T16-16-37Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T16:16:37Z",
+      "ended_at": "2026-04-16T16:16:39Z",
+      "duration_ms": 2010,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T15-36-02Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T15:36:02Z",
+      "ended_at": "2026-04-16T15:36:13Z",
+      "duration_ms": 11513,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: TimeoutError",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-16-04-2026T15-35-09Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T15:35:09Z",
+      "ended_at": "2026-04-16T15:35:19Z",
+      "duration_ms": 10460,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: ",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-16-04-2026T15-32-34Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T15:32:34Z",
+      "ended_at": "2026-04-16T15:32:45Z",
+      "duration_ms": 11433,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: ",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-16-04-2026T15-31-46Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T15:31:46Z",
+      "ended_at": "2026-04-16T15:31:56Z",
+      "duration_ms": 10478,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: ",
+      "artifact_written": null
+    },
+    {
+      "run_id": "news-16-04-2026T15-00-52Z",
+      "agent": "axe_news",
+      "started_at": "2026-04-16T15:00:52Z",
+      "ended_at": "2026-04-16T15:02:37Z",
+      "duration_ms": 105093,
+      "status": "success",
+      "event_count": 5,
+      "summary": "290 in, 17 kept (score>=6)",
+      "artifact_written": "news-latest.json"
+    },
+    {
+      "run_id": "alpha-16-04-2026T14-59-18Z",
+      "agent": "axe_alpha",
+      "started_at": "2026-04-16T14:59:18Z",
+      "ended_at": "2026-04-16T15:00:52Z",
+      "duration_ms": 94214,
+      "status": "success",
+      "event_count": 3,
+      "summary": "scanned and surfaced 5 opportunities",
+      "artifact_written": "alpha-latest.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T14-59-07Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T14:59:07Z",
+      "ended_at": "2026-04-16T14:59:18Z",
+      "duration_ms": 11050,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: ",
+      "artifact_written": null
+    },
+    {
+      "run_id": "news-16-04-2026T14-57-40Z",
+      "agent": "axe_news",
+      "started_at": "2026-04-16T14:57:40Z",
+      "ended_at": "2026-04-16T14:59:16Z",
+      "duration_ms": 96738,
+      "status": "success",
+      "event_count": 5,
+      "summary": "290 in, 17 kept (score>=6)",
+      "artifact_written": "news-latest.json"
+    },
+    {
+      "run_id": "alpha-16-04-2026T14-56-10Z",
+      "agent": "axe_alpha",
+      "started_at": "2026-04-16T14:56:10Z",
+      "ended_at": "2026-04-16T14:57:40Z",
+      "duration_ms": 90302,
+      "status": "success",
+      "event_count": 3,
+      "summary": "scanned and surfaced 0 opportunities",
+      "artifact_written": "alpha-latest.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T14-55-59Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T14:55:59Z",
+      "ended_at": "2026-04-16T14:56:09Z",
+      "duration_ms": 10209,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: ",
+      "artifact_written": null
+    },
+    {
+      "run_id": "news-16-04-2026T13-33-23Z",
+      "agent": "axe_news",
+      "started_at": "2026-04-16T13:33:23Z",
+      "ended_at": "2026-04-16T13:35:08Z",
+      "duration_ms": 105875,
+      "status": "success",
+      "event_count": 5,
+      "summary": "289 in, 18 kept (score>=6)",
+      "artifact_written": "news-latest.json"
+    },
+    {
+      "run_id": "alpha-16-04-2026T13-31-51Z",
+      "agent": "axe_alpha",
+      "started_at": "2026-04-16T13:31:51Z",
+      "ended_at": "2026-04-16T13:33:23Z",
+      "duration_ms": 92293,
+      "status": "success",
+      "event_count": 3,
+      "summary": "scanned and surfaced 0 opportunities",
+      "artifact_written": "alpha-latest.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T13-16-08Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T13:16:08Z",
+      "ended_at": "2026-04-16T13:31:50Z",
+      "duration_ms": 942149,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: IBKR connection succeeded, but no portfolio positions were returned.",
+      "artifact_written": null
+    },
+    {
+      "run_id": "news-16-04-2026T03-52-07Z",
+      "agent": "axe_news",
+      "started_at": "2026-04-16T03:52:07Z",
+      "ended_at": "2026-04-16T03:53:39Z",
+      "duration_ms": 92276,
+      "status": "success",
+      "event_count": 5,
+      "summary": "290 in, 19 kept (score>=6)",
+      "artifact_written": "news-latest.json"
+    },
     {
       "run_id": "decision-16-04-2026T02-08-16Z",
       "agent": "axe_decision",

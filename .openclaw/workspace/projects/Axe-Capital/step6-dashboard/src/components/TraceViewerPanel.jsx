@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { createTraceStream, fetchJsonWithFallback } from '../lib/api'
+import { createTraceStream, fetchJsonWithFallback, describeError } from '../lib/api'
 
 function mergeEventList(existing, nextEvent) {
   const list = existing || []
@@ -70,7 +70,7 @@ export default function TraceViewerPanel({ runId }) {
       .catch((err) => {
         if (cancelled) return
         if (!String(err.message).includes('404')) {
-          setError(err.message)
+          setError(describeError(err))
         }
       })
 
@@ -124,7 +124,7 @@ export default function TraceViewerPanel({ runId }) {
     <section className="panel-card h-full">
       <div className="panel-header">
         <div>
-          <div className="panel-title">Panel 6 — Internal Dialogue Viewer</div>
+          <div className="panel-title">Internal Dialogue Viewer</div>
           <p className="text-axe-dim text-xs mt-1">
             Agent trace playback, with live SSE when the API is up.
           </p>

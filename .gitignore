@@ -51,3 +51,4 @@
 
 # Virtual Environments
 python-venv/
+.gstack/

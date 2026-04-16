@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import threading
 from dataclasses import dataclass
 from typing import Any
 
@@ -171,10 +172,17 @@ def _cash_from_account_summary(ib: Any, account: str | None) -> float:
 
 
 def _ensure_account_updates(ib: Any, account: str | None) -> None:
-    try:
-        ib.reqAccountUpdates(account or "")
-    except Exception:
-        pass
+    # reqAccountUpdates can block indefinitely when TWS is slow to respond.
+    # Run it in a daemon thread with a timeout so it never stalls the main flow.
+    def _req():
+        try:
+            ib.reqAccountUpdates(account or "")
+        except Exception:
+            pass
+
+    t = threading.Thread(target=_req, daemon=True)
+    t.start()
+    t.join(timeout=8.0)
 
 
 def _aggregate_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -281,6 +289,8 @@ def fetch_ibkr_portfolio(config: IBKRConnectionConfig | None = None, ib_factory:
         return _aggregate_rows(rows), round(cash, 2)
     finally:
         try:
-            ib.disconnect()
+            t = threading.Thread(target=ib.disconnect, daemon=True)
+            t.start()
+            t.join(timeout=5.0)
         except Exception:
             pass

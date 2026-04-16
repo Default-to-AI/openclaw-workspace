@@ -106,11 +106,11 @@
   }
 
   .data-table th:first-child {
-    @apply text-left pl-0;
+    @apply text-left pl-4;
   }
 
   .data-table th:last-child {
-    @apply pr-0;
+    @apply pr-4;
   }
 
   .data-table td {
@@ -118,11 +118,11 @@
   }
 
   .data-table td:first-child {
-    @apply text-left pl-0;
+    @apply text-left pl-4;
   }
 
   .data-table td:last-child {
-    @apply pr-0;
+    @apply pr-4;
   }
 
   .data-table tbody tr:hover td {

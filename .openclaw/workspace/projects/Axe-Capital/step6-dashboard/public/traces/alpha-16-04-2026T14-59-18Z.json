@@ -1,0 +1,33 @@
+{
+  "run_id": "alpha-16-04-2026T14-59-18Z",
+  "agent": "axe_alpha",
+  "started_at": "2026-04-16T14:59:18Z",
+  "status": "success",
+  "summary": "scanned and surfaced 5 opportunities",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T14:59:18.514Z",
+      "step": "load_env",
+      "thought": "env loaded, key resolved"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T14:59:18.515Z",
+      "step": "scan",
+      "thought": "running alpha hunter scan"
+    },
+    {
+      "seq": 3,
+      "t": "2026-04-16T15:00:52.214Z",
+      "step": "write_artifacts",
+      "thought": "wrote archive 2026-04-16.json and alpha-latest.json",
+      "io": {
+        "out": {
+          "opportunities": 5
+        }
+      }
+    }
+  ],
+  "ended_at": "2026-04-16T15:00:52Z"
+}

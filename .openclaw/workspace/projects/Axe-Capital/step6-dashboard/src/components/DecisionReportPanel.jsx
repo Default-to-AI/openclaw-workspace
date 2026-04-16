@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJsonWithFallback } from '../lib/api'
+import { fetchJsonWithFallback, describeError, fmtDate } from '../lib/api'
 
 function actionTone(action) {
   if (action === 'BUY') return 'text-emerald-300 border-emerald-700/60 bg-emerald-900/10'
@@ -88,7 +88,7 @@ export default function DecisionReportPanel({ refreshToken }) {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message)
+        setError(describeError(err))
       })
     return () => { cancelled = true }
   }, [refreshToken])
@@ -111,12 +111,12 @@ export default function DecisionReportPanel({ refreshToken }) {
         <div className="flex flex-wrap items-center gap-2 text-xs">
           {data && (
             <>
-              <span className="text-axe-dim">{data.ticker}</span>
+              <span className="ui-badge text-axe-accent border-axe-accent/40 bg-axe-accent/10 font-bold text-sm px-2.5">{data.ticker}</span>
               <span className={`ui-badge ${actionTone(ceo.action)}`}>{ceo.action || '—'}</span>
               <span className={`ui-badge ${convictionTone(ceo.conviction_1_to_10)} border-axe-border`}>
                 conviction {ceo.conviction_1_to_10 ?? '—'}/10
               </span>
-              <span className="text-axe-dim">{data.generated_at}</span>
+              <span className="text-axe-dim">{fmtDate(data.generated_at)}</span>
             </>
           )}
         </div>

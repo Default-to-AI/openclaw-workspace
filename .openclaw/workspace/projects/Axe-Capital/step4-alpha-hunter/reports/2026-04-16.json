@@ -1,6 +1,6 @@
 {
   "report_date": "2026-04-16",
-  "generated_at": "2026-04-16T04:20:50.264435+03:00",
+  "generated_at": "2026-04-16T18:00:52.211544+03:00",
   "model_for_summaries": "gpt-4o-mini",
   "scan_logic": "pure_python",
   "investor_profile_guardrail": "Filter out opportunities that add to Robert's existing US large cap tech concentration unless conviction is 9+. Currently held symbols include: ['AMZN', 'ASML', 'FICO', 'GOOG', 'IGV', 'JPM', 'META', 'MSFT', 'QQQ', 'RGTI', 'RKLB', 'TSLA', 'UBER']",
@@ -20,22 +20,58 @@
     "TSLA",
     "UBER"
   ],
-  "opportunity_count_before_filter": 14,
-  "opportunity_count_after_portfolio_exclusion": 13,
+  "opportunity_count_before_filter": 19,
+  "opportunity_count_after_portfolio_exclusion": 18,
   "opportunity_count_after_filter": 12,
   "top_opportunities": [
     {
-      "ticker": "PFE",
+      "ticker": "CVX",
       "opportunity_type": "earnings_drift",
-      "thesis": "PFE's forward EPS significantly outpaces its trailing EPS, yet the market reacted negatively.",
+      "thesis": "Chevron's forward EPS significantly exceeds trailing EPS, indicating potential undervaluation post-earnings.",
       "conviction_score": 7,
       "trigger_source": "yfinance_earnings",
-      "trigger_data_point": "Forward EPS 2.81 vs trailing 1.36, price reaction only -1.02%",
-      "why_retail_is_missing_this": "Retail investors may be focused on the negative price reaction rather than the strong forward EPS projection.",
-      "risk_flags": "Market sentiment may remain bearish despite positive earnings outlook.",
-      "detected_at": "2026-04-16T01:19:59.135004+00:00",
+      "trigger_data_point": "Forward EPS 11.03 vs trailing 6.64, price reaction only -1.48%",
+      "why_retail_is_missing_this": "Retail investors may overlook the substantial forward EPS growth due to the recent negative price reaction.",
+      "risk_flags": "Market volatility and potential fluctuations in oil prices could impact earnings.",
+      "detected_at": "2026-04-16T14:59:51.620915+00:00",
       "raw_facts": {
-        "reaction_pct": -1.02,
+        "reaction_pct": -1.48,
+        "trailing_eps": 6.64,
+        "forward_eps": 11.03145,
+        "last_earnings_date": "2026-05-01"
+      },
+      "base_score": 6.9
+    },
+    {
+      "ticker": "XOM",
+      "opportunity_type": "earnings_drift",
+      "thesis": "XOM's forward EPS significantly outpaces trailing EPS, indicating potential undervaluation despite recent price reaction.",
+      "conviction_score": 7,
+      "trigger_source": "yfinance_earnings",
+      "trigger_data_point": "Forward EPS 9.95 vs trailing 6.71, price reaction only -2.36%",
+      "why_retail_is_missing_this": "Retail investors may overlook the strong forward EPS growth due to the recent negative price reaction.",
+      "risk_flags": "Market volatility, potential for further price decline before recovery.",
+      "detected_at": "2026-04-16T14:59:52.977378+00:00",
+      "raw_facts": {
+        "reaction_pct": -2.36,
+        "trailing_eps": 6.71,
+        "forward_eps": 9.95255,
+        "last_earnings_date": "2026-05-01"
+      },
+      "base_score": 6.9
+    },
+    {
+      "ticker": "PFE",
+      "opportunity_type": "earnings_drift",
+      "thesis": "PFE's forward EPS significantly outpaces trailing EPS, indicating potential undervaluation.",
+      "conviction_score": 7,
+      "trigger_source": "yfinance_earnings",
+      "trigger_data_point": "Forward EPS 2.81 vs trailing 1.36, price reaction only -0.02%",
+      "why_retail_is_missing_this": "Retail investors may overlook the substantial forward EPS growth due to the minimal price reaction.",
+      "risk_flags": "Potential market volatility and competition in the pharmaceutical sector.",
+      "detected_at": "2026-04-16T14:59:54.678583+00:00",
+      "raw_facts": {
+        "reaction_pct": -0.02,
         "trailing_eps": 1.36,
         "forward_eps": 2.8067,
         "last_earnings_date": "2026-05-05"
@@ -45,16 +81,16 @@
     {
       "ticker": "JNJ",
       "opportunity_type": "earnings_drift",
-      "thesis": "Johnson & Johnson's forward EPS indicates strong growth potential, yet the market has reacted negatively.",
+      "thesis": "Johnson & Johnson is undervalued based on forward EPS growth potential despite a recent negative price reaction.",
       "conviction_score": 7,
       "trigger_source": "yfinance_earnings",
-      "trigger_data_point": "Forward EPS 12.68 vs trailing 10.95, price reaction only -1.09%",
-      "why_retail_is_missing_this": "Retail investors may overlook the significant forward EPS growth due to the recent negative price reaction.",
-      "risk_flags": "Market sentiment may remain bearish despite strong fundamentals.",
-      "detected_at": "2026-04-16T01:20:00.507327+00:00",
+      "trigger_data_point": "Forward EPS 12.68 vs trailing 11.03, price reaction only -2.74%",
+      "why_retail_is_missing_this": "Retail investors may overlook JNJ due to the recent price drop, failing to recognize the strong forward EPS growth.",
+      "risk_flags": "Market sentiment may remain negative in the short term, impacting stock performance.",
+      "detected_at": "2026-04-16T14:59:56.126792+00:00",
       "raw_facts": {
-        "reaction_pct": -1.09,
-        "trailing_eps": 10.95,
+        "reaction_pct": -2.74,
+        "trailing_eps": 11.03,
         "forward_eps": 12.67688,
         "last_earnings_date": "2026-07-15"
       },
@@ -63,53 +99,17 @@
     {
       "ticker": "RTX",
       "opportunity_type": "earnings_drift",
-      "thesis": "RTX shows a significant forward EPS increase, yet the stock price reacted negatively, presenting a buying opportunity.",
+      "thesis": "RTX shows a significant forward EPS increase with a minimal price reaction, indicating a potential undervaluation.",
       "conviction_score": 7,
       "trigger_source": "yfinance_earnings",
-      "trigger_data_point": "Forward EPS 7.53 vs trailing 4.86, price reaction only -2.50%",
-      "why_retail_is_missing_this": "Retail investors may overlook the potential for recovery due to the recent negative price reaction despite strong earnings forecasts.",
-      "risk_flags": "Potential market volatility and overall economic conditions affecting defense sector stocks.",
-      "detected_at": "2026-04-16T01:20:01.758708+00:00",
+      "trigger_data_point": "Forward EPS 7.53 vs trailing 4.96, price reaction only -3.59%",
+      "why_retail_is_missing_this": "Retail investors may overlook the strong forward EPS growth due to the recent negative price reaction.",
+      "risk_flags": "Potential market volatility and macroeconomic factors affecting defense spending.",
+      "detected_at": "2026-04-16T14:59:57.558831+00:00",
       "raw_facts": {
-        "reaction_pct": -2.5,
-        "trailing_eps": 4.86,
+        "reaction_pct": -3.59,
+        "trailing_eps": 4.96,
         "forward_eps": 7.53106,
-        "last_earnings_date": "2026-04-21"
-      },
-      "base_score": 6.9
-    },
-    {
-      "ticker": "BA",
-      "opportunity_type": "earnings_drift",
-      "thesis": "BA's forward EPS of 4.59 suggests significant earnings growth potential that the market has not fully priced in.",
-      "conviction_score": 7,
-      "trigger_source": "yfinance_earnings",
-      "trigger_data_point": "Forward EPS 4.59 vs trailing 2.49, price reaction only 2.81%",
-      "why_retail_is_missing_this": "Retail investors may overlook the substantial forward EPS increase compared to trailing EPS, leading to a muted price reaction.",
-      "risk_flags": "Market sentiment may remain cautious due to broader economic conditions affecting aerospace and defense sectors.",
-      "detected_at": "2026-04-16T01:20:03.168258+00:00",
-      "raw_facts": {
-        "reaction_pct": 2.81,
-        "trailing_eps": 2.49,
-        "forward_eps": 4.59024,
-        "last_earnings_date": "2026-04-22"
-      },
-      "base_score": 6.9
-    },
-    {
-      "ticker": "UNH",
-      "opportunity_type": "earnings_drift",
-      "thesis": "UNH's forward EPS growth significantly outpaces trailing EPS, yet the market reaction has been muted.",
-      "conviction_score": 7,
-      "trigger_source": "yfinance_earnings",
-      "trigger_data_point": "Forward EPS 20.14 vs trailing 13.22, price reaction only 2.64%",
-      "why_retail_is_missing_this": "Retail investors may overlook the substantial forward EPS growth due to the small immediate price reaction.",
-      "risk_flags": "Market sentiment may shift unexpectedly, and earnings expectations could be overly optimistic.",
-      "detected_at": "2026-04-16T01:20:04.568000+00:00",
-      "raw_facts": {
-        "reaction_pct": 2.64,
-        "trailing_eps": 13.22,
-        "forward_eps": 20.1366,
         "last_earnings_date": "2026-04-21"
       },
       "base_score": 6.9

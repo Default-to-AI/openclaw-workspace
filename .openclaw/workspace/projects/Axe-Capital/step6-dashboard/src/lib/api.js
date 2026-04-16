@@ -140,3 +140,34 @@ export function createTraceStream(runId, handlers = {}) {
 
   return source
 }
+
+/**
+ * Translates a fetch error into a human-readable message with a fix hint.
+ *   "Failed to fetch"  → dev server not running
+ *   "HTTP 404"         → artifact file not generated yet
+ *   "HTTP 5xx"         → API server error
+ */
+/**
+ * Formats an ISO date/datetime string as DD-MM-YYYY.
+ * "2026-04-16T03:52:07Z" → "16-04-2026"
+ */
+export function fmtDate(str) {
+  if (!str) return ''
+  const m = String(str).match(/^(\d{4})-(\d{2})-(\d{2})/)
+  if (!m) return str
+  return `${m[3]}-${m[2]}-${m[1]}`
+}
+
+export function describeError(err) {
+  const msg = err?.message || String(err)
+  if (msg.toLowerCase().includes('failed to fetch')) {
+    return 'Cannot reach the dashboard server. Run: npm run dev (in step6-dashboard/)'
+  }
+  if (msg.includes('HTTP 404')) {
+    return 'Artifact not found. Run the agent to generate it: ./scripts/refresh.sh <target>'
+  }
+  if (msg.match(/HTTP 5\d\d/)) {
+    return `API server error (${msg}). Check uvicorn logs.`
+  }
+  return msg
+}

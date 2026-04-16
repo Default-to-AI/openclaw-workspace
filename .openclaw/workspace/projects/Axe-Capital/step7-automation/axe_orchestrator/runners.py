@@ -24,17 +24,29 @@ AGENT_ORDER = (
 )
 
 
+_MODULE_TIMEOUTS: dict[str, int] = {
+    "axe_portfolio.cli": 180,  # connect(10s) + reqAccountUpdates(8s×2) + yfinance + margin
+}
+_DEFAULT_TIMEOUT = 300
+
+
 def _run_module(module: str, cwd_subdir: str, *args: str) -> int:
     cwd = project_root() / cwd_subdir
     env = os.environ.copy()
     env["PYTHONUNBUFFERED"] = "1"
-    result = subprocess.run(
-        [sys.executable, "-m", module, *args],
-        check=False,
-        cwd=cwd,
-        env=env,
-    )
-    return 0 if result.returncode == 0 else 1
+    timeout = _MODULE_TIMEOUTS.get(module, _DEFAULT_TIMEOUT)
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", module, *args],
+            check=False,
+            cwd=cwd,
+            env=env,
+            timeout=timeout,
+        )
+        return 0 if result.returncode == 0 else 1
+    except subprocess.TimeoutExpired:
+        print(f"[axe] {module} exceeded timeout ({timeout}s); killed", file=sys.stderr)
+        return 1
 
 
 def run_alpha() -> int:

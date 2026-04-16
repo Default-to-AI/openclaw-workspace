@@ -1,0 +1,22 @@
+{
+  "run_id": "portfolio-16-04-2026T14-59-07Z",
+  "agent": "axe_portfolio",
+  "started_at": "2026-04-16T14:59:07Z",
+  "status": "failed",
+  "summary": "review failed: ",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T14:59:07.999Z",
+      "step": "load_inputs",
+      "thought": "reading IBKR CSV + portfolio snapshot"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T14:59:18.050Z",
+      "step": "error",
+      "thought": "review failed: "
+    }
+  ],
+  "ended_at": "2026-04-16T14:59:18Z"
+}
