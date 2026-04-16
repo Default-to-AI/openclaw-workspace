@@ -71,6 +71,15 @@ def _update_approval_queue(pub: Path, ticker: str, ceo: dict, generated_at: str)
         queue_path.write_text(content, encoding="utf-8")
 
 
+def _prune_decision_archive(archive_dir: Path, keep_days: int = 90) -> None:
+    """Remove decision JSON files older than keep_days. Keeps decision-latest.json untouched."""
+    import time
+    cutoff = time.time() - (keep_days * 86400)
+    for f in archive_dir.glob("*.json"):
+        if f.stat().st_mtime < cutoff:
+            f.unlink()
+
+
 def _load_analyst_reports(ticker: str) -> dict:
     reports_dir = public_dir() / "analyst-reports"
     index_path = reports_dir / "index.json"
@@ -218,6 +227,7 @@ def main(argv: list[str] | None = None) -> int:
     archive_dir.mkdir(parents=True, exist_ok=True)
     archive_path = archive_dir / f"{ticker}-{ctx['generated_at'].replace(':','-')}.json"
     _atomic_write_json(archive_path, artifact)
+    _prune_decision_archive(archive_dir)
 
     log_path = pub / "decision-log.jsonl"
     _append_jsonl(
