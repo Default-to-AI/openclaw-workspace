@@ -7,7 +7,8 @@
 @layer base {
   html, body, #root {
     @apply bg-axe-bg text-axe-text font-mono;
-    min-height: 100vh;
+    height: 100%;
+    overflow: hidden;
     margin: 0;
     padding: 0;
     text-align: left;

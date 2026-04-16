@@ -1,5 +1,57 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { fetchHealth, fetchJsonWithFallback } from '../lib/api'
+
+const OPTIONAL_COLUMNS = [
+  { id: 'sector',     label: 'Sector',      defaultOn: true  },
+  { id: 'shares',     label: 'Shares',      defaultOn: false },
+  { id: 'last',       label: 'Last',        defaultOn: true  },
+  { id: 'chg',        label: 'Chg%',        defaultOn: true  },
+  { id: 'avg_cost',   label: 'Avg Cost',    defaultOn: false },
+  { id: 'cost_basis', label: 'Cost Basis',  defaultOn: false },
+  { id: 'mkt_value',  label: 'Mkt Value',   defaultOn: true  },
+  { id: 'upl_usd',    label: 'UPL $',       defaultOn: true  },
+  { id: 'upl_pct',    label: 'UPL %',       defaultOn: true  },
+  { id: 'stop',       label: 'Stop',        defaultOn: true  },
+  { id: 'dist',       label: 'Dist%',       defaultOn: true  },
+  { id: 'weight',     label: 'Wt%',         defaultOn: true  },
+]
+
+const STORAGE_KEY = 'axe-portfolio-columns'
+
+function loadColumnVisibility() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    if (stored) return JSON.parse(stored)
+  } catch {}
+  return Object.fromEntries(OPTIONAL_COLUMNS.map((c) => [c.id, c.defaultOn]))
+}
+
+function ColumnPicker({ visible, onChange }) {
+  return (
+    <div className="absolute right-0 top-full mt-1 z-30 bg-axe-surface border border-axe-border rounded-lg shadow-xl p-3 min-w-[160px]">
+      <div className="text-axe-dim text-[10px] uppercase tracking-wider mb-2">Show columns</div>
+      <div className="space-y-1">
+        {OPTIONAL_COLUMNS.map((col) => (
+          <label key={col.id} className="flex items-center gap-2 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={!!visible[col.id]}
+              onChange={(e) => onChange(col.id, e.target.checked)}
+              className="accent-axe-accent"
+            />
+            <span className="text-axe-text text-xs group-hover:text-white transition-colors">{col.label}</span>
+          </label>
+        ))}
+      </div>
+      <button
+        className="mt-2 text-[10px] text-axe-dim hover:text-axe-text transition-colors"
+        onClick={() => onChange('__reset__', true)}
+      >
+        Reset to defaults
+      </button>
+    </div>
+  )
+}
 
 const fmt = (n, digits = 2) =>
   n == null ? '—' : n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits })
@@ -66,6 +118,33 @@ export default function PortfolioPanel() {
   const [health, setHealth] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [colVis, setColVis] = useState(loadColumnVisibility)
+  const [showPicker, setShowPicker] = useState(false)
+  const pickerRef = useRef(null)
+
+  useEffect(() => {
+    function handleClick(e) {
+      if (pickerRef.current && !pickerRef.current.contains(e.target)) {
+        setShowPicker(false)
+      }
+    }
+    if (showPicker) document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [showPicker])
+
+  function handleColChange(id, value) {
+    if (id === '__reset__') {
+      const defaults = Object.fromEntries(OPTIONAL_COLUMNS.map((c) => [c.id, c.defaultOn]))
+      setColVis(defaults)
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(defaults))
+      return
+    }
+    const next = { ...colVis, [id]: value }
+    setColVis(next)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+  }
+
+  const col = (id) => colVis[id] !== false
 
   useEffect(() => {
     let cancelled = false
@@ -175,27 +254,40 @@ export default function PortfolioPanel() {
           </div>
 
           <div className="bg-axe-bg/30 border border-axe-border rounded-lg overflow-hidden">
-            <div className="px-4 py-3 border-b border-axe-border flex items-center justify-between">
+            <div className="px-4 py-3 border-b border-axe-border flex items-center justify-between gap-3">
               <span className="text-axe-text text-sm font-medium">Positions</span>
-              <span className="text-axe-dim text-xs">{data.positions.length} holdings · sorted by alert severity</span>
+              <div className="flex items-center gap-3">
+                <span className="text-axe-dim text-xs">{data.positions.length} holdings · sorted by alert severity</span>
+                <div className="relative" ref={pickerRef}>
+                  <button
+                    className="ui-button-secondary text-[11px] px-2 py-1"
+                    onClick={() => setShowPicker((v) => !v)}
+                  >
+                    Columns
+                  </button>
+                  {showPicker && (
+                    <ColumnPicker visible={colVis} onChange={handleColChange} />
+                  )}
+                </div>
+              </div>
             </div>
             <div className="overflow-x-auto">
               <table className="data-table">
                 <thead>
                   <tr>
                     <th className="pl-4">Symbol</th>
-                    <th>Sector</th>
-                    <th>Shares</th>
-                    <th>Last</th>
-                    <th>Chg%</th>
-                    <th>Avg Cost</th>
-                    <th>Cost Basis</th>
-                    <th>Mkt Value</th>
-                    <th>UPL $</th>
-                    <th>UPL %</th>
-                    <th>Stop</th>
-                    <th>Dist%</th>
-                    <th>Wt%</th>
+                    {col('sector') && <th>Sector</th>}
+                    {col('shares') && <th>Shares</th>}
+                    {col('last') && <th>Last</th>}
+                    {col('chg') && <th>Chg%</th>}
+                    {col('avg_cost') && <th>Avg Cost</th>}
+                    {col('cost_basis') && <th>Cost Basis</th>}
+                    {col('mkt_value') && <th>Mkt Value</th>}
+                    {col('upl_usd') && <th>UPL $</th>}
+                    {col('upl_pct') && <th>UPL %</th>}
+                    {col('stop') && <th>Stop</th>}
+                    {col('dist') && <th>Dist%</th>}
+                    {col('weight') && <th>Wt%</th>}
                     <th className="pr-4">Status</th>
                   </tr>
                 </thead>
@@ -203,26 +295,34 @@ export default function PortfolioPanel() {
                   {data.positions.map((p) => (
                     <tr key={p.symbol}>
                       <td className="pl-4 font-semibold text-axe-text">{p.symbol}</td>
-                      <td className="text-left text-axe-dim max-w-[120px] truncate">{p.sector_tag}</td>
-                      <td>{fmt(p.shares, p.shares % 1 === 0 ? 0 : 4)}</td>
-                      <td className="text-axe-text">${fmt(p.last_price)}</td>
-                      <td className={pnlClass(p.change_pct)}>
-                        {p.change_pct != null ? `${sign(p.change_pct)}${fmt(p.change_pct)}%` : '—'}
-                      </td>
-                      <td>${fmt(p.avg_price)}</td>
-                      <td>${fmt(p.cost_basis, 0)}</td>
-                      <td className="text-axe-text font-medium">${fmt(p.market_value, 0)}</td>
-                      <td className={pnlClass(p.unrealized_pl)}>
-                        {p.unrealized_pl != null ? `${sign(p.unrealized_pl)}${fmtUSD(p.unrealized_pl).replace('-', '')}` : '—'}
-                      </td>
-                      <td className={`font-medium ${pnlClass(p.unrealized_pl_pct)}`}>
-                        {p.unrealized_pl_pct != null ? `${sign(p.unrealized_pl_pct)}${fmt(p.unrealized_pl_pct)}%` : '—'}
-                      </td>
-                      <td className="text-axe-dim">${fmt(p.stop_loss_level)}</td>
-                      <td className={p.distance_to_stop_pct != null && p.distance_to_stop_pct < 0 ? 'pnl-neg font-medium' : 'text-axe-dim'}>
-                        {p.distance_to_stop_pct != null ? `${sign(p.distance_to_stop_pct)}${fmt(p.distance_to_stop_pct)}%` : '—'}
-                      </td>
-                      <td className="text-axe-dim">{fmt(p.weight_pct, 1)}%</td>
+                      {col('sector') && <td className="text-left text-axe-dim max-w-[120px] truncate">{p.sector_tag}</td>}
+                      {col('shares') && <td>{fmt(p.shares, p.shares % 1 === 0 ? 0 : 4)}</td>}
+                      {col('last') && <td className="text-axe-text">${fmt(p.last_price)}</td>}
+                      {col('chg') && (
+                        <td className={pnlClass(p.change_pct)}>
+                          {p.change_pct != null ? `${sign(p.change_pct)}${fmt(p.change_pct)}%` : '—'}
+                        </td>
+                      )}
+                      {col('avg_cost') && <td>${fmt(p.avg_price)}</td>}
+                      {col('cost_basis') && <td>${fmt(p.cost_basis, 0)}</td>}
+                      {col('mkt_value') && <td className="text-axe-text font-medium">${fmt(p.market_value, 0)}</td>}
+                      {col('upl_usd') && (
+                        <td className={pnlClass(p.unrealized_pl)}>
+                          {p.unrealized_pl != null ? `${sign(p.unrealized_pl)}${fmtUSD(p.unrealized_pl).replace('-', '')}` : '—'}
+                        </td>
+                      )}
+                      {col('upl_pct') && (
+                        <td className={`font-medium ${pnlClass(p.unrealized_pl_pct)}`}>
+                          {p.unrealized_pl_pct != null ? `${sign(p.unrealized_pl_pct)}${fmt(p.unrealized_pl_pct)}%` : '—'}
+                        </td>
+                      )}
+                      {col('stop') && <td className="text-axe-dim">${fmt(p.stop_loss_level)}</td>}
+                      {col('dist') && (
+                        <td className={p.distance_to_stop_pct != null && p.distance_to_stop_pct < 0 ? 'pnl-neg font-medium' : 'text-axe-dim'}>
+                          {p.distance_to_stop_pct != null ? `${sign(p.distance_to_stop_pct)}${fmt(p.distance_to_stop_pct)}%` : '—'}
+                        </td>
+                      )}
+                      {col('weight') && <td className="text-axe-dim">{fmt(p.weight_pct, 1)}%</td>}
                       <td className="pr-4">
                         <AlertBadge status={p.alert_status} />
                       </td>
