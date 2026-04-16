@@ -1,0 +1,21 @@
+[project]
+name = "axe-technical"
+version = "0.1.0"
+description = "Technical Analyst agent for Axe Capital"
+requires-python = ">=3.11"
+dependencies = ["axe-core", "axe-fundamental", "yfinance", "openai", "python-dotenv>=1.0"]
+
+[project.scripts]
+axe-technical = "axe_technical.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["axe_technical*"]
+
+[tool.uv.sources]
+axe-core = { path = "../step0-shared", editable = true }
+axe-fundamental = { path = "../step8-fundamental", editable = true }

@@ -249,7 +249,7 @@ def _read_cash_from_existing_dashboard() -> float:
 
 
 def _resolve_portfolio_input() -> PortfolioInput:
-    source = os.getenv("AXE_PORTFOLIO_SOURCE", "csv").strip().lower()
+    source = os.getenv("AXE_PORTFOLIO_SOURCE", "ibkr").strip().lower()
     if source not in {"csv", "ibkr", "auto"}:
         raise ValueError("AXE_PORTFOLIO_SOURCE must be one of: csv, ibkr, auto")
 

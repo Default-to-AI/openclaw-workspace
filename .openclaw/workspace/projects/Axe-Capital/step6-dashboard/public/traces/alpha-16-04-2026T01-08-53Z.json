@@ -1,0 +1,28 @@
+{
+  "run_id": "alpha-16-04-2026T01-08-53Z",
+  "agent": "axe_alpha",
+  "started_at": "2026-04-16T01:08:53Z",
+  "status": "failed",
+  "summary": "scan failed: ",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T01:08:53.621Z",
+      "step": "load_env",
+      "thought": "env loaded, key resolved"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T01:08:53.621Z",
+      "step": "scan",
+      "thought": "running alpha hunter scan"
+    },
+    {
+      "seq": 3,
+      "t": "2026-04-16T01:10:45.378Z",
+      "step": "error",
+      "thought": "scan failed: "
+    }
+  ],
+  "ended_at": "2026-04-16T01:10:45Z"
+}

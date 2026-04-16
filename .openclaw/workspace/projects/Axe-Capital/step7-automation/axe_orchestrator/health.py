@@ -7,12 +7,19 @@ from pathlib import Path
 
 from axe_core.paths import public_dir
 
-THRESHOLDS_MIN = {"portfolio": 240, "alpha": 1440, "news": 60, "decision": 1440}
+THRESHOLDS_MIN = {
+    "portfolio": 240,
+    "alpha": 1440,
+    "news": 60,
+    "decision": 1440,
+    "analyst_reports": 43200,
+}
 ARTIFACT_FILES = {
     "portfolio": "portfolio.json",
     "alpha": "alpha-latest.json",
     "news": "news-latest.json",
     "decision": "decision-latest.json",
+    "analyst_reports": "analyst-reports/index.json",
     "traces": "traces/index.json",
 }
 

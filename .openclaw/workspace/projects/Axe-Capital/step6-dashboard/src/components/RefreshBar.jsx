@@ -6,6 +6,8 @@ const TARGETS = [
   { id: 'portfolio', label: 'Portfolio' },
   { id: 'alpha', label: 'Alpha' },
   { id: 'news', label: 'News' },
+  { id: 'specialists', label: 'Specialists' },
+  { id: 'opportunities', label: 'Opportunities' },
   { id: 'decision', label: 'Decision' },
 ]
 
@@ -84,6 +86,7 @@ export default function RefreshBar({ onRefreshComplete }) {
           <FreshnessChip label={`portfolio: ${artifacts.portfolio?.status || 'unknown'}`} status={artifacts.portfolio?.status} />
           <FreshnessChip label={`alpha: ${artifacts.alpha?.status || 'unknown'}`} status={artifacts.alpha?.status} />
           <FreshnessChip label={`news: ${artifacts.news?.status || 'unknown'}`} status={artifacts.news?.status} />
+          <FreshnessChip label={`analysts: ${artifacts.analyst_reports?.status || 'unknown'}`} status={artifacts.analyst_reports?.status} />
           <FreshnessChip label={`decision: ${artifacts.decision?.status || 'unknown'}`} status={artifacts.decision?.status} />
           <FreshnessChip label={`traces: ${artifacts.traces?.status || 'unknown'}`} status={artifacts.traces?.status} />
         </div>

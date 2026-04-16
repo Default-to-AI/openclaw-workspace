@@ -41,6 +41,36 @@
 - Default: skip validation, error handling, and polish until the happy path works end-to-end.
 - When in doubt about scope: do less, ship faster, ask if more is needed.
 
+## Coding Guardrails
+Use these guardrails to reduce common coding mistakes. Bias toward caution over speed for non-trivial work. For trivial tasks, use judgment.
+
+### 1. Think Before Coding
+- Do not assume silently. State important assumptions explicitly.
+- If multiple reasonable interpretations exist, surface them instead of picking one quietly.
+- If a simpler approach exists, say so. Push back on unnecessary complexity.
+- If the request is materially unclear, stop and ask.
+
+### 2. Simplicity First
+- Write the minimum code that solves the requested problem.
+- No speculative features, abstractions, flexibility, or configurability that were not requested.
+- No error handling for impossible scenarios.
+- If the implementation feels overcomplicated, simplify it.
+
+### 3. Surgical Changes
+- Touch only what is required for the request.
+- Do not refactor, reformat, or improve adjacent code unless the task requires it.
+- Match the existing local style, even if you would choose differently.
+- Remove imports, variables, and helpers made unused by your own change.
+- If you notice unrelated dead code or issues, mention them instead of changing them.
+- Every changed line should trace directly to the user's request.
+
+### 4. Goal-Driven Execution
+- Translate implementation work into verifiable success criteria before coding.
+- For bug fixes, prefer reproducing the issue first, then make the check pass.
+- For refactors, ensure behavior is verified before and after.
+- For multi-step work, keep a brief step -> verify plan.
+- Do not declare completion without verifying the result through the lightest practical check.
+
 ## Heartbeats
 
 - Follow `HEARTBEAT.md` strictly.

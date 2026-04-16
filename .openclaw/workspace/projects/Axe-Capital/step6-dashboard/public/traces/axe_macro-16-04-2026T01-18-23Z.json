@@ -1,0 +1,21 @@
+{
+  "run_id": "axe_macro-16-04-2026T01-18-23Z",
+  "agent": "axe_macro",
+  "started_at": "2026-04-16T01:18:23Z",
+  "status": "partial",
+  "summary": "axe_macro running",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T01:18:23.465Z",
+      "step": "fetch_data",
+      "thought": "fetching macro context for PFE"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T01:18:25.250Z",
+      "step": "llm_analysis",
+      "thought": "running macro strategy analysis"
+    }
+  ]
+}

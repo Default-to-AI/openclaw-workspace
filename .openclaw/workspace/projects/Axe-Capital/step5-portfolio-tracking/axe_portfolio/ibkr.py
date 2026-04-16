@@ -10,7 +10,7 @@ from axe_portfolio.util import safe_float as _safe_float
 @dataclass(frozen=True)
 class IBKRConnectionConfig:
     host: str = "127.0.0.1"
-    port: int = 7497
+    port: int = 7496
     client_id: int = 51
     account: str | None = None
     accounts: tuple[str, ...] | None = None
@@ -26,7 +26,7 @@ class IBKRConnectionConfig:
             accounts = tuple(parsed) if parsed else None
         return cls(
             host=os.getenv("AXE_IBKR_HOST", "127.0.0.1"),
-            port=int(os.getenv("AXE_IBKR_PORT", "7497")),
+            port=int(os.getenv("AXE_IBKR_PORT", "7496")),
             client_id=int(os.getenv("AXE_IBKR_CLIENT_ID", "51")),
             account=os.getenv("AXE_IBKR_ACCOUNT") or None,
             accounts=accounts,

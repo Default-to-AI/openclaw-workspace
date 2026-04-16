@@ -7,6 +7,7 @@ import io
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 from dataclasses import dataclass
@@ -19,6 +20,7 @@ import httpx
 import yfinance as yf
 
 from axe_alpha.util import project_root, workspace_root
+from axe_core.paths import public_dir
 
 
 def _safe_float(value: Any) -> float | None:
@@ -83,6 +85,33 @@ def _held_symbols(profile_text: str) -> set[str]:
             if parts and parts[0] not in {"Symbol", "---", "Cash", ""}:
                 symbols.add(parts[0])
     return symbols
+
+
+def load_live_held_symbols() -> set[str]:
+    path = public_dir() / "portfolio.json"
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return set()
+
+    held: set[str] = set()
+    for position in data.get("positions", []):
+        symbol = str(position.get("symbol") or "").strip().upper()
+        if not symbol or symbol == "CASH":
+            continue
+        quantity = position.get("position", position.get("shares", 0))
+        try:
+            quantity_float = float(quantity or 0)
+        except (TypeError, ValueError):
+            quantity_float = 0.0
+        if quantity_float > 0:
+            held.add(symbol)
+    return held
+
+
+def filter_out_held_candidates(candidates: list[Candidate], held_symbols: set[str]) -> list[Candidate]:
+    held = {symbol.upper() for symbol in held_symbols}
+    return [candidate for candidate in candidates if candidate.ticker.upper() not in held]
 
 
 def _profile_filter_blocked(ticker: str) -> bool:
@@ -311,23 +340,15 @@ def fetch_spinoff_restructuring_candidates() -> list[Candidate]:
 
 async def fetch_options_flow_candidates(tickers: list[str]) -> list[Candidate]:
     candidates: list[Candidate] = []
-    vendor_dir = project_root().parent / "step1-data-foundation"
-    if str(vendor_dir) not in sys.path:
-        sys.path.append(str(vendor_dir))
-    try:
-        from axe_coo.vendors import uw as uw_vendor  # type: ignore
-    except Exception:
-        return candidates
     free_flow_tickers = [t for t in tickers if t in {"JPM", "INTC", "IWM", "XSP"}]
-    for ticker in free_flow_tickers:
-        try:
-            coro = uw_vendor._run_with_timeout(ticker, total_timeout_s=20)
-            if not inspect.isawaitable(coro):
-                continue
-            data = await coro
-        except Exception:
-            continue
-        if not isinstance(data, dict):
+    fetches = [
+        asyncio.to_thread(_fetch_options_flow_data_subprocess, ticker, 12)
+        for ticker in free_flow_tickers
+    ]
+    results = await asyncio.gather(*fetches, return_exceptions=True)
+
+    for ticker, data in zip(free_flow_tickers, results):
+        if isinstance(data, Exception) or not isinstance(data, dict):
             continue
         flow = data.get("flow") or []
         overview = data.get("overview") or {}
@@ -346,6 +367,48 @@ async def fetch_options_flow_candidates(tickers: list[str]) -> list[Candidate]:
             base_score=7.2 if whales else 6.5,
         ))
     return candidates
+
+
+def _fetch_options_flow_data_subprocess(ticker: str, timeout_s: int = 12) -> dict[str, Any] | None:
+    vendor_dir = project_root().parent / "step1-data-foundation"
+    if not vendor_dir.exists():
+        return None
+
+    code = (
+        "import asyncio,json,sys;"
+        "from axe_coo.vendors import uw;"
+        "ticker=sys.argv[1]; timeout=int(sys.argv[2]);"
+        "data=asyncio.run(uw._run_with_timeout(ticker,total_timeout_s=timeout));"
+        "print(json.dumps(data))"
+    )
+    env = os.environ.copy()
+    env["PYTHONUNBUFFERED"] = "1"
+    pythonpath = env.get("PYTHONPATH")
+    env["PYTHONPATH"] = str(vendor_dir) if not pythonpath else f"{vendor_dir}{os.pathsep}{pythonpath}"
+
+    try:
+        completed = subprocess.run(
+            [sys.executable, "-c", code, ticker.upper(), str(timeout_s)],
+            cwd=vendor_dir,
+            env=env,
+            capture_output=True,
+            text=True,
+            timeout=timeout_s + 5,
+            check=False,
+        )
+    except Exception:
+        return None
+
+    if completed.returncode != 0:
+        return None
+
+    for line in reversed(completed.stdout.splitlines()):
+        try:
+            parsed = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        return parsed if isinstance(parsed, dict) else None
+    return None
 
 
 async def _llm_summarize_candidate(client: httpx.AsyncClient, api_key: str, candidate: Candidate, profile_guardrail: str) -> dict[str, Any]:
@@ -401,9 +464,41 @@ def _rank_key(item: dict[str, Any]) -> tuple[float, float]:
     return (_safe_float(item.get("conviction_score")) or 0.0, _safe_float(item.get("base_score")) or 0.0)
 
 
+def _fallback_candidate_summary(candidate: Candidate) -> dict[str, Any]:
+    conviction = max(1, min(10, int(round(candidate.base_score))))
+    return {
+        "thesis_one_line": f"{candidate.trigger_data_point} ({candidate.trigger_source})",
+        "conviction_1_to_10": conviction,
+        "why_retail_is_missing_this": "LLM summary unavailable; using detected trigger facts.",
+        "risk_flags": ["Summary model unavailable; review raw trigger facts before acting."],
+    }
+
+
+async def _run_sync_stage(label: str, func, timeout_s: float, *args) -> list[Candidate]:
+    print(f"[axe_alpha] stage: {label}")
+    try:
+        return await asyncio.wait_for(asyncio.to_thread(func, *args), timeout=timeout_s)
+    except asyncio.TimeoutError:
+        print(f"[axe_alpha] warning: {label} timed out after {timeout_s:.0f}s; continuing")
+    except Exception as exc:
+        print(f"[axe_alpha] warning: {label} failed: {exc}; continuing")
+    return []
+
+
+async def _run_async_stage(label: str, awaitable, timeout_s: float) -> list[Candidate]:
+    print(f"[axe_alpha] stage: {label}")
+    try:
+        return await asyncio.wait_for(awaitable, timeout=timeout_s)
+    except asyncio.TimeoutError:
+        print(f"[axe_alpha] warning: {label} timed out after {timeout_s:.0f}s; continuing")
+    except Exception as exc:
+        print(f"[axe_alpha] warning: {label} failed: {exc}; continuing")
+    return []
+
+
 async def run_alpha_hunter_scan(api_key: str) -> dict[str, Any]:
     profile_text = _load_investor_profile()
-    held = _held_symbols(profile_text)
+    held = load_live_held_symbols() or _held_symbols(profile_text)
     profile_guardrail = (
         "Filter out opportunities that add to Robert's existing US large cap tech concentration unless conviction is 9+. "
         f"Currently held symbols include: {sorted(held)}"
@@ -416,29 +511,31 @@ async def run_alpha_hunter_scan(api_key: str) -> dict[str, Any]:
     ]
 
     candidates = []
-    print("[axe_alpha] stage: 8-K scan")
-    candidates.extend(fetch_recent_8k_events(limit=60))
-    print("[axe_alpha] stage: Form 4 scan")
-    candidates.extend(fetch_recent_form4_candidates(limit_companies=40))
-    print("[axe_alpha] stage: earnings drift scan")
-    candidates.extend(fetch_earnings_drift_candidates(scan_universe))
-    print("[axe_alpha] stage: restructuring scan")
-    candidates.extend(fetch_spinoff_restructuring_candidates())
-    print("[axe_alpha] stage: options flow scan")
-    candidates.extend(await fetch_options_flow_candidates(scan_universe))
+    candidates.extend(await _run_sync_stage("8-K scan", fetch_recent_8k_events, 30, 60))
+    candidates.extend(await _run_sync_stage("Form 4 scan", fetch_recent_form4_candidates, 90, 40))
+    candidates.extend(await _run_sync_stage("earnings drift scan", fetch_earnings_drift_candidates, 45, scan_universe))
+    candidates.extend(await _run_sync_stage("restructuring scan", fetch_spinoff_restructuring_candidates, 30))
+    candidates.extend(await _run_async_stage("options flow scan", fetch_options_flow_candidates(scan_universe), 45))
+    raw_candidate_count = len(candidates)
+    candidates = filter_out_held_candidates(candidates, held)
     deduped = _dedupe_candidates(candidates)
     deduped.sort(key=lambda c: c.base_score, reverse=True)
     deduped = deduped[:12]
 
     print(f"[axe_alpha] stage: LLM summarize for {len(deduped)} candidates")
     async with httpx.AsyncClient(timeout=httpx.Timeout(60.0)) as client:
-        summaries = await asyncio.gather(*[
+        summary_results = await asyncio.gather(*[
             _llm_summarize_candidate(client, api_key, candidate, profile_guardrail)
             for candidate in deduped
-        ])
+        ], return_exceptions=True)
 
     ranked = []
-    for candidate, summary in zip(deduped, summaries):
+    for candidate, summary_result in zip(deduped, summary_results):
+        if isinstance(summary_result, Exception) or not isinstance(summary_result, dict):
+            print(f"[axe_alpha] warning: LLM summary failed for {candidate.ticker}; using trigger fallback")
+            summary = _fallback_candidate_summary(candidate)
+        else:
+            summary = summary_result
         conviction = int(round(_safe_float(summary.get("conviction_1_to_10")) or candidate.base_score))
         if _profile_filter_blocked(candidate.ticker) and conviction < 9:
             continue
@@ -465,7 +562,10 @@ async def run_alpha_hunter_scan(api_key: str) -> dict[str, Any]:
         "model_for_summaries": LLM_MODEL,
         "scan_logic": "pure_python",
         "investor_profile_guardrail": profile_guardrail,
-        "opportunity_count_before_filter": len(candidates),
+        "portfolio_source_for_exclusions": "step6-dashboard/public/portfolio.json",
+        "excluded_existing_holdings": sorted(held),
+        "opportunity_count_before_filter": raw_candidate_count,
+        "opportunity_count_after_portfolio_exclusion": len(candidates),
         "opportunity_count_after_filter": len(ranked),
         "top_opportunities": top5,
     }

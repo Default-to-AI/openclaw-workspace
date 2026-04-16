@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import json
 
+from dotenv import load_dotenv
 from axe_core import Tracer
 from axe_portfolio.tracker import run_portfolio_review
+from axe_portfolio.util import axe_root
 
 
 def main() -> None:
+    load_dotenv(axe_root() / ".env", override=False)
     tracer = Tracer(agent="axe_portfolio")
     tracer.start()
     tracer.event(step="load_inputs", thought="reading IBKR CSV + portfolio snapshot")

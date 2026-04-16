@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from axe_portfolio.ibkr import IBKRConnectionConfig, fetch_ibkr_portfolio
+from axe_portfolio import tracker
 
 
 @dataclass
@@ -93,3 +94,21 @@ def test_fetch_ibkr_portfolio_maps_live_snapshot():
     )
     assert _FakeIB.account_updates == ["DU123", "DU999"]
     assert _FakeIB.disconnected is True
+
+
+def test_ibkr_connection_defaults_to_live_tws_port(monkeypatch):
+    monkeypatch.delenv("AXE_IBKR_PORT", raising=False)
+
+    config = IBKRConnectionConfig.from_env()
+
+    assert config.port == 7496
+
+
+def test_portfolio_source_defaults_to_ibkr(monkeypatch):
+    monkeypatch.delenv("AXE_PORTFOLIO_SOURCE", raising=False)
+    monkeypatch.setattr(tracker, "fetch_ibkr_portfolio", lambda: ([{"symbol": "MSFT", "position": 1}], 10.0))
+
+    resolved = tracker._resolve_portfolio_input()
+
+    assert resolved.kind == "ibkr"
+    assert resolved.path.as_posix() == "ibkr:/live"

@@ -9,6 +9,7 @@ from pathlib import Path
 import yfinance
 from axe_core import Tracer
 from axe_core.paths import public_dir
+from axe_fundamental.reports import update_report_index
 from jinja2 import Template
 
 
@@ -100,6 +101,7 @@ def run_fundamental_analysis(ticker: str, api_key: str, force: bool = False) -> 
     template = Template(MD_TEMPLATE)
     md_content = template.render(ticker=ticker, generated_at=result.get("generated_at", ""), confidence=result.get("confidence", 5), summary=result.get("summary", "N/A"), key_findings=result.get("key_findings", []), report=result.get("report", "N/A"), data_sources=result.get("data_sources", []))
     md_path.write_text(md_content)
+    update_report_index(reports_dir, ticker, "fundamental", json_path, md_path)
     
     tracer.finalize(status="success", summary=f"Complete for {ticker}", artifact_written=str(json_path.name))
     

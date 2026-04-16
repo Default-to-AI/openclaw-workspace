@@ -1,0 +1,46 @@
+{
+  "run_id": "decision-16-04-2026T01-21-17Z",
+  "agent": "axe_decision",
+  "started_at": "2026-04-16T01:21:17Z",
+  "status": "success",
+  "summary": "decision memo generated for PFE",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T01:21:17.810Z",
+      "step": "load_context",
+      "thought": "loading context for PFE"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T01:21:17.811Z",
+      "step": "bull",
+      "thought": "draft bull case"
+    },
+    {
+      "seq": 3,
+      "t": "2026-04-16T01:21:32.090Z",
+      "step": "bear",
+      "thought": "draft bear case"
+    },
+    {
+      "seq": 4,
+      "t": "2026-04-16T01:21:47.524Z",
+      "step": "risk_manager",
+      "thought": "risk gate and sizing constraints"
+    },
+    {
+      "seq": 5,
+      "t": "2026-04-16T01:22:03.212Z",
+      "step": "compliance",
+      "thought": "audit evidence and assumptions"
+    },
+    {
+      "seq": 6,
+      "t": "2026-04-16T01:22:13.431Z",
+      "step": "ceo",
+      "thought": "final decision memo"
+    }
+  ],
+  "ended_at": "2026-04-16T01:22:16Z"
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T18:20:24Z",
+  "generated_at": "2026-04-16T01:07:10Z",
   "sources_polled": [
     "reuters-biz",
     "bloomberg-mkts",
@@ -19,21 +19,21 @@
     "yahoo-ticker:UBER"
   ],
   "items_in": 290,
-  "items_kept": 23,
+  "items_kept": 20,
   "items": [
     {
-      "id": "01b2126e662184567f713779d70eaea946db8735",
-      "title": "Amazon’s $12B Globalstar Acquisition Paid for Itself 10x Over in One Day",
-      "url": "https://247wallst.com/investing/2026/04/15/amazons-12b-globalstar-acquisition-paid-for-itself-10x-over-in-one-day/?.tsrc=rss",
+      "id": "0d23e95b0f708d888aa49bbf302492e6fdde5493",
+      "title": "Amazon Buys Globalstar As Satellite Push Meets Undervalued Stock Debate",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/amazon-buys-globalstar-satellite-push-180527191.html?.tsrc=rss",
       "source": "yahoo-ticker:AMZN",
-      "published_at": "2026-04-15T15:12:11Z",
+      "published_at": "2026-04-15T18:05:27Z",
       "tickers_mentioned": [
         "AMZN"
       ],
       "portfolio_relevance": "held",
       "impact_score": 8,
-      "impact_rationale": "Amazon's acquisition of Globalstar represents a significant strategic shift that has already resulted in a substantial increase in market capitalization.",
-      "decision_hook": "Consider reassessing exposure to AMZN in light of this acquisition's potential long-term benefits.",
+      "impact_rationale": "Amazon's acquisition of Globalstar represents a significant strategic shift into satellite communications, enhancing its competitive position against SpaceX.",
+      "decision_hook": "Consider adjusting positions in AMZN based on this expansion into new technology.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -47,8 +47,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 8,
-      "impact_rationale": "The Senate investigation and regulatory pressure on FICO's pricing model could significantly impact its business strategy and market position.",
-      "decision_hook": "Consider reassessing exposure to FICO given the regulatory challenges.",
+      "impact_rationale": "Intensified regulatory scrutiny and competitive pressures could significantly impact FICO's business model and market position.",
+      "decision_hook": "Consider reassessing FICO's position in the portfolio due to regulatory risks.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -77,8 +77,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "The export bans affecting ASML's China segment represent a significant strategic shift that could impact future earnings.",
-      "decision_hook": "Consider reassessing exposure to ASML given the potential for ongoing supply chain disruptions.",
+      "impact_rationale": "The export bans affecting ASML's China segment represent a significant strategic shift that could impact future revenue and market positioning.",
+      "decision_hook": "Consider reassessing exposure to ASML given the potential impact of export restrictions.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -93,37 +93,7 @@
       "portfolio_relevance": "held",
       "impact_score": 7,
       "impact_rationale": "ASML's raised outlook due to strong AI demand indicates a significant strategic shift that could impact investment decisions.",
-      "decision_hook": "Consider increasing exposure to ASML based on positive demand trends.",
-      "scored_by": "gpt-4o-mini"
-    },
-    {
-      "id": "38f98633239729690d4cb0a6107202d51634250a",
-      "title": "ASML raises 2026 sales forecast on AI chip demand",
-      "url": "https://qz.com/asml-2026-sales-forecast-raised-ai-chip-demand-041526?.tsrc=rss",
-      "source": "yahoo-ticker:ASML",
-      "published_at": "2026-04-15T11:45:25Z",
-      "tickers_mentioned": [
-        "ASML"
-      ],
-      "portfolio_relevance": "held",
-      "impact_score": 7,
-      "impact_rationale": "ASML's raised sales forecast indicates strong demand driven by AI chip production, which could positively influence investment decisions.",
-      "decision_hook": "Consider increasing exposure to ASML based on revised revenue expectations.",
-      "scored_by": "gpt-4o-mini"
-    },
-    {
-      "id": "2b5d1f4f6c24cba0d2c547933f8ad2418f3b969b",
-      "title": "Meta, Broadcom strike multi-year AI chip deal",
-      "url": "https://www.proactiveinvestors.com/companies/news/1090629/meta-broadcom-strike-multi-year-ai-chip-deal-1090629.html?.tsrc=rss",
-      "source": "yahoo-ticker:META",
-      "published_at": "2026-04-15T17:41:00Z",
-      "tickers_mentioned": [
-        "META"
-      ],
-      "portfolio_relevance": "held",
-      "impact_score": 7,
-      "impact_rationale": "The multi-year AI chip deal between Meta and Broadcom indicates a significant strategic shift that could enhance Meta's technological capabilities and competitive position.",
-      "decision_hook": "Consider evaluating the implications of this partnership on Meta's future growth prospects.",
+      "decision_hook": "Consider reviewing positions in ASML and related sectors.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -137,8 +107,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "The acquisition of Mynaric enhances Rocket Lab's capabilities in satellite laser communication, which is a significant strategic shift for the company.",
-      "decision_hook": "Consider evaluating the potential impact of this acquisition on Rocket Lab's growth trajectory.",
+      "impact_rationale": "The acquisition of Mynaric enhances Rocket Lab's capabilities in satellite laser communication, which could significantly impact its competitive position in the space systems market.",
+      "decision_hook": "Consider evaluating Rocket Lab's growth potential post-acquisition.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -152,8 +122,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "The introduction of the Gauss thruster represents a significant strategic shift for Rocket Lab, expanding its product offerings and production capacity.",
-      "decision_hook": "Consider evaluating the potential impact on RKLB's market position and revenue streams.",
+      "impact_rationale": "The introduction of the Gauss high volume electric satellite thruster represents a significant strategic shift for Rocket Lab, expanding its product offerings and production capacity.",
+      "decision_hook": "Consider evaluating the potential impact of this new product on RKLB's market position.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -167,8 +137,23 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "The new multi-launch deal with iQPS enhances Rocket Lab's revenue stream and solidifies its position as a key player in the launch services market.",
-      "decision_hook": "Consider evaluating Rocket Lab's growth potential in light of this new contract.",
+      "impact_rationale": "The new multi-launch deal with iQPS reinforces Rocket Lab's position as a key player in the launch services market, potentially impacting future revenue.",
+      "decision_hook": "Consider evaluating the implications of this partnership on RKLB's growth trajectory.",
+      "scored_by": "gpt-4o-mini"
+    },
+    {
+      "id": "7211b89ca94af829a523008e5740b2a72f68f830",
+      "title": "Uber strengthens self-driving ambitions with new Lucid investment, analysts say",
+      "url": "https://www.proactiveinvestors.com/companies/news/1090630/uber-strengthens-self-driving-ambitions-with-new-lucid-investment-analysts-say-1090630.html?.tsrc=rss",
+      "source": "yahoo-ticker:UBER",
+      "published_at": "2026-04-15T18:41:00Z",
+      "tickers_mentioned": [
+        "UBER"
+      ],
+      "portfolio_relevance": "held",
+      "impact_score": 7,
+      "impact_rationale": "Uber's increased investment in Lucid Group indicates a significant strategic shift towards autonomous ride-hailing, which could impact its market position.",
+      "decision_hook": "Consider evaluating Uber's growth potential in the autonomous vehicle sector.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -182,8 +167,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "Uber's significant investment in autonomous vehicles and expansion into robotaxi services indicates a strategic shift that could impact its market position.",
-      "decision_hook": "Consider evaluating the potential impact of Uber's autonomous vehicle strategy on its long-term growth.",
+      "impact_rationale": "Uber's significant investment in autonomous vehicles and expansion into robotaxi services indicates a strategic shift that could impact its market position and future profitability.",
+      "decision_hook": "Consider evaluating Uber's growth potential in light of this investment.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -198,7 +183,7 @@
       "portfolio_relevance": "held",
       "impact_score": 7,
       "impact_rationale": "Uber's $10 billion commitment to autonomous vehicles represents a significant strategic shift that could reshape its competitive landscape in the robotaxi market.",
-      "decision_hook": "Consider evaluating the implications of this investment on Uber's market position and potential returns.",
+      "decision_hook": "Consider evaluating Uber's position in the autonomous vehicle sector.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -213,22 +198,7 @@
       "portfolio_relevance": "held",
       "impact_score": 7,
       "impact_rationale": "Uber's significant investment in autonomous vehicles indicates a strategic shift that could reshape its business model and competitive landscape.",
-      "decision_hook": "Consider evaluating the potential impact on Uber's market position and related investments.",
-      "scored_by": "gpt-4o-mini"
-    },
-    {
-      "id": "5236c547ee7816711ab6fb66e84bbc72f7793c80",
-      "title": "Microsoft's AI Data Center Push: Growth Engine or Capex Trap?",
-      "url": "https://finance.yahoo.com/sectors/technology/articles/microsofts-ai-data-center-push-140800469.html?.tsrc=rss",
-      "source": "yahoo-ticker:AMZN",
-      "published_at": "2026-04-15T14:08:00Z",
-      "tickers_mentioned": [
-        "MSFT"
-      ],
-      "portfolio_relevance": "held",
-      "impact_score": 6,
-      "impact_rationale": "Microsoft's significant capital expenditure on AI data centers could impact its financial performance and investor sentiment, especially given the supply constraints.",
-      "decision_hook": "Monitor MSFT's performance and investor reactions to the AI data center strategy.",
+      "decision_hook": "Consider evaluating the potential impact on Uber's long-term growth prospects.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -242,8 +212,23 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "ASML's strong quarterly earnings driven by AI demand indicates potential for continued growth, which is relevant for watchlist consideration.",
-      "decision_hook": "Consider reviewing ASML's position in the portfolio based on this earnings report.",
+      "impact_rationale": "ASML's strong quarterly earnings driven by AI demand indicates potential for continued growth, warranting investor awareness.",
+      "decision_hook": "Consider reviewing ASML's position in the portfolio given the positive earnings outlook.",
+      "scored_by": "gpt-4o-mini"
+    },
+    {
+      "id": "3857f050216a2948e4d5358d9d40b88c8a4c0bd2",
+      "title": "Compeer Success With FICO Platform Puts Fair Isaac Valuation In Focus",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/compeer-success-fico-platform-puts-201332012.html?.tsrc=rss",
+      "source": "yahoo-ticker:FICO",
+      "published_at": "2026-04-15T20:13:32Z",
+      "tickers_mentioned": [
+        "FICO"
+      ],
+      "portfolio_relevance": "held",
+      "impact_score": 6,
+      "impact_rationale": "The successful implementation of the FICO Platform by Compeer Financial highlights the platform's effectiveness and could influence investor sentiment towards Fair Isaac.",
+      "decision_hook": "Consider monitoring FICO for potential recovery signals.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -257,23 +242,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "Concerns over potential changes to credit scoring requirements could impact FICO's market share and affect investor sentiment.",
-      "decision_hook": "Monitor developments regarding credit scoring regulations closely.",
-      "scored_by": "gpt-4o-mini"
-    },
-    {
-      "id": "1e4e6010ece759f6d3191c4e9f81da34e6a9ffe6",
-      "title": "Tesla stock jumps 8% on AI chip milestone announcement",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/tesla-stock-jumps-8-ai-165033727.html?.tsrc=rss",
-      "source": "yahoo-ticker:MSFT",
-      "published_at": "2026-04-15T16:50:33Z",
-      "tickers_mentioned": [
-        "TSLA"
-      ],
-      "portfolio_relevance": "held",
-      "impact_score": 6,
-      "impact_rationale": "The completion of the AI5 chip design could signal a significant advancement in Tesla's technology, potentially impacting future product offerings and competitiveness.",
-      "decision_hook": "Consider monitoring TSLA for further developments related to the AI5 chip.",
+      "impact_rationale": "Concerns over potential changes to credit scoring requirements could impact FICO's market share and that of its peers.",
+      "decision_hook": "Monitor developments regarding credit scoring regulations.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -287,23 +257,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "The acceleration of exploration at La Union following a new gold discovery could indicate potential value creation for Questcorp Mining, which is relevant for investors tracking this stock.",
-      "decision_hook": "Consider monitoring developments in Questcorp Mining's exploration results.",
-      "scored_by": "gpt-4o-mini"
-    },
-    {
-      "id": "9faa519457a9082d372ad9fef918ba6027eb35c8",
-      "title": "RGTI Sees Solid Government Deals, Weak Commercial Demand: How to Play",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/rgti-sees-solid-government-deals-145500438.html?.tsrc=rss",
-      "source": "yahoo-ticker:RGTI",
-      "published_at": "2026-04-13T14:55:00Z",
-      "tickers_mentioned": [
-        "RGTI"
-      ],
-      "portfolio_relevance": "held",
-      "impact_score": 6,
-      "impact_rationale": "The rise in government orders could indicate potential growth opportunities for RGTI, despite weak commercial demand.",
-      "decision_hook": "Consider monitoring government contract developments closely.",
+      "impact_rationale": "The acceleration of exploration at La Union following a new gold discovery could indicate potential value creation for Questcorp Mining, relevant for investors monitoring gold-related assets.",
+      "decision_hook": "Consider evaluating the potential impact on QQQ's holdings in the mining sector.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -317,8 +272,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "Rocket Lab's move towards vertical integration could enhance its operational efficiency and competitive positioning in the growing space market.",
-      "decision_hook": "Consider evaluating the potential impact of this strategy on RKLB's future performance.",
+      "impact_rationale": "Rocket Lab's vertical integration strategy could enhance its operational efficiency and competitive positioning in the growing space market.",
+      "decision_hook": "Consider monitoring RKLB's performance as this strategy unfolds.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -332,8 +287,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "The introduction of a new electric propulsion system could enhance Rocket Lab's competitive position and drive future revenue growth.",
-      "decision_hook": "Consider monitoring Rocket Lab's developments in propulsion technology for potential investment opportunities.",
+      "impact_rationale": "The introduction of a new electric propulsion system could enhance Rocket Lab's competitive position and attract new contracts, impacting future revenue.",
+      "decision_hook": "Consider monitoring developments related to this new technology and its adoption in the market.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -347,8 +302,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "The new multi-launch contract with iQPS reinforces Rocket Lab's position in the small satellite launch market, which could impact future revenue projections.",
-      "decision_hook": "Consider monitoring Rocket Lab's performance as this contract may influence investor sentiment.",
+      "impact_rationale": "The new multi-launch contract with iQPS enhances Rocket Lab's backlog and solidifies its position in the small satellite launch market.",
+      "decision_hook": "Consider evaluating Rocket Lab's growth potential in light of this contract.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -362,8 +317,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "The launch of robotaxi services in Europe represents a significant strategic shift in the autonomous vehicle market that could impact Uber's operations and competitive positioning.",
-      "decision_hook": "Consider evaluating Uber's involvement in the robotaxi sector as it expands in Europe.",
+      "impact_rationale": "The launch of robotaxi services in Europe involving Uber could signal a strategic shift in their operations and market presence.",
+      "decision_hook": "Consider evaluating Uber's position in the autonomous vehicle market.",
       "scored_by": "gpt-4o-mini"
     }
   ]

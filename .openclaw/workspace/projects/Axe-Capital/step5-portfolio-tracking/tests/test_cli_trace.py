@@ -21,6 +21,8 @@ class _FakeArtifacts:
 def test_cli_emits_trace_success(tmp_path, monkeypatch):
     (tmp_path / "traces").mkdir(parents=True)
     monkeypatch.setattr(trace_mod, "_public_dir", lambda: tmp_path)
+    loaded_env = []
+    monkeypatch.setattr(portfolio_cli, "load_dotenv", lambda path, override=False: loaded_env.append((path, override)))
 
     fake = _FakeArtifacts(
         normalized_csv_path=tmp_path / "norm.csv",
@@ -34,6 +36,7 @@ def test_cli_emits_trace_success(tmp_path, monkeypatch):
 
     portfolio_cli.main()
 
+    assert loaded_env == [(portfolio_cli.axe_root() / ".env", False)]
     index = json.loads((tmp_path / "traces" / "index.json").read_text())
     assert index["runs"][0]["agent"] == "axe_portfolio"
     assert index["runs"][0]["status"] == "success"

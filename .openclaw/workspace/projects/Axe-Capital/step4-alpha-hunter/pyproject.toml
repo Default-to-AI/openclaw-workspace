@@ -18,3 +18,11 @@ axe-core = { path = "../step0-shared", editable = true }
 
 [project.scripts]
 axe-alpha-scan = "axe_alpha.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["axe_alpha*"]

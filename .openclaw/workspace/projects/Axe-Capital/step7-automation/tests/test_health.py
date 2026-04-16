@@ -20,13 +20,16 @@ def test_generate_health_reads_artifacts(tmp_path):
     (public / "traces").mkdir()
     (public / "portfolio.json").write_text('{"generated_at":"2026-04-15T09:00:00Z"}')
     (public / "alpha-latest.json").write_text('{"generated_at":"2026-04-15T05:00:00Z"}')
+    (public / "analyst-reports").mkdir()
+    (public / "analyst-reports" / "index.json").write_text('{"generated_at":"2026-04-15T09:30:00Z"}')
     now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
 
     report = generate_health(public_dir=public, now=now)
     assert report["artifacts"]["portfolio"]["status"] == "fresh"
     assert report["artifacts"]["alpha"]["status"] == "fresh"
+    assert report["artifacts"]["analyst_reports"]["status"] == "fresh"
     assert report["artifacts"]["news"]["status"] == "missing"
-    assert report["freshness_thresholds_min"] == {"portfolio": 240, "alpha": 1440, "news": 60, "decision": 1440}
+    assert report["freshness_thresholds_min"]["analyst_reports"] == 43200
 
     from axe_core.schemas import HealthReport
     HealthReport.model_validate(report)

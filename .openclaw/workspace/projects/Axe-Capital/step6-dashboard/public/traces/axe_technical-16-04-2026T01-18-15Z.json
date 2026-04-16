@@ -1,0 +1,21 @@
+{
+  "run_id": "axe_technical-16-04-2026T01-18-15Z",
+  "agent": "axe_technical",
+  "started_at": "2026-04-16T01:18:15Z",
+  "status": "partial",
+  "summary": "axe_technical running",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T01:18:15.088Z",
+      "step": "fetch_data",
+      "thought": "fetching price history for PFE"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T01:18:15.769Z",
+      "step": "llm_analysis",
+      "thought": "running technical analysis"
+    }
+  ]
+}

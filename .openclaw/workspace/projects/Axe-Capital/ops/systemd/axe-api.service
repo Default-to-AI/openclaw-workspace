@@ -1,0 +1,14 @@
+[Unit]
+Description=Axe Capital API
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.openclaw/workspace/projects/Axe-Capital/step7-automation
+Environment=PYTHONUNBUFFERED=1
+ExecStart=%h/.openclaw/workspace/projects/Axe-Capital/.venv/bin/python -m uvicorn axe_orchestrator.api:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

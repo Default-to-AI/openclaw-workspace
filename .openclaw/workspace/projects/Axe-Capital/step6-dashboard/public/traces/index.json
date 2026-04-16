@@ -1,10 +1,230 @@
 {
-  "generated_at": "2026-04-15T21:21:41Z",
+  "generated_at": "2026-04-16T01:22:16Z",
   "retention": {
     "max_runs_per_agent": 50,
     "total_cap": 500
   },
   "runs": [
+    {
+      "run_id": "decision-16-04-2026T01-21-17Z",
+      "agent": "axe_decision",
+      "started_at": "2026-04-16T01:21:17Z",
+      "ended_at": "2026-04-16T01:22:16Z",
+      "duration_ms": 59741,
+      "status": "success",
+      "event_count": 6,
+      "summary": "decision memo generated for PFE",
+      "artifact_written": "decision-latest.json"
+    },
+    {
+      "run_id": "axe_macro-16-04-2026T01-21-09Z",
+      "agent": "axe_macro",
+      "started_at": "2026-04-16T01:21:09Z",
+      "ended_at": "2026-04-16T01:21:17Z",
+      "duration_ms": 8561,
+      "status": "success",
+      "event_count": 2,
+      "summary": "macro report generated for PFE",
+      "artifact_written": "PFE-macro-2026-04-16T01-21-09Z.json"
+    },
+    {
+      "run_id": "axe_technical-16-04-2026T01-20-59Z",
+      "agent": "axe_technical",
+      "started_at": "2026-04-16T01:20:59Z",
+      "ended_at": "2026-04-16T01:21:08Z",
+      "duration_ms": 9666,
+      "status": "success",
+      "event_count": 2,
+      "summary": "technical report generated for PFE",
+      "artifact_written": "PFE-technical-2026-04-16T01-20-59Z.json"
+    },
+    {
+      "run_id": "axe_fundamental-16-04-2026T01-20-50Z",
+      "agent": "axe_fundamental",
+      "started_at": "2026-04-16T01:20:50Z",
+      "ended_at": "2026-04-16T01:20:58Z",
+      "duration_ms": 8742,
+      "status": "success",
+      "event_count": 2,
+      "summary": "Complete for PFE",
+      "artifact_written": "PFE-fundamental-2026-04-16T01-20-50Z.json"
+    },
+    {
+      "run_id": "alpha-16-04-2026T01-19-23Z",
+      "agent": "axe_alpha",
+      "started_at": "2026-04-16T01:19:23Z",
+      "ended_at": "2026-04-16T01:20:50Z",
+      "duration_ms": 87267,
+      "status": "success",
+      "event_count": 3,
+      "summary": "scanned and surfaced 5 opportunities",
+      "artifact_written": "alpha-latest.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T01-19-21Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T01:19:21Z",
+      "ended_at": "2026-04-16T01:19:23Z",
+      "duration_ms": 2223,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "decision-16-04-2026T01-18-33Z",
+      "agent": "axe_decision",
+      "started_at": "2026-04-16T01:18:33Z",
+      "ended_at": "2026-04-16T01:19:27Z",
+      "duration_ms": 54284,
+      "status": "success",
+      "event_count": 6,
+      "summary": "decision memo generated for PFE",
+      "artifact_written": "decision-latest.json"
+    },
+    {
+      "run_id": "axe_fundamental-16-04-2026T01-18-05Z",
+      "agent": "axe_fundamental",
+      "started_at": "2026-04-16T01:18:05Z",
+      "ended_at": "2026-04-16T01:18:14Z",
+      "duration_ms": 9405,
+      "status": "success",
+      "event_count": 2,
+      "summary": "Complete for PFE",
+      "artifact_written": "PFE-fundamental-2026-04-16T01-18-05Z.json"
+    },
+    {
+      "run_id": "alpha-16-04-2026T01-16-37Z",
+      "agent": "axe_alpha",
+      "started_at": "2026-04-16T01:16:37Z",
+      "ended_at": "2026-04-16T01:18:04Z",
+      "duration_ms": 87879,
+      "status": "success",
+      "event_count": 3,
+      "summary": "scanned and surfaced 5 opportunities",
+      "artifact_written": "alpha-latest.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T01-16-35Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T01:16:35Z",
+      "ended_at": "2026-04-16T01:16:36Z",
+      "duration_ms": 1852,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "alpha-16-04-2026T01-12-59Z",
+      "agent": "axe_alpha",
+      "started_at": "2026-04-16T01:12:59Z",
+      "ended_at": "2026-04-16T01:14:52Z",
+      "duration_ms": 113849,
+      "status": "failed",
+      "event_count": 3,
+      "summary": "scan failed: ",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-16-04-2026T01-12-58Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T01:12:58Z",
+      "ended_at": "2026-04-16T01:12:59Z",
+      "duration_ms": 1423,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "alpha-16-04-2026T01-08-53Z",
+      "agent": "axe_alpha",
+      "started_at": "2026-04-16T01:08:53Z",
+      "ended_at": "2026-04-16T01:10:45Z",
+      "duration_ms": 112379,
+      "status": "failed",
+      "event_count": 3,
+      "summary": "scan failed: ",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-16-04-2026T01-08-51Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T01:08:51Z",
+      "ended_at": "2026-04-16T01:08:53Z",
+      "duration_ms": 2109,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T01-06-39Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T01:06:39Z",
+      "ended_at": "2026-04-16T01:06:41Z",
+      "duration_ms": 2292,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "news-16-04-2026T01-05-17Z",
+      "agent": "axe_news",
+      "started_at": "2026-04-16T01:05:17Z",
+      "ended_at": "2026-04-16T01:07:10Z",
+      "duration_ms": 113800,
+      "status": "success",
+      "event_count": 5,
+      "summary": "290 in, 20 kept (score>=6)",
+      "artifact_written": "news-latest.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T01-05-09Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T01:05:09Z",
+      "ended_at": "2026-04-16T01:05:11Z",
+      "duration_ms": 2248,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T01-02-17Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T01:02:17Z",
+      "ended_at": "2026-04-16T01:02:18Z",
+      "duration_ms": 1511,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T00-56-20Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T00:56:20Z",
+      "ended_at": "2026-04-16T00:56:21Z",
+      "duration_ms": 1934,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T00-53-48Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T00:53:48Z",
+      "ended_at": "2026-04-16T00:53:48Z",
+      "duration_ms": 520,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: [Errno 111] Connect call failed ('127.0.0.1', 7496)",
+      "artifact_written": null
+    },
     {
       "run_id": "axe_fundamental-15-04-2026T21-21-33Z",
       "agent": "axe_fundamental",

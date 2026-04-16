@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Axe Capital portfolio specialists monthly
+
+[Timer]
+OnCalendar=monthly
+Persistent=true
+Unit=axe-monthly-specialists.service
+
+[Install]
+WantedBy=timers.target

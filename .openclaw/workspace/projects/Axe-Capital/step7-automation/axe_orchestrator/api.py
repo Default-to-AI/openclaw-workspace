@@ -18,6 +18,8 @@ AGENT_RUNNERS: dict[str, Callable[[], int]] = {
     "portfolio": runners.run_portfolio,
     "alpha": runners.run_alpha,
     "news": runners.run_news,
+    "specialists": runners.run_specialists,
+    "opportunities": runners.run_opportunities,
     "decision": runners.run_decision,
 }
 REFRESH_LOCK = asyncio.Lock()
@@ -36,7 +38,7 @@ async def _run_agent(target: str) -> dict:
 
     if target == "all":
         results: dict[str, int] = {}
-        for name in runners.AGENT_ORDER:
+        for name in runners.RUN_ALL_ORDER:
             results[name] = await loop.run_in_executor(None, AGENT_RUNNERS[name])
         write_health()
         return {
