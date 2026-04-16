@@ -1,10 +1,21 @@
 {
-  "generated_at": "2026-04-16T16:43:17Z",
+  "generated_at": "2026-04-16T18:10:51Z",
   "retention": {
     "max_runs_per_agent": 50,
     "total_cap": 500
   },
   "runs": [
+    {
+      "run_id": "portfolio-16-04-2026T18-10-49Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T18:10:49Z",
+      "ended_at": "2026-04-16T18:10:51Z",
+      "duration_ms": 2237,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
     {
       "run_id": "portfolio-16-04-2026T16-43-16Z",
       "agent": "axe_portfolio",

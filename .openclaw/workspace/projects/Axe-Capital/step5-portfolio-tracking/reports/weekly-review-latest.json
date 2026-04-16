@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-16T16:43:17Z",
+  "generated_at": "2026-04-16T18:10:51Z",
   "review_date": "2026-04-16",
   "positions": [
     {
@@ -187,8 +187,8 @@
     "portfolio_cost_basis": 108753.66,
     "portfolio_market_value": 108753.66,
     "portfolio_return_pct": 0.0,
-    "spy_return_pct_same_window": 33.42,
-    "relative_alpha_pct": -33.42
+    "spy_return_pct_same_window": 33.17,
+    "relative_alpha_pct": -33.17
   },
   "hishtalmut_status": {
     "annual_ceiling_ils": 21500,
