@@ -41,7 +41,6 @@ RAW_HEADER = {
     "Position",
     "Last",
     "Avg Price",
-    "Cost Basis",
     "Market Value",
 }
 
@@ -210,8 +209,125 @@ def normalize_raw_portfolio(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         symbol = (row.get("Financial Instrument") or "").strip()
         if symbol in {"", "Total", "Cash"}:
             continue
-        normalized.append(_normalize_row(symbol, row))
+        out = _normalize_row(symbol, row)
+        # Some IBKR exports do not include Cost Basis.
+        # In that case, derive it from position * avg_price.
+        if not out.get("cost_basis"):
+            pos = out.get("position") or 0.0
+            avg = out.get("avg_price") or 0.0
+            out["cost_basis"] = round(pos * avg, 2) if pos and avg else out.get("cost_basis")
+
+        # If Market Value is missing, derive it from position * last.
+        if not out.get("market_value"):
+            pos = out.get("position") or 0.0
+            last = out.get("last") or 0.0
+            out["market_value"] = round(pos * last, 2) if pos and last else out.get("market_value")
+
+        # If unrealized P/L isn't present, derive it.
+        if out.get("unrealized_pl") is None and out.get("market_value") is not None and out.get("cost_basis") is not None:
+            out["unrealized_pl"] = round((out.get("market_value") or 0.0) - (out.get("cost_basis") or 0.0), 2)
+
+        if out.get("unrealized_pl_pct") is None and out.get("cost_basis"):
+            out["unrealized_pl_pct"] = round(((out.get("unrealized_pl") or 0.0) / (out.get("cost_basis") or 0.0)) * 100, 2)
+
+        normalized.append(out)
     return normalized
+
+
+def _maybe_repair_cost_and_pl_from_last(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Repair obviously-broken IBKR fallback rows.
+
+    Symptom observed: avg_price ~= last for most/all rows, and cost_basis == market_value,
+    causing unrealized_pl to be 0 by construction.
+
+    If we see that pattern, we fetch a fresh last price via yfinance and recompute:
+      market_value = position * last
+      unrealized_pl = market_value - cost_basis
+      unrealized_pl_pct = unrealized_pl / cost_basis
+    """
+
+    if not rows:
+        return rows
+
+    def _f(x: Any) -> float | None:
+        try:
+            v = _safe_float(x)
+            return None if v is None else float(v)
+        except Exception:
+            return None
+
+    def _is_broken(r: dict[str, Any]) -> bool:
+        pos = _f(r.get("position")) or 0.0
+        if pos <= 0:
+            return False
+        last = _f(r.get("last"))
+        avg = _f(r.get("avg_price"))
+        cb = _f(r.get("cost_basis"))
+        mv = _f(r.get("market_value"))
+        upl = _f(r.get("unrealized_pl"))
+        if last is None or avg is None or cb is None or mv is None or upl is None:
+            return False
+        return abs(last - avg) < 1e-4 and abs(cb - mv) < 0.02 and abs(upl) < 0.02
+
+    broken = [r for r in rows if _is_broken(r)]
+    # Only repair when it's clearly systemic (prevents clobbering real 0-P/L positions).
+    if len(broken) < max(3, int(0.6 * len(rows))):
+        return rows
+
+    symbols = sorted({str(r.get("symbol") or "").strip() for r in broken if str(r.get("symbol") or "").strip()})
+    if not symbols:
+        return rows
+
+    # Fetch last closes in one shot.
+    last_by_symbol: dict[str, float] = {}
+    try:
+        data = yf.download(
+            tickers=" ".join(symbols),
+            period="5d",
+            interval="1d",
+            group_by="ticker",
+            auto_adjust=False,
+            progress=False,
+            threads=True,
+        )
+        if len(symbols) == 1:
+            # Single ticker shape
+            close = data["Close"].dropna()
+            if not close.empty:
+                last_by_symbol[symbols[0]] = float(close.iloc[-1])
+        else:
+            for sym in symbols:
+                try:
+                    close = data[sym]["Close"].dropna()
+                    if not close.empty:
+                        last_by_symbol[sym] = float(close.iloc[-1])
+                except Exception:
+                    continue
+    except Exception:
+        return rows
+
+    repaired: list[dict[str, Any]] = []
+    for r in rows:
+        sym = str(r.get("symbol") or "").strip()
+        if sym in last_by_symbol and _is_broken(r):
+            position = float(_f(r.get("position")) or 0.0)
+            cost_basis = float(_f(r.get("cost_basis")) or 0.0)
+            last = float(last_by_symbol[sym])
+            market_value = round(position * last, 2)
+            unrealized_pl = round(market_value - cost_basis, 2)
+            upl_pct = round((unrealized_pl / cost_basis) * 100, 2) if cost_basis else None
+            repaired.append(
+                {
+                    **r,
+                    "last": last,
+                    "market_value": market_value,
+                    "unrealized_pl": unrealized_pl,
+                    "unrealized_pl_pct": upl_pct,
+                }
+            )
+        else:
+            repaired.append(r)
+    return repaired
 
 
 def _load_normalized_portfolio_csv(path: Path) -> list[dict[str, Any]]:
@@ -485,7 +601,7 @@ def write_dashboard_json(dashboard: dict[str, Any], path: Path = DASHBOARD_JSON_
 
 def run_portfolio_review() -> ReviewArtifacts:
     portfolio_input = _resolve_portfolio_input()
-    normalized_rows = portfolio_input.rows
+    normalized_rows = _maybe_repair_cost_and_pl_from_last(portfolio_input.rows)
     normalized_csv_path = write_normalized_csv(normalized_rows, path=_preferred_data_dir() / "portfolio_latest.normalized.csv")
     position_table = build_position_table(normalized_rows)
     unified_sector_allocation = build_unified_sector_allocation(position_table)

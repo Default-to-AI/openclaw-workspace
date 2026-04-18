@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-16T15:02:37Z",
+  "generated_at": "2026-04-16T22:19:43Z",
   "sources_polled": [
     "reuters-biz",
     "bloomberg-mkts",
@@ -19,7 +19,7 @@
     "yahoo-ticker:UBER"
   ],
   "items_in": 290,
-  "items_kept": 17,
+  "items_kept": 20,
   "items": [
     {
       "id": "0264ab43f3d77271f56e3c9c98034a29c3c7cc0b",
@@ -32,38 +32,23 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 8,
-      "impact_rationale": "Intensified regulatory scrutiny and competitive pressures could significantly impact FICO's business model and pricing strategy.",
-      "decision_hook": "Consider reassessing exposure to FICO given the regulatory challenges.",
+      "impact_rationale": "Intensified regulatory scrutiny and competitive pressure could significantly impact FICO's business model and market position.",
+      "decision_hook": "Consider reassessing exposure to FICO given the regulatory developments.",
       "scored_by": "gpt-4o-mini"
     },
     {
-      "id": "dd779b3f519c27cd82523fcdc0a1f7d33f2531fd",
-      "title": "Rocket Lab Mynaric Deal Brings Laser Links And New Europe Presence",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/rocket-lab-mynaric-deal-brings-150718665.html?.tsrc=rss",
+      "id": "a564933445cb901d5e7b2ebe41eda90a54068faa",
+      "title": "Rocket Lab’s Mynaric Deal Adds Growth Angle In Europe And Valuation Risks",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/rocket-lab-mynaric-deal-adds-200332156.html?.tsrc=rss",
       "source": "yahoo-ticker:RKLB",
-      "published_at": "2026-04-08T15:07:18Z",
+      "published_at": "2026-04-16T20:03:32Z",
       "tickers_mentioned": [
         "RKLB"
       ],
       "portfolio_relevance": "held",
       "impact_score": 8,
-      "impact_rationale": "The acquisition of Mynaric AG enhances Rocket Lab's capabilities in satellite communications and expands its presence in Europe, which could significantly impact its strategic positioning in the space market.",
-      "decision_hook": "Consider evaluating Rocket Lab's growth potential post-acquisition.",
-      "scored_by": "gpt-4o-mini"
-    },
-    {
-      "id": "c59754c5e28c1e64af6a45aa3de5fb18e4fc3e91",
-      "title": "Strong ASML, TSMC forecasts signal AI spending boom is intact",
-      "url": "https://finance.yahoo.com/sectors/technology/articles/strong-asml-tsmc-forecasts-signal-104833111.html?.tsrc=rss",
-      "source": "yahoo-ticker:AMZN",
-      "published_at": "2026-04-16T10:48:33Z",
-      "tickers_mentioned": [
-        "ASML"
-      ],
-      "portfolio_relevance": "held",
-      "impact_score": 7,
-      "impact_rationale": "Strong forecasts from ASML and TSMC indicate sustained AI spending, which could positively influence investment decisions in the tech sector.",
-      "decision_hook": "Consider evaluating positions in ASML and related tech stocks.",
+      "impact_rationale": "The acquisition of Mynaric AG significantly expands Rocket Lab's operational footprint and product offerings in Europe, which could enhance growth prospects and attract new customers.",
+      "decision_hook": "Consider evaluating the potential impact of this acquisition on Rocket Lab's growth trajectory.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -77,8 +62,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "The confirmation of accelerating AI infrastructure spending by ASML and TSMC signals a significant strategic shift in the chip ecosystem that could impact investment decisions.",
-      "decision_hook": "Consider reviewing positions in ASML and related stocks in the AI supply chain.",
+      "impact_rationale": "The confirmation of accelerating AI infrastructure spending by ASML and TSMC signals a significant strategic shift in the market that could influence investment decisions.",
+      "decision_hook": "Consider reviewing positions in AI-related investments.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -92,38 +77,53 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "ASML's strong Q1 results and revised revenue outlook indicate significant demand, but the tighter export controls to China and reduced visibility raise concerns that could impact investment decisions.",
-      "decision_hook": "Consider reassessing exposure to ASML given the mixed signals from the earnings report.",
+      "impact_rationale": "ASML's strong Q1 results and revised revenue outlook are significant, but the tighter export controls to China and reduced demand visibility raise concerns that could impact investment decisions.",
+      "decision_hook": "Consider reassessing ASML's position in the watchlist due to mixed signals.",
       "scored_by": "gpt-4o-mini"
     },
     {
-      "id": "81541bc2d1c56676f462dece34d02602a0cb202e",
-      "title": "Update: Market Chatter: Google in Talks to Allow Pentagon to Use Gemini AI Models in Classified Settings",
-      "url": "https://finance.yahoo.com/sectors/technology/articles/market-chatter-google-talks-allow-140349809.html?.tsrc=rss",
-      "source": "yahoo-ticker:GOOG",
-      "published_at": "2026-04-16T14:03:49Z",
+      "id": "3480a97ab55cc307962061bb602dfa69f3e82cab",
+      "title": "Is Microsoft (MSFT) Quietly Turning Industrial Cloud Tie-Ups Like Stellantis Into Its Next Moat?",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-quietly-turning-industrial-210922413.html?.tsrc=rss",
+      "source": "yahoo-ticker:MSFT",
+      "published_at": "2026-04-16T21:09:22Z",
       "tickers_mentioned": [
-        "GOOG"
+        "MSFT"
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "Google's potential collaboration with the Pentagon to use its AI models in classified settings indicates a significant strategic shift that could impact its defense sector engagements.",
-      "decision_hook": "Consider evaluating the implications of this partnership on Google's defense-related contracts.",
+      "impact_rationale": "The collaboration with Stellantis significantly enhances Microsoft's position in the industrial cloud sector, potentially impacting its competitive edge.",
+      "decision_hook": "Consider evaluating the implications of this partnership on Microsoft's growth strategy.",
       "scored_by": "gpt-4o-mini"
     },
     {
-      "id": "2e7e1c0709ddf99d384d0c70d2b0abcc894cc969",
-      "title": "OpenAI Pushes Into Digital Ads, Setting Up New Competition with Alphabet (GOOGL) and Meta (META)",
-      "url": "https://finance.yahoo.com/sectors/technology/articles/openai-pushes-digital-ads-setting-134543120.html?.tsrc=rss",
-      "source": "yahoo-ticker:GOOG",
-      "published_at": "2026-04-16T13:45:43Z",
+      "id": "1b62a23a5f50af5010b8f0527f1cdf69c552c602",
+      "title": "Rigetti’s India Quantum Deal And What It Could Mean For Investors",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/rigetti-india-quantum-deal-could-160430219.html?.tsrc=rss",
+      "source": "yahoo-ticker:RGTI",
+      "published_at": "2026-04-16T16:04:30Z",
       "tickers_mentioned": [
-        "META"
+        "RGTI"
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "OpenAI's entry into digital ads could significantly disrupt the advertising market, impacting revenue streams for both Alphabet and Meta.",
-      "decision_hook": "Consider reassessing exposure to META due to potential competitive pressures from OpenAI.",
+      "impact_rationale": "The $8.4 million contract with the Indian government signifies a strategic expansion into a new market for Rigetti, which could enhance future revenue prospects.",
+      "decision_hook": "Consider evaluating Rigetti's growth potential in light of this new government contract.",
+      "scored_by": "gpt-4o-mini"
+    },
+    {
+      "id": "aa566e5bc24b883a86d60fccf63286863d2803eb",
+      "title": "Rocket Lab (RKLB) Is Up 6.5% After Unveiling High‑Volume Gauss Propulsion Line For Satellite Constellations",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/rocket-lab-rklb-6-5-210655239.html?.tsrc=rss",
+      "source": "yahoo-ticker:RKLB",
+      "published_at": "2026-04-16T21:06:55Z",
+      "tickers_mentioned": [
+        "RKLB"
+      ],
+      "portfolio_relevance": "held",
+      "impact_score": 7,
+      "impact_rationale": "The introduction of the Gauss propulsion line positions Rocket Lab as a more competitive player in the satellite launch market, potentially impacting future contracts and revenue.",
+      "decision_hook": "Consider evaluating Rocket Lab's growth potential in light of this new technology.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -137,68 +137,83 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "The acquisition of Mynaric enhances Rocket Lab's capabilities in satellite laser communication, which could significantly impact its competitive positioning in the space systems market.",
-      "decision_hook": "Consider evaluating the potential impact of this acquisition on Rocket Lab's future contracts and revenue streams.",
+      "impact_rationale": "The acquisition of Mynaric enhances Rocket Lab's capabilities in satellite laser communication, which could significantly impact its competitive position in the space systems market.",
+      "decision_hook": "Consider evaluating the implications of this acquisition on Rocket Lab's growth potential.",
       "scored_by": "gpt-4o-mini"
     },
     {
-      "id": "3685595def7793c01cca478cd7e0103db7901f39",
-      "title": "Rocket Lab’s Gauss Thruster Launch Adds New Angle To RKLB Story",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/rocket-lab-gauss-thruster-launch-190252100.html?.tsrc=rss",
-      "source": "yahoo-ticker:RKLB",
-      "published_at": "2026-04-14T19:02:52Z",
-      "tickers_mentioned": [
-        "RKLB"
-      ],
-      "portfolio_relevance": "held",
-      "impact_score": 7,
-      "impact_rationale": "The introduction of the Gauss thruster represents a significant strategic shift for Rocket Lab, expanding its product offerings and production capacity.",
-      "decision_hook": "Consider evaluating the potential impact on RKLB's market position and revenue streams.",
-      "scored_by": "gpt-4o-mini"
-    },
-    {
-      "id": "fee4f738b2cd1905524c2be033a8cf0e0dd6c699",
-      "title": "Rocket Lab Repeat iQPS Launches Extend Backlog And Test Valuation Gap",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/rocket-lab-repeat-iqps-launches-090738848.html?.tsrc=rss",
-      "source": "yahoo-ticker:RKLB",
-      "published_at": "2026-04-13T09:07:38Z",
-      "tickers_mentioned": [
-        "RKLB"
-      ],
-      "portfolio_relevance": "held",
-      "impact_score": 7,
-      "impact_rationale": "The new multi-launch contract with iQPS reinforces Rocket Lab's position in the small satellite launch market, indicating potential revenue growth.",
-      "decision_hook": "Consider evaluating Rocket Lab's growth potential in light of this contract.",
-      "scored_by": "gpt-4o-mini"
-    },
-    {
-      "id": "64f2725f1b79372746f20683e1018cf34ca6bb6a",
-      "title": "iQPS Books Three New Launches on Electron, Extending Multi-Year Partnership with Rocket Lab",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/iqps-books-three-launches-electron-203000525.html?.tsrc=rss",
-      "source": "yahoo-ticker:RKLB",
-      "published_at": "2026-04-09T20:30:00Z",
-      "tickers_mentioned": [
-        "RKLB"
-      ],
-      "portfolio_relevance": "held",
-      "impact_score": 7,
-      "impact_rationale": "The new multi-launch deal with iQPS reinforces Rocket Lab's position as a key player in the launch services market, which could positively impact future revenue.",
-      "decision_hook": "Consider evaluating the potential revenue impact on RKLB's financials.",
-      "scored_by": "gpt-4o-mini"
-    },
-    {
-      "id": "ccb878d082ba57b5a520e869933dffee76d956f2",
-      "title": "SpaceX Was Buying Cybertrucks in Bulk. Tesla Didn’t Tell Anyone.",
-      "url": "https://247wallst.com/investing/2026/04/16/spacex-was-buying-cybertrucks-in-bulk-tesla-didnt-tell-anyone/?.tsrc=rss",
+      "id": "e2c478292bcd53a16a208f195f3d8c7aa6215456",
+      "title": "Tesla AI5 Chip Milestone Tests Robotic And Autonomy Ambitions",
+      "url": "https://finance.yahoo.com/sectors/technology/articles/tesla-ai5-chip-milestone-tests-160739379.html?.tsrc=rss",
       "source": "yahoo-ticker:TSLA",
-      "published_at": "2026-04-16T11:40:35Z",
+      "published_at": "2026-04-16T16:07:39Z",
       "tickers_mentioned": [
         "TSLA"
       ],
       "portfolio_relevance": "held",
       "impact_score": 7,
-      "impact_rationale": "The undisclosed bulk purchase of Cybertrucks by SpaceX raises concerns about transparency and related-party transactions, which could impact investor confidence in Tesla.",
-      "decision_hook": "Consider reviewing Tesla's disclosure practices and potential implications for investment.",
+      "impact_rationale": "Tesla's advancement in AI chip development is a significant strategic shift that could enhance its competitive position in robotics and autonomy.",
+      "decision_hook": "Consider evaluating Tesla's growth potential in AI-driven markets.",
+      "scored_by": "gpt-4o-mini"
+    },
+    {
+      "id": "9139434c4ef6b3702dff6eda196659f727bb3543",
+      "title": "Can RGTI's 108-Qubit Cepheus Launch Accelerate Quantum Advantage Push?",
+      "url": "https://finance.yahoo.com/sectors/technology/articles/rgtis-108-qubit-cepheus-launch-155600207.html?.tsrc=rss",
+      "source": "yahoo-ticker:AMZN",
+      "published_at": "2026-04-16T15:56:00Z",
+      "tickers_mentioned": [
+        "RGTI"
+      ],
+      "portfolio_relevance": "held",
+      "impact_score": 6,
+      "impact_rationale": "The launch of Rigetti's 108-qubit Cepheus system represents a significant technological advancement in quantum computing that could impact the competitive landscape.",
+      "decision_hook": "Consider monitoring RGTI's performance and potential partnerships in quantum technology.",
+      "scored_by": "gpt-4o-mini"
+    },
+    {
+      "id": "6f707b0a3ddb796159ede952a005e87f118a5b62",
+      "title": "ASML EUV Demand Outpacing Supply, Pointing to Strong Growth in 2027, RBC Says",
+      "url": "https://finance.yahoo.com/sectors/technology/articles/asml-euv-demand-outpacing-supply-145554765.html?.tsrc=rss",
+      "source": "yahoo-ticker:ASML",
+      "published_at": "2026-04-16T14:55:54Z",
+      "tickers_mentioned": [
+        "ASML"
+      ],
+      "portfolio_relevance": "held",
+      "impact_score": 6,
+      "impact_rationale": "The demand for ASML's extreme ultraviolet systems exceeding supply indicates potential growth, which is relevant for future investment decisions.",
+      "decision_hook": "Monitor ASML's performance closely as demand dynamics evolve.",
+      "scored_by": "gpt-4o-mini"
+    },
+    {
+      "id": "8e690f68d1da519d963e94bb9a9d4f524f7e0896",
+      "title": "ASML Holding Q1 Earnings Beat Estimates, Revenues Rise Y/Y",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/asml-holding-q1-earnings-beat-144900503.html?.tsrc=rss",
+      "source": "yahoo-ticker:ASML",
+      "published_at": "2026-04-16T14:49:00Z",
+      "tickers_mentioned": [
+        "ASML"
+      ],
+      "portfolio_relevance": "held",
+      "impact_score": 6,
+      "impact_rationale": "ASML's earnings beat and revenue growth indicate strong demand, which could influence investment decisions.",
+      "decision_hook": "Consider reviewing ASML's position in the portfolio based on the updated revenue outlook.",
+      "scored_by": "gpt-4o-mini"
+    },
+    {
+      "id": "c59754c5e28c1e64af6a45aa3de5fb18e4fc3e91",
+      "title": "Strong ASML, TSMC forecasts signal AI spending boom is intact",
+      "url": "https://finance.yahoo.com/sectors/technology/articles/strong-asml-tsmc-forecasts-signal-104833111.html?.tsrc=rss",
+      "source": "yahoo-ticker:ASML",
+      "published_at": "2026-04-16T10:48:33Z",
+      "tickers_mentioned": [
+        "ASML"
+      ],
+      "portfolio_relevance": "held",
+      "impact_score": 6,
+      "impact_rationale": "Strong forecasts from ASML and TSMC indicate sustained investment in AI, which could influence decision-making for companies in the tech sector.",
+      "decision_hook": "Consider reviewing positions in tech-related stocks, particularly those linked to AI and cloud computing.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -212,8 +227,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "The successful implementation of the FICO Platform by Compeer Financial highlights its operational excellence and could influence investor sentiment towards Fair Isaac amid its recent share price decline.",
-      "decision_hook": "Consider monitoring FICO for potential recovery signals following this client success.",
+      "impact_rationale": "The successful implementation of the FICO Platform by Compeer Financial highlights its operational excellence and may influence investor sentiment towards Fair Isaac amid its recent share price decline.",
+      "decision_hook": "Consider monitoring FICO for potential recovery signals.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -227,7 +242,7 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "Concerns over potential changes to credit scoring requirements could impact FICO's market share and investor sentiment.",
+      "impact_rationale": "Concerns about potential changes to credit scoring requirements could impact FICO's market share and affect investor sentiment.",
       "decision_hook": "Monitor developments regarding credit scoring regulations.",
       "scored_by": "gpt-4o-mini"
     },
@@ -242,8 +257,23 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "The acceleration of exploration at La Union following a new gold discovery could indicate potential value creation for Questcorp Mining, relevant to investors tracking the stock.",
-      "decision_hook": "Consider monitoring developments in the exploration results for potential investment opportunities.",
+      "impact_rationale": "The acceleration of exploration at La Union following a new gold discovery could indicate potential value creation for Questcorp Mining, relevant for investors tracking the stock.",
+      "decision_hook": "Consider monitoring further developments in Questcorp's exploration results.",
+      "scored_by": "gpt-4o-mini"
+    },
+    {
+      "id": "3685595def7793c01cca478cd7e0103db7901f39",
+      "title": "Rocket Lab’s Gauss Thruster Launch Adds New Angle To RKLB Story",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/rocket-lab-gauss-thruster-launch-190252100.html?.tsrc=rss",
+      "source": "yahoo-ticker:RKLB",
+      "published_at": "2026-04-14T19:02:52Z",
+      "tickers_mentioned": [
+        "RKLB"
+      ],
+      "portfolio_relevance": "held",
+      "impact_score": 6,
+      "impact_rationale": "The introduction of the Gauss thruster represents a significant product expansion for Rocket Lab, which could enhance its competitive position in the satellite propulsion market.",
+      "decision_hook": "Consider evaluating the potential impact of the Gauss thruster on Rocket Lab's revenue streams.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -257,8 +287,8 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "Rocket Lab's shift towards vertical integration could enhance its operational efficiency and competitive positioning in the growing space market.",
-      "decision_hook": "Consider monitoring RKLB for potential impacts on growth forecasts.",
+      "impact_rationale": "Rocket Lab's shift towards vertical integration could enhance its operational efficiency and cost management, which is relevant for its growth prospects.",
+      "decision_hook": "Consider monitoring RKLB's performance closely as this strategy develops.",
       "scored_by": "gpt-4o-mini"
     },
     {
@@ -272,8 +302,23 @@
       ],
       "portfolio_relevance": "held",
       "impact_score": 6,
-      "impact_rationale": "The introduction of a new electric propulsion system could enhance Rocket Lab's competitive position and attract new contracts in the satellite market.",
-      "decision_hook": "Consider monitoring Rocket Lab's upcoming contracts and partnerships related to the new propulsion system.",
+      "impact_rationale": "The introduction of a new electric propulsion system could enhance Rocket Lab's competitive position in the satellite launch market.",
+      "decision_hook": "Consider monitoring Rocket Lab's developments in propulsion technology for potential investment opportunities.",
+      "scored_by": "gpt-4o-mini"
+    },
+    {
+      "id": "fee4f738b2cd1905524c2be033a8cf0e0dd6c699",
+      "title": "Rocket Lab Repeat iQPS Launches Extend Backlog And Test Valuation Gap",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/rocket-lab-repeat-iqps-launches-090738848.html?.tsrc=rss",
+      "source": "yahoo-ticker:RKLB",
+      "published_at": "2026-04-13T09:07:38Z",
+      "tickers_mentioned": [
+        "RKLB"
+      ],
+      "portfolio_relevance": "held",
+      "impact_score": 6,
+      "impact_rationale": "The new multi-launch contract with iQPS reinforces Rocket Lab's position in the small satellite launch market, which could influence future revenue projections.",
+      "decision_hook": "Consider monitoring Rocket Lab's performance as this contract may impact future earnings.",
       "scored_by": "gpt-4o-mini"
     }
   ]

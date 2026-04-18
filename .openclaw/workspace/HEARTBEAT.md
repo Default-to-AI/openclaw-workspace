@@ -5,7 +5,11 @@ Heartbeat checks: **ENABLED (triage-only)**
 ## Rules
 - Heartbeats must be cheap and fast.
 - Heartbeats must NOT do research, long web browsing, or multi-step workflows.
-- If something needs work, write a single task into the vault task list and stop.
+- Canonical instructions live in `Vault/CLAUDE.md`. When in doubt, follow that.
+- Heartbeat responsibility is **detection + queueing** only:
+  - If `Vault/_raw/` contains any pending source files (excluding `ingestion_log.md`), append **one** task under `## ⚡️ Jinx Claw Tasks` in `Vault/_raw/Tasks/Inbox.md`: “Ingest pending `_raw` sources per CLAUDE.md”.
+  - If `Vault/_raw/Tasks/Inbox.md` contains any unchecked tasks, append **one** task under `## ⚡️ Jinx Claw Tasks`: “Triage Inbox → Master_Categorized_Tasks”.
+  - Otherwise: reply `HEARTBEAT_OK`.
 
 ## Schedule (manual)
 Configure cron later. For now, when a heartbeat poll arrives:

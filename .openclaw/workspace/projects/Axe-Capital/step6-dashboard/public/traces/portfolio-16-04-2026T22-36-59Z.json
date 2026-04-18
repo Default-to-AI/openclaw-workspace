@@ -1,0 +1,15 @@
+{
+  "run_id": "portfolio-16-04-2026T22-36-59Z",
+  "agent": "axe_portfolio",
+  "started_at": "2026-04-16T22:36:59Z",
+  "status": "partial",
+  "summary": "axe_portfolio running",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T22:36:59.649Z",
+      "step": "load_inputs",
+      "thought": "reading IBKR CSV + portfolio snapshot"
+    }
+  ]
+}

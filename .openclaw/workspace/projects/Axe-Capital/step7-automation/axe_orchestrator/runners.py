@@ -25,7 +25,7 @@ AGENT_ORDER = (
 
 
 _MODULE_TIMEOUTS: dict[str, int] = {
-    "axe_portfolio.cli": 180,  # connect(10s) + reqAccountUpdates(8s×2) + yfinance + margin
+    "axe_portfolio.cli": 120,  # connect(10s) + poll-until-data(≤8s×2 accts) + yfinance + margin
 }
 _DEFAULT_TIMEOUT = 300
 

@@ -1,10 +1,340 @@
 {
-  "generated_at": "2026-04-16T18:10:51Z",
+  "generated_at": "2026-04-16T23:47:52Z",
   "retention": {
     "max_runs_per_agent": 50,
     "total_cap": 500
   },
   "runs": [
+    {
+      "run_id": "portfolio-16-04-2026T23-47-42Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T23:47:42Z",
+      "ended_at": "2026-04-16T23:47:52Z",
+      "duration_ms": 10547,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 1 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T23-39-29Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T23:39:29Z",
+      "ended_at": "2026-04-16T23:39:55Z",
+      "duration_ms": 26336,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T23-23-03Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T23:23:03Z",
+      "ended_at": "2026-04-16T23:23:37Z",
+      "duration_ms": 34697,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T22-44-48Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T22:44:48Z",
+      "ended_at": "2026-04-16T22:44:58Z",
+      "duration_ms": 10756,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: TimeoutError",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-16-04-2026T22-43-50Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T22:43:50Z",
+      "ended_at": "2026-04-16T22:44:00Z",
+      "duration_ms": 10581,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: TimeoutError",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-16-04-2026T22-36-41Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T22:36:41Z",
+      "ended_at": "2026-04-16T22:36:51Z",
+      "duration_ms": 10497,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: TimeoutError",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-16-04-2026T22-34-54Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T22:34:54Z",
+      "ended_at": "2026-04-16T22:35:04Z",
+      "duration_ms": 10756,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: TimeoutError",
+      "artifact_written": null
+    },
+    {
+      "run_id": "news-16-04-2026T22-18-01Z",
+      "agent": "axe_news",
+      "started_at": "2026-04-16T22:18:01Z",
+      "ended_at": "2026-04-16T22:19:43Z",
+      "duration_ms": 102025,
+      "status": "success",
+      "event_count": 5,
+      "summary": "290 in, 20 kept (score>=6)",
+      "artifact_written": "news-latest.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T22-17-59Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T22:17:59Z",
+      "ended_at": "2026-04-16T22:18:01Z",
+      "duration_ms": 2040,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "news-16-04-2026T22-17-26Z",
+      "agent": "axe_news",
+      "started_at": "2026-04-16T22:17:26Z",
+      "ended_at": "2026-04-16T22:19:12Z",
+      "duration_ms": 106357,
+      "status": "success",
+      "event_count": 5,
+      "summary": "290 in, 20 kept (score>=6)",
+      "artifact_written": "news-latest.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T22-15-43Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T22:15:43Z",
+      "ended_at": "2026-04-16T22:15:45Z",
+      "duration_ms": 2361,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T22-07-38Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T22:07:38Z",
+      "ended_at": "2026-04-16T22:07:40Z",
+      "duration_ms": 2236,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T22-01-57Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T22:01:57Z",
+      "ended_at": "2026-04-16T22:01:58Z",
+      "duration_ms": 1773,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T22-00-01Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T22:00:01Z",
+      "ended_at": "2026-04-16T22:00:03Z",
+      "duration_ms": 2801,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T21-59-11Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T21:59:11Z",
+      "ended_at": "2026-04-16T21:59:13Z",
+      "duration_ms": 2551,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T21-57-07Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T21:57:07Z",
+      "ended_at": "2026-04-16T21:57:09Z",
+      "duration_ms": 2806,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T21-50-34Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T21:50:34Z",
+      "ended_at": "2026-04-16T21:50:38Z",
+      "duration_ms": 4252,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T21-48-56Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T21:48:56Z",
+      "ended_at": "2026-04-16T21:48:59Z",
+      "duration_ms": 3211,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T21-47-06Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T21:47:06Z",
+      "ended_at": "2026-04-16T21:47:09Z",
+      "duration_ms": 3404,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T21-45-40Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T21:45:40Z",
+      "ended_at": "2026-04-16T21:45:43Z",
+      "duration_ms": 3150,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T21-34-13Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T21:34:13Z",
+      "ended_at": "2026-04-16T21:34:23Z",
+      "duration_ms": 10601,
+      "status": "failed",
+      "event_count": 2,
+      "summary": "review failed: TimeoutError",
+      "artifact_written": null
+    },
+    {
+      "run_id": "portfolio-16-04-2026T21-04-34Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T21:04:34Z",
+      "ended_at": "2026-04-16T21:04:40Z",
+      "duration_ms": 6124,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T19-15-43Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T19:15:43Z",
+      "ended_at": "2026-04-16T19:15:54Z",
+      "duration_ms": 11853,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T19-12-47Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T19:12:47Z",
+      "ended_at": "2026-04-16T19:12:50Z",
+      "duration_ms": 3189,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T19-05-16Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T19:05:16Z",
+      "ended_at": "2026-04-16T19:05:24Z",
+      "duration_ms": 8998,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T19-02-24Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T19:02:24Z",
+      "ended_at": "2026-04-16T19:02:26Z",
+      "duration_ms": 2285,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T19-00-12Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T19:00:12Z",
+      "ended_at": "2026-04-16T19:00:13Z",
+      "duration_ms": 1531,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "news-16-04-2026T18-44-19Z",
+      "agent": "axe_news",
+      "started_at": "2026-04-16T18:44:19Z",
+      "ended_at": "2026-04-16T18:46:11Z",
+      "duration_ms": 112423,
+      "status": "success",
+      "event_count": 5,
+      "summary": "290 in, 20 kept (score>=6)",
+      "artifact_written": "news-latest.json"
+    },
+    {
+      "run_id": "alpha-16-04-2026T18-42-38Z",
+      "agent": "axe_alpha",
+      "started_at": "2026-04-16T18:42:38Z",
+      "ended_at": "2026-04-16T18:44:19Z",
+      "duration_ms": 101582,
+      "status": "success",
+      "event_count": 3,
+      "summary": "scanned and surfaced 0 opportunities",
+      "artifact_written": "alpha-latest.json"
+    },
+    {
+      "run_id": "portfolio-16-04-2026T18-42-36Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-16T18:42:36Z",
+      "ended_at": "2026-04-16T18:42:38Z",
+      "duration_ms": 2203,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 13 positions",
+      "artifact_written": "portfolio.json"
+    },
     {
       "run_id": "portfolio-16-04-2026T18-10-49Z",
       "agent": "axe_portfolio",
@@ -554,50 +884,6 @@
       "event_count": 2,
       "summary": "portfolio review \u2014 13 positions",
       "artifact_written": "portfolio.json"
-    },
-    {
-      "run_id": "portfolio-15-04-2026T15-17-27Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-15T15:17:27Z",
-      "ended_at": "2026-04-15T15:17:28Z",
-      "duration_ms": 1894,
-      "status": "success",
-      "event_count": 2,
-      "summary": "portfolio review \u2014 13 positions",
-      "artifact_written": "portfolio.json"
-    },
-    {
-      "run_id": "portfolio-15-04-2026T14-28-42Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-15T14:28:42Z",
-      "ended_at": "2026-04-15T14:28:42Z",
-      "duration_ms": 698,
-      "status": "failed",
-      "event_count": 2,
-      "summary": "review failed: [Errno 2] No such file or directory: '/home/tiger/.openclaw/workspace/projects/Axe-Capital/00_Dashboard/data/raw/portfolio-current.csv'",
-      "artifact_written": null
-    },
-    {
-      "run_id": "portfolio-15-04-2026T14-24-55Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-15T14:24:55Z",
-      "ended_at": "2026-04-15T14:24:55Z",
-      "duration_ms": 143,
-      "status": "failed",
-      "event_count": 2,
-      "summary": "review failed: [Errno 2] No such file or directory: '/home/tiger/.openclaw/workspace/projects/Axe-Capital/00_Dashboard/data/raw/portfolio-current.csv'",
-      "artifact_written": null
-    },
-    {
-      "run_id": "portfolio-15-04-2026T14-17-54Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-15T14:17:54Z",
-      "ended_at": "2026-04-15T14:17:54Z",
-      "duration_ms": 171,
-      "status": "failed",
-      "event_count": 2,
-      "summary": "review failed: [Errno 2] No such file or directory: '/home/tiger/.openclaw/workspace/projects/Axe-Capital/00_Dashboard/data/raw/portfolio-current.csv'",
-      "artifact_written": null
     }
   ]
 }

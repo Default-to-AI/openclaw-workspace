@@ -1,33 +1,33 @@
 {
-  "generated_at": "2026-04-16T18:10:51Z",
+  "generated_at": "2026-04-16T22:44:58Z",
   "artifacts": {
     "portfolio": {
-      "last_refresh": "2026-04-16T18:10:51Z",
-      "age_min": 0,
+      "last_refresh": "2026-04-16T22:18:01Z",
+      "age_min": 26,
       "status": "fresh"
     },
     "alpha": {
-      "last_refresh": "2026-04-16T18:00:52.211544+03:00",
-      "age_min": 189,
+      "last_refresh": "2026-04-16T21:44:19.578778+03:00",
+      "age_min": 240,
       "status": "fresh"
     },
     "news": {
-      "last_refresh": "2026-04-16T15:02:37Z",
-      "age_min": 188,
-      "status": "stale"
+      "last_refresh": "2026-04-16T22:19:43Z",
+      "age_min": 25,
+      "status": "fresh"
     },
     "decision": {
       "last_refresh": "2026-04-16T02:08:16Z",
-      "age_min": 962,
+      "age_min": 1236,
       "status": "fresh"
     },
     "analyst_reports": {
       "last_refresh": "2026-04-16T01:21:17Z",
-      "age_min": 1009,
+      "age_min": 1283,
       "status": "fresh"
     },
     "traces": {
-      "last_refresh": "2026-04-16T18:10:51Z",
+      "last_refresh": "2026-04-16T22:44:58Z",
       "age_min": 0,
       "status": "fresh"
     }

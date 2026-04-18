@@ -1,0 +1,22 @@
+{
+  "run_id": "portfolio-16-04-2026T22-44-48Z",
+  "agent": "axe_portfolio",
+  "started_at": "2026-04-16T22:44:48Z",
+  "status": "failed",
+  "summary": "review failed: TimeoutError",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-16T22:44:48.700Z",
+      "step": "load_inputs",
+      "thought": "reading IBKR CSV + portfolio snapshot"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-16T22:44:58.754Z",
+      "step": "error",
+      "thought": "review failed: TimeoutError"
+    }
+  ],
+  "ended_at": "2026-04-16T22:44:58Z"
+}

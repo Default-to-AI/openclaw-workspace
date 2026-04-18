@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Callable
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import APIRouter, FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from sse_starlette.sse import EventSourceResponse
 
@@ -64,9 +64,9 @@ async def _run_agent(target: str) -> dict:
 
 def create_app() -> FastAPI:
     app = FastAPI(title="Axe Capital API", version="0.1.0")
+    api = APIRouter(prefix="/api")
 
-    @app.get("/health")
-    async def health() -> JSONResponse:
+    async def _health_impl() -> JSONResponse:
         pub = public_dir()
         health_path = pub / "health.json"
         if not health_path.exists():
@@ -74,16 +74,56 @@ def create_app() -> FastAPI:
         report = generate_health(pub)
         return JSONResponse(report)
 
-    @app.post("/refresh/{target}")
-    async def refresh(target: str) -> JSONResponse:
+    @app.get("/health")
+    async def health_root() -> JSONResponse:
+        return await _health_impl()
+
+    @api.get("/health")
+    async def health_api() -> JSONResponse:
+        return await _health_impl()
+
+    async def _refresh_impl(target: str) -> JSONResponse:
         if REFRESH_LOCK.locked():
             raise HTTPException(status_code=409, detail="A refresh is already in progress")
         async with REFRESH_LOCK:
             payload = await _run_agent(target)
         return JSONResponse(payload)
 
-    @app.get("/trace/stream/{run_id}")
-    async def trace_stream(run_id: str, request: Request) -> EventSourceResponse:
+    # Primary refresh endpoint (use POST for side effects).
+    @app.post("/refresh/{target}")
+    async def refresh_post(target: str) -> JSONResponse:
+        return await _refresh_impl(target)
+
+    @api.post("/refresh/{target}")
+    async def refresh_post_api(target: str) -> JSONResponse:
+        return await _refresh_impl(target)
+
+    # Convenience endpoints (older clients/UI may use GET).
+    @app.get("/refresh/{target}")
+    async def refresh_get(target: str) -> JSONResponse:
+        return await _refresh_impl(target)
+
+    @api.get("/refresh/{target}")
+    async def refresh_get_api(target: str) -> JSONResponse:
+        return await _refresh_impl(target)
+
+    @app.post("/refresh")
+    async def refresh_all_post() -> JSONResponse:
+        return await _refresh_impl("all")
+
+    @api.post("/refresh")
+    async def refresh_all_post_api() -> JSONResponse:
+        return await _refresh_impl("all")
+
+    @app.get("/refresh")
+    async def refresh_all_get() -> JSONResponse:
+        return await _refresh_impl("all")
+
+    @api.get("/refresh")
+    async def refresh_all_get_api() -> JSONResponse:
+        return await _refresh_impl("all")
+
+    async def _trace_stream_impl(run_id: str, request: Request) -> EventSourceResponse:
         trace_path = _trace_path(run_id)
 
         async def event_generator():
@@ -150,6 +190,16 @@ def create_app() -> FastAPI:
                 await asyncio.sleep(1)
 
         return EventSourceResponse(event_generator(), ping=10)
+
+    @app.get("/trace/stream/{run_id}")
+    async def trace_stream(run_id: str, request: Request) -> EventSourceResponse:
+        return await _trace_stream_impl(run_id, request)
+
+    @api.get("/trace/stream/{run_id}")
+    async def trace_stream_api(run_id: str, request: Request) -> EventSourceResponse:
+        return await _trace_stream_impl(run_id, request)
+
+    app.include_router(api)
 
     return app
 

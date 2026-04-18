@@ -6,8 +6,14 @@ async function parseResponse(response, parser) {
 }
 
 async function tryFetch(path, parser) {
-  const response = await fetch(path)
+  const response = await fetch(path, { cache: 'no-store' })
   return parseResponse(response, parser)
+}
+
+function bust(path) {
+  if (!path) return path
+  const sep = path.includes('?') ? '&' : '?'
+  return `${path}${sep}_=${Date.now()}`
 }
 
 export async function fetchJsonWithFallback({ apiPath, filePath }) {
@@ -15,7 +21,7 @@ export async function fetchJsonWithFallback({ apiPath, filePath }) {
 
   if (apiPath) {
     try {
-      return await tryFetch(apiPath, (response) => response.json())
+      return await tryFetch(bust(apiPath), (response) => response.json())
     } catch (error) {
       lastError = error
     }
@@ -23,7 +29,7 @@ export async function fetchJsonWithFallback({ apiPath, filePath }) {
 
   if (filePath) {
     try {
-      return await tryFetch(filePath, (response) => response.json())
+      return await tryFetch(bust(filePath), (response) => response.json())
     } catch (error) {
       lastError = error
     }
@@ -37,7 +43,7 @@ export async function fetchTextWithFallback({ apiPath, filePath }) {
 
   if (apiPath) {
     try {
-      return await tryFetch(apiPath, (response) => response.text())
+      return await tryFetch(bust(apiPath), (response) => response.text())
     } catch (error) {
       lastError = error
     }
@@ -45,7 +51,7 @@ export async function fetchTextWithFallback({ apiPath, filePath }) {
 
   if (filePath) {
     try {
-      return await tryFetch(filePath, (response) => response.text())
+      return await tryFetch(bust(filePath), (response) => response.text())
     } catch (error) {
       lastError = error
     }
