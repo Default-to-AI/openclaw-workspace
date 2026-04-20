@@ -55,10 +55,14 @@ cleanup() {
         kill "$DASH_PID" 2>/dev/null && wait "$DASH_PID" 2>/dev/null || true
         success "${WHITE}Dashboard${RESET}   ${GREEN}stopped${RESET}  ${DIM}pid ${DASH_PID}${RESET}"
     fi
-    # Return port 8000 to the systemd service
+    # Return ports to the systemd services
     if systemctl --user is-enabled axe-api.service &>/dev/null; then
         systemctl --user start axe-api.service 2>/dev/null || true
         success "${WHITE}axe-api.service${RESET}  ${GREEN}restarted${RESET}"
+    fi
+    if systemctl --user is-enabled axe-dashboard.service &>/dev/null; then
+        systemctl --user start axe-dashboard.service 2>/dev/null || true
+        success "${WHITE}axe-dashboard.service${RESET}  ${GREEN}restarted${RESET}"
     fi
     success "${GREEN}Clean exit.${RESET} See you, boss."
     exit 0
@@ -75,13 +79,20 @@ header "AXE-CAPITAL  ·  Dev Environment Launcher"
 # ══════════════════════════════════════════════════════════════════════
 step "Preflight checks"
 
-# ── Release port 8000 from systemd if running ────────────────────────
+# ── Release ports from systemd services if running ───────────────────
 if systemctl --user is-active axe-api.service &>/dev/null; then
     warn "${WHITE}axe-api.service${RESET}  ${YELLOW}is running — stopping it to free port ${API_PORT}${RESET}"
     systemctl --user stop axe-api.service 2>/dev/null || true
     success "${WHITE}axe-api.service${RESET}  ${GREEN}stopped${RESET}  ${DIM}port ${API_PORT} is now free${RESET}"
 else
     success "${WHITE}axe-api.service${RESET}  ${GREEN}not running${RESET}  ${DIM}port ${API_PORT} is free${RESET}"
+fi
+if systemctl --user is-active axe-dashboard.service &>/dev/null; then
+    warn "${WHITE}axe-dashboard.service${RESET}  ${YELLOW}is running — stopping it to free port ${DASH_PORT}${RESET}"
+    systemctl --user stop axe-dashboard.service 2>/dev/null || true
+    success "${WHITE}axe-dashboard.service${RESET}  ${GREEN}stopped${RESET}  ${DIM}port ${DASH_PORT} is now free${RESET}"
+else
+    success "${WHITE}axe-dashboard.service${RESET}  ${GREEN}not running${RESET}  ${DIM}port ${DASH_PORT} is free${RESET}"
 fi
 
 # ── Python venv ───────────────────────────────────────────────────────
