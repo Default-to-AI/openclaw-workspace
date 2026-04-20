@@ -4,7 +4,7 @@ from axe_portfolio.tracker import build_position_table, SECTOR_MAP
 
 def test_nflx_has_sector():
     assert "NFLX" in SECTOR_MAP
-    assert SECTOR_MAP["NFLX"] != "Other"
+    assert SECTOR_MAP["NFLX"] == "Streaming"
 
 
 def test_build_position_table_nflx_sector():
