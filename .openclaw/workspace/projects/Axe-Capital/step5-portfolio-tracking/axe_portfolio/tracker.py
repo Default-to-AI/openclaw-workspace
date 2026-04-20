@@ -11,6 +11,7 @@ from typing import Any
 import pandas as pd
 import yfinance as yf
 
+from axe_portfolio.flex import fetch_flex_portfolio
 from axe_portfolio.ibkr import fetch_ibkr_portfolio
 from axe_portfolio.util import axe_root, now_utc_iso, project_root, safe_float as _safe_float, today_local_iso
 
@@ -382,6 +383,15 @@ def _resolve_portfolio_input() -> PortfolioInput:
             if source == "ibkr":
                 raise RuntimeError("IBKR connection succeeded, but no portfolio positions were returned.")
 
+    if source in {"ibkr", "auto"}:
+        try:
+            rows, cash = fetch_flex_portfolio()
+        except Exception:
+            if source == "ibkr":
+                raise
+        else:
+            return PortfolioInput(kind="flex", path=Path("flex://ibkr"), rows=rows, cash=cash)
+
     normalized_source = _resolve_normalized_source()
     if normalized_source is not None:
         return PortfolioInput(
@@ -565,6 +575,7 @@ def build_dashboard_json(
     hishtalmut_status: dict[str, Any],
     review_date: str,
     cash: float,
+    data_source: str = "ibkr",
 ) -> dict[str, Any]:
     positions_value = sum((row.get("market_value") or 0.0) for row in position_table)
     nav = round(positions_value + cash, 2)
@@ -576,6 +587,7 @@ def build_dashboard_json(
     sorted_positions = sorted(position_table, key=lambda x: alert_order.get(x.get("alert_status", "GREEN"), 2))
     return {
         "generated_at": now_utc_iso(),
+        "data_source": data_source,
         "review_date": review_date,
         "positions": [{**row, "shares": row.get("position"), "last_price": row.get("last")} for row in sorted_positions],
         "summary": {
@@ -616,6 +628,7 @@ def run_portfolio_review() -> ReviewArtifacts:
         hishtalmut_status,
         weekly_review["review_date"],
         cash=portfolio_input.cash,
+        data_source=portfolio_input.kind,
     )
     write_dashboard_json(dashboard)
     return ReviewArtifacts(
