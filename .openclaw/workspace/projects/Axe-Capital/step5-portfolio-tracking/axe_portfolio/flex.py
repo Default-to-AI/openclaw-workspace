@@ -75,6 +75,25 @@ def _fetch_statement(ref_code: str, config: FlexQueryConfig) -> str:
     raise TimeoutError(f"Flex Query statement still pending after {_MAX_RETRIES} retries")
 
 
+def _aggregate_by_symbol(rows: list[dict]) -> list[dict]:
+    seen: dict[str, dict] = {}
+    for row in rows:
+        symbol = row["symbol"]
+        if symbol not in seen:
+            seen[symbol] = dict(row)
+            continue
+        existing = seen[symbol]
+        existing["position"] += row["position"]
+        existing["cost_basis"] += row["cost_basis"]
+        existing["unrealized_pl"] += row["unrealized_pl"]
+        existing["market_value"] = round(existing["market_value"] + row["market_value"], 2)
+        pos = existing["position"]
+        cb = existing["cost_basis"]
+        existing["avg_price"] = round(cb / pos, 6) if pos else 0.0
+        existing["unrealized_pl_pct"] = round((existing["unrealized_pl"] / cb) * 100, 2) if cb else 0.0
+    return list(seen.values())
+
+
 def _parse_statement(xml_text: str) -> tuple[list[dict], float]:
     root = ET.fromstring(xml_text)
 
@@ -104,16 +123,31 @@ def _parse_statement(xml_text: str) -> tuple[list[dict], float]:
             "eps_current": None,
         })
 
-    cash_base_values: list[float] = []
-    cash_fallback_values: list[float] = []
-    for cash_el in root.iter("CashReportCurrency"):
-        ending_cash = float(cash_el.attrib.get("endingCash", 0) or 0)
-        if cash_el.attrib.get("currency") == "BASE":
-            cash_base_values.append(ending_cash)
-        else:
-            cash_fallback_values.append(ending_cash)
+    rows = _aggregate_by_symbol(rows)
 
-    cash = sum(cash_base_values) if cash_base_values else sum(cash_fallback_values)
+    # Cash priority: BASE (authoritative total) → USD only → sum all (no currency attr).
+    # BASE and USD are the same money viewed differently; never double-count them.
+    base_cash: list[float] = []
+    usd_cash: list[float] = []
+    all_cash: list[float] = []
+    has_currency_attr = False
+    for cash_el in root.iter("CashReportCurrency"):
+        ending = float(cash_el.attrib.get("endingCash", 0) or 0)
+        currency = cash_el.attrib.get("currency", "")
+        all_cash.append(ending)
+        if currency:
+            has_currency_attr = True
+            if currency == "BASE":
+                base_cash.append(ending)
+            elif currency == "USD":
+                usd_cash.append(ending)
+
+    if base_cash:
+        cash = sum(base_cash)
+    elif has_currency_attr:
+        cash = sum(usd_cash)
+    else:
+        cash = sum(all_cash)
 
     return rows, cash
 

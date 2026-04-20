@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import csv
 import json
+import logging
 import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+logger = logging.getLogger(__name__)
 
 import pandas as pd
 import yfinance as yf
@@ -85,6 +88,7 @@ class ReviewArtifacts:
     hishtalmut_status: dict[str, Any]
     weekly_review: dict[str, Any]
     dashboard_json_path: Path
+    data_source: str = "unknown"
 
 
 @dataclass
@@ -374,9 +378,10 @@ def _resolve_portfolio_input() -> PortfolioInput:
     if source in {"ibkr", "auto"}:
         try:
             rows, cash = fetch_ibkr_portfolio()
-        except Exception:
+        except Exception as exc:
             if source == "ibkr":
                 raise
+            logger.warning("IBKR live connection failed (%s: %s) — trying Flex Query fallback", type(exc).__name__, exc)
         else:
             if rows:
                 return PortfolioInput(kind="ibkr", path=Path("ibkr://live"), rows=rows, cash=cash)
@@ -386,9 +391,10 @@ def _resolve_portfolio_input() -> PortfolioInput:
     if source in {"ibkr", "auto"}:
         try:
             rows, cash = fetch_flex_portfolio()
-        except Exception:
+        except Exception as exc:
             if source == "ibkr":
                 raise
+            logger.warning("Flex Query failed (%s: %s) — falling back to cached CSV", type(exc).__name__, exc)
         else:
             return PortfolioInput(kind="flex", path=Path("flex://ibkr"), rows=rows, cash=cash)
 
@@ -641,4 +647,5 @@ def run_portfolio_review() -> ReviewArtifacts:
         hishtalmut_status=hishtalmut_status,
         weekly_review=weekly_review,
         dashboard_json_path=DASHBOARD_JSON_PATH,
+        data_source=portfolio_input.kind,
     )

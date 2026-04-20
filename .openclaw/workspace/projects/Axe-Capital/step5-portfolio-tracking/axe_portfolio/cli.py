@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 
 from dotenv import load_dotenv
@@ -8,12 +9,24 @@ from axe_core import Tracer
 from axe_portfolio.tracker import run_portfolio_review
 from axe_portfolio.util import axe_root
 
+logging.basicConfig(
+    level=logging.WARNING,
+    format="  [%(levelname)s] %(message)s",
+)
+
+_SOURCE_LABEL = {
+    "ibkr": "IBKR live",
+    "flex": "Flex Query (T+1)",
+    "normalized": "cached CSV (stale)",
+    "raw": "raw CSV (stale)",
+}
+
 
 def main(force_exit_on_failure: bool = False) -> int:
     load_dotenv(axe_root() / ".env", override=False)
     tracer = Tracer(agent="axe_portfolio")
     tracer.start()
-    tracer.event(step="load_inputs", thought="reading IBKR CSV + portfolio snapshot")
+    tracer.event(step="load_inputs", thought="resolving portfolio source (IBKR live → Flex Query → cached CSV)")
 
     try:
         artifacts = run_portfolio_review()
@@ -28,14 +41,15 @@ def main(force_exit_on_failure: bool = False) -> int:
         raise
 
     n_positions = len(artifacts.position_table)
+    source_label = _SOURCE_LABEL.get(artifacts.data_source, artifacts.data_source)
     tracer.event(
         step="review_complete",
-        thought=f"normalized {n_positions} positions",
-        io={"out": {"positions": n_positions}},
+        thought=f"{source_label} — {n_positions} positions",
+        io={"out": {"positions": n_positions, "data_source": artifacts.data_source}},
     )
     tracer.finalize(
         status="success",
-        summary=f"portfolio review — {n_positions} positions",
+        summary=f"portfolio review — {n_positions} positions ({source_label})",
         artifact_written="portfolio.json",
     )
 

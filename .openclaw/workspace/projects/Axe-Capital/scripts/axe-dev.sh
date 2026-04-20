@@ -139,7 +139,71 @@ else
 fi
 
 # ══════════════════════════════════════════════════════════════════════
-#  2. PORT MANAGEMENT
+#  2. PORTFOLIO DATA SOURCE
+# ══════════════════════════════════════════════════════════════════════
+step "Portfolio data source"
+
+ENV_FILE="$AXE_ROOT/.env"
+
+# ── IBKR TWS reachability ─────────────────────────────────────────────
+AXE_IBKR_HOST=""
+AXE_IBKR_PORT=""
+if [[ -f "$ENV_FILE" ]]; then
+    AXE_IBKR_HOST=$(grep -m1 '^AXE_IBKR_HOST=' "$ENV_FILE" | cut -d= -f2 | tr -d ' \r')
+    AXE_IBKR_PORT=$(grep -m1 '^AXE_IBKR_PORT=' "$ENV_FILE" | cut -d= -f2 | tr -d ' \r')
+fi
+
+if [[ -n "$AXE_IBKR_HOST" && -n "$AXE_IBKR_PORT" ]]; then
+    if timeout 3 bash -c "echo >/dev/tcp/${AXE_IBKR_HOST}/${AXE_IBKR_PORT}" 2>/dev/null; then
+        success "${WHITE}IBKR TWS${RESET}      ${GREEN}reachable${RESET}     ${DIM}${AXE_IBKR_HOST}:${AXE_IBKR_PORT}${RESET}"
+    else
+        warn "${WHITE}IBKR TWS${RESET}      ${YELLOW}unreachable${RESET}   ${DIM}${AXE_IBKR_HOST}:${AXE_IBKR_PORT} — will try Flex Query fallback${RESET}"
+    fi
+else
+    warn "${WHITE}IBKR TWS${RESET}      ${YELLOW}not configured${RESET} ${DIM}AXE_IBKR_HOST / AXE_IBKR_PORT missing in .env${RESET}"
+fi
+
+# ── Flex Query config ─────────────────────────────────────────────────
+FLEX_TOKEN=""
+FLEX_QUERY_ID=""
+if [[ -f "$ENV_FILE" ]]; then
+    FLEX_TOKEN=$(grep -m1 '^AXE_IBKR_FLEX_TOKEN=' "$ENV_FILE" | cut -d= -f2 | tr -d ' \r')
+    FLEX_QUERY_ID=$(grep -m1 '^AXE_IBKR_FLEX_QUERY_ID=' "$ENV_FILE" | cut -d= -f2 | tr -d ' \r')
+fi
+
+if [[ -n "$FLEX_TOKEN" && -n "$FLEX_QUERY_ID" ]]; then
+    success "${WHITE}Flex Query${RESET}    ${GREEN}configured${RESET}    ${DIM}query_id=${FLEX_QUERY_ID}${RESET}"
+else
+    warn "${WHITE}Flex Query${RESET}    ${YELLOW}not configured${RESET} ${DIM}AXE_IBKR_FLEX_TOKEN or AXE_IBKR_FLEX_QUERY_ID missing${RESET}"
+fi
+
+# ── Current portfolio snapshot ────────────────────────────────────────
+PORTFOLIO_JSON="$AXE_ROOT/step6-dashboard/public/portfolio.json"
+if [[ -f "$PORTFOLIO_JSON" ]]; then
+    _pfx() { python3 -c "import json,sys; d=json.load(open('$PORTFOLIO_JSON')); print(d.get('$1','?'))"; }
+    DATA_SOURCE=$(_pfx data_source)
+    REVIEW_DATE=$(_pfx review_date)
+    GENERATED_AT=$(_pfx generated_at)
+    POS_COUNT=$(python3 -c "import json; d=json.load(open('$PORTFOLIO_JSON')); print(len(d.get('positions', d.get('position_table', []))))")
+    CASH=$(python3 -c "import json; d=json.load(open('$PORTFOLIO_JSON')); print(d.get('summary',{}).get('cash','?'))")
+
+    case "$DATA_SOURCE" in
+        ibkr)
+            success "${WHITE}Last snapshot${RESET}  ${GREEN}IBKR live${RESET}           ${DIM}${POS_COUNT} positions · \$${CASH} cash · ${REVIEW_DATE}${RESET}" ;;
+        flex)
+            success "${WHITE}Last snapshot${RESET}  ${CYAN}Flex Query (T+1)${RESET}    ${DIM}${POS_COUNT} positions · \$${CASH} cash · ${REVIEW_DATE}${RESET}" ;;
+        normalized|raw)
+            warn "${WHITE}Last snapshot${RESET}  ${YELLOW}stale CSV fallback${RESET}  ${DIM}${POS_COUNT} positions · \$${CASH} cash · ${REVIEW_DATE}${RESET}" ;;
+        *)
+            info "${WHITE}Last snapshot${RESET}  ${DIM}source=${DATA_SOURCE} · ${POS_COUNT} positions · ${REVIEW_DATE}${RESET}" ;;
+    esac
+    info "${DIM}Generated: ${GENERATED_AT}${RESET}"
+else
+    warn "${WHITE}Last snapshot${RESET}  ${YELLOW}no portfolio.json found${RESET}  ${DIM}run: axe-portfolio-review${RESET}"
+fi
+
+# ══════════════════════════════════════════════════════════════════════
+#  3. PORT MANAGEMENT
 # ══════════════════════════════════════════════════════════════════════
 step "Port management"
 

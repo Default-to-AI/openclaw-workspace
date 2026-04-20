@@ -18,6 +18,7 @@ class _FakeArtifacts:
     unified_sector_allocation: dict
     spy_comparison: dict
     hishtalmut_status: dict
+    data_source: str = "ibkr"
 
 
 def test_cli_emits_trace_success(tmp_path, monkeypatch):

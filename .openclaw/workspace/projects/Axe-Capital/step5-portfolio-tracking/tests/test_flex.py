@@ -192,3 +192,78 @@ def test_cash_falls_back_to_sum_when_base_currency_missing():
 
     assert len(rows) == 2
     assert cash == pytest.approx(7202.946529624)
+
+
+DUPLICATE_SYMBOL_XML = """<?xml version="1.0" encoding="UTF-8"?>
+<FlexQueryResponse queryName="Axe Portfolio" type="AF">
+  <FlexStatements count="2">
+    <FlexStatement accountId="U111">
+      <OpenPositions>
+        <OpenPosition symbol="QQQ" position="29.31" markPrice="648.85"
+          costBasisPrice="559.11" costBasisMoney="16387.59"
+          fifoPnlUnrealized="2630.20" />
+        <OpenPosition symbol="AMZN" position="10.0" markPrice="250.00"
+          costBasisPrice="200.00" costBasisMoney="2000.00"
+          fifoPnlUnrealized="500.00" />
+      </OpenPositions>
+      <CashReport>
+        <CashReportCurrency endingCash="100.00" />
+      </CashReport>
+    </FlexStatement>
+    <FlexStatement accountId="U222">
+      <OpenPositions>
+        <OpenPosition symbol="QQQ" position="39.97" markPrice="648.85"
+          costBasisPrice="625.48" costBasisMoney="25001.29"
+          fifoPnlUnrealized="934.02" />
+      </OpenPositions>
+      <CashReport>
+        <CashReportCurrency endingCash="200.00" />
+      </CashReport>
+    </FlexStatement>
+  </FlexStatements>
+</FlexQueryResponse>"""
+
+
+def test_duplicate_symbols_aggregated():
+    config = FlexQueryConfig(token="tok", query_id="123")
+    with patch("axe_portfolio.flex.requests.get", side_effect=_mock_responses(SEND_SUCCESS_XML, DUPLICATE_SYMBOL_XML)):
+        rows, cash = fetch_flex_portfolio(config)
+
+    symbols = [r["symbol"] for r in rows]
+    assert symbols.count("QQQ") == 1, "duplicate QQQ should be merged into one row"
+    assert len(rows) == 2  # QQQ (merged) + AMZN
+
+    qqq = next(r for r in rows if r["symbol"] == "QQQ")
+    assert qqq["position"] == pytest.approx(29.31 + 39.97)
+    assert qqq["cost_basis"] == pytest.approx(16387.59 + 25001.29)
+    assert qqq["unrealized_pl"] == pytest.approx(2630.20 + 934.02)
+    assert qqq["last"] == pytest.approx(648.85)
+    assert qqq["avg_price"] == pytest.approx((16387.59 + 25001.29) / (29.31 + 39.97), rel=1e-3)
+    assert cash == pytest.approx(300.00)
+
+
+ILS_CASH_XML = """<?xml version="1.0" encoding="UTF-8"?>
+<FlexQueryResponse queryName="Axe Portfolio" type="AF">
+  <FlexStatements count="1">
+    <FlexStatement accountId="U111">
+      <OpenPositions>
+        <OpenPosition symbol="TSLA" position="5.0" markPrice="400.00"
+          costBasisPrice="380.00" costBasisMoney="1900.00"
+          fifoPnlUnrealized="100.00" />
+      </OpenPositions>
+      <CashReport>
+        <CashReportCurrency currency="USD" endingCash="7202.95" />
+        <CashReportCurrency currency="ILS" endingCash="3500.00" />
+      </CashReport>
+    </FlexStatement>
+  </FlexStatements>
+</FlexQueryResponse>"""
+
+
+def test_cash_excludes_non_usd_when_currency_attr_present():
+    config = FlexQueryConfig(token="tok", query_id="123")
+    with patch("axe_portfolio.flex.requests.get", side_effect=_mock_responses(SEND_SUCCESS_XML, ILS_CASH_XML)):
+        rows, cash = fetch_flex_portfolio(config)
+
+    assert cash == pytest.approx(7202.95), "ILS cash should be excluded when currency attr is present"
+    assert len(rows) == 1
