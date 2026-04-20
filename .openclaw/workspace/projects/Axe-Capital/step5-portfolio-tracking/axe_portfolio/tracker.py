@@ -53,6 +53,7 @@ SECTOR_MAP = {
     "JPM": "Financials",
     "META": "US Large Cap Tech",
     "MSFT": "US Large Cap Tech",
+    "NFLX": "Streaming",
     "QQQ": "US Large Cap Tech",
     "RGTI": "Space / Deep Tech",
     "RKLB": "Space / Deep Tech",
