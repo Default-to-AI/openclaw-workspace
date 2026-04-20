@@ -9,7 +9,7 @@ from axe_portfolio.tracker import run_portfolio_review
 from axe_portfolio.util import axe_root
 
 
-def main() -> None:
+def main(force_exit_on_failure: bool = False) -> int:
     load_dotenv(axe_root() / ".env", override=False)
     tracer = Tracer(agent="axe_portfolio")
     tracer.start()
@@ -21,9 +21,11 @@ def main() -> None:
         exc_desc = f"{type(exc).__name__}: {exc}" if str(exc) else type(exc).__name__
         tracer.event(step="error", thought=f"review failed: {exc_desc}")
         tracer.finalize(status="failed", summary=f"review failed: {exc_desc}", artifact_written=None)
-        # Force-exit: ib_async leaves non-daemon threads alive after a failed
-        # connection that prevent normal Python exit.
-        os._exit(1)
+        if force_exit_on_failure:
+            # Force-exit for the script entry path: ib_async can leave
+            # non-daemon threads alive after a failed connection attempt.
+            os._exit(1)
+        raise
 
     n_positions = len(artifacts.position_table)
     tracer.event(
@@ -45,7 +47,8 @@ def main() -> None:
         "spy_comparison": artifacts.spy_comparison,
         "hishtalmut_status": artifacts.hishtalmut_status,
     }, ensure_ascii=False, indent=2))
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main(force_exit_on_failure=True))

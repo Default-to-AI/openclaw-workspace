@@ -4,6 +4,8 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
+import pytest
+
 from axe_portfolio import cli as portfolio_cli
 from axe_core import trace as trace_mod
 
@@ -57,6 +59,31 @@ def test_cli_records_failure(tmp_path, monkeypatch):
     except FileNotFoundError:
         pass
 
+    index = json.loads((tmp_path / "traces" / "index.json").read_text())
+    assert index["runs"][0]["agent"] == "axe_portfolio"
+    assert index["runs"][0]["status"] == "failed"
+
+
+def test_cli_can_force_exit_on_failure(tmp_path, monkeypatch):
+    (tmp_path / "traces").mkdir(parents=True)
+    monkeypatch.setattr(trace_mod, "_public_dir", lambda: tmp_path)
+
+    def boom():
+        raise FileNotFoundError("IBKR CSV missing")
+
+    exit_codes = []
+
+    def fake_exit(code):
+        exit_codes.append(code)
+        raise SystemExit(code)
+
+    monkeypatch.setattr(portfolio_cli, "run_portfolio_review", boom)
+    monkeypatch.setattr(portfolio_cli.os, "_exit", fake_exit)
+
+    with pytest.raises(SystemExit, match="1"):
+        portfolio_cli.main(force_exit_on_failure=True)
+
+    assert exit_codes == [1]
     index = json.loads((tmp_path / "traces" / "index.json").read_text())
     assert index["runs"][0]["agent"] == "axe_portfolio"
     assert index["runs"][0]["status"] == "failed"
