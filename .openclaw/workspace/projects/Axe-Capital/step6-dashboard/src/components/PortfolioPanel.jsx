@@ -190,7 +190,7 @@ export default function PortfolioPanel() {
             <FreshnessBadge health={health} />
           </div>
           <p className="text-axe-dim text-xs mt-1">
-            IBKR snapshot · as of {data?.review_date || '—'}
+            {({ ibkr: 'IBKR live', flex: 'Flex Query (T+1)' })[data?.data_source] || 'IBKR'} · as of {data?.review_date || '—'}
           </p>
         </div>
 
