@@ -27,9 +27,10 @@ Dashboard:
 Status:
   systemctl --user status axe-api.service
   systemctl --user status axe-dashboard.service
-  systemctl --user list-timers axe-monthly-specialists.timer
+  systemctl --user list-timers
 
 Logs:
   journalctl --user -u axe-api.service -f
   journalctl --user -u axe-dashboard.service -f
+  journalctl --user -u axe-daily-portfolio.service -f
 MSG

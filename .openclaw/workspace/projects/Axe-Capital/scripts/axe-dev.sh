@@ -44,6 +44,7 @@ API_PID=""
 DASH_PID=""
 
 cleanup() {
+    trap - EXIT SIGINT SIGTERM
     echo ""
     step "Shutting down"
     if [[ -n "$API_PID" ]] && kill -0 "$API_PID" 2>/dev/null; then
