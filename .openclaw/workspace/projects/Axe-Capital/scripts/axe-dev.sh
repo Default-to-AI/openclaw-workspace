@@ -11,7 +11,7 @@ set -euo pipefail
 AXE_ROOT="$HOME/.openclaw/workspace/projects/Axe-Capital"
 STEP7="$AXE_ROOT/step7-automation"
 STEP6="$AXE_ROOT/step6-dashboard"
-VENV="$HOME/python-venv"
+VENV="$AXE_ROOT/.venv"
 
 # ── Ports (must match vite.config.js proxy target) ────────────────────
 API_PORT=8000
