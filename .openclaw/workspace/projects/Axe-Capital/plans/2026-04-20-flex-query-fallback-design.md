@@ -106,13 +106,40 @@ Identical to `fetch_ibkr_portfolio()`. `tracker.py` cannot distinguish the sourc
 
 ---
 
+## Data Source Indicator
+
+`portfolio.json` must include a `data_source` field so the dashboard can show where the data came from:
+
+```json
+"data_source": "ibkr"      // live TWS connection
+"data_source": "flex"      // IBKR Flex Query fallback
+```
+
+**Backend** — `tracker.py`:
+- `PortfolioInput.kind` gains `"flex"` as a valid value
+- `build_dashboard_json()` receives and writes `data_source` from `portfolio_input.kind`
+
+**Frontend** — `PortfolioPanel.jsx` line 193 currently hardcodes `"IBKR snapshot"`. Replace with a map:
+
+```js
+const SOURCE_LABEL = {
+  ibkr: 'IBKR live',
+  flex: 'Flex Query (T+1)',
+}
+// renders as: "IBKR live · as of 2026-04-20"
+// or:         "Flex Query (T+1) · as of 2026-04-20"
+```
+
+---
+
 ## Files
 
 | File | Action |
 |------|--------|
 | `step5-portfolio-tracking/axe_portfolio/flex.py` | Create — full Flex connector |
 | `step5-portfolio-tracking/tests/test_flex.py` | Create — unit tests with XML fixtures |
-| `step5-portfolio-tracking/axe_portfolio/tracker.py` | Modify — add Flex fallback in `_resolve_portfolio_input()` |
+| `step5-portfolio-tracking/axe_portfolio/tracker.py` | Modify — Flex fallback + `data_source` in dashboard JSON |
+| `step6-dashboard/src/components/PortfolioPanel.jsx` | Modify — render `data_source` label instead of hardcoded string |
 | `.env` | Already updated with token + query ID |
 
 ---
