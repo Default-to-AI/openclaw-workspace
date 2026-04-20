@@ -90,3 +90,69 @@ def test_happy_path():
     assert tsla["change_pct"] is None
     assert tsla["pe"] is None
     assert tsla["eps_current"] is None
+
+
+SEND_ERROR_XML = """<?xml version="1.0" encoding="UTF-8"?>
+<FlexStatementResponse timestamp="20260420;123000">
+  <Status>Fail</Status>
+  <ErrorCode>1012</ErrorCode>
+  <ErrorMessage>Token has expired.</ErrorMessage>
+</FlexStatementResponse>"""
+
+PENDING_XML = "Statement generation in progress"
+
+
+def test_missing_env_vars_raises(monkeypatch):
+    monkeypatch.delenv("AXE_IBKR_FLEX_TOKEN", raising=False)
+    monkeypatch.delenv("AXE_IBKR_FLEX_QUERY_ID", raising=False)
+    with pytest.raises(RuntimeError, match="AXE_IBKR_FLEX_TOKEN"):
+        fetch_flex_portfolio()
+
+
+def test_ibkr_error_code_raises():
+    config = FlexQueryConfig(token="tok", query_id="123")
+    send_resp = MagicMock()
+    send_resp.raise_for_status.return_value = None
+    send_resp.text = SEND_ERROR_XML
+    with patch("axe_portfolio.flex.requests.get", return_value=send_resp):
+        with pytest.raises(RuntimeError, match="Token has expired"):
+            fetch_flex_portfolio(config)
+
+
+def test_timeout_after_max_retries():
+    config = FlexQueryConfig(token="tok", query_id="123")
+    send_resp = MagicMock()
+    send_resp.raise_for_status.return_value = None
+    send_resp.text = SEND_SUCCESS_XML
+
+    pending_resp = MagicMock()
+    pending_resp.raise_for_status.return_value = None
+    pending_resp.text = PENDING_XML
+
+    side_effects = [send_resp] + [pending_resp] * 10
+    with patch("axe_portfolio.flex.requests.get", side_effect=side_effects):
+        with patch("axe_portfolio.flex.time.sleep"):
+            with pytest.raises(TimeoutError):
+                fetch_flex_portfolio(config)
+
+
+EMPTY_STATEMENT_XML = """<?xml version="1.0" encoding="UTF-8"?>
+<FlexQueryResponse queryName="AxePortfolio" type="AF">
+  <FlexStatements count="1">
+    <FlexStatement accountId="U123456" fromDate="20260419" toDate="20260419">
+      <OpenPositions />
+      <CashReport>
+        <CashReportCurrency accountId="U123456" currency="BASE"
+          fromDate="20260419" toDate="20260419"
+          startingCash="9000.00" endingCash="9253.00" />
+      </CashReport>
+    </FlexStatement>
+  </FlexStatements>
+</FlexQueryResponse>"""
+
+
+def test_empty_positions_raises():
+    config = FlexQueryConfig(token="tok", query_id="123")
+    with patch("axe_portfolio.flex.requests.get", side_effect=_mock_responses(SEND_SUCCESS_XML, EMPTY_STATEMENT_XML)):
+        with pytest.raises(RuntimeError, match="no positions"):
+            fetch_flex_portfolio(config)
