@@ -59,6 +59,15 @@ const fmt = (n, digits = 2) =>
 const fmtUSD = (n) =>
   n == null ? '—' : '$' + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
 
+// Formats a signed dollar amount: +$1,234 / -$1,234 / $0
+const fmtSignedUSD = (n) => {
+  if (n == null) return '—'
+  const abs = '$' + Math.abs(Math.round(n)).toLocaleString()
+  if (n > 0) return '+' + abs
+  if (n < 0) return '-' + abs
+  return abs
+}
+
 const pnlClass = (n) => {
   if (n == null) return 'text-axe-dim'
   if (n > 0) return 'pnl-pos'
@@ -232,7 +241,7 @@ export default function PortfolioPanel() {
             />
             <StatCard
               label="Unrealized P&L"
-              value={`${sign(data.summary.total_unrealized_pl)}$${Math.abs(Math.round(data.summary.total_unrealized_pl)).toLocaleString()}`}
+              value={fmtSignedUSD(data.summary.total_unrealized_pl)}
               sub={`${sign(data.summary.total_unrealized_pl_pct)}${fmt(data.summary.total_unrealized_pl_pct)}%`}
               valueClass={pnlClass(data.summary.total_unrealized_pl)}
             />
@@ -308,7 +317,7 @@ export default function PortfolioPanel() {
                       {col('mkt_value') && <td className="text-axe-text font-medium">${fmt(p.market_value, 0)}</td>}
                       {col('upl_usd') && (
                         <td className={pnlClass(p.unrealized_pl)}>
-                          {p.unrealized_pl != null ? `${sign(p.unrealized_pl)}${fmtUSD(p.unrealized_pl).replace('-', '')}` : '—'}
+                          {fmtSignedUSD(p.unrealized_pl)}
                         </td>
                       )}
                       {col('upl_pct') && (
@@ -330,6 +339,11 @@ export default function PortfolioPanel() {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="flex items-center gap-4 mt-2 px-1 text-[11px] text-axe-dim">
+              <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm bg-red-600 inline-block" /> RED — dist &lt; 5% (near stop)</span>
+              <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm bg-amber-500 inline-block" /> YELLOW — dist 5–15%</span>
+              <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-sm bg-emerald-500 inline-block" /> GREEN — dist &gt; 15%</span>
             </div>
           </div>
 

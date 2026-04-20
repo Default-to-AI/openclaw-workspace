@@ -628,6 +628,7 @@ def run_portfolio_review() -> ReviewArtifacts:
     hishtalmut_status = build_hishtalmut_status()
     weekly_review = build_weekly_review(position_table, unified_sector_allocation, spy_comparison, hishtalmut_status)
     weekly_review_path = write_weekly_review(weekly_review)
+    write_weekly_review(weekly_review, path=DASHBOARD_JSON_PATH.parent / "weekly-review-latest.json")
     dashboard = build_dashboard_json(
         position_table,
         unified_sector_allocation,

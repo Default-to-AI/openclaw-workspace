@@ -113,14 +113,27 @@ export default function WeeklyReviewPanel({ refreshToken }) {
 
           {data.spy_comparison && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {Object.entries(data.spy_comparison).map(([k, v]) => (
-                <div key={k} className="stat-card">
-                  <div className="text-axe-dim text-xs uppercase tracking-wider">{k.replace(/_/g, ' ')}</div>
-                  <div className="text-axe-text text-sm font-semibold mt-1">
-                    {typeof v === 'number' ? `${sign(v)}${fmt(v)}%` : String(v)}
+              {Object.entries(data.spy_comparison).map(([k, v]) => {
+                const label = {
+                  portfolio_cost_basis: 'Cost Basis',
+                  portfolio_market_value: 'Market Value',
+                  portfolio_return_pct: 'Portfolio Return',
+                  spy_return_pct_same_window: 'S&P 500 Return',
+                  relative_alpha_pct: 'Alpha vs S&P',
+                }[k] || k.replace(/_/g, ' ')
+                const isUSD = k.includes('cost_basis') || k.includes('market_value')
+                const formatted =
+                  typeof v !== 'number' ? String(v)
+                  : isUSD ? `$${Math.round(v).toLocaleString()}`
+                  : `${sign(v)}${fmt(v)}%`
+                const cls = typeof v === 'number' && !isUSD ? pnlClass(v) : 'text-axe-text'
+                return (
+                  <div key={k} className="stat-card">
+                    <div className="text-axe-dim text-xs uppercase tracking-wider">{label}</div>
+                    <div className={`text-sm font-semibold mt-1 ${cls}`}>{formatted}</div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           )}
         </div>
