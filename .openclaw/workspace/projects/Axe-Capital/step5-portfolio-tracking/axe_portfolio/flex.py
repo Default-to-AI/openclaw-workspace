@@ -104,11 +104,16 @@ def _parse_statement(xml_text: str) -> tuple[list[dict], float]:
             "eps_current": None,
         })
 
-    cash = 0.0
+    cash_base_values: list[float] = []
+    cash_fallback_values: list[float] = []
     for cash_el in root.iter("CashReportCurrency"):
+        ending_cash = float(cash_el.attrib.get("endingCash", 0) or 0)
         if cash_el.attrib.get("currency") == "BASE":
-            cash = float(cash_el.attrib.get("endingCash", 0))
-            break
+            cash_base_values.append(ending_cash)
+        else:
+            cash_fallback_values.append(ending_cash)
+
+    cash = sum(cash_base_values) if cash_base_values else sum(cash_fallback_values)
 
     return rows, cash
 

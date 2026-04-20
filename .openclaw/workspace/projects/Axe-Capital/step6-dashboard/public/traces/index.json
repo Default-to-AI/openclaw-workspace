@@ -1,10 +1,21 @@
 {
-  "generated_at": "2026-04-16T23:47:52Z",
+  "generated_at": "2026-04-20T03:30:00Z",
   "retention": {
     "max_runs_per_agent": 50,
     "total_cap": 500
   },
   "runs": [
+    {
+      "run_id": "portfolio-20-04-2026T03-29-44Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-20T03:29:44Z",
+      "ended_at": "2026-04-20T03:30:00Z",
+      "duration_ms": 16860,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 1 positions",
+      "artifact_written": "portfolio.json"
+    },
     {
       "run_id": "portfolio-16-04-2026T23-47-42Z",
       "agent": "axe_portfolio",
@@ -873,17 +884,6 @@
       "event_count": 5,
       "summary": "290 in, 22 kept (score>=6)",
       "artifact_written": "news-latest.json"
-    },
-    {
-      "run_id": "portfolio-15-04-2026T15-17-56Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-15T15:17:56Z",
-      "ended_at": "2026-04-15T15:17:58Z",
-      "duration_ms": 2081,
-      "status": "success",
-      "event_count": 2,
-      "summary": "portfolio review \u2014 13 positions",
-      "artifact_written": "portfolio.json"
     }
   ]
 }

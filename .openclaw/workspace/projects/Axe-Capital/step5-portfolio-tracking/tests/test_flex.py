@@ -156,3 +156,39 @@ def test_empty_positions_raises():
     with patch("axe_portfolio.flex.requests.get", side_effect=_mock_responses(SEND_SUCCESS_XML, EMPTY_STATEMENT_XML)):
         with pytest.raises(RuntimeError, match="no positions"):
             fetch_flex_portfolio(config)
+
+
+MULTI_ACCOUNT_NO_BASE_CASH_XML = """<?xml version="1.0" encoding="UTF-8"?>
+<FlexQueryResponse queryName="Axe Portfolio" type="AF">
+  <FlexStatements count="2">
+    <FlexStatement accountId="U21335661" fromDate="17/04/2026" toDate="17/04/2026">
+      <CashReport>
+        <CashReportCurrency endingCash="41.87" endingCashSec="41.87" endingCashCom="0" />
+      </CashReport>
+      <OpenPositions>
+        <OpenPosition symbol="QQQ" position="29.31" markPrice="648.85"
+          costBasisPrice="559.112702149" costBasisMoney="16387.5933"
+          fifoPnlUnrealized="2630.1967" />
+      </OpenPositions>
+    </FlexStatement>
+    <FlexStatement accountId="U3314869" fromDate="17/04/2026" toDate="17/04/2026">
+      <CashReport>
+        <CashReportCurrency endingCash="7161.076529624" endingCashSec="7161.076529624" endingCashCom="0" />
+      </CashReport>
+      <OpenPositions>
+        <OpenPosition symbol="AMZN" position="37.1998" markPrice="250.56"
+          costBasisPrice="227.006749606" costBasisMoney="8444.605684"
+          fifoPnlUnrealized="876.174316" />
+      </OpenPositions>
+    </FlexStatement>
+  </FlexStatements>
+</FlexQueryResponse>"""
+
+
+def test_cash_falls_back_to_sum_when_base_currency_missing():
+    config = FlexQueryConfig(token="tok", query_id="123")
+    with patch("axe_portfolio.flex.requests.get", side_effect=_mock_responses(SEND_SUCCESS_XML, MULTI_ACCOUNT_NO_BASE_CASH_XML)):
+        rows, cash = fetch_flex_portfolio(config)
+
+    assert len(rows) == 2
+    assert cash == pytest.approx(7202.946529624)
