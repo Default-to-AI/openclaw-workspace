@@ -10,11 +10,13 @@ install -m 0644 "$UNIT_SRC/axe-api.service" "$UNIT_DST/axe-api.service"
 install -m 0644 "$UNIT_SRC/axe-dashboard.service" "$UNIT_DST/axe-dashboard.service"
 install -m 0644 "$UNIT_SRC/axe-monthly-specialists.service" "$UNIT_DST/axe-monthly-specialists.service"
 install -m 0644 "$UNIT_SRC/axe-monthly-specialists.timer" "$UNIT_DST/axe-monthly-specialists.timer"
+install -m 0644 "$UNIT_SRC/axe-daily-portfolio.service" "$UNIT_DST/axe-daily-portfolio.service"
+install -m 0644 "$UNIT_SRC/axe-daily-portfolio.timer" "$UNIT_DST/axe-daily-portfolio.timer"
 
 systemctl --user daemon-reload
-systemctl --user enable axe-api.service axe-dashboard.service axe-monthly-specialists.timer
+systemctl --user enable axe-api.service axe-dashboard.service axe-monthly-specialists.timer axe-daily-portfolio.timer
 systemctl --user restart axe-api.service axe-dashboard.service
-systemctl --user start axe-monthly-specialists.timer
+systemctl --user start axe-monthly-specialists.timer axe-daily-portfolio.timer
 
 cat <<'MSG'
 Axe Capital user services installed.

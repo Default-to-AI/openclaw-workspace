@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Axe Capital portfolio refresh daily after US market close
+
+[Timer]
+# 23:30 local (IDT = UTC+3) = 20:30 UTC = 16:30 ET, after NYSE 16:00 close
+OnCalendar=Mon..Fri *-*-* 23:30:00
+Persistent=true
+Unit=axe-daily-portfolio.service
+
+[Install]
+WantedBy=timers.target
