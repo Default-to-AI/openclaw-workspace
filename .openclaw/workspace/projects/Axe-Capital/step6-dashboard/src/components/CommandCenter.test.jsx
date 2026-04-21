@@ -40,6 +40,11 @@ const payload = {
 }
 
 describe('CommandCenter', () => {
+  it('shows loading state when payload is null', () => {
+    render(<CommandCenter payload={null} />)
+    expect(screen.getByText(/loading command center/i)).toBeInTheDocument()
+  })
+
   it('renders the operator-first shell with inbox and mission board', () => {
     render(<CommandCenter payload={payload} />)
 
