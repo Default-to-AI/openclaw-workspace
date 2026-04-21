@@ -2,8 +2,12 @@
 # ──────────────────────────────────────────────────────────────────────
 #  Axe-Capital  ·  Dev Environment Launcher
 #  Starts the API (uvicorn) and Dashboard (vite) with port safety checks.
-#  Usage:  axe-dev          (or bash axe-dev.sh)
+#  Usage:  axe-dev          (or bash scripts/axe-dev.sh)
 #  Stop:   Ctrl+C           (graceful shutdown of both services)
+#
+#  Preflight checks: venv · uvicorn · npm · systemd conflicts · ports
+#                    IBKR reachability · Flex Query · portfolio snapshot
+#                    OpenAI API key · axe_orchestrator importable
 # ──────────────────────────────────────────────────────────────────────
 set -euo pipefail
 
@@ -200,6 +204,31 @@ if [[ -f "$PORTFOLIO_JSON" ]]; then
     info "${DIM}Generated: ${GENERATED_AT}${RESET}"
 else
     warn "${WHITE}Last snapshot${RESET}  ${YELLOW}no portfolio.json found${RESET}  ${DIM}run: axe-portfolio-review${RESET}"
+fi
+
+# ── OpenAI API key ────────────────────────────────────────────────────
+# Committee pipeline (Phase 1) calls OpenAI — warn early if key is absent.
+OPENAI_KEY=""
+if [[ -f "$ENV_FILE" ]]; then
+    OPENAI_KEY=$(grep -m1 '^OPENAI_API_KEY=' "$ENV_FILE" | cut -d= -f2 | sed 's/[[:space:]"'"'"']//g')
+fi
+# Also accept key already exported in shell
+[[ -z "$OPENAI_KEY" ]] && OPENAI_KEY="${OPENAI_API_KEY:-}"
+
+if [[ -n "$OPENAI_KEY" ]]; then
+    MASKED="${OPENAI_KEY:0:7}…${OPENAI_KEY: -4}"
+    success "${WHITE}OpenAI key${RESET}    ${GREEN}present${RESET}       ${DIM}${MASKED}${RESET}"
+else
+    warn "${WHITE}OpenAI key${RESET}    ${YELLOW}not found${RESET}     ${DIM}OPENAI_API_KEY missing — Committee Room will reject runs${RESET}"
+    info "Add to ${WHITE}.env${RESET}:  ${WHITE}OPENAI_API_KEY=sk-...${RESET}"
+fi
+
+# ── Python package sanity check ───────────────────────────────────────
+if python3 -c "import axe_orchestrator" &>/dev/null; then
+    success "${WHITE}axe_orchestrator${RESET}  ${GREEN}importable${RESET}"
+else
+    warn "${WHITE}axe_orchestrator${RESET}  ${YELLOW}not importable${RESET}  ${DIM}API will fail to start${RESET}"
+    info "Fix with:  ${WHITE}pip install -e $STEP7${RESET}"
 fi
 
 # ══════════════════════════════════════════════════════════════════════

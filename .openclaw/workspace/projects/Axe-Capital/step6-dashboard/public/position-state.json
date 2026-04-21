@@ -1,0 +1,89 @@
+{
+  "updated_at": "2026-04-21",
+  "positions": {
+    "QQQ": {
+      "thesis": "Core tech index holding. Broad NASDAQ exposure as the primary market vehicle.",
+      "stop_loss": 537.66,
+      "target_price": 620.0,
+      "added_date": null
+    },
+    "GOOG": {
+      "thesis": "AI monetization via Search + Cloud. Thesis intact as long as search market share holds and cloud growth continues.",
+      "stop_loss": 259.91,
+      "target_price": 320.0,
+      "added_date": null
+    },
+    "META": {
+      "thesis": "Ad revenue recovery + AI integration into Reels and Llama. Strong FCF generation.",
+      "stop_loss": 545.6,
+      "target_price": 700.0,
+      "added_date": null
+    },
+    "AMZN": {
+      "thesis": "AWS growth + ad revenue acceleration. Margin expansion story.",
+      "stop_loss": 204.31,
+      "target_price": 260.0,
+      "added_date": null
+    },
+    "ASML": {
+      "thesis": "EUV monopoly. AI chip demand requires more lithography equipment. Long-term secular.",
+      "stop_loss": 1246.56,
+      "target_price": 1600.0,
+      "added_date": null
+    },
+    "RKLB": {
+      "thesis": "Rocket Lab as small-sat launch leader. High risk, high asymmetry.",
+      "stop_loss": 66.47,
+      "target_price": 100.0,
+      "added_date": null
+    },
+    "UBER": {
+      "thesis": "Platform network effects. Autonomous vehicle transition risk partially priced in.",
+      "stop_loss": 64.72,
+      "target_price": 90.0,
+      "added_date": null
+    },
+    "MSFT": {
+      "thesis": "Azure + Copilot monetization. Defensive tech with AI upside.",
+      "stop_loss": 379.09,
+      "target_price": 480.0,
+      "added_date": null
+    },
+    "JPM": {
+      "thesis": "Best-in-class bank. Rate environment benefits NIM. Defensive allocation.",
+      "stop_loss": 277.91,
+      "target_price": 340.0,
+      "added_date": null
+    },
+    "TSLA": {
+      "thesis": "EV market leader but margins under pressure. Speculative hold.",
+      "stop_loss": 384.35,
+      "target_price": 500.0,
+      "added_date": null
+    },
+    "NFLX": {
+      "thesis": "Ad-supported tier + password sharing crackdown driving subscriber growth.",
+      "stop_loss": 87.7,
+      "target_price": 120.0,
+      "added_date": null
+    },
+    "IGV": {
+      "thesis": "Software ETF exposure. Broad SaaS bet on rate stabilization.",
+      "stop_loss": 78.62,
+      "target_price": 100.0,
+      "added_date": null
+    },
+    "FICO": {
+      "thesis": "Credit scoring monopoly. Price increases flow directly to margin.",
+      "stop_loss": 1019.17,
+      "target_price": 1400.0,
+      "added_date": null
+    },
+    "RGTI": {
+      "thesis": "Quantum computing lottery ticket. Small position, high speculative upside.",
+      "stop_loss": 18.38,
+      "target_price": 35.0,
+      "added_date": null
+    }
+  }
+}

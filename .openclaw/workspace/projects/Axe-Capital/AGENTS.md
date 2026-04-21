@@ -6,14 +6,14 @@ This is a Python monorepo with 11 steps:
 
 | Step | Package | Description |
 |------|---------|-------------|
-| step0-shared | axe-core | Shared utilities (trace, paths, schemas) |
-| step1-data-foundation | axe-coo | COO data connectors |
-| step2-news | axe-news | RSS ingestion + LLM scorer |
-| step3-debate-decision | axe-decision | Debate + decision layer |
+| step0-shared | axe-core | Shared utilities (`Tracer`, paths, schemas, shared LLM helper) |
+| step1-data-foundation | axe-coo | COO data connectors + step3 committee decision helper |
+| step2-news | axe-news | RSS ingestion + scoring |
+| step3-debate-decision | axe-decision | Debate + CEO decision layer |
 | step4-alpha-hunter | axe-alpha | Alpha scanning |
-| step5-portfolio-tracking | axe-portfolio | Portfolio tracker |
+| step5-portfolio-tracking | axe-portfolio | Portfolio tracker with IBKR live -> Flex Query -> cached CSV fallback |
 | step6-dashboard | — | React/Vite dashboard |
-| step7-automation | axe-orchestrator | Orchestrator + FastAPI |
+| step7-automation | axe-orchestrator | Orchestrator + FastAPI + committee streaming |
 | step8-fundamental | axe-fundamental | Fundamental analyst |
 | step9-technical | axe-technical | Technical analyst |
 | step10-macro | axe-macro | Macro strategist |
@@ -22,37 +22,46 @@ This is a Python monorepo with 11 steps:
 
 ```bash
 # Install/edit any step (must run from its directory)
-for step in step0-shared step1-data-foundation step2-news step3-debate-decision step4-alpha-hunter step5-portfolio-tracking step8-fundamental step9-technical step10-macro; do
-  (cd $step && uv pip install -e .)
+for step in step0-shared step1-data-foundation step2-news step3-debate-decision step4-alpha-hunter step5-portfolio-tracking step8-fundamental step9-technical step10-macro step7-automation; do
+  (cd "$step" && uv pip install -e .)
 done
 
 # Run CLI entry points
-axe                   # step7: orchestrator CLI (run alpha|news|portfolio|all|specialists|opportunities)
+axe                   # step7: orchestrator CLI
 axe-alpha             # step4: alpha scanner
 axe-news              # step2: news ingestion
-axe-decision          # step3: run debate
+axe-decision          # step3: debate + decision
 axe-fundamental       # step8: fundamental analyst
 axe-technical         # step9: technical analyst
 axe-macro             # step10: macro strategist
 ```
 
-## Dashboard (step6-dashboard)
+## Dashboard
 
 ```bash
 cd step6-dashboard
-npm run dev        # Vite dev server on :5173
-npm run build      # Production build to dist/
-npm run lint       # ESLint
+npm run dev
+npm run build
+npm run lint
 ```
 
-The dashboard reads static JSON from `step6-dashboard/public/`:
-- `portfolio.json`, `targets.json`, `alpha-latest.json`, `news-latest.json`
-- `traces/index.json`, `traces/<run-id>.json`
+The dashboard reads artifacts from `step6-dashboard/public/`, including:
+- `portfolio.json`, `position-state.json`, `weekly-review-latest.json`
+- `alpha-latest.json`, `news-latest.json`
 - `decision-latest.json`, `decisions/*.json`
+- `health.json`
+- `traces/index.json`, `traces/<run-id>.json`
+
+Current UI sections:
+- `Overview` for daily brief
+- `Portfolio`
+- `Research`
+- `Operations`
+- `Committee` for live committee runs and playbook output
 
 ## Backend Pairing
 
-For live data + refresh buttons:
+For health, refresh buttons, trace SSE, and committee runs:
 
 ```bash
 cd step7-automation
@@ -60,26 +69,40 @@ uv pip install -e ".[api]"
 uvicorn axe_orchestrator.api:app --reload --port 8000
 ```
 
-Dashboard proxies `/api/*` to `http://localhost:8000`.
+Dashboard API usage:
+- `/api/health`
+- `/api/refresh/{target}`
+- `/api/trace/stream/{run_id}`
+- `/api/runs/{ticker}`
+- `/api/runs/{run_id}/stream`
+
+## Portfolio Data Rules
+
+- Preferred source order is `IBKR live -> Flex Query -> cached CSV`.
+- `portfolio.json` includes `data_source`; do not remove it.
+- `weekly-review-latest.json` is dual-written to the portfolio reports area and dashboard public artifacts.
+- Flex statement rows may contain duplicate symbols across accounts; they must be aggregated by symbol.
+- Cash handling prefers `BASE`, then `USD`, then raw totals to avoid double-counting.
 
 ## Development Notes
 
-- All step* packages depend on `axe-core` (step0-shared) via editable path dependency
-- Install step0-shared first: `cd step0-shared && uv pip install -e .`
-- Then install other steps in any order
-- `.env` file at project root for API keys (ANTHROPIC_API_KEY, IBKR credentials)
-- Live portfolio data pulled via IBKR API
+- Install `step0-shared` first because other packages depend on `axe-core`.
+- Specialist agents now share the common OpenAI JSON helper in `step0-shared/axe_core/llm.py`.
+- CEO actions are more granular than simple buy/sell: `BUY`, `ADD`, `HOLD`, `TRIM`, `SELL`, `TIGHTEN_STOP`, `LOOSEN_STOP`, `REBALANCE`, `WATCH`.
+- `scripts/axe-dev.sh` is the preferred local launcher and now surfaces portfolio source readiness.
+- `.env` at repo root should contain `OPENAI_API_KEY` plus IBKR and Flex credentials when live portfolio sync is needed.
 
 ## References
 
 - Full project context: `CLAUDE.md`
-- Dashboard workflow: `step6-dashboard/WORKFLOW.md`
-- Specs: `spec/`, `plans/`, `runbooks/`
+- Project status and next milestones: `ROADMAP.md`
+- Description for external/project context: `docs/description-axe-capital.md`
+- Specs and plans: `spec/`, `plans/`, `runbooks/`
 
 ## Remaining Work
 
-The following features are not yet implemented:
-- `./scripts/dev.sh` single-command startup
-- Scheduled refresh (cron during market hours)
-- Decision/archive pruning rules
-- Tailscale deployment documentation
+The following items are still open:
+- Scheduled refresh / market-hours automation
+- Trace and decision archive pruning rules
+- Risk manager and compliance/audit agents
+- Production deployment and operator runbooks

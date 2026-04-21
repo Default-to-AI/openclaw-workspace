@@ -12,6 +12,7 @@ import DecisionReportPanel from './components/DecisionReportPanel'
 import AnalystReportsPanel from './components/AnalystReportsPanel'
 import WeeklyReviewPanel from './components/WeeklyReviewPanel'
 import ApprovalQueuePanel from './components/ApprovalQueuePanel'
+import CommitteePanel from './components/CommitteePanel'
 import { fetchHealthStatus, fetchJsonWithFallback, fetchTextWithFallback } from './lib/api'
 
 const TAB_LABELS = {
@@ -19,6 +20,7 @@ const TAB_LABELS = {
   portfolio: 'Portfolio',
   research: 'Research',
   ops: 'Operations',
+  committee: 'Committee Room',
 }
 
 function actionTone(action) {
@@ -191,6 +193,11 @@ export default function App() {
                 }}
               />
             </div>
+          )}
+
+          {/* ── Committee Room ── */}
+          {activeTab === 'committee' && (
+            <CommitteePanel key={`committee-${refreshToken}`} refreshToken={refreshToken} />
           )}
 
           {/* ── Operations: Queue + Weekly Review + Agent Status + Trace ── */}

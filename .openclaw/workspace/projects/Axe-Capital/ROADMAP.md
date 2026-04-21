@@ -1,6 +1,6 @@
 # Axe Capital — Project Roadmap
 
-**Last Updated:** 2026-04-15
+**Last Updated:** 2026-04-21
 **Status:** In Progress
 
 ---
@@ -24,13 +24,13 @@ Axe Capital is a **hedge-fund-style multi-agent research platform** that hunts f
 
 | Role | Function | Status |
 |------|----------|--------|
-| **CEO** | Final decision-maker: actions with rationale, sizing, invalidation | Not built |
+| **CEO** | Final decision-maker: actions with rationale, sizing, invalidation | step3 + committee flow |
 | **COO/CFO** | Process management, capital allocation, exposure checks | step1 (axe-coo) |
 | **Portfolio Manager** | Portfolio construction, concentration, diversification | step5 (axe-portfolio) |
-| **Risk Manager** | Risk limits, drawdown, correlation, position limits. Can veto. | Not built |
-| **Fundamental Analyst** | Business quality, earnings, balance sheet, valuation | Not built |
-| **Technical Analyst** | Market structure, entry/exit levels, trend confirmation | Not built |
-| **Macro Strategist** | Rates, USD, liquidity, sector rotation, regime | Not built |
+| **Risk Manager** | Risk limits, drawdown, correlation, position limits. Can veto. | Partial via CRO gate |
+| **Fundamental Analyst** | Business quality, earnings, balance sheet, valuation | step8 built |
+| **Technical Analyst** | Market structure, entry/exit levels, trend confirmation | step9 built |
+| **Macro Strategist** | Rates, USD, liquidity, sector rotation, regime | step10 built |
 | **Compliance/Audit** | Sources, assumptions, audit trail | Not built |
 
 **Current implementation:**
@@ -40,8 +40,11 @@ Axe Capital is a **hedge-fund-style multi-agent research platform** that hunts f
 - step3 (axe_decision) — Debate layer (basic) ✓
 - step4 (axe_alpha) — Alpha scanning ✓
 - step5 (axe_portfolio) — Portfolio tracker ✓
-- step6 (dashboard) — React UI (7 panels) ✓
-- step7 (axe_orchestrator) — CLI + FastAPI ✓
+- step6 (dashboard) — React UI with overview/research/ops/committee flows ✓
+- step7 (axe_orchestrator) — CLI + FastAPI + SSE committee backend ✓
+- step8 (axe_fundamental) — Fundamental analyst ✓
+- step9 (axe_technical) — Technical analyst ✓
+- step10 (axe_macro) — Macro strategist ✓
 
 ---
 
@@ -61,22 +64,26 @@ Axe Capital is a **hedge-fund-style multi-agent research platform** that hunts f
 - [x] Agent Status Board from `health.json`
 - [x] Trace viewer reading `traces/<run-id>.json`
 - [x] Decision Archive from `decision-log.jsonl`
-- [ ] FastAPI backend with refresh buttons
-- [ ] SSE for real-time trace streaming
-- [ ] End-to-end `run all` verification
+- [x] FastAPI backend with refresh buttons
+- [x] SSE for trace streaming
+- [x] Portfolio source fallback (`IBKR -> Flex Query -> cached CSV`)
+- [x] Dashboard source labeling for portfolio freshness
+- [ ] End-to-end `run all` verification against live environment
 
-### Milestone C — Full Agent Org (NEXT PRIORITY)
-- [ ] CEO agent implementation
+### Milestone C — Full Agent Org (IN PROGRESS)
+- [x] CEO agent implementation
 - [ ] Risk Manager agent implementation
-- [ ] Fundamental Analyst agent implementation
-- [ ] Technical Analyst agent implementation
-- [ ] Macro Strategist agent implementation
+- [x] Fundamental Analyst agent implementation
+- [x] Technical Analyst agent implementation
+- [x] Macro Strategist agent implementation
 - [ ] Compliance/Audit agent implementation
-- [ ] Full debate pipeline (bull vs bear)
-- [ ] Investment memo generation
+- [x] Full debate pipeline (bull vs bear -> CRO -> CEO)
+- [x] Live committee room event stream
+- [x] Position playbook generation
+- [ ] Tight specialist -> debate wiring validation in production
 
 ### Milestone D — Production Ready
-- [ ] Cron automation
+- [ ] Cron / market-hours automation
 - [ ] Telegram alerts
 - [ ] Monthly PDF reports
 - [ ] Full audit trail review
@@ -86,22 +93,24 @@ Axe Capital is a **hedge-fund-style multi-agent research platform** that hunts f
 ## 4. Data Pipeline
 
 ```
-[RSS feeds]      [SEC EDGAR, yfinance]     [IBKR CSV]
-     │                   │                     │
-     ▼                   ▼                     ▼
-  axe_news      axe_alpha             axe_portfolio
-     │                   │                     │
-     └───────────────────┴─────────────────────┘
-                    all trace
-                      │
-                      ▼
-              ./public/ (artifacts)
-                  │
-                  ▼
-            React dashboard
-                  │
-                  ▼
-            FastAPI (optional)
+[RSS feeds]      [SEC EDGAR, yfinance]     [IBKR live / Flex / CSV]
+     │                   │                         │
+     ▼                   ▼                         ▼
+  axe_news      axe_alpha                 axe_portfolio
+                                                    │
+                              ┌─────────────────────┴─────────────────────┐
+                              ▼                                           ▼
+                   specialist agents (fundamental / technical / macro)   weekly review
+                              │
+                              ▼
+                    bull -> bear -> CRO -> CEO -> playbook
+                              │
+                              ▼
+                     step6-dashboard/public/ artifacts
+                              │
+                  ┌───────────┴───────────┐
+                  ▼                       ▼
+            React dashboard          FastAPI + SSE
 ```
 
 ---
@@ -110,11 +119,11 @@ Axe Capital is a **hedge-fund-style multi-agent research platform** that hunts f
 
 | File | Description |
 |------|-------------|
-| `spec/15-04-2026-research-platform-design.md` | Full design spec (approved) |
+| `spec/15-04-2026-research-platform-design.md` | Full design spec |
 | `spec/Org/org-chart-and-contracts.md` | Agent roles and contracts |
 | `AGENTS.md` | Agent ground rules (this repo) |
 | `CLAUDE.md` | Project context |
-| `step6-dashboard/README.md` | Dashboard docs |
+| `docs/description-axe-capital.md` | Current project description |
 
 ---
 
@@ -138,7 +147,7 @@ axe run all      # Run all pipelines
 
 ---
 
-## 7. Issues & Tech Debt (UPDATED 2026-04-15)
+## 7. Issues & Tech Debt (UPDATED 2026-04-21)
 
 ### Completed
 - [x] Fix spec file naming (renamed 00→01, 01→02, 02→03)
@@ -147,7 +156,10 @@ axe run all      # Run all pipelines
 - [x] Move legacy `dashboard/` → `deprecated/legacy-dashboard/`
 
 ### High Priority
-- [ ] Prune old traces (keep last 10)
+- [ ] Prune old traces / artifacts with an explicit retention policy
+- [ ] Add tests around committee orchestration beyond helper/unit coverage
+- [ ] Remove generated `__pycache__` / artifact noise from future diffs
+- [ ] Replace deleted legacy startup scripts with one documented blessed flow
 
 ---
 
@@ -155,11 +167,11 @@ axe run all      # Run all pipelines
 
 | Category | Done | Left |
 |----------|------|------|
-| Core infrastructure | 70% | Trace pruning, FastAPI |
-| UI/Dashboard | 80% | Mobile, search, filters |
-| Agent pipeline (simple) | 60% | Full debate, memo gen |
-| Agent org (full) | 10% | 6 of 8 agents |
-| Automation | 20% | Cron, Telegram |
+| Core infrastructure | 80% | Retention policy, verification, cleanup |
+| UI/Dashboard | 85% | Mobile polish, search, filters |
+| Agent pipeline (simple) | 80% | Live validation and hardening |
+| Agent org (full) | 60% | Risk + Compliance/Audit remain |
+| Automation | 30% | Cron, Telegram |
 | Production | 0% | Everything else |
 
 ---
@@ -173,42 +185,46 @@ axe run all      # Run all pipelines
 | **COO/CFO** | Operations, capital allocation | ✓ (step1: axe-coo) |
 | **Portfolio Manager** | Portfolio construction | ✓ (step5: axe-portfolio) |
 | **Risk Manager** | Risk limits, can veto | ⚠️ Partially (CRO in step3) |
-| **Fundamental Analyst** | Business quality, earnings, valuation | ❌ NOT built |
-| **Technical Analyst** | Market structure, entry/exit levels | ❌ NOT built |
-| **Macro Strategist** | Rates, USD, liquidity, regime | ❌ NOT built |
+| **Fundamental Analyst** | Business quality, earnings, valuation | ✓ (step8) |
+| **Technical Analyst** | Market structure, entry/exit levels | ✓ (step9) |
+| **Macro Strategist** | Rates, USD, liquidity, regime | ✓ (step10) |
 | **Compliance/Audit** | Sources, audit trail | ❌ NOT built |
 
-### Current Flow (step3-debate-decision)
+### Current Flow
 ```
-ticker → Bull + Bear → CRO → CEO → decision memo
-```
-**Missing:** Specialist analyst reports SHOULD feed into Bull/Bear first:
-```
-ticker → [Fundamental Analyst] → [Technical Analyst] → [Macro Strategist]
-                              ↓
-                          Bull + Bear (with analyst inputs)
-                              ↓
-                            CRO → CEO
+ticker
+  → portfolio/news/yfinance context
+  → Fundamental / Technical / Macro specialists
+  → Bull + Bear
+  → CRO
+  → CEO
+  → position playbook
 ```
 
 ### What's Missing
-1. **Specialist Agents** (run first, produce reports):
-   - Fundamental Analyst agent
-   - Technical Analyst agent  
-   - Macro Strategist agent
-2. **Pipeline Orchestration** — These agents must run in sequence, feed into debate
-3. **Output Contracts** — Each agent should write to `Reports/<agent-name>/YYYY-MM-DD.md`
+1. **Risk + Compliance roles**
+   - Risk manager with explicit veto/risk budgeting
+   - Compliance/audit pass over evidence quality
+2. **Production hardening**
+   - Better orchestration tests
+   - Artifact retention / pruning
+   - Live-env verification
+3. **Operator automation**
+   - Scheduled refresh
+   - Telegram alerts
+   - Monthly reporting
 
 ---
 
 ## 10. Next Priority
 
-The gap between spec and implementation is:
-- **6 of 8 agents not built**
-- No proper analyst → debate → decision pipeline
+The gap between spec and implementation is now:
+- Risk Manager is still only partial
+- Compliance/Audit is still missing
+- The committee pipeline exists, but needs production hardening and automation
 
-**Recommended next build:** Implement the 3 missing specialist agents (Fundamental, Technical, Macro) and wire them into the debate flow.
+**Recommended next build:** Implement Risk Manager and Compliance/Audit as first-class agents, then harden the committee pipeline for scheduled operation.
 
 ---
 
-*Last updated: 2026-04-15*
+*Last updated: 2026-04-21*

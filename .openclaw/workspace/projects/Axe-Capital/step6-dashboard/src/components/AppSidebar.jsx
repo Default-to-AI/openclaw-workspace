@@ -46,6 +46,16 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
+  {
+    id: 'committee',
+    label: 'Committee',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4 flex-shrink-0">
+        <circle cx="4" cy="5" r="2" /><circle cx="12" cy="5" r="2" /><circle cx="8" cy="11" r="2" />
+        <line x1="4" y1="7" x2="8" y2="9" /><line x1="12" y1="7" x2="8" y2="9" />
+      </svg>
+    ),
+  },
 ]
 
 function NavBadge({ badge }) {

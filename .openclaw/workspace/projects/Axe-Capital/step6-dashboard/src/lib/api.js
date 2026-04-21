@@ -147,6 +147,51 @@ export function createTraceStream(runId, handlers = {}) {
   return source
 }
 
+export async function startCommitteeRun(ticker, candidateType = 'position_review') {
+  const response = await fetch(`/api/runs/${encodeURIComponent(ticker.toUpperCase())}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ candidate_type: candidateType }),
+  })
+  if (!response.ok) {
+    let detail = `HTTP ${response.status}`
+    try {
+      const payload = await response.json()
+      detail = payload.detail || detail
+    } catch { /* ignore */ }
+    throw new Error(detail)
+  }
+  return response.json()
+}
+
+export function createCommitteeStream(runId, handlers = {}) {
+  if (typeof EventSource === 'undefined') return null
+  const source = new EventSource(`/api/runs/${encodeURIComponent(runId)}/stream`)
+  let opened = false
+
+  source.onopen = () => { opened = true; handlers.onOpen?.() }
+
+  source.addEventListener('event', (e) => {
+    opened = true
+    try { handlers.onEvent?.(JSON.parse(e.data)) } catch { /* skip malformed */ }
+  })
+
+  source.addEventListener('done', (e) => {
+    opened = true
+    try { handlers.onDone?.(JSON.parse(e.data)) } catch { /* ignore */ }
+    source.close()
+  })
+
+  source.addEventListener('ping', () => { /* keepalive */ })
+
+  source.onerror = () => {
+    handlers.onError?.(new Error(opened ? 'Committee stream disconnected' : 'Committee stream unavailable'))
+    if (!opened) source.close()
+  }
+
+  return source
+}
+
 /**
  * Translates a fetch error into a human-readable message with a fix hint.
  *   "Failed to fetch"  → dev server not running

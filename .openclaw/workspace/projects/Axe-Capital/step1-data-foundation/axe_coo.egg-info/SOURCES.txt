@@ -22,6 +22,7 @@ axe_coo/connectors/yfinance_conn.py
 axe_coo/normalize/freshness.py
 axe_coo/util/__init__.py
 axe_coo/util/env.py
+axe_coo/util/numbers.py
 axe_coo/util/time.py
 axe_coo/vendors/__init__.py
 axe_coo/vendors/ddg_search.py

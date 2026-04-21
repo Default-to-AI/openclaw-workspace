@@ -1,0 +1,28 @@
+{
+  "run_id": "portfolio-21-04-2026T00-24-44Z",
+  "agent": "axe_portfolio",
+  "started_at": "2026-04-21T00:24:44Z",
+  "status": "success",
+  "summary": "portfolio review \u2014 14 positions (IBKR live)",
+  "events": [
+    {
+      "seq": 1,
+      "t": "2026-04-21T00:24:44.152Z",
+      "step": "load_inputs",
+      "thought": "resolving portfolio source (IBKR live \u2192 Flex Query \u2192 cached CSV)"
+    },
+    {
+      "seq": 2,
+      "t": "2026-04-21T00:25:19.388Z",
+      "step": "review_complete",
+      "thought": "IBKR live \u2014 14 positions",
+      "io": {
+        "out": {
+          "positions": 14,
+          "data_source": "ibkr"
+        }
+      }
+    }
+  ],
+  "ended_at": "2026-04-21T00:25:19Z"
+}

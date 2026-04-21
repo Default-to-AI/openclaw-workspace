@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import json
 import os
-import re
 from datetime import datetime, timezone
 from pathlib import Path
 
 import yfinance
 from axe_core import Tracer
+from axe_core.llm import chat_json
 from axe_core.paths import public_dir
 from axe_fundamental.reports import update_report_index
 from jinja2 import Template
@@ -51,17 +51,6 @@ MD_TEMPLATE = """# Fundamental Analysis: {{ ticker }}
 """
 
 
-def chat_json(api_key: str, model: str, system: str, user: dict, max_tokens: int = 1000) -> dict:
-    from openai import OpenAI
-    client = OpenAI(api_key=api_key)
-    response = client.chat.completions.create(model=model, messages=[{"role": "system", "content": system}, {"role": "user", "content": str(user)}], max_tokens=max_tokens, temperature=0.3)
-    content = response.choices[0].message.content
-    json_match = re.search(r'\{.*\}', content, re.DOTALL)
-    if json_match:
-        return json.loads(json_match.group())
-    return {"summary": content, "key_findings": [], "report": {"business_overview": content}, "confidence": 5}
-
-
 def run_fundamental_analysis(ticker: str, api_key: str, force: bool = False) -> dict:
     tracer = Tracer(agent="axe_fundamental")
     tracer.start()
@@ -89,7 +78,7 @@ def run_fundamental_analysis(ticker: str, api_key: str, force: bool = False) -> 
     context = {"ticker": ticker, "company_name": info.get("shortName", "Unknown"), "sector": info.get("sector", "Unknown"), "market_cap": info.get("marketCap", "N/A"), "pe_ratio": info.get("trailingPE", "N/A"), "eps": info.get("trailingEps", "N/A"), "revenue": info.get("totalRevenue", "N/A"), "gross_margin": info.get("grossMargins", "N/A"), "operating_margin": info.get("operatingMargins", "N/A")}
     
     tracer.event(step="llm_analysis", thought="Running LLM analysis")
-    result = chat_json(api_key=api_key, model="gpt-4o-mini", system=SYSTEM_PROMPT, user=context, max_tokens=1500)
+    result = chat_json(api_key=api_key, model="gpt-4o-mini", system=SYSTEM_PROMPT, user=context, max_tokens=1500, temperature=0.3)
     
     result["generated_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     result["ticker"] = ticker

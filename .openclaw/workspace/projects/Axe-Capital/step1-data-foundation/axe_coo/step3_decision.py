@@ -252,8 +252,10 @@ def _get_stage_memo(step2_analysis: dict[str, Any], analyst_name: str) -> dict[s
 
 
 def _extract_vix_from_macro(macro_memo: dict[str, Any]) -> float | None:
+    macro_regime = macro_memo.get("macro_regime")
+    regime_volatility = macro_regime.get("volatility") if isinstance(macro_regime, dict) else None
     candidates = [
-        ((macro_memo.get("macro_regime") or {}).get("volatility")),
+        regime_volatility,
         macro_memo.get("macro_thesis"),
         json.dumps(macro_memo, ensure_ascii=False),
     ]

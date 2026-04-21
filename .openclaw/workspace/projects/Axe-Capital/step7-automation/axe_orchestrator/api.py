@@ -3,16 +3,32 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 from pathlib import Path
 from typing import Callable
+from uuid import uuid4
 
 from fastapi import APIRouter, FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 from sse_starlette.sse import EventSourceResponse
 
-from axe_core.paths import public_dir
+from dotenv import load_dotenv
+
+from axe_core.paths import project_root, public_dir
 from axe_orchestrator import runners
+from axe_orchestrator.committee_orchestrator import run_committee
 from axe_orchestrator.health import generate_health, write_health
+
+load_dotenv(project_root() / ".env", override=False)
+
+_run_queues: dict[str, asyncio.Queue] = {}
+
+
+class CommitteeRunRequest(BaseModel):
+    candidate_type: str = "position_review"
+    api_key: str | None = None
+
 
 AGENT_RUNNERS: dict[str, Callable[[], int]] = {
     "portfolio": runners.run_portfolio,
@@ -198,6 +214,48 @@ def create_app() -> FastAPI:
     @api.get("/trace/stream/{run_id}")
     async def trace_stream_api(run_id: str, request: Request) -> EventSourceResponse:
         return await _trace_stream_impl(run_id, request)
+
+    @api.post("/runs/{ticker}")
+    async def start_committee_run(ticker: str, body: CommitteeRunRequest) -> JSONResponse:
+        run_id = f"{ticker.upper()}-{uuid4().hex[:8]}"
+        queue: asyncio.Queue = asyncio.Queue()
+        _run_queues[run_id] = queue
+        key = body.api_key or os.environ.get("OPENAI_API_KEY", "")
+        if not key:
+            raise HTTPException(status_code=400, detail="OPENAI_API_KEY not set")
+        asyncio.create_task(
+            run_committee(
+                ticker=ticker,
+                candidate_type=body.candidate_type,
+                run_id=run_id,
+                queue=queue,
+                api_key=key,
+            )
+        )
+        return JSONResponse({"run_id": run_id, "ticker": ticker.upper(), "status": "started"})
+
+    @api.get("/runs/{run_id}/stream")
+    async def stream_committee_run(run_id: str, request: Request) -> EventSourceResponse:
+        queue = _run_queues.get(run_id)
+        if queue is None:
+            raise HTTPException(status_code=404, detail=f"run_id not found: {run_id}")
+
+        async def event_generator():
+            while True:
+                if await request.is_disconnected():
+                    break
+                try:
+                    event = await asyncio.wait_for(queue.get(), timeout=30.0)
+                except asyncio.TimeoutError:
+                    yield {"event": "ping", "data": "{}"}
+                    continue
+                if event is None:
+                    yield {"event": "done", "data": json.dumps({"run_id": run_id})}
+                    _run_queues.pop(run_id, None)
+                    break
+                yield {"event": "event", "data": json.dumps(event)}
+
+        return EventSourceResponse(event_generator(), ping=10)
 
     app.include_router(api)
 

@@ -7,6 +7,7 @@ from typing import Any, Iterable
 
 import yfinance
 from axe_core import Tracer
+from axe_core.llm import chat_json
 from axe_core.paths import public_dir
 from axe_fundamental.reports import update_report_index
 
@@ -106,20 +107,6 @@ def build_technical_context(ticker: str, history: Any) -> dict[str, Any]:
     }
 
 
-def chat_json(api_key: str, model: str, system: str, user: dict, max_tokens: int = 1200) -> dict:
-    from openai import OpenAI
-
-    client = OpenAI(api_key=api_key)
-    response = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "system", "content": system}, {"role": "user", "content": json.dumps(user)}],
-        max_tokens=max_tokens,
-        temperature=0.2,
-        response_format={"type": "json_object"},
-    )
-    return json.loads(response.choices[0].message.content or "{}")
-
-
 def _normalize_result(ticker: str, context: dict[str, Any], result: dict[str, Any]) -> dict[str, Any]:
     return {
         "generated_at": _utc_stamp(),
@@ -183,7 +170,7 @@ def run_technical_analysis(ticker: str, api_key: str, force: bool = False) -> di
     context = build_technical_context(symbol, history)
 
     tracer.event(step="llm_analysis", thought="running technical analysis")
-    result = chat_json(api_key, "gpt-4o-mini", SYSTEM_PROMPT, context)
+    result = chat_json(api_key=api_key, model="gpt-4o-mini", system=SYSTEM_PROMPT, user=context)
     report = _normalize_result(symbol, context, result)
 
     json_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")

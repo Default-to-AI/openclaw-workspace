@@ -1,10 +1,76 @@
 {
-  "generated_at": "2026-04-20T03:30:00Z",
+  "generated_at": "2026-04-21T00:25:19Z",
   "retention": {
     "max_runs_per_agent": 50,
     "total_cap": 500
   },
   "runs": [
+    {
+      "run_id": "portfolio-21-04-2026T00-24-44Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-21T00:24:44Z",
+      "ended_at": "2026-04-21T00:25:19Z",
+      "duration_ms": 35388,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 14 positions (IBKR live)",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-20-04-2026T20-30-26Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-20T20:30:26Z",
+      "ended_at": "2026-04-20T20:30:54Z",
+      "duration_ms": 28235,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 14 positions (cached CSV (stale))",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-20-04-2026T17-01-59Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-20T17:01:59Z",
+      "ended_at": "2026-04-20T17:02:28Z",
+      "duration_ms": 29173,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 14 positions (Flex Query (T+1))",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-20-04-2026T16-51-25Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-20T16:51:25Z",
+      "ended_at": "2026-04-20T16:51:53Z",
+      "duration_ms": 28921,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 14 positions (Flex Query (T+1))",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-20-04-2026T16-50-50Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-20T16:50:50Z",
+      "ended_at": "2026-04-20T16:51:18Z",
+      "duration_ms": 28472,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 14 positions (Flex Query (T+1))",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-20-04-2026T16-37-14Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-20T16:37:14Z",
+      "ended_at": "2026-04-20T16:37:44Z",
+      "duration_ms": 30030,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 15 positions",
+      "artifact_written": "portfolio.json"
+    },
     {
       "run_id": "portfolio-20-04-2026T03-29-44Z",
       "agent": "axe_portfolio",
@@ -732,17 +798,6 @@
       "artifact_written": "portfolio.json"
     },
     {
-      "run_id": "portfolio-16-04-2026T01-06-39Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-16T01:06:39Z",
-      "ended_at": "2026-04-16T01:06:41Z",
-      "duration_ms": 2292,
-      "status": "success",
-      "event_count": 2,
-      "summary": "portfolio review \u2014 13 positions",
-      "artifact_written": "portfolio.json"
-    },
-    {
       "run_id": "news-16-04-2026T01-05-17Z",
       "agent": "axe_news",
       "started_at": "2026-04-16T01:05:17Z",
@@ -752,50 +807,6 @@
       "event_count": 5,
       "summary": "290 in, 20 kept (score>=6)",
       "artifact_written": "news-latest.json"
-    },
-    {
-      "run_id": "portfolio-16-04-2026T01-05-09Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-16T01:05:09Z",
-      "ended_at": "2026-04-16T01:05:11Z",
-      "duration_ms": 2248,
-      "status": "success",
-      "event_count": 2,
-      "summary": "portfolio review \u2014 13 positions",
-      "artifact_written": "portfolio.json"
-    },
-    {
-      "run_id": "portfolio-16-04-2026T01-02-17Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-16T01:02:17Z",
-      "ended_at": "2026-04-16T01:02:18Z",
-      "duration_ms": 1511,
-      "status": "success",
-      "event_count": 2,
-      "summary": "portfolio review \u2014 13 positions",
-      "artifact_written": "portfolio.json"
-    },
-    {
-      "run_id": "portfolio-16-04-2026T00-56-20Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-16T00:56:20Z",
-      "ended_at": "2026-04-16T00:56:21Z",
-      "duration_ms": 1934,
-      "status": "success",
-      "event_count": 2,
-      "summary": "portfolio review \u2014 13 positions",
-      "artifact_written": "portfolio.json"
-    },
-    {
-      "run_id": "portfolio-16-04-2026T00-53-48Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-16T00:53:48Z",
-      "ended_at": "2026-04-16T00:53:48Z",
-      "duration_ms": 520,
-      "status": "failed",
-      "event_count": 2,
-      "summary": "review failed: [Errno 111] Connect call failed ('127.0.0.1', 7496)",
-      "artifact_written": null
     },
     {
       "run_id": "axe_fundamental-15-04-2026T21-21-33Z",
@@ -829,17 +840,6 @@
       "event_count": 5,
       "summary": "decision memo generated for MSFT",
       "artifact_written": "decision-latest.json"
-    },
-    {
-      "run_id": "portfolio-15-04-2026T18-55-12Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-15T18:55:12Z",
-      "ended_at": "2026-04-15T18:55:12Z",
-      "duration_ms": 875,
-      "status": "success",
-      "event_count": 2,
-      "summary": "portfolio review \u2014 13 positions",
-      "artifact_written": "portfolio.json"
     },
     {
       "run_id": "decision-15-04-2026T18-46-54Z",
