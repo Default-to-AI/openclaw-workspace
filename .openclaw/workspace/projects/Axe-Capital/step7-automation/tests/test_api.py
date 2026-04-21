@@ -39,3 +39,27 @@ def test_refresh_endpoint_returns_runner_payload(monkeypatch):
     assert response.status_code == 200
     assert response.json()['target'] == 'alpha'
     assert response.json()['ok'] is True
+
+
+def test_command_center_endpoint_returns_projected_payload(tmp_path, monkeypatch):
+    payload = {
+        "generated_at": "2026-04-21T00:25:19Z",
+        "partial": False,
+        "decision_inbox": [],
+        "live_missions": [],
+        "watchers": [],
+        "surveillance_alerts": [],
+        "firm_exceptions": [],
+        "current_focus": None,
+        "data_freshness": {},
+    }
+
+    monkeypatch.setattr(api_mod, 'public_dir', lambda: tmp_path)
+    monkeypatch.setattr(api_mod, 'build_command_center_payload', lambda public_dir: payload)
+
+    client = TestClient(api_mod.create_app())
+    response = client.get('/api/command-center')
+
+    assert response.status_code == 200
+    assert response.json()["generated_at"] == "2026-04-21T00:25:19Z"
+    assert response.json()["partial"] is False

@@ -13,10 +13,12 @@ import AnalystReportsPanel from './components/AnalystReportsPanel'
 import WeeklyReviewPanel from './components/WeeklyReviewPanel'
 import ApprovalQueuePanel from './components/ApprovalQueuePanel'
 import CommitteePanel from './components/CommitteePanel'
+import CommandCenter from './components/CommandCenter'
 import { fetchHealthStatus, fetchJsonWithFallback, fetchTextWithFallback } from './lib/api'
+import { loadCommandCenter } from './lib/command-center/store'
 
 const TAB_LABELS = {
-  overview: 'Daily Brief',
+  overview: 'Command Center',
   portfolio: 'Portfolio',
   research: 'Research',
   ops: 'Operations',
@@ -67,6 +69,8 @@ export default function App() {
   const [refreshToken, setRefreshToken] = useState(0)
   const [health, setHealth] = useState(null)
   const [navBadges, setNavBadges] = useState({})
+  const [commandCenter, setCommandCenter] = useState(null)
+  const [commandCenterError, setCommandCenterError] = useState(null)
 
   // Reload health on each refresh
   useEffect(() => {
@@ -74,6 +78,22 @@ export default function App() {
     fetchHealthStatus()
       .then(({ data }) => { if (!cancelled) setHealth(data) })
       .catch(() => {})
+    return () => { cancelled = true }
+  }, [refreshToken])
+
+  useEffect(() => {
+    let cancelled = false
+    loadCommandCenter()
+      .then((payload) => {
+        if (cancelled) return
+        setCommandCenter(payload)
+        setCommandCenterError(null)
+      })
+      .catch((error) => {
+        if (cancelled) return
+        setCommandCenter(null)
+        setCommandCenterError(error.message)
+      })
     return () => { cancelled = true }
   }, [refreshToken])
 
@@ -163,11 +183,13 @@ export default function App() {
           {/* ── Overview: Daily Brief ── */}
           {activeTab === 'overview' && (
             <div className="space-y-5">
-              <PortfolioPanel key={`portfolio-${refreshToken}`} />
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-                <DecisionReportPanel key={`decision-${refreshToken}`} refreshToken={refreshToken} />
-                <NewsPanel key={`news-${refreshToken}`} />
-              </div>
+              {commandCenterError ? (
+                <div className="panel-card text-sm text-red-300">
+                  Failed to load command center: {commandCenterError}
+                </div>
+              ) : (
+                <CommandCenter payload={commandCenter} />
+              )}
             </div>
           )}
 

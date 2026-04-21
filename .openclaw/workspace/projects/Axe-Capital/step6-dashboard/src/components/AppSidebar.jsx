@@ -12,7 +12,7 @@ const REFRESH_TARGETS = [
 const NAV_ITEMS = [
   {
     id: 'overview',
-    label: 'Overview',
+    label: 'Command Center',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4 flex-shrink-0">
         <circle cx="8" cy="8" r="6" /><circle cx="8" cy="8" r="2.5" />

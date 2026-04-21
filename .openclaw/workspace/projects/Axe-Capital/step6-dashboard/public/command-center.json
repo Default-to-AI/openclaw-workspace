@@ -1,0 +1,135 @@
+{
+  "generated_at": "2026-04-21T00:25:19Z",
+  "partial": false,
+  "data_freshness": {
+    "portfolio": {
+      "last_refresh": "2026-04-21T00:25:19Z",
+      "age_min": 0,
+      "status": "fresh"
+    },
+    "alpha": {
+      "last_refresh": "2026-04-16T21:44:19.578778+03:00",
+      "age_min": 6100,
+      "status": "stale"
+    },
+    "news": {
+      "last_refresh": "2026-04-16T22:19:43Z",
+      "age_min": 5885,
+      "status": "stale"
+    },
+    "decision": {
+      "last_refresh": "2026-04-21T00:15:27Z",
+      "age_min": 9,
+      "status": "fresh"
+    },
+    "analyst_reports": {
+      "last_refresh": "2026-04-16T01:21:17Z",
+      "age_min": 7144,
+      "status": "fresh"
+    },
+    "traces": {
+      "last_refresh": "2026-04-21T00:25:19Z",
+      "age_min": 0,
+      "status": "fresh"
+    }
+  },
+  "decision_inbox": [
+    {
+      "run_id": "GOOG-1be743bb",
+      "symbol": "GOOG",
+      "action": "HOLD",
+      "confidence": 7,
+      "summary": "Alphabet Inc. is a fundamentally strong large-cap tech leader with robust profitability, significant cash reserves, and solid growth prospects driven by diversified segments including Google Services and Google Cloud. The current position is profitable with positive unrealized gains. However, adding to GOOG increases overweight exposure to US mega-cap tech, which conflicts with Robert's explicit preference to avoid further concentration in this sector. Technical indicators show positive momentum but also RSI near overbought, suggesting caution. Macro and sentiment data are neutral, and existing underwater positions advise prudence in deploying additional capital. Therefore, holding the current position aligns best with Robert's aggressive accumulator style while respecting diversification constraints.",
+      "timestamp": "2026-04-21T00:15:27Z",
+      "candidate_type": "position_review"
+    }
+  ],
+  "live_missions": [],
+  "watchers": [
+    {
+      "key": "news",
+      "label": "News Watcher",
+      "status": "stale",
+      "partial": false,
+      "last_refresh": "2026-04-16T22:19:43Z"
+    },
+    {
+      "key": "alpha",
+      "label": "Value / Discount Watcher",
+      "status": "stale",
+      "partial": false,
+      "last_refresh": "2026-04-16T21:44:19.578778+03:00"
+    }
+  ],
+  "surveillance_alerts": [
+    {
+      "symbol": "FICO",
+      "severity": "RED",
+      "distance_to_stop_pct": 4.16,
+      "stop_loss": 1019.17,
+      "target_price": 1400.0,
+      "thesis": "Credit scoring monopoly. Price increases flow directly to margin.",
+      "last_price": 1063.4100341796875
+    },
+    {
+      "symbol": "TSLA",
+      "severity": "RED",
+      "distance_to_stop_pct": 2.08,
+      "stop_loss": 384.35,
+      "target_price": 500.0,
+      "thesis": "EV market leader but margins under pressure. Speculative hold.",
+      "last_price": 392.5
+    },
+    {
+      "symbol": "IGV",
+      "severity": "YELLOW",
+      "distance_to_stop_pct": 8.9,
+      "stop_loss": 78.62,
+      "target_price": 100.0,
+      "thesis": "Software ETF exposure. Broad SaaS bet on rate stabilization.",
+      "last_price": 86.30000305175781
+    },
+    {
+      "symbol": "MSFT",
+      "severity": "YELLOW",
+      "distance_to_stop_pct": 9.32,
+      "stop_loss": 379.09,
+      "target_price": 480.0,
+      "thesis": "Azure + Copilot monetization. Defensive tech with AI upside.",
+      "last_price": 418.07000732421875
+    },
+    {
+      "symbol": "NFLX",
+      "severity": "YELLOW",
+      "distance_to_stop_pct": 8.12,
+      "stop_loss": 87.7,
+      "target_price": 120.0,
+      "thesis": "Ad-supported tier + password sharing crackdown driving subscriber growth.",
+      "last_price": 94.83000183105469
+    },
+    {
+      "symbol": "RGTI",
+      "severity": "YELLOW",
+      "distance_to_stop_pct": 6.42,
+      "stop_loss": 18.38,
+      "target_price": 35.0,
+      "thesis": "Quantum computing lottery ticket. Small position, high speculative upside.",
+      "last_price": 19.639999389648438
+    }
+  ],
+  "firm_exceptions": [
+    {
+      "key": "alpha",
+      "status": "stale",
+      "last_refresh": "2026-04-16T21:44:19.578778+03:00",
+      "age_min": 6100
+    },
+    {
+      "key": "news",
+      "status": "stale",
+      "last_refresh": "2026-04-16T22:19:43Z",
+      "age_min": 5885
+    }
+  ],
+  "current_focus": null
+}

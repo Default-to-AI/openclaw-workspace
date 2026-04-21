@@ -19,6 +19,7 @@ from axe_core.paths import project_root, public_dir
 from axe_orchestrator import runners
 from axe_orchestrator.committee_orchestrator import run_committee
 from axe_orchestrator.health import generate_health, write_health
+from axe_orchestrator.projector import build_command_center_payload, write_command_center_artifacts
 
 load_dotenv(project_root() / ".env", override=False)
 
@@ -98,11 +99,18 @@ def create_app() -> FastAPI:
     async def health_api() -> JSONResponse:
         return await _health_impl()
 
+    @api.get("/command-center")
+    async def command_center_api() -> JSONResponse:
+        public = public_dir()
+        write_command_center_artifacts(public)
+        return JSONResponse(build_command_center_payload(public))
+
     async def _refresh_impl(target: str) -> JSONResponse:
         if REFRESH_LOCK.locked():
             raise HTTPException(status_code=409, detail="A refresh is already in progress")
         async with REFRESH_LOCK:
             payload = await _run_agent(target)
+        write_command_center_artifacts(public_dir())
         return JSONResponse(payload)
 
     # Primary refresh endpoint (use POST for side effects).
