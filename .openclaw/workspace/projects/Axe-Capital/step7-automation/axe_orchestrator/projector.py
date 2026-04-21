@@ -56,6 +56,8 @@ def build_mission_index(public: Path) -> dict:
                 "ended_at": run.get("ended_at"),
                 "headline": run.get("summary") or "",
                 "latest_summary": run.get("summary") or "",
+                "source_updated_at": run.get("ended_at") or run.get("started_at"),
+                "staleness_state": "fresh",
             }
         )
 
@@ -159,7 +161,7 @@ def build_command_center_payload(public: Path) -> dict:
     }
 
 
-def write_command_center_artifacts(public: Path) -> None:
+def write_command_center_artifacts(public: Path) -> dict:
     payload = build_command_center_payload(public)
     mission_index = build_mission_index(public)
 
@@ -169,3 +171,5 @@ def write_command_center_artifacts(public: Path) -> None:
     missions_dir = public / "missions"
     missions_dir.mkdir(parents=True, exist_ok=True)
     (missions_dir / "index.json").write_text(json.dumps(mission_index, indent=2), encoding="utf-8")
+
+    return payload

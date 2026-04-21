@@ -54,8 +54,7 @@ def test_command_center_endpoint_returns_projected_payload(tmp_path, monkeypatch
         "data_freshness": {},
     }
 
-    monkeypatch.setattr(api_mod, 'public_dir', lambda: tmp_path)
-    monkeypatch.setattr(api_mod, 'build_command_center_payload', lambda public_dir: payload)
+    monkeypatch.setattr(api_mod, 'write_command_center_artifacts', lambda public_dir: payload)
 
     client = TestClient(api_mod.create_app())
     response = client.get('/api/command-center')
