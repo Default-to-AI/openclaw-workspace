@@ -16,8 +16,9 @@ function parseJsonl(text) {
 }
 
 function normalizeEntry(entry, index) {
+  const baseId = entry.run_id || entry.ts || entry.timestamp || 'entry'
   return {
-    id: `${entry.run_id || entry.ts || entry.timestamp || index}`,
+    id: `${baseId}-${index}`,
     ts: entry.ts || entry.timestamp || null,
     ticker: entry.ticker || entry.symbol || '—',
     decisionType: entry.decision_type || entry.type || entry.event || 'note',
