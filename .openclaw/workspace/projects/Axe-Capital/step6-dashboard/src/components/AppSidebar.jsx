@@ -113,7 +113,7 @@ export default function AppSidebar({ activeTab, onTabChange, navBadges = {}, ref
   const artifacts = health?.artifacts || {}
 
   return (
-    <nav className="w-[210px] flex-shrink-0 flex flex-col border-r border-axe-border bg-axe-surface overflow-y-auto">
+    <nav className="w-full lg:w-[210px] flex-shrink-0 flex flex-col border-b lg:border-b-0 lg:border-r border-axe-border bg-axe-surface overflow-y-auto lg:overflow-y-auto max-h-[50vh] lg:max-h-none">
       {/* Navigation */}
       <div className="px-3 pt-4 pb-1">
         <div className="text-axe-muted text-[10px] uppercase tracking-wider px-2 mb-1">Navigate</div>

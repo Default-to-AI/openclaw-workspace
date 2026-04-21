@@ -139,7 +139,7 @@ export default function App() {
     <div className="h-full flex flex-col overflow-hidden">
       {/* ── Header ── */}
       <header className="flex-shrink-0 h-[52px] flex items-center border-b border-axe-border bg-axe-surface/95 backdrop-blur z-50">
-        <div className="w-[210px] flex-shrink-0 h-full flex items-center px-5 border-r border-axe-border">
+        <div className="w-[140px] sm:w-[210px] flex-shrink-0 h-full flex items-center px-4 sm:px-5 border-r border-axe-border">
           <span className="text-axe-accent font-bold tracking-[0.15em] text-xs uppercase">AXE CAPITAL</span>
         </div>
         <div className="flex flex-1 items-center justify-between px-5 min-w-0 gap-4">
@@ -150,7 +150,7 @@ export default function App() {
       </header>
 
       {/* ── Body: sidebar + main ── */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
         <AppSidebar
           activeTab={activeTab}
           onTabChange={setActiveTab}
@@ -159,7 +159,7 @@ export default function App() {
           onRefreshComplete={handleRefreshComplete}
         />
 
-        <main className="flex-1 overflow-y-auto p-5">
+        <main className="flex-1 overflow-y-auto p-3 sm:p-5 min-w-0">
           {/* ── Overview: Daily Brief ── */}
           {activeTab === 'overview' && (
             <div className="space-y-5">
