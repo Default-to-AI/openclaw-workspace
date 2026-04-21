@@ -1,108 +1,153 @@
-# Axe Capital — Agent Instructions
+# Axe Capital — AGENTS.md
 
-## Package Structure
+## Purpose Of This File
 
-This is a Python monorepo with 11 steps:
+This file is the repo-specific operating contract for coding agents working on Axe Capital.
 
-| Step | Package | Description |
-|------|---------|-------------|
-| step0-shared | axe-core | Shared utilities (`Tracer`, paths, schemas, shared LLM helper) |
-| step1-data-foundation | axe-coo | COO data connectors + step3 committee decision helper |
-| step2-news | axe-news | RSS ingestion + scoring |
-| step3-debate-decision | axe-decision | Debate + CEO decision layer |
-| step4-alpha-hunter | axe-alpha | Alpha scanning |
-| step5-portfolio-tracking | axe-portfolio | Portfolio tracker with IBKR live -> Flex Query -> cached CSV fallback |
-| step6-dashboard | — | React/Vite dashboard |
-| step7-automation | axe-orchestrator | Orchestrator + FastAPI + committee streaming |
-| step8-fundamental | axe-fundamental | Fundamental analyst |
-| step9-technical | axe-technical | Technical analyst |
-| step10-macro | axe-macro | Macro strategist |
+Use it for:
+- agent behavior in this repository
+- project-specific guardrails
+- stable architecture and data-contract warnings
+- fast orientation to the project
 
-## Running Packages
+Do not use it for:
+- roadmap status
+- milestone tracking
+- task backlog
+- release notes
+- recent change summaries
 
-```bash
-# Install/edit any step (must run from its directory)
-for step in step0-shared step1-data-foundation step2-news step3-debate-decision step4-alpha-hunter step5-portfolio-tracking step8-fundamental step9-technical step10-macro step7-automation; do
-  (cd "$step" && uv pip install -e .)
-done
+Those belong in the project source-of-truth files listed below.
 
-# Run CLI entry points
-axe                   # step7: orchestrator CLI
-axe-alpha             # step4: alpha scanner
-axe-news              # step2: news ingestion
-axe-decision          # step3: debate + decision
-axe-fundamental       # step8: fundamental analyst
-axe-technical         # step9: technical analyst
-axe-macro             # step10: macro strategist
-```
+## Project Brief
 
-## Dashboard
+Axe Capital is a hedge-fund-style multi-agent research platform for public equities.
 
-```bash
-cd step6-dashboard
-npm run dev
-npm run build
-npm run lint
-```
+The core product is not the dashboard itself. The real system is the pipeline:
+- ingest market, portfolio, and news data
+- run specialist analysis
+- run debate and decision synthesis
+- produce a CEO decision and position playbook
+- expose artifacts in the dashboard for the operator
 
-The dashboard reads artifacts from `step6-dashboard/public/`, including:
-- `portfolio.json`, `position-state.json`, `weekly-review-latest.json`
-- `alpha-latest.json`, `news-latest.json`
-- `decision-latest.json`, `decisions/*.json`
+The operator executes trades manually. The system is research and decision support, not auto-trading.
+
+## Source Of Truth
+
+Before making planning or documentation claims, read the right file:
+
+- `ROADMAP.md`
+  Use for project status, milestones, tech debt, and next priorities.
+- `/home/tiger/.openclaw/workspace/obsidian-vault/Axe_Capital_Tasks.md`
+  Use for the active task backlog and session-level outstanding work.
+- `docs/description-axe-capital.md`
+  Use for the current product description and high-level system overview.
+- `spec/`
+  Use for architecture, org-chart, risk, and design intent.
+- `CLAUDE.md`
+  Use for adjacent repo context and broader working rules.
+
+Do not restate changing roadmap or task state in `AGENTS.md`.
+
+## Repo Boundaries
+
+- Keep all Axe Capital code, generated reports, artifacts, runbooks, and project docs inside `projects/Axe-Capital/`.
+- Do not write generated project output into the Obsidian vault.
+- Treat the vault as human planning and knowledge space, not as the runtime artifact store.
+
+## Repo Shape
+
+High-level layout:
+
+- `step0-shared/`
+  Shared utilities and core helpers.
+- `step1-data-foundation/` to `step10-macro/`
+  Pipeline packages and agents.
+- `step6-dashboard/`
+  React dashboard.
+- `step7-automation/`
+  FastAPI backend and orchestration layer.
+- `spec/`, `plans/`, `runbooks/`
+  Project docs and execution docs.
+- `scripts/`
+  Repo-local helper scripts.
+
+## Agent Behavior
+
+- Make surgical changes. Touch only what the task requires.
+- Preserve existing architecture unless the task explicitly calls for structural change.
+- Prefer updating the true source-of-truth file over duplicating information into multiple docs.
+- Do not silently rewrite project intent. If a change affects product behavior or architecture, update the relevant spec, roadmap, or description file deliberately.
+- Verify important claims with code, docs, or artifacts in the repo before stating them.
+- Treat generated artifacts, runtime output, and source files differently. Do not mix them casually in the same change without reason.
+- If the task concerns open work or priorities, consult the vault task file rather than inferring from stale docs.
+
+## Critical Contracts
+
+### Artifact Contract
+
+`step6-dashboard/public/` is the primary artifact boundary between the Python pipeline and the dashboard.
+
+Agents should assume this directory is a contract surface. Be careful when changing:
+- `portfolio.json`
+- `weekly-review-latest.json`
+- `decision-latest.json`
 - `health.json`
-- `traces/index.json`, `traces/<run-id>.json`
+- `position-state.json`
+- `traces/index.json`
+- trace payload structure
 
-Current UI sections:
-- `Overview` for daily brief
-- `Portfolio`
-- `Research`
-- `Operations`
-- `Committee` for live committee runs and playbook output
+If an artifact schema changes, update all affected readers in the dashboard and backend.
 
-## Backend Pairing
+### API/UI Coupling
 
-For health, refresh buttons, trace SSE, and committee runs:
+The dashboard depends on backend routes in `step7-automation/axe_orchestrator/api.py` and client code in `step6-dashboard/src/lib/api.js`.
 
-```bash
-cd step7-automation
-uv pip install -e ".[api]"
-uvicorn axe_orchestrator.api:app --reload --port 8000
-```
+Do not change API routes, request shapes, or SSE behavior without updating the frontend callers in the same change.
 
-Dashboard API usage:
-- `/api/health`
-- `/api/refresh/{target}`
-- `/api/trace/stream/{run_id}`
-- `/api/runs/{ticker}`
-- `/api/runs/{run_id}/stream`
+### Decision Vocabulary
 
-## Portfolio Data Rules
+The CEO action vocabulary is a shared contract across backend logic and UI rendering.
 
-- Preferred source order is `IBKR live -> Flex Query -> cached CSV`.
-- `portfolio.json` includes `data_source`; do not remove it.
-- `weekly-review-latest.json` is dual-written to the portfolio reports area and dashboard public artifacts.
-- Flex statement rows may contain duplicate symbols across accounts; they must be aggregated by symbol.
-- Cash handling prefers `BASE`, then `USD`, then raw totals to avoid double-counting.
+When changing action names or semantics, keep the following aligned:
+- `step3-debate-decision/axe_decision/cli.py`
+- `step7-automation/axe_orchestrator/committee_orchestrator.py`
+- committee/dashboard UI components
 
-## Development Notes
+### Portfolio Ingestion
 
-- Install `step0-shared` first because other packages depend on `axe-core`.
-- Specialist agents now share the common OpenAI JSON helper in `step0-shared/axe_core/llm.py`.
-- CEO actions are more granular than simple buy/sell: `BUY`, `ADD`, `HOLD`, `TRIM`, `SELL`, `TIGHTEN_STOP`, `LOOSEN_STOP`, `REBALANCE`, `WATCH`.
-- `scripts/axe-dev.sh` is the preferred local launcher and now surfaces portfolio source readiness.
-- `.env` at repo root should contain `OPENAI_API_KEY` plus IBKR and Flex credentials when live portfolio sync is needed.
+Portfolio ingestion currently follows a fallback chain:
+- IBKR live
+- Flex Query
+- cached CSV
+
+Preserve that behavior unless the task explicitly changes it.
+
+Be careful with:
+- `data_source` in portfolio artifacts
+- duplicate-symbol aggregation across accounts
+- cash handling and double-counting
+
+## Documentation Rules
+
+- `AGENTS.md` should stay stable and behavioral.
+- `ROADMAP.md` tracks status and priorities.
+- `docs/description-axe-capital.md` explains what the project is.
+- The vault task file tracks open tasks.
+
+If a request is “update the docs,” choose the file based on purpose instead of updating everything.
+
+## Working Style For This Repo
+
+- Prefer small, defensible diffs over broad cleanup.
+- Do not remove “developer-looking” panels, routes, or files unless the task explicitly asks for product cleanup.
+- When touching dashboard behavior, consider both static artifact mode and API-backed mode.
+- When touching orchestration, prefer preserving traceability and debuggability over cleverness.
+- Before claiming something is fixed, run the lightest real verification available.
 
 ## References
 
-- Full project context: `CLAUDE.md`
-- Project status and next milestones: `ROADMAP.md`
-- Description for external/project context: `docs/description-axe-capital.md`
-- Specs and plans: `spec/`, `plans/`, `runbooks/`
-
-## Remaining Work
-
-The following items are still open:
-- Scheduled refresh / market-hours automation
-- Trace and decision archive pruning rules
-- Risk manager and compliance/audit agents
-- Production deployment and operator runbooks
+- [CLAUDE.md](/home/tiger/.openclaw/workspace/projects/Axe-Capital/CLAUDE.md)
+- [ROADMAP.md](/home/tiger/.openclaw/workspace/projects/Axe-Capital/ROADMAP.md)
+- [description-axe-capital.md](/home/tiger/.openclaw/workspace/projects/Axe-Capital/docs/description-axe-capital.md)
+- [Axe_Capital_Tasks.md](/home/tiger/.openclaw/workspace/obsidian-vault/Axe_Capital_Tasks.md)

@@ -248,7 +248,7 @@ axe-macro            # Direct: macro strategist
 
 ### Recent Milestones
 
-- ✅ **Visible Prototype** (April 11) — Dashboard opens locally, 7 panels render data
+- ✅ **Visible Prototype** (April 11) — Dashboard opens locally and renders the first artifact-driven panels
 - ✅ **IBKR Flex Query Integration** (April 20) — Live portfolio data via Flex API with fallback
 - ✅ **Portfolio sync fixes** — Dual-write for weekly review, SPY comparison formatting, P&L display
 - ✅ **Specialist agents** — Fundamental, Technical, and Macro analyst agents built

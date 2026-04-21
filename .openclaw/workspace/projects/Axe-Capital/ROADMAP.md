@@ -13,7 +13,7 @@ Axe Capital is a **hedge-fund-style multi-agent research platform** that hunts f
 - Data ingestion (news, SEC filings, IBKR portfolio)
 - Independent analysis by specialist agents
 - Adversarial debate (bull vs bear)
-- Decision memo for Robert to execute manually at IBKR
+- CEO decision and position playbook for Robert to execute manually at IBKR
 - Full audit trail (traces)
 
 **Core thesis:** Retail doesn't do exhaustive multi-source research. Axe Capital's edge is depth, speed, and adversarial structure.
@@ -142,6 +142,7 @@ uvicorn axe_orchestrator.api:app --reload --port 8000
 axe run alpha     # Run alpha hunter
 axe run news     # Run news ingestion
 axe run portfolio # Run portfolio review
+axe run specialists_decide # Run specialists + decision
 axe run all      # Run all pipelines
 ```
 
