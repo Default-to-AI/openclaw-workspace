@@ -43,6 +43,25 @@ describe('loadCommandCenter', () => {
 })
 
 describe('mergeMissionEvent', () => {
+  it('merges committee stream events into the selected mission', () => {
+    const state = {
+      live_missions: [
+        { run_id: 'GOOG-1be743bb', status: 'running', latest_summary: 'initial', updated_at: '2026-04-21T00:10:00Z' },
+      ],
+      current_focus: { run_id: 'GOOG-1be743bb', status: 'running', latest_summary: 'initial', updated_at: '2026-04-21T00:10:00Z' },
+    }
+
+    const next = mergeMissionEvent(state, {
+      run_id: 'GOOG-1be743bb',
+      status: 'running',
+      latest_summary: 'risk review complete',
+      updated_at: '2026-04-21T00:13:00Z',
+    })
+
+    expect(next.current_focus.latest_summary).toBe('risk review complete')
+    expect(next.live_missions[0].latest_summary).toBe('risk review complete')
+  })
+
   it('keeps the fresher mission update instead of overwriting with stale data', () => {
     const state = {
       live_missions: [

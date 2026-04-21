@@ -15,7 +15,8 @@ import ApprovalQueuePanel from './components/ApprovalQueuePanel'
 import CommitteePanel from './components/CommitteePanel'
 import CommandCenter from './components/CommandCenter'
 import { fetchHealthStatus, fetchJsonWithFallback, fetchTextWithFallback } from './lib/api'
-import { loadCommandCenter } from './lib/command-center/store'
+import { loadCommandCenter, mergeMissionEvent } from './lib/command-center/store'
+import { subscribeToMission } from './lib/command-center/stream'
 
 const TAB_LABELS = {
   overview: 'Command Center',
@@ -149,6 +150,22 @@ export default function App() {
 
     return () => { cancelled = true }
   }, [refreshToken])
+
+  useEffect(() => {
+    if (!commandCenter?.current_focus?.run_id) return
+    return subscribeToMission(commandCenter.current_focus.run_id, {
+      onEvent(event) {
+        setCommandCenter((current) => mergeMissionEvent(current, event))
+      },
+      onError(error) {
+        setCommandCenter((current) => mergeMissionEvent(current, {
+          run_id: current?.current_focus?.run_id,
+          stream_error: error.message,
+          updated_at: new Date().toISOString(),
+        }))
+      },
+    })
+  }, [commandCenter?.current_focus?.run_id])
 
   function handleRefreshComplete() {
     setRefreshToken((v) => v + 1)
