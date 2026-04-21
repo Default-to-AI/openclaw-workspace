@@ -9,60 +9,13 @@
 
 **Never write agent output into the Obsidian vault.** This includes: normalized CSVs, JSON reports, Python scripts, generated markdown docs, snapshots, memos, or any file produced by an agent or pipeline run.
 
-## Broker Data (Read-Only Inputs)
+## Broker Data (Read-Only)
 
-The system prefers live portfolio data from IBKR/TWS, but now supports a fallback chain:
-- IBKR live via gateway/TWS
-- IBKR Flex Query snapshot
-- Cached CSV as last resort
-
-Historical exports can be stored in the vault:
-- IBKR statements → `Finance/raw/IBKR/Statements/`
-- Portfolio snapshots → `Finance/raw/Portfolio/`
-
-The system reads broker data via `.env` configured IBKR and Flex credentials.
+Fallback order: IBKR live → Flex Query → cached CSV. Credentials via `.env`. Vault storage: `Finance/raw/IBKR/Statements/` and `Finance/raw/Portfolio/`.
 
 ## Project Structure
 
-```
-projects/Axe-Capital/
-  step0-shared/            # axe_core shared package
-  step1-data-foundation/   # axe_coo data pipeline
-  step2-news/              # axe_news RSS + LLM scorer
-  step3-debate-decision/   # axe_decision debate layer
-  step4-alpha-hunter/      # axe_alpha alpha scanner
-  step5-portfolio-tracking/ # axe_portfolio tracker
-  step6-dashboard/        # Dashboard UI (artifact home: public/)
-    public/               # All artifacts (portfolio.json, weekly-review-latest.json, health.json, traces/, etc.)
-  step7-automation/       # axe_orchestrator CLI + FastAPI + committee SSE
-  step8-fundamental/     # axe_fundamental analyst
-  step9-technical/       # axe_technical analyst
-  step10-macro/          # axe_macro strategist
-  spec/                  # Vision, strategy, architecture, org, risk docs
-  plans/                 # Implementation plans, roadmaps
-  runbooks/              # Operational runbooks for agent workflows
-  ops/                   # systemd services, install scripts
-```
-
-## Skill routing
-
-When the user's request matches an available skill, ALWAYS invoke it using the Skill
-tool as your FIRST action. Do NOT answer directly, do NOT use other tools first.
-The skill has specialized workflows that produce better results than ad-hoc answers.
-
-Key routing rules:
-- Product ideas, "is this worth building", brainstorming → invoke office-hours
-- Bugs, errors, "why is this broken", 500 errors → invoke investigate
-- Ship, deploy, push, create PR → invoke ship
-- QA, test the site, find bugs → invoke qa
-- Code review, check my diff → invoke review
-- Update docs after shipping → invoke document-release
-- Weekly retro → invoke retro
-- Design system, brand → invoke design-consultation
-- Visual audit, design polish → invoke design-review
-- Architecture review → invoke plan-eng-review
-- Save progress, checkpoint, resume → invoke checkpoint
-- Code quality, health check → invoke health
+Key modules: `step0-shared` (axe_core), `step1` (axe_coo), `step2` (axe_news), `step3` (axe_decision), `step4` (axe_alpha), `step5` (axe_portfolio), `step6-dashboard` (React UI + `public/` artifacts), `step7-automation` (axe_orchestrator FastAPI + committee SSE), `step8-10` (fundamental/technical/macro). Docs in `spec/`, `plans/`, `runbooks/`.
 
 ## Current Product Reality
 
@@ -82,3 +35,7 @@ Key routing rules:
   - `step7-automation/axe_orchestrator/committee_orchestrator.py`
   - dashboard committee UI components
 - When modifying portfolio ingestion, preserve the current fallback order and avoid cash double-counting across accounts/currencies.
+
+## Compact Instructions
+
+When compacting this session, preserve: active ticker or pipeline step; modified file paths with line ranges; error-fix sequences; open decisions and unresolved TODOs. Include the next concrete step.
