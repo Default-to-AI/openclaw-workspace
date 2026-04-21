@@ -1,6 +1,7 @@
 import { describe, expect, it, vi, afterEach } from 'vitest'
 
 import { loadCommandCenter, mergeMissionEvent } from './store'
+import { subscribeToMission } from './stream'
 
 afterEach(() => {
   vi.restoreAllMocks()
@@ -39,6 +40,14 @@ describe('loadCommandCenter', () => {
     expect(payload.partial).toBe(true)
     expect(fetch).toHaveBeenNthCalledWith(1, '/api/command-center?_=fixed', { cache: 'no-store' })
     expect(fetch).toHaveBeenNthCalledWith(2, '/command-center.json?_=fixed', { cache: 'no-store' })
+  })
+})
+
+describe('subscribeToMission', () => {
+  it('returns a no-op when runId is absent', () => {
+    const unsub = subscribeToMission(null, {})
+    expect(typeof unsub).toBe('function')
+    expect(() => unsub()).not.toThrow()
   })
 })
 
