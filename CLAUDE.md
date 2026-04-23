@@ -70,56 +70,61 @@ Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude
 
 ## Available gstack skills
 
-- `/office-hours` — YC Office Hours
+- `/browse` — Headless browser for web browsing and QA
+- `/office-hours` — YC Office Hours: product decisions and startup strategy
 - `/plan-ceo-review` — CEO/founder-mode plan review
-- `/plan-eng-review` — Eng manager-mode plan review
+- `/plan-eng-review` — Architecture / engineering plan review
 - `/plan-design-review` — Designer's eye plan review
-- `/design-consultation` — Design consultation
-- `/design-shotgun` — Design shotgun: generate multiple design variants
-- `/design-html` — Design finalization: generate production-quality HTML/CSS
-- `/review` — Pre-landing PR review
-- `/ship` — Ship workflow
-- `/land-and-deploy` — Land and deploy workflow
-- `/canary` — Post-deploy canary monitoring
-- `/benchmark` — Performance regression detection
-- `/browse` — Fast headless browser for QA testing
-- `/connect-chrome` — Launch GStack Browser
-- `/qa` — Systematically QA test a web application
-- `/qa-only` — Report-only QA testing
-- `/design-review` — Designer's eye QA
-- `/setup-browser-cookies` — Import cookies from real browser
-- `/setup-deploy` — Configure deployment settings
-- `/retro` — Weekly engineering retrospective
+- `/plan-devex-review` — Developer experience plan review
+- `/ship` — Ship workflow: commit, PR, merge
+- `/review` — Pre-landing PR code review
 - `/investigate` — Systematic debugging
-- `/document-release` — Post-ship documentation update
-- `/codex` — OpenAI Codex CLI wrapper
-- `/cso` — Chief Security Officer mode
+- `/qa` — QA test a web application
+- `/design-review` — Designer's eye visual audit
 - `/autoplan` — Auto-review pipeline
-- `/plan-devex-review` — Interactive developer experience plan review
-- `/devex-review` — Live developer experience audit
-- `/careful` — Safety guardrails for destructive commands
-- `/freeze` — Restrict file edits to a specific directory
-- `/guard` — Full safety mode
-- `/unfreeze` — Clear the freeze boundary
-- `/gstack-upgrade` — Upgrade gstack to latest version
+- `/document-release` — Post-ship documentation update
 - `/learn` — Manage project learnings
+- `/codex` — OpenAI Codex CLI wrapper
+- `/gstack-upgrade` — Upgrade gstack to latest version
 
 ## Skill routing
 
-When the user's request matches an available skill, ALWAYS invoke it using the Skill
-tool as your FIRST action. Do NOT answer directly, do NOT use other tools first.
-The skill has specialized workflows that produce better results than ad-hoc answers.
+When the user's request matches an available skill, ALWAYS invoke it using the Skill tool as your FIRST action. Do NOT answer directly, do NOT use other tools first. The skill has specialized workflows that produce better results.
 
-Key routing rules:
-- Product ideas, "is this worth building", brainstorming → invoke office-hours
-- Bugs, errors, "why is this broken", 500 errors → invoke investigate
-- Ship, deploy, push, create PR → invoke ship
-- QA, test the site, find bugs → invoke qa
-- Code review, check my diff → invoke review
-- Update docs after shipping → invoke document-release
-- Weekly retro → invoke retro
-- Design system, brand → invoke design-consultation
-- Visual audit, design polish → invoke design-review
-- Architecture review → invoke plan-eng-review
-- Save progress, checkpoint, resume → invoke checkpoint
-- Code quality, health check → invoke health
+**gstack:**
+- Browse web, open URL, check a live page → `/browse`
+- Product ideas, startup strategy, "is this worth building" → `/office-hours`
+- Ship code, push, create PR → `/ship`
+- Code review, diff review, pre-merge check → `/review`
+- Bug, error, "why is this broken", unexpected behavior → `/investigate`
+- QA, test the UI, find bugs on a live site → `/qa`
+- Post-deploy health check → `/canary`
+- Weekly retro → `/retro`
+- Update docs after a release → `/document-release`
+- Architecture review, eng plan critique → `/plan-eng-review`
+
+**superpowers:**
+- Before building any new feature or component → `superpowers:brainstorming`
+- Any bug or test failure (before proposing fixes) → `superpowers:systematic-debugging`
+- Before writing implementation code → `superpowers:test-driven-development`
+- Have a spec, planning a multi-step implementation → `superpowers:writing-plans`
+- Executing a written plan → `superpowers:executing-plans`
+- About to say "done", before committing or PRing → `superpowers:verification-before-completion`
+- Receiving code review feedback → `superpowers:receiving-code-review`
+- Feature complete, want a review → `superpowers:requesting-code-review`
+- Implementation done, figuring out how to integrate → `superpowers:finishing-a-development-branch`
+- 2+ independent tasks that don't depend on each other → `superpowers:dispatching-parallel-agents`
+- Feature needs isolated workspace → `superpowers:using-git-worktrees`
+
+**other:**
+- Settings.json, hooks, permissions changes → `update-config`
+- Token audit, context window issues → `token-optimizer:token-optimizer`
+- Build a web UI, component, dashboard → `frontend-design`
+- Next.js / Vercel performance → `vercel-react-best-practices`
+
+## Model routing
+
+For subagents and Task calls, assign by task type:
+- `haiku` — data gathering: grep, file search, counting, simple lookups
+- `sonnet` — editing, code review, explanations, judgment calls (default)
+- `opus` — architecture planning, multi-file synthesis, cross-cutting analysis
