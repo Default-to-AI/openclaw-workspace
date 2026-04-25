@@ -5,6 +5,7 @@ import json
 import os
 import subprocess
 import sys
+import concurrent.futures
 
 from axe_core.paths import project_root, public_dir
 
@@ -121,10 +122,14 @@ def run_specialists(ticker: str | None = None) -> int:
     symbols = [ticker.upper()] if ticker else portfolio_symbols()
     if not symbols:
         return 1
+        
     for symbol in symbols:
-        failures += run_fundamental(symbol)
-        failures += run_technical(symbol)
-        failures += run_macro(symbol)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+            f1 = executor.submit(run_fundamental, symbol)
+            f2 = executor.submit(run_technical, symbol)
+            f3 = executor.submit(run_macro, symbol)
+            failures += f1.result() + f2.result() + f3.result()
+            
     return 0 if failures == 0 else failures
 
 
@@ -161,9 +166,12 @@ def run_opportunities(limit: str | int | None = None) -> int:
 
     failures = 0
     for symbol in symbols:
-        failures += run_fundamental(symbol)
-        failures += run_technical(symbol)
-        failures += run_macro(symbol)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+            f1 = executor.submit(run_fundamental, symbol)
+            f2 = executor.submit(run_technical, symbol)
+            f3 = executor.submit(run_macro, symbol)
+            failures += f1.result() + f2.result() + f3.result()
+            
         failures += run_decision(symbol)
     return 0 if failures == 0 else failures
 

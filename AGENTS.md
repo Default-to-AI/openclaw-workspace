@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This is the home directory workspace at `/home/tiger/`. Primary instruction source: [`.openclaw/workspace/AGENTS.md`](.openclaw/workspace/AGENTS.md).
+This is the home directory workspace at `/home/tiger/`. Primary instruction source: [`.openclaw/workspace/AGENTS.md`](.opewnclaw/workspace/AGENTS.md).
 
 ## Repo Structure
 

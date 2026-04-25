@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-21T00:25:19Z",
-  "review_date": "2026-04-21",
+  "generated_at": "2026-04-24T23:12:14Z",
+  "review_date": "2026-04-25",
   "positions": [
     {
       "symbol": "AMZN",
@@ -203,8 +203,8 @@
     "portfolio_cost_basis": 111507.45,
     "portfolio_market_value": 120838.68,
     "portfolio_return_pct": 8.37,
-    "spy_return_pct_same_window": 37.92,
-    "relative_alpha_pct": -29.55
+    "spy_return_pct_same_window": 29.66,
+    "relative_alpha_pct": -21.29
   },
   "hishtalmut_status": {
     "annual_ceiling_ils": 21500,

@@ -28,7 +28,7 @@
   Purpose: subscribe to committee SSE and translate events into store updates
 - `step6-dashboard/src/lib/command-center/store.test.jsx`
   Purpose: store load + merge tests
-- `step6-dashboard/src/components/CommandCenter.jsx`
+- `step6-dashboardw/src/components/CommandCenter.jsx`
   Purpose: top-level composition only, no raw artifact parsing
 - `step6-dashboard/src/components/command-center/DecisionInbox.jsx`
   Purpose: render normalized inbox items
@@ -54,6 +54,7 @@
 ### Task 1: Harden The Backend Read Model
 
 **Files:**
+
 - Modify: `step7-automation/axe_orchestrator/projector.py`
 - Modify: `step7-automation/axe_orchestrator/api.py`
 - Test: `step7-automation/tests/test_command_center_projector.py`
@@ -73,6 +74,7 @@ def test_build_mission_index_marks_active_and_terminal_states(tmp_path):
 - [ ] **Step 2: Run the backend tests to verify failure**
 
 Run:
+
 ```bash
 /home/tiger/.openclaw/workspace/projects/Axe-Capital/.venv/bin/python -m pytest \
   tests/test_command_center_projector.py \
@@ -81,6 +83,7 @@ Run:
 ```
 
 Expected:
+
 - at least one new assertion fails on missing lifecycle or fallback fields
 
 - [ ] **Step 3: Extend the projector with the missing normalized fields**
@@ -116,6 +119,7 @@ def write_command_center_artifacts(public: Path) -> None:
 - [ ] **Step 5: Run the backend tests to verify green**
 
 Run:
+
 ```bash
 /home/tiger/.openclaw/workspace/projects/Axe-Capital/.venv/bin/python -m pytest \
   tests/test_command_center_projector.py \
@@ -124,6 +128,7 @@ Run:
 ```
 
 Expected:
+
 - `N passed`
 
 - [ ] **Step 6: Commit**
@@ -143,6 +148,7 @@ git commit -m "feat: harden command center read model"
 ### Task 2: Add Live Mission Streaming To The Store
 
 **Files:**
+
 - Create: `step6-dashboard/src/lib/command-center/stream.js`
 - Modify: `step6-dashboard/src/lib/command-center/store.js`
 - Modify: `step6-dashboard/src/App.jsx`
@@ -165,11 +171,13 @@ it('merges committee stream events into the selected mission', () => {
 - [ ] **Step 2: Run the frontend store tests to verify failure**
 
 Run:
+
 ```bash
 npm test -- --run src/lib/command-center/store.test.jsx
 ```
 
 Expected:
+
 - new merge or subscribe test fails
 
 - [ ] **Step 3: Add the stream helper**
@@ -211,11 +219,13 @@ useEffect(() => {
 - [ ] **Step 5: Run the frontend store tests to verify green**
 
 Run:
+
 ```bash
 npm test -- --run src/lib/command-center/store.test.jsx
 ```
 
 Expected:
+
 - store tests pass
 
 - [ ] **Step 6: Commit**
@@ -234,6 +244,7 @@ git commit -m "feat: stream live mission updates into command center"
 ### Task 3: Split The Command Center Into Focused Components
 
 **Files:**
+
 - Modify: `step6-dashboard/src/components/CommandCenter.jsx`
 - Create: `step6-dashboard/src/components/command-center/DecisionInbox.jsx`
 - Create: `step6-dashboard/src/components/command-center/LiveMissionBoard.jsx`
@@ -256,11 +267,13 @@ it('shows disconnect state when the mission stream drops', () => {
 - [ ] **Step 2: Run the component tests to verify failure**
 
 Run:
+
 ```bash
 npm test -- --run src/components/CommandCenter.test.jsx src/components/command-center/MissionTakeover.test.jsx
 ```
 
 Expected:
+
 - `MissionTakeover` import or assertion fails
 
 - [ ] **Step 3: Create the focused components**
@@ -289,6 +302,7 @@ Include:
 ```
 
 And render:
+
 - run id
 - status
 - latest summary
@@ -298,11 +312,13 @@ And render:
 - [ ] **Step 5: Run the component tests to verify green**
 
 Run:
+
 ```bash
 npm test -- --run src/components/CommandCenter.test.jsx src/components/command-center/MissionTakeover.test.jsx
 ```
 
 Expected:
+
 - all component tests pass
 
 - [ ] **Step 6: Commit**
@@ -320,6 +336,7 @@ git commit -m "refactor: split command center into focused surfaces"
 ### Task 4: Remove Overview Duplication And Verify The Shell
 
 **Files:**
+
 - Modify: `step6-dashboard/src/App.jsx`
 - Modify: `step6-dashboard/src/components/AppSidebar.jsx`
 - Test: `step6-dashboard/src/lib/command-center/store.test.jsx`
@@ -336,11 +353,13 @@ it('falls back to /command-center.json when /api/command-center fails', async ()
 - [ ] **Step 2: Run the targeted frontend tests to verify failure**
 
 Run:
+
 ```bash
 npm test -- --run src/lib/command-center/store.test.jsx src/components/CommandCenter.test.jsx
 ```
 
 Expected:
+
 - fallback assertion fails before the final cleanup is wired
 
 - [ ] **Step 3: Keep Overview fully delegated to Command Center**
@@ -368,12 +387,14 @@ Keep `AppSidebar.jsx` and `TAB_LABELS.overview` aligned:
 - [ ] **Step 5: Run full frontend verification**
 
 Run:
+
 ```bash
 npm test -- --run src/lib/command-center/store.test.jsx src/components/CommandCenter.test.jsx src/components/command-center/MissionTakeover.test.jsx
 npm run build
 ```
 
 Expected:
+
 - tests pass
 - Vite build succeeds
 
@@ -393,12 +414,14 @@ git commit -m "feat: make command center the real overview shell"
 ### Task 5: Final Review + QA Gate
 
 **Files:**
+
 - Modify: none expected unless review/QA finds issues
 - Test input: `~/.gstack/projects/Default-to-AI-openclaw-workspace/tiger-main-eng-review-test-plan-20260421-070153.md`
 
 - [ ] **Step 1: Run backend verification**
 
 Run:
+
 ```bash
 /home/tiger/.openclaw/workspace/projects/Axe-Capital/.venv/bin/python -m pytest \
   step7-automation/tests/test_command_center_projector.py \
@@ -407,11 +430,13 @@ Run:
 ```
 
 Expected:
+
 - backend tests pass
 
 - [ ] **Step 2: Run frontend verification**
 
 Run:
+
 ```bash
 cd step6-dashboard
 npm test -- --run \
@@ -422,27 +447,32 @@ npm run build
 ```
 
 Expected:
+
 - frontend tests pass
 - production build succeeds
 
 - [ ] **Step 3: Run gstack review**
 
 Run:
+
 ```text
 /review
 ```
 
 Expected:
+
 - diff review findings addressed or accepted explicitly
 
 - [ ] **Step 4: Run gstack QA**
 
 Run:
+
 ```text
 /qa
 ```
 
 Expected:
+
 - live shell flow checked against the QA artifact and fixed if needed
 
 - [ ] **Step 5: Commit the final fixes**

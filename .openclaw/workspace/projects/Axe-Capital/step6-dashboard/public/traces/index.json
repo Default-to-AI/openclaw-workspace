@@ -1,10 +1,32 @@
 {
-  "generated_at": "2026-04-21T00:25:19Z",
+  "generated_at": "2026-04-24T23:12:14Z",
   "retention": {
     "max_runs_per_agent": 50,
     "total_cap": 500
   },
   "runs": [
+    {
+      "run_id": "portfolio-24-04-2026T23-11-46Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-24T23:11:46Z",
+      "ended_at": "2026-04-24T23:12:14Z",
+      "duration_ms": 28220,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 14 positions (cached CSV (stale))",
+      "artifact_written": "portfolio.json"
+    },
+    {
+      "run_id": "portfolio-23-04-2026T21-08-22Z",
+      "agent": "axe_portfolio",
+      "started_at": "2026-04-23T21:08:22Z",
+      "ended_at": "2026-04-23T21:08:49Z",
+      "duration_ms": 27904,
+      "status": "success",
+      "event_count": 2,
+      "summary": "portfolio review \u2014 14 positions (cached CSV (stale))",
+      "artifact_written": "portfolio.json"
+    },
     {
       "run_id": "portfolio-21-04-2026T00-24-44Z",
       "agent": "axe_portfolio",
@@ -765,17 +787,6 @@
       "artifact_written": null
     },
     {
-      "run_id": "portfolio-16-04-2026T01-12-58Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-16T01:12:58Z",
-      "ended_at": "2026-04-16T01:12:59Z",
-      "duration_ms": 1423,
-      "status": "success",
-      "event_count": 2,
-      "summary": "portfolio review \u2014 13 positions",
-      "artifact_written": "portfolio.json"
-    },
-    {
       "run_id": "alpha-16-04-2026T01-08-53Z",
       "agent": "axe_alpha",
       "started_at": "2026-04-16T01:08:53Z",
@@ -785,17 +796,6 @@
       "event_count": 3,
       "summary": "scan failed: ",
       "artifact_written": null
-    },
-    {
-      "run_id": "portfolio-16-04-2026T01-08-51Z",
-      "agent": "axe_portfolio",
-      "started_at": "2026-04-16T01:08:51Z",
-      "ended_at": "2026-04-16T01:08:53Z",
-      "duration_ms": 2109,
-      "status": "success",
-      "event_count": 2,
-      "summary": "portfolio review \u2014 13 positions",
-      "artifact_written": "portfolio.json"
     },
     {
       "run_id": "news-16-04-2026T01-05-17Z",

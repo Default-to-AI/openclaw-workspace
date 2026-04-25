@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-21T00:25:19Z",
-  "data_source": "ibkr",
-  "review_date": "2026-04-21",
+  "generated_at": "2026-04-24T23:12:14Z",
+  "data_source": "normalized",
+  "review_date": "2026-04-25",
   "positions": [
     {
       "symbol": "FICO",

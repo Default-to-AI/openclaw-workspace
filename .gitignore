@@ -52,3 +52,9 @@
 # Virtual Environments
 python-venv/
 .gstack/
+
+# graphify
+*graphify*
+*graphify/*
+*.graphify*
+*.sqlite3
